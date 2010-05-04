@@ -1,6 +1,6 @@
 <?php
 
-use Bundle\MiamBundle\Entities\Entry;
+use Bundle\MiamBundle\Entities\Story;
 
 $em = $this->container->getDoctrine_ORM_DefaultEntityManagerService();
 
