@@ -9,7 +9,7 @@ $loader->registerNamespaces(array(
   'Symfony'     => __DIR__.'/vendor/Symfony/src',
   'Application' => __DIR__,
   'Bundle'      => __DIR__,
-  'Goutte'      => __DIR__.'/vendor/Goutte/src'
+  'Doctrine'    => __DIR__.'/vendor/doctrine/lib'
 ));
 $loader->registerPrefixes(array(
   'Zend_'  => __DIR__.'/vendor/zend/library',
