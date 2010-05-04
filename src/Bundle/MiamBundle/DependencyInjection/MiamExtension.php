@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\MiamBundle\DependencyInjection;
+namespace Bundle\MiamBundle\DependencyInjection;
 
 use Symfony\Components\DependencyInjection\Loader\LoaderExtension;
 use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;

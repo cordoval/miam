@@ -1,8 +1,8 @@
 <?php
 
-namespace Application\MiamBundle;
+namespace Bundle\MiamBundle;
 
-use Application\MiamBundle\DependencyInjection\MiamExtension;
+use Bundle\MiamBundle\DependencyInjection\MiamExtension;
 
 use Symfony\Foundation\Bundle\Bundle as BaseBundle;
 use Symfony\Components\DependencyInjection\ContainerInterface;

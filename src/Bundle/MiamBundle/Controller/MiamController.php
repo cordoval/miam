@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\MiamBundle\Controller;
+namespace Bundle\MiamBundle\Controller;
 
 use Symfony\Framework\WebBundle\Controller;
 

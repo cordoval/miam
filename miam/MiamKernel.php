@@ -21,7 +21,7 @@ class MiamKernel extends Kernel
       new Symfony\Framework\DoctrineBundle\Bundle(),
       new Symfony\Framework\WebBundle\Bundle(),
       new Symfony\Framework\ZendBundle\Bundle(),
-      new Application\MiamBundle\Bundle(),
+      new Bundle\MiamBundle\Bundle()
     );
 
     if ($this->isDebug())
@@ -35,7 +35,6 @@ class MiamKernel extends Kernel
   public function registerBundleDirs()
   {
     return array(
-      'Application'        => __DIR__.'/../src/Application',
       'Bundle'             => __DIR__.'/../src/Bundle',
       'Symfony\\Framework' => __DIR__.'/../src/vendor/Symfony/src/Symfony/Framework',
     );

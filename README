@@ -1,0 +1,5 @@
+INSTALL
+-------
+
+Install miam assets
+ln -s ../../src/Application/MiamBundle/Resources/public/ web/bundles/miam
