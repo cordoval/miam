@@ -13,3 +13,6 @@
 [submodule "src/vendor/migrations"]
 	path = src/vendor/migrations
 	url = git://github.com/doctrine/migrations.git
+[submodule "src/vendor/DoctrineUserBundle"]
+	path = src/vendor/DoctrineUserBundle
+	url = git@github.com:knplabs/DoctrineUserBundle.git
