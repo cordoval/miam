@@ -1,0 +1,9 @@
+php_value xdebug.profiler_output_dir /tmp
+php_value xdebug.profiler_output_name cachegrind.out.55555
+php_value xdebug.profiler_enable 0
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>

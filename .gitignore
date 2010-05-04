@@ -1,0 +1,4 @@
+/miam/cache/*
+/miam/logs/*
+/nbproject
+.DS_Store

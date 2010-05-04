@@ -1,0 +1,12 @@
+[submodule "src/vendor/Symfony"]
+	path = src/vendor/Symfony
+	url = git://github.com/symfony/symfony.git
+[submodule "src/vendor/doctrine"]
+	path = src/vendor/doctrine
+	url = git://github.com/doctrine/doctrine2.git
+[submodule "src/vendor/zend"]
+	path = src/vendor/zend
+	url = git://github.com/tjohns/zf.git
+[submodule "src/Bundle/GuestBookBundle"]
+	path = src/Bundle/GuestBookBundle
+	url = git://github.com/jwage/GuestbookBundle.git
