@@ -1,7 +1,7 @@
-<?php $view->stylesheets->add('css/main.css') ?>
-<?php $view->stylesheets->add('ui/css/ui-lightness/jquery-ui-1.8.1.custom.css') ?>
-<?php $view->javascripts->add('js/jquery.min.js') ?>
-<?php $view->javascripts->add('ui/js/jquery-ui-1.8.1.custom.min.js') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css') ?>
+<?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
+<?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.1.custom.min.js') ?>
 <!DOCTYPE html>
 <html>
   <head>
