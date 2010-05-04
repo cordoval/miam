@@ -1,6 +1,2 @@
 miam:
   resource: MiamBundle/Resources/config/routing.yml
-  
-guestbook:
-  resource: GuestBookBundle/Resources/config/routing.yml
-  prefix:   guestbook
