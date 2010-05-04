@@ -15,7 +15,7 @@ doctrine.dbal:
       driver:               PDOMySql
       dbname:               miam
       user:                 root
-      password:             m
+      password:             
       host:                 localhost
       port:                 ~
       event_manager_class:  Doctrine\Common\EventManager
