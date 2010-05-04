@@ -1,4 +1,4 @@
-/config/config*_local.yml
+/miam/config/config*_local.yml
 /miam/cache/*
 /miam/logs/*
 /nbproject
