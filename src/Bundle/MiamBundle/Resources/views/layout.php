@@ -1,7 +1,13 @@
-<?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/vendor/jquery-ui/css/ui-lightness/jquery-ui-1.8.1.custom.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/base.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/component.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
+
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.1.custom.min.js') ?>
+<?php $view->javascripts->add('/bundles/miam/js/main.js') ?>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,7 +16,14 @@
     <?php echo $view->stylesheets ?>
   </head>
   <body>
-    <?php $view->slots->output('_content') ?>
+    <?php echo $view->render('MiamBundle:Miam:header') ?>
+    <div class="bd">
+      <div class="content">
+        <?php $view->slots->output('_content') ?>
+      </div>
+    </div>
+    <?php echo $view->render('MiamBundle:Miam:footer') ?>
+
     <?php echo $view->javascripts ?>
   </body>
 </html>

@@ -2,6 +2,7 @@
 {
   $(function()
   {
-    // code here
-  })
+    $("#stories").sortable();
+		$("#stories").disableSelection();
+  });
 })(jQuery);
