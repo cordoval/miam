@@ -8,6 +8,8 @@ web.user: ~
 
 # miam.config: ~
 
+markdown.parser: ~
+
 doctrine.dbal:
   default_connection:       default
   connections:
