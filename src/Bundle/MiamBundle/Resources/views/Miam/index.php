@@ -4,6 +4,6 @@
 
 <ul id="stories">
 <?php foreach($stories as $story): ?>
-	<li class="ui-state-default"><span class="ui-icon ui-icon-arrowthick-2-n-s"></span><?php echo $story->getName() ?></li>
+	<li class="ui-state-default"><a href="<?php echo $view->router->generate('story', array('id' => $story->getId())) ?>"><?php echo $story->getName() ?></a></li>
 <?php endforeach; ?>
 </ul>
