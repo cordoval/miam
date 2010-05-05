@@ -9,12 +9,11 @@
   
   $(function()
   {
-    $("#stories").sortable();
-		$("#stories").disableSelection();
-		$(".story")
+    $('#stories').sortable();
+		$('#stories').disableSelection();
+		$('li.story')
   		.click(function() { $(this).story('show'); })
   		.story()
   		;
-    
   });
 })(jQuery);

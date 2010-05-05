@@ -4,18 +4,17 @@
   $.widget('ui.story',
   {
     storyId: null,
-    data: {},
     
     _init: function()
     {
       this.storyId = $.evalJSON(this.element.attr('data-storyId'));
-      $.extend(this.data, stories[this.storyId]);
+      $.extend(this.options, stories[this.storyId]);
     },
 
     show: function()
     {
       $.ajax({
-        url: this.data.url_show
+        url: this.options.url_show
       });
     }
 
