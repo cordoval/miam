@@ -8,13 +8,11 @@ class MiamController extends Controller
 {
   public function indexAction()
   {
-    $em = $this->getEntityManager();
-    $qb = $em->createQueryBuilder()
-      ->select('s')
-      ->from('MiamBundle:Story', 's');
-
-    $query = $qb->getQuery();
-    $stories = $query->execute();
+    $stories = $this->getEntityManager()
+      ->getRepository('Bundle\MiamBundle\Entities\Story')
+      ->createQueryBuilder('story')
+      ->getQuery()
+      ->execute();
 
     return $this->render('MiamBundle:Miam:index', array(
       'stories' => $stories,
