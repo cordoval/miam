@@ -12,12 +12,6 @@ doctrine.dbal:
   default_connection:       default
   connections:
     default:
-      driver:               PDOMySql
-      dbname:               miam
-      user:                 root
-      password:             
-      host:                 localhost
-      port:                 ~
       event_manager_class:  Doctrine\Common\EventManager
       configuration_class:  Doctrine\DBAL\Configuration
       wrapper_class:        ~
