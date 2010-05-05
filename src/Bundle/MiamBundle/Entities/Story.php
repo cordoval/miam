@@ -105,4 +105,15 @@ class Story
   {
     return $this->id;
   }
+  
+  public function toArray()
+  {
+    return array(
+      'id' => $this->getId(),
+      'name' => $this->getName(),
+      'body' => $this->getBody(),
+      'createdAt' => $this->getCreatedAt(),
+      'priority' => $this->getPriority(),
+    );
+  }
 }
