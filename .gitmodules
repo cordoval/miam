@@ -7,12 +7,12 @@
 [submodule "src/vendor/zend"]
 	path = src/vendor/zend
 	url = git://github.com/tjohns/zf.git
-[submodule "src/Bundle/GuestBookBundle"]
-	path = src/Bundle/GuestBookBundle
-	url = git://github.com/jwage/GuestbookBundle.git
 [submodule "src/vendor/migrations"]
 	path = src/vendor/migrations
 	url = git://github.com/doctrine/migrations.git
-[submodule "src/vendor/DoctrineUserBundle"]
-	path = src/vendor/DoctrineUserBundle
-	url = git@github.com:knplabs/DoctrineUserBundle.git
+[submodule "src/Bundle/DoctrineUserBundle"]
+	path = src/Bundle/DoctrineUserBundle
+	url = git://github.com/knplabs/DoctrineUserBundle.git
+[submodule "src/Bundle/MarkdownBundle"]
+	path = src/Bundle/MarkdownBundle
+	url = git://github.com/knplabs/MarkdownBundle.git
