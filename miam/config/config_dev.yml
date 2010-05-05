@@ -7,3 +7,6 @@ zend.logger:
 
 profiler.config:
   toolbar: true
+
+doctrine.orm:
+  cache_driver:             array           # array, apc, memcache, xcache

@@ -10,9 +10,7 @@ class MiamController extends Controller
   {
     $stories = $this->getEntityManager()
       ->getRepository('Bundle\MiamBundle\Entities\Story')
-      ->createQueryBuilder('story')
-      ->getQuery()
-      ->execute();
+      ->findAllOrderByPriority();
 
     return $this->render('MiamBundle:Miam:index', array(
       'stories' => $stories,

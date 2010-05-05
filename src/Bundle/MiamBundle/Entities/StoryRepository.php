@@ -12,6 +12,13 @@ use Doctrine\ORM\EntityRepository;
  */
 class StoryRepository extends EntityRepository
 {
-  
+
+  public function findAllOrderByPriority()
+  {
+    return $this->createQueryBuilder('e')
+    ->orderBy('e.priority', 'asc')
+    ->getQuery()
+    ->execute();
+  }
 
 }
