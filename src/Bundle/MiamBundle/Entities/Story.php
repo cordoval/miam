@@ -3,7 +3,7 @@
 namespace Bundle\MiamBundle\Entities;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="Bundle\MiamBundle\Entities\StoryRepository")
  * @Table(name="miam_story")
  */
 class Story
