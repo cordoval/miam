@@ -4,6 +4,7 @@ namespace Bundle\MiamBundle\Controller;
 
 use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\RequestHandler\Exception\NotFoundHttpException;
+use Bundle\MiamBundle\Entities\Story;
 
 class MiamController extends Controller
 {
@@ -12,7 +13,7 @@ class MiamController extends Controller
     $stories = $this->getEntityManager()
       ->getRepository('Bundle\MiamBundle\Entities\Story')
       ->findAllOrderByPriority();
-
+    
     return $this->render('MiamBundle:Miam:index', array(
       'stories' => $stories,
     ));

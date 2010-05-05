@@ -6,6 +6,7 @@
 
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.1.custom.min.js') ?>
+<?php $view->javascripts->add('/bundles/miam/js/story.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/main.js') ?>
 
 <!DOCTYPE html>

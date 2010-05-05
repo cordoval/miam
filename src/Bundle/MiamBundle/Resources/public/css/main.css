@@ -18,3 +18,8 @@
   position: absolute;
   margin-left: -1.3em;
 }
+
+.story {
+  cursor: pointer;
+}
+
