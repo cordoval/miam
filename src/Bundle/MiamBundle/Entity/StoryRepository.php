@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Entities;
+namespace Bundle\MiamBundle\Entity;
 
 use Doctrine\ORM\EntityRepository;
 

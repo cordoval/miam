@@ -4,7 +4,7 @@ namespace Bundle\MiamBundle\Controller;
 
 use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Bundle\MiamBundle\Entities\Story;
+use Bundle\MiamBundle\Entity\Story;
 use Bundle\MiamBundle\Renderer\StoryRenderer;
 
 class MiamController extends Controller
@@ -13,7 +13,7 @@ class MiamController extends Controller
     public function indexAction()
     {
         $stories = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->getRepository('Bundle\MiamBundle\Entity\Story')
         ->findAllOrderByPriority();
 
         $storyRenderer = new StoryRenderer($this->container->getRouterService());
@@ -27,7 +27,7 @@ class MiamController extends Controller
     public function showAction($id)
     {
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->getRepository('Bundle\MiamBundle\Entity\Story')
         ->find($id);
 
         if (!$story)

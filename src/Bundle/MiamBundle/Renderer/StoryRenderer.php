@@ -2,7 +2,7 @@
 
 namespace Bundle\MiamBundle\Renderer;
 
-use Bundle\MiamBundle\Entities;
+use Bundle\MiamBundle\Entity;
 
 /**
  * Render a story or an array of stories.
