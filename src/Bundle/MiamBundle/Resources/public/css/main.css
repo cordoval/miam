@@ -1,25 +1,59 @@
-#stories {
+.hd
+{
+  padding: 0;
+}
+.hd .content
+{
+  padding-top: 5px;
+  overflow: hidden;
+  padding-bottom: 5px;
+}
+.hd h1.title_header
+{
+  border: none;
+  border-right:4px solid #F7E552;
+  color:#FFFFFF;
+  float:left;
+  font-family:Arial,sans-serif;
+  font-size:2em;
+  font-weight:bold;
+  height: auto;
+  line-height:0.9em;
+  padding: 5px 20px 5px 0px;
+  margin: 0 20px 0 0;
+}
+
+.menu
+{
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+
+#stories
+{
   list-style-type: none;
   margin: 0;
   padding: 0;
   width: 60%;
 }
 
-#stories li {
+#stories li
+{
   margin: 0 3px 3px 3px;
   padding: 0.4em;
-  padding-left: 1.5em;
+  padding-left: 0;
   font-size: 1.4em;
   height: 18px;
   list-style: none;
 }
 
-#stories li span {
+#stories li span
+{
   position: absolute;
   margin-left: -1.3em;
 }
 
-.story {
+.story
+{
   cursor: pointer;
 }
-

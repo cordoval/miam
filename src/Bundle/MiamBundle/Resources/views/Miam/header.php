@@ -1,11 +1,14 @@
 <header class="hd">
   <div class="content">
+    <h1 class="title_header">
+      MIAM
+    </h1>
     <div class="menu">
       <ul>
-        <li><a href="/templating/">ABOUT</a></li>
-        <li><a href="/templating/installation">INSTALLATION</a></li>
-        <li><a class="active" href="/templating/documentation">DOCUMENTATION</a></li>
-        <li><a href="/templating/development">DEVELOPMENT</a></li>
+        <li><a class="active" href="#">BACKLOG</a></li>
+        <li><a href="#">TODO</a></li>
+        <li><a href="#">TODO</a></li>
+        <li><a href="#">TODO</a></li>
       </ul>
     </div>
   </div>
