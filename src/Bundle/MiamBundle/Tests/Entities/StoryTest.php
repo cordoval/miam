@@ -2,7 +2,7 @@
 
 namespace Bundle\MiamBundle\Tests\Entities;
 
-use Bundle\MiamBundle\Entities\Story;
+use Bundle\MiamBundle\Entity\Story;
 
 require_once 'PHPUnit/Framework.php';
 require_once __DIR__.'/../../Entities/Story.php';
