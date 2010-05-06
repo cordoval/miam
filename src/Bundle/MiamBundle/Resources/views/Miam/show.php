@@ -5,5 +5,5 @@
 <h1 class="story"><?php echo $story->getName() ?></h1>
 
 <div class="story_body">
-  <?php echo $story->getBody() ?>
+  <?php echo $view->markdown->transform($story->getBody()) ?>
 </div>

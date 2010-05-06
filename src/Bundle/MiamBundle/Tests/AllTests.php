@@ -3,7 +3,7 @@
 namespace Bundle\MiamBundle\Tests;
 
 require_once 'PHPUnit/Framework.php';
-require_once __DIR__.'/Entities/StoryTest.php';
+require_once __DIR__.'/Entity/StoryTest.php';
 require_once __DIR__.'/Renderer/StoryRendererTest.php';
 
 class AllTests
