@@ -10,6 +10,8 @@ web.user: ~
 
 markdown.parser: ~
 
+markdown.helper: ~
+
 doctrine.dbal:
   default_connection:       default
   connections:

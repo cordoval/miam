@@ -3,7 +3,7 @@
 namespace Bundle\MiamBundle\Controller;
 
 use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
-use Symfony\Components\RequestHandler\Exception\NotFoundHttpException;
+use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\StoryRenderer;
 
