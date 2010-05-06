@@ -8,112 +8,109 @@ namespace Bundle\MiamBundle\Entities;
  */
 class Story
 {
-  /**
-   * @Column(name="created_at", type="datetime")
-   */
-  protected $createdAt;
+    /**
+     * @Column(name="created_at", type="datetime")
+     */
+    protected $createdAt;
+    /**
+     * @Column(name="name", type="string", length=255)
+     */
+    protected $name;
+    /**
+     * @Column(name="priority", type="integer")
+     */
+    protected $priority;
+    /**
+     * @Column(name="body", type="text")
+     */
+    protected $body;
+    /**
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
-  /**
-   * @Column(name="name", type="string", length=255)
-   */
-  protected $name;
+    public function __construct()
+    {
+        $this->createdAt = new \DateTime();
+    }
 
-  /**
-   * @Column(name="priority", type="integer")
-   */
-  protected $priority;
+    /**
+     * Set createdAt
+     */
+    public function setCreatedAt($value)
+    {
+        $this->createdAt = $value;
+    }
 
-  /**
-   * @Column(name="body", type="text")
-   */
-  protected $body;
+    /**
+     * Get createdAt
+     */
+    public function getCreatedAt()
+    {
+        return $this->createdAt;
+    }
 
-  /**
-   * @Column(name="id", type="integer")
-   * @Id
-   * @GeneratedValue(strategy="AUTO")
-   */
-  protected $id;
+    /**
+     * Set name
+     */
+    public function setName($value)
+    {
+        $this->name = $value;
+    }
 
-  public function __construct()
-  {
-    $this->createdAt = new \DateTime();
-  }
+    /**
+     * Get name
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
 
-  /**
-   * Set createdAt
-   */
-  public function setCreatedAt($value)
-  {
-    $this->createdAt = $value;
-  }
+    public function setPriority($value)
+    {
+        $this->priority = $value;
+    }
 
-  /**
-   * Get createdAt
-   */
-  public function getCreatedAt()
-  {
-    return $this->createdAt;
-  }
+    public function getPriority()
+    {
+        return $this->priority;
+    }
 
-  /**
-   * Set name
-   */
-  public function setName($value)
-  {
-    $this->name = $value;
-  }
+    /**
+     * Set body
+     */
+    public function setBody($value)
+    {
+        $this->body = $value;
+    }
 
-  /**
-   * Get name
-   */
-  public function getName()
-  {
-    return $this->name;
-  }
+    /**
+     * Get body
+     */
+    public function getBody()
+    {
+        return $this->body;
+    }
 
-  public function setPriority($value)
-  {
-    $this->priority = $value;
-  }
+    /**
+     * Get id
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
-  public function getPriority()
-  {
-    return $this->priority;
-  }
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'body' => $this->getBody(),
+            'createdAt' => $this->getCreatedAt(),
+            'priority' => $this->getPriority(),
+        );
+    }
 
-  /**
-   * Set body
-   */
-  public function setBody($value)
-  {
-    $this->body = $value;
-  }
-
-  /**
-   * Get body
-   */
-  public function getBody()
-  {
-    return $this->body;
-  }
-
-  /**
-   * Get id
-   */
-  public function getId()
-  {
-    return $this->id;
-  }
-  
-  public function toArray()
-  {
-    return array(
-      'id' => $this->getId(),
-      'name' => $this->getName(),
-      'body' => $this->getBody(),
-      'createdAt' => $this->getCreatedAt(),
-      'priority' => $this->getPriority(),
-    );
-  }
 }

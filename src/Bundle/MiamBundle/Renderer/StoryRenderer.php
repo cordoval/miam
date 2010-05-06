@@ -13,27 +13,28 @@ use Bundle\MiamBundle\Entities;
  */
 class StoryRenderer
 {
-  protected $router;
-  
-  function __construct($router)
-  {
-    $this->router = $router;
-  }
-  
-  public function renderStoriesAsJson(array $stories)
-  {
-    $public = array();
-    foreach($stories as $story)
+    protected $router;
+
+    function __construct($router)
     {
-      $public[$story->getId()] = array(
-        'id' => $story->getId(),
-        'name' => $story->getName(),
-        'body' => $story->getBody(),
-        'createdAt' => $story->getCreatedAt(),
-        'priority' => $story->getPriority(),
-        'url_show' => $this->router->generate('story', array('id' => $story->getId())),
-      );
+        $this->router = $router;
     }
-    return json_encode($public, JSON_FORCE_OBJECT);
-  }
+
+    public function renderStoriesAsJson(array $stories)
+    {
+        $public = array();
+        foreach ($stories as $story)
+        {
+            $public[$story->getId()] = array(
+                'id' => $story->getId(),
+                'name' => $story->getName(),
+                'body' => $story->getBody(),
+                'createdAt' => $story->getCreatedAt(),
+                'priority' => $story->getPriority(),
+                'url_show' => $this->router->generate('story', array('id' => $story->getId())),
+            );
+        }
+        return json_encode($public, JSON_FORCE_OBJECT);
+    }
+
 }

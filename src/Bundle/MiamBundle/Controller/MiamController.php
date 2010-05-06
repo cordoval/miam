@@ -9,35 +9,36 @@ use Bundle\MiamBundle\Renderer\StoryRenderer;
 
 class MiamController extends Controller
 {
-  public function indexAction()
-  {
-    $stories = $this->getEntityManager()
-      ->getRepository('Bundle\MiamBundle\Entities\Story')
-      ->findAllOrderByPriority();
-    
-    $storyRenderer = new StoryRenderer($this->container->getRouterService());
-    
-    return $this->render('MiamBundle:Miam:index', array(
-      'stories' => $stories,
-      'storiesRenderer' => $storyRenderer,
-    ));
-  }
-  
-  public function showAction($id)
-  {
-    $story = $this->getEntityManager()
-      ->getRepository('Bundle\MiamBundle\Entities\Story')
-      ->find($id);
-    
-    if(!$story)
+
+    public function indexAction()
     {
-      throw new NotFoundHttpException("Story not found");
+        $stories = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->findAllOrderByPriority();
+
+        $storyRenderer = new StoryRenderer($this->container->getRouterService());
+
+        return $this->render('MiamBundle:Miam:index', array(
+            'stories' => $stories,
+            'storiesRenderer' => $storyRenderer,
+        ));
     }
 
-    return $this->render('MiamBundle:Miam:show', array(
-      'story' => $story,
-      'decorate' => $this->getRequest()->isXmlHttpRequest()
-    ));
-  }
-  
+    public function showAction($id)
+    {
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story)
+        {
+            throw new NotFoundHttpException("Story not found");
+        }
+
+        return $this->render('MiamBundle:Miam:show', array(
+            'story' => $story,
+            'decorate' => $this->getRequest()->isXmlHttpRequest()
+        ));
+    }
+
 }

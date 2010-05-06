@@ -10,20 +10,20 @@
 
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Miam</title>
-    <?php echo $view->stylesheets ?>
-  </head>
-  <body>
-    <?php echo $view->render('MiamBundle:Miam:header') ?>
-    <div class="bd">
-      <div class="content">
-        <?php $view->slots->output('_content') ?>
-      </div>
-    </div>
-    <?php echo $view->render('MiamBundle:Miam:footer') ?>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Miam</title>
+        <?php echo $view->stylesheets ?>
+    </head>
+    <body>
+        <?php echo $view->render('MiamBundle:Miam:header') ?>
+        <div class="bd">
+            <div class="content">
+                <?php $view->slots->output('_content') ?>
+            </div>
+        </div>
+        <?php echo $view->render('MiamBundle:Miam:footer') ?>
 
-    <?php echo $view->javascripts ?>
-  </body>
+        <?php echo $view->javascripts ?>
+    </body>
 </html>
