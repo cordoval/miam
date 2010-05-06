@@ -1,11 +1,11 @@
 <?php
 
-namespace Bundle\MiamBundle\Tests\Entities;
+namespace Bundle\MiamBundle\Tests\Entity;
 
 use Bundle\MiamBundle\Entity\Story;
 
 require_once 'PHPUnit/Framework.php';
-require_once __DIR__.'/../../Entities/Story.php';
+require_once __DIR__.'/../../Entity/Story.php';
 
 class StoryTest extends \PHPUnit_Framework_TestCase
 {
