@@ -12,7 +12,10 @@
     $('#stories').sortable();
 		$('#stories').disableSelection();
 		$('li.story')
-  		.click(function() { $(this).story('show'); })
+  		.click(function() {
+  		  $('#backlog').hide();
+  		  $(this).story('show');
+  		})
   		.story()
   		;
   });

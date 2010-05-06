@@ -1,7 +1,7 @@
-stories:
+backlog:
   pattern:  /
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: index }
 
 story:
-  pattern:  /:id.:_format
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: show, _format: json }
+  pattern:  /story/:id
+  defaults: { _bundle: MiamBundle, _controller: Miam, _action: show }

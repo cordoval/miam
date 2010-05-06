@@ -34,7 +34,10 @@ class MiamController extends Controller
       throw new NotFoundHttpException("Story not found");
     }
 
-    return $this->createResponse(json_encode($story->toArray()));
+    return $this->render('MiamBundle:Miam:show', array(
+      'story' => $story,
+      'decorate' => $this->getRequest()->isXmlHttpRequest()
+    ));
   }
   
 }

@@ -14,7 +14,14 @@
     show: function()
     {
       $.ajax({
-        url: this.options.url_show
+        url: this.options.url_show,
+        success: function(data) {
+           $('#story').html(data);
+           $('#back_backlog').click(function() {
+             $('#story').hide();
+             $('#backlog').show();
+           })
+         }
       });
     }
 
