@@ -50,23 +50,40 @@ class MiamController extends Controller
         }
 
         return $this->render('MiamBundle:Miam:show', array(
-            'story' => $story,
-            'decorate' => $this->getRequest()->isXmlHttpRequest()
+            'story' => $story
+        ));
+    }
+
+    public function editAction($id)
+    {
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story)
+        {
+            throw new NotFoundHttpException("Story not found");
+        }
+
+        $form = new StoryForm($story);
+
+        return $this->render('MiamBundle:Miam:edit', array(
+            'form' => $form,
+            'story' => $story
         ));
     }
 
     public function newAction()
     {
-        $em = $this->getEntityManager();
-        $form = new StoryForm($em, null);
+        $form = new StoryForm(new Story());
 
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get($form->getName()));
+            $form->bind($this->getRequest()->request->get('story'));
 
             if($form->isValid()) {
                 $form->updateObject();
-                $em->persist($form->getObject());
-                $em->flush();
+                $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->flush();
                 return $this->redirect($this->generateUrl('backlog'));
             }
             

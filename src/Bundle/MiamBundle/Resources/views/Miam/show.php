@@ -1,4 +1,4 @@
-<?php if(!$decorate) $view->extend('MiamBundle::layout') ?>
+<?php $view->extend('MiamBundle::layout') ?>
 
 <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">« Retour au backlog</a>
 
@@ -7,3 +7,7 @@
 <div class="story_body">
   <?php echo $view->markdown->transform($story->getBody()) ?>
 </div>
+
+<a href="<?php echo $view->router->generate('story_edit', array('id' => $story->getId())) ?>">
+    Modifier
+</a>
