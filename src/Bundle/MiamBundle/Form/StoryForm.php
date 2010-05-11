@@ -10,7 +10,7 @@ class StoryForm extends \sfForm
 
     protected $object;
 
-    public function __construct(EntityManager $em, $object, $options = array(), $CSRFSecret = null)
+    public function __construct($object, $options = array(), $CSRFSecret = null)
     {
         $class = $this->getModelName();
         if (!$object)

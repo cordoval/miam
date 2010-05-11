@@ -13,3 +13,7 @@ story_sort:
 story:
   pattern:  /story/:id
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: show }
+
+story_edit:
+  pattern:  /story/:id/edit
+  defaults: { _bundle: MiamBundle, _controller: Miam, _action: edit }
