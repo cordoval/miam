@@ -6,6 +6,7 @@ use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\StoryRenderer;
+use Bundle\MiamBundle\Form\StoryForm;
 
 class MiamController extends Controller
 {
@@ -41,4 +42,27 @@ class MiamController extends Controller
         ));
     }
 
+    public function newAction()
+    {
+        $em = $this->getEntityManager();
+        $form = new StoryForm($em, null);
+
+        if('POST' === $this->getRequest()->getMethod()) {
+            $form->bind($this->getRequest()->request->get($form->getName()));
+
+            if($form->isValid()) {
+                $form->updateObject();
+                $em->persist($form->getObject());
+                $em->flush();
+                return $this->redirect($this->generateUrl('backlog'));
+            }
+            
+        }
+
+        return $this->render('MiamBundle:Miam:new', array(
+            'form' => $form
+        ));
+    }
+
+    
 }

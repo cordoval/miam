@@ -8,22 +8,32 @@ namespace Bundle\MiamBundle\Entities;
  */
 class Story
 {
+
     /**
      * @Column(name="created_at", type="datetime")
      */
     protected $createdAt;
+
     /**
      * @Column(name="name", type="string", length=255)
      */
     protected $name;
+
     /**
      * @Column(name="priority", type="integer")
      */
     protected $priority;
+
     /**
      * @Column(name="body", type="text")
      */
     protected $body;
+
+    /**
+     * @Column(name="points", type="text", nullable=true)
+     */
+    protected $points;
+
     /**
      * @Column(name="id", type="integer")
      * @Id
@@ -100,6 +110,32 @@ class Story
     public function getId()
     {
         return $this->id;
+    }
+
+    public function setPoints($points)
+    {
+        $this->points = $points;
+    }
+
+    public function getPoints()
+    {
+        return $this->points;
+    }
+
+    /**
+     * Return an array version of a Story's properties
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'body' => $this->getBody(),
+            'name' => $this->getName(),
+            'created_at' => $this->getCreatedAt(),
+            'priority' => $this->getPriority(),
+            'points' => $this->getPoints()
+        );
     }
 
 }

@@ -2,6 +2,10 @@ backlog:
   pattern:  /
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: index }
 
+story_new:
+  pattern:  /story/new
+  defaults: { _bundle: MiamBundle, _controller: Miam, _action: new }
+
 story:
   pattern:  /story/:id
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: show }

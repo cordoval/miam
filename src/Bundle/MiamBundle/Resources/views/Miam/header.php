@@ -6,7 +6,7 @@
         <div class="menu">
             <ul>
                 <li><a class="active" href="#">BACKLOG</a></li>
-                <li><a href="#">TODO</a></li>
+                <li><a href="<?php echo $view->router->generate('story_new') ?>">NOUVELLE STORY</a></li>
                 <li><a href="#">TODO</a></li>
                 <li><a href="#">TODO</a></li>
             </ul>
