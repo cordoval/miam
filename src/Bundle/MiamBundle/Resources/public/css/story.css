@@ -1,0 +1,27 @@
+#stories
+{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 60%;
+}
+
+li.story
+{
+  margin: 0 3px 3px 3px;
+  padding: 0.4em;
+  padding-left: 0;
+  font-size: 1.4em;
+  height: 18px;
+  list-style: none;
+  cursor: pointer;
+}
+
+li.story span.drag {
+    float: right;
+    width: 16px;
+    height: 16px;
+    display: block;
+    cursor: move;
+    background: url(../images/drag.png) top left no-repeat;
+}
