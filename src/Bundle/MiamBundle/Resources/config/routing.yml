@@ -6,6 +6,10 @@ story_new:
   pattern:  /story/new
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: new }
 
+story_sort:
+  pattern:  /story/sort
+  defaults: { _bundle: MiamBundle, _controller: Miam, _action: sort }
+
 story:
   pattern:  /story/:id
   defaults: { _bundle: MiamBundle, _controller: Miam, _action: show }

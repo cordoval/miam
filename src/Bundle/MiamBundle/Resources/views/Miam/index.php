@@ -1,17 +1,15 @@
 <?php $view->extend('MiamBundle::layout') ?>
 
-<div id="backlog">
+<div id="backlog" data-sort-url="<?php echo $view->router->generate('story_sort') ?>">
     <h1>Backlog</h1>
 
-    <ul id="stories">
+    <ol class="stories">
         <?php foreach ($stories as $story): ?>
-            <li class="story ui-state-default" data-storyId="<?php echo $story->getId() ?>">
-          	  #<?php echo $story->getId() ?> − <?php echo $story->getName() ?>
+            <li class="story" id="story_<?php echo $story->getId() ?>">
+                <a href="<?php echo $view->router->generate('story', array('id' => $story->getId())) ?>">
+                    #<?php echo $story->getId() ?> − <?php echo $story->getName() ?>
+                </a>
             </li>
         <?php endforeach; ?>
-    </ul>
-</div>
-
-<div id="story">
-
+    </ol>
 </div>
