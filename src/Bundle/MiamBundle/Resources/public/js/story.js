@@ -7,8 +7,9 @@
     
     _init: function()
     {
-      this.storyId = $.evalJSON(this.element.attr('data-storyId'));
-      $.extend(this.options, stories[this.storyId]);
+      this.storyId = this.element.attr('data-storyId');
+
+      this.element.append($('<span>').addClass('drag'))
     },
 
     show: function()

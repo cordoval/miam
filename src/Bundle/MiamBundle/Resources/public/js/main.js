@@ -1,22 +1,21 @@
 (function($)
 {
-  $.evalJSON = function(src)
-  {
-      if (typeof(JSON) == 'object' && JSON.parse)
-          return JSON.parse(src);
-      return eval("(" + src + ")");
-  };
   
   $(function()
   {
-    $('#stories').sortable();
-		$('#stories').disableSelection();
-		$('li.story')
-  		.click(function() {
-  		  $('#backlog').hide();
-  		  $(this).story('show');
-  		})
-  		.story()
-  		;
+    $('#stories')
+    .sortable({
+        handle:     'span.drag',
+        axis:       'y',
+        update:     function(event, ui) {
+            console.debug(event, ui);
+        }
+    })
+    .disableSelection()
+    .find('li.story').click(function() {
+      $('#backlog').hide();
+      $(this).story('show');
+    })
+    .story();
   });
 })(jQuery);

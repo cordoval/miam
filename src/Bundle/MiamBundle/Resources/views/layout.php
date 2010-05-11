@@ -2,6 +2,7 @@
 <?php $view->stylesheets->add('/bundles/miam/css/base.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/component.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/story.css') ?>
 
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.1.custom.min.js') ?>
