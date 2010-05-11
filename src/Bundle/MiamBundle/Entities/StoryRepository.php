@@ -21,4 +21,12 @@ class StoryRepository extends EntityRepository
         ->execute();
     }
 
+    public function sort(array $ids)
+    {
+        foreach($ids as $priority => $id)
+        {
+            $this->find($id)->setPriority($priority);
+        }
+    }
+
 }

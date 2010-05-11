@@ -25,6 +25,19 @@ class MiamController extends Controller
         ));
     }
 
+    public function sortAction()
+    {
+        $ids = $this->getRequest()->request->get('story');
+
+        $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->sort($ids);
+
+        $this->getEntityManager()->flush();
+
+        return $this->createResponse('done');
+    }
+
     public function showAction($id)
     {
         $story = $this->getEntityManager()
