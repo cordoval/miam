@@ -1,7 +1,7 @@
 <header class="hd">
     <div class="content">
         <h1 class="title_header">
-            MIAM
+            <a href="<?php echo $view->router->generate('backlog') ?>" id="logo">MIAM</a>
         </h1>
         <div class="menu">
             <ul>

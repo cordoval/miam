@@ -28,3 +28,15 @@
   padding-top: 10px;
   padding-bottom: 0;
 }
+
+#logo
+{
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.flash_info {
+  border: 2px solid #444444;
+  background: #EEE;
+  padding: 10px;
+}

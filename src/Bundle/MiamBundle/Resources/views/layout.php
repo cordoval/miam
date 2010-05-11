@@ -21,6 +21,11 @@
         <?php echo $view->render('MiamBundle:Miam:header') ?>
         <div class="bd">
             <div class="content">
+                <?php if($view->user->hasFlash('info')): ?>
+                    <div class="flash_info">
+                        <?php echo $view->user->getFlash('info') ?>
+                    </div>
+                <?php endif ?>
                 <?php $view->slots->output('_content') ?>
             </div>
         </div>
