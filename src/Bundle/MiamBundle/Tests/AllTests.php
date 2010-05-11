@@ -12,8 +12,12 @@ class AllTests
   {
     $suite = new \PHPUnit_Framework_TestSuite('MiamBundle');
 
+    // Unit
     $suite->addTestSuite('\Bundle\MiamBundle\Tests\Entities\StoryTest');
     $suite->addTestSuite('\Bundle\MiamBundle\Tests\Renderer\StoryRendererTest');
+
+    // Functional
+    $suite->addTestSuite('\Bundle\MiamBundle\Tests\Functional\createAStoryTest');
 
     return $suite;
   }
