@@ -1,19 +1,11 @@
 imports:
   - { resource: config.yml }
 
+parameters:
+  user.session.class: Symfony\Framework\WebBundle\Session\ArraySession
+
 zend.logger:
   priority: debug
   path:     %kernel.logs_dir%/%kernel.environment%.log
 
 kernel.test: ~
-
-doctrine.dbal:
-  default_connection:       default
-  connections:
-    default:
-      driver:               PDOMySql
-      dbname:               miam
-      user:                 root
-      password:             
-      host:                 localhost
-      port:                 ~

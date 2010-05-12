@@ -10,11 +10,14 @@ class createAStoryTest extends FunctionalTest
     public function testCreateForm()
     {
       $crawler = $this->client->request('GET', '/story/new');
-
+      // echo $this->client->getResponse()->getContent();
+      
       $this->addRequestTester();
       $this->client->assertRequestParameter('_controller', 'Miam');
       $this->client->assertRequestParameter('_action', 'new');
+      // echo $this->client->getResponse()->getContent();
       
+      // die();
       $form = $crawler->selectButton('Valider')->form();
       $this->client->submit($form, array(
           'story[name]' => 'My story morning glory',
