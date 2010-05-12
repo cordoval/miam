@@ -84,6 +84,7 @@ class MiamController extends Controller
                 $form->updateObject();
                 $this->getEntityManager()->persist($form->getObject());
                 $this->getEntityManager()->flush();
+                $this->getUser()->setFlash('info', strtr('La story "{story}" a été créée avec succès !', array('{story}' => $form->getObject()->getName())));
                 return $this->redirect($this->generateUrl('backlog'));
             }
             

@@ -1,6 +1,7 @@
 <?php $view->extend('MiamBundle::layout') ?>
-  
-<?php echo $form->renderFormTag($view->router->generate('story_edit')) ?>
+<?php $view->slots->set('active_menu', 'story_new') ?>
+
+<?php echo $form->renderFormTag($view->router->generate('story_new')) ?>
     <table>
         <?php echo $form ?>
     </table>
