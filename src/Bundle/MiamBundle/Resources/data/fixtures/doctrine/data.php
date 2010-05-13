@@ -2,8 +2,6 @@
 
 use Bundle\MiamBundle\Entities\Story;
 
-$em = $this->container->getDoctrine_ORM_DefaultEntityManagerService();
-
 $story1 = new Story();
 $story1->setName('Smoke in the water');
 $story1->setPriority(1);
