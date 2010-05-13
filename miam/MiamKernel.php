@@ -9,6 +9,7 @@ use Symfony\Components\Routing\Loader\YamlFileLoader as RoutingLoader;
 
 class MiamKernel extends Kernel
 {
+  
   public function registerRootDir()
   {
     return __DIR__;
@@ -22,6 +23,7 @@ class MiamKernel extends Kernel
       new Symfony\Framework\WebBundle\Bundle(),
       new Symfony\Framework\ZendBundle\Bundle(),
       new Bundle\MarkdownBundle\Bundle(),
+      new Bundle\DoctrineUserBundle\Bundle(),
       new Bundle\MiamBundle\Bundle()
     );
 
@@ -66,7 +68,10 @@ class MiamKernel extends Kernel
   {
     $loader = new ContainerLoader($this->getBundleDirs());
 
-    return $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
+    $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
+    $configuration->merge($loader->load(__DIR__.'/config/dic.yml'));
+
+    return $configuration;
   }
 
   public function registerRoutes()
