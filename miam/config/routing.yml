@@ -1,2 +1,6 @@
 miam:
   resource: MiamBundle/Resources/config/routing.yml
+
+user:
+  resource: DoctrineUserBundle/Resources/config/routing.yml
+  prefix:   /user
