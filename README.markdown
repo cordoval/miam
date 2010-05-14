@@ -16,8 +16,9 @@ To configure your DB for your development and test environments, edit your `/mia
           host:                 localhost
           port:                 ~
 
-Create tables
+Create your database and tables
 
+    php miam/console doctrine:database:create
     php miam/console doctrine:schema:create
 
 Load fixtures
