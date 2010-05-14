@@ -3,7 +3,6 @@
 namespace Bundle\PHPUnitBundle\Functional;
 
 use Symfony\Foundation\Test\WebTestCase as BaseWebTestCase;
-// use Symfony\Components\HttpKernel\Test\Client;
 use Symfony\Foundation\Test\Client;
 use Symfony\Components\HttpKernel\Test\RequestTester;
 use Symfony\Components\HttpKernel\Test\ResponseTester;
@@ -22,9 +21,7 @@ abstract class WebTestCase extends BaseWebTestCase
         $kernel = $this->createKernel();
         $kernel->boot();
 
-        // $httpKernel = $kernel->getContainer()->getHttpKernelService();
         $client = $kernel->getContainer()->getTest_ClientService();
-        // $client = new Client($kernel);
         $client->setServerParameters($server);
         $client->setTestCase($this);
         
@@ -36,9 +33,26 @@ abstract class WebTestCase extends BaseWebTestCase
         $this->client = $this->createClient();
     }
     
-    
+    /**
+     * Add a request tester to the current client associated to its request
+     *
+     * @return $this
+     */
     protected function addRequestTester()
     {
         $this->client->addTester('request', new RequestTester($this->client->getRequest()));
+        return $this;
     }
+    
+    /**
+     * Add a response tester to the current client associated to its response
+     *
+     * @return $this
+     */
+    protected function addResponseTester()
+    {
+        $this->client->addTester('response', new ResponseTester($this->client->getResponse()));
+        return $this;
+    }
+    
 }

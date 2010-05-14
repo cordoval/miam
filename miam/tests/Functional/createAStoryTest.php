@@ -7,15 +7,13 @@ use Bundle\PHPUnitBundle\Functional;
 class createAStoryTest extends \WebTestCase
 {
     
-    public function testCreateForm()
+    public function testCreateAStoryShowsItOnTheBacklog()
     {
       $crawler = $this->client->request('GET', '/story/new');
-      // echo $this->client->getResponse()->getContent();
       
       $this->addRequestTester();
-      $this->client->assertRequestParameter('_controller', 'Miam');
-      $this->client->assertRequestParameter('_action', 'new');
-      // echo $this->client->getResponse()->getContent();
+      $this->client->assertRequestParameter('_route', 'story_new');
+      $this->client->assertRequestParameter('_controller', 'MiamBundle:Miam:new');
       
       $form = $crawler->selectButton('Valider')->form();
       $this->client->submit($form, array(
@@ -25,6 +23,11 @@ class createAStoryTest extends \WebTestCase
       ));
       $this->client->followRedirect();
       
+      $this->addRequestTester();
+      $this->client->assertRequestParameter('_route', 'backlog');
+      
+      $this->addResponseTester();
+      $this->client->assertResponseRegExp('/My story morning glory/');
     }
 
 }
