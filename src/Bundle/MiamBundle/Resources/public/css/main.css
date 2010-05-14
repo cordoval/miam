@@ -398,3 +398,22 @@ p
   background: #EEE;
   padding: 10px;
 }
+
+td, th {
+    padding :5px;
+    vertical-align: top;
+}
+
+textarea {
+    width: 600px;
+    height: 300px;
+    font-family: Arial;
+}
+
+#story_name {
+    width: 600px;
+}
+
+#submit {
+    margin: 20px 55px;
+}
