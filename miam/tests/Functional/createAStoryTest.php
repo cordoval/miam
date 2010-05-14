@@ -27,7 +27,8 @@ class createAStoryTest extends \WebTestCase
       $this->client->assertRequestParameter('_route', 'backlog');
       
       $this->addResponseTester();
-      $this->client->assertResponseRegExp('/My story morning glory/');
+      $this->client->assertResponseRegExp('/My story morning glory<\/a>/');
+      $this->client->assertResponseRegExp('/au backlog/');
     }
 
 }

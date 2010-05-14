@@ -32,7 +32,11 @@ class editAStoryTest extends \WebTestCase
         $this->client->assertRequestParameter('_route', 'backlog');
         
         $this->addResponseTester();
-        $this->client->assertResponseRegExp('/Edited you/');
+        // echo $this->client->getResponse()->getContent();
+        
+        // $this->client->assertResponseRegExp('/Edited you/');
+        $this->client->assertResponseSelectEquals('.flash_info', array('_text'), array('/La story <b>"Edited you"<\/b> a été mise à jour/'));
+        
     }
 
 
