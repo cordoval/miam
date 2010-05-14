@@ -2,11 +2,11 @@
 
 namespace Bundle\MiamBundle\Tests\Functional;
 
-require_once __DIR__.'/FunctionalTest.php';
+use Bundle\PHPUnitBundle\Functional;
 
-class createAStoryTest extends FunctionalTest
+class createAStoryTest extends \WebTestCase
 {
-
+    
     public function testCreateForm()
     {
       $crawler = $this->client->request('GET', '/story/new');
@@ -17,7 +17,6 @@ class createAStoryTest extends FunctionalTest
       $this->client->assertRequestParameter('_action', 'new');
       // echo $this->client->getResponse()->getContent();
       
-      // die();
       $form = $crawler->selectButton('Valider')->form();
       $this->client->submit($form, array(
           'story[name]' => 'My story morning glory',
@@ -25,6 +24,7 @@ class createAStoryTest extends FunctionalTest
           'story[points]' => '12'
       ));
       $this->client->followRedirect();
+      
     }
 
 }
