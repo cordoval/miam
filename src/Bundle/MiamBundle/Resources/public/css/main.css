@@ -417,3 +417,15 @@ textarea {
 #submit {
     margin: 20px 55px;
 }
+
+#breadcrumb
+{
+  background: #EEE;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#breadcrumb a
+{
+  color: #880000;
+}

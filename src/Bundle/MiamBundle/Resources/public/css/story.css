@@ -14,7 +14,7 @@ li.story
   font-size: 1.4em;
   height: 18px;
   list-style: none;
-  cursor: pointer;
+/*  cursor: pointer;*/
 }
 
 li.story span.drag {
@@ -26,3 +26,19 @@ li.story span.drag {
     background: url(../images/drag.png) top left no-repeat;
 }
 
+li.story .editLink
+{
+  margin-left: 10px;
+  font-size: 12px;
+  display: none;
+}
+
+li.story:hover .editLink
+{
+  display: inline;
+}
+
+li.story .editLink a
+{
+  color: #B12822;
+}
