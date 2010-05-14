@@ -23,7 +23,7 @@ Create your database and tables
 
 Load fixtures
 
-    php miam/console doctrine:data:load --fixtures=src/Bundle/MiamBundle/data/fixtures/doctrine/data.php
+    php miam/console doctrine:data:load --fixtures=src/Bundle/MiamBundle/Resources/data/fixtures/doctrine/data.php
   
 Run unit tests
 
