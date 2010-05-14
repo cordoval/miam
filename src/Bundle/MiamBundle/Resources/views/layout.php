@@ -1,6 +1,4 @@
 <?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/base.css') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/component.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/story.css') ?>
 
