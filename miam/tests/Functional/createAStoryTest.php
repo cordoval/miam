@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Tests\Functional;
+namespace Miam\Tests\Functional;
 
 use Bundle\PHPUnitBundle\Functional;
 

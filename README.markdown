@@ -1,7 +1,7 @@
 INSTALL
 -------
 
-To configure your DB for your development environment, edit `/miam/config/config_dev_local.yml`
+To configure your DB for your development and test environments, edit your `/miam/config/config_dev_local.yml` and `/miam/config/config_test_local.yml` to add your specific DB settings:
 
     imports:
       - { resource: config_dev.yml }
@@ -16,10 +16,6 @@ To configure your DB for your development environment, edit `/miam/config/config
           host:                 localhost
           port:                 ~
 
-Run tests
-
-    phpunit src/Bundle/MiamBundle/Tests/AllTests.php
-
 Create tables
 
     php miam/console doctrine:schema:create
@@ -27,3 +23,12 @@ Create tables
 Load fixtures
 
     php miam/console doctrine:data:load --fixtures=src/Bundle/MiamBundle/data/fixtures/doctrine/data.php
+  
+Run unit tests
+
+    phpunit src/Bundle/MiamBundle/Tests/AllTests.php
+
+Run functional tests
+
+    phpunit --bootstrap miam/tests/bootstrap/functional.php miam/tests/AllTests.php
+

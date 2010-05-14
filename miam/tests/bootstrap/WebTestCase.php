@@ -2,6 +2,10 @@
 
 use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
 
+/**
+ * Extend the genereric TestCase with projet-specific objects (Kernel…)
+ *
+ */
 class WebTestCase extends BaseWebTestCase
 {
     /**
