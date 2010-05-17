@@ -145,4 +145,9 @@ class Story
         $name = $this->getName();
         return (isset($name) && null !== $name) ? $name : self::DEFAULT_NAME;
     }
+    
+    public function moveToTheEnd()
+    {
+        $this->setPriority(1000);
+    }
 }

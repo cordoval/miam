@@ -92,7 +92,6 @@ class StoryForm extends \sfForm
         $this->getObject()->setName($values['name']);
         $this->getObject()->setBody($values['body']);
         $this->getObject()->setPoints($values['points']);
-        $this->getObject()->setPriority(10000);
     }
 
     /**

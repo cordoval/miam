@@ -8,6 +8,8 @@ use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
  */
 class WebTestCase extends BaseWebTestCase
 {
+    protected $testFlashes = false;
+    
     /**
      * Creates a Kernel.
      *

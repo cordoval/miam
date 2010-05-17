@@ -73,6 +73,7 @@ class MiamController extends Controller
             if($form->isValid()) {
                 $form->updateObject();
                 $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->flush();
                 $this->getUser()->setFlash('story_update', array('story' => $form->getObject()->__toString()));
                 return $this->redirect($this->generateUrl('backlog'));
             }
@@ -93,8 +94,10 @@ class MiamController extends Controller
 
             if($form->isValid()) {
                 $form->updateObject();
+                $form->getObject()->moveToTheEnd();
                 $this->getEntityManager()->persist($form->getObject());
-                // $this->getEntityManager()->flush();
+                $this->getEntityManager()->flush();
+                
                 $this->getUser()->setFlash('story_create', array('story' => $form->getObject()->__toString()));
                 return $this->redirect($this->generateUrl('backlog'));
             }

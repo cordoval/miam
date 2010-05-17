@@ -28,7 +28,9 @@ class createAStoryTest extends \WebTestCase
       
       $this->addResponseTester();
       $this->client->assertResponseRegExp('/My story morning glory<\/a>/');
-      $this->client->assertResponseRegExp('/au backlog/');
+      if($this->testFlashes) {
+          $this->client->assertResponseRegExp('/au backlog/');
+      }
     }
 
 }

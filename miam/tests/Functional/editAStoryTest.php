@@ -20,7 +20,9 @@ class editAStoryTest extends \WebTestCase
         $this->client->assertRequestParameter('_route', 'story_edit');
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Miam:edit');
 
-        $form = $crawler->selectButton('Valider')->form();
+        $form = $crawler->filter('#submit')->form();
+        // Equivalent to 
+        // $form = $crawler->selectButton('Valider')->form();
         $this->client->submit($form, array(
             'story[name]' => 'Edited you',
             'story[body]' => 'lorem',
@@ -31,13 +33,13 @@ class editAStoryTest extends \WebTestCase
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'backlog');
         
-        $this->addResponseTester();
         // echo $this->client->getResponse()->getContent();
         
-        // $this->client->assertResponseRegExp('/Edited you/');
-        $this->client->assertResponseSelectEquals('.flash_info', array('_text'), array('/La story <b>"Edited you"<\/b> a été mise à jour/'));
+        $this->client->assertResponseRegExp('/Edited you/');
+        if($this->testFlashes) {
+            $this->client->assertResponseSelectEquals('.flash_info', array('_text'), array('/La story <b>"Edited you"<\/b> a été mise à jour/'));
+        }
         
     }
-
 
 }

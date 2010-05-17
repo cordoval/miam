@@ -21,9 +21,13 @@ Create your database and tables
     php miam/console doctrine:database:create
     php miam/console doctrine:schema:create
 
+    php miam/console-test doctrine:database:create
+    php miam/console-test doctrine:schema:create
+
 Load fixtures
 
     php miam/console doctrine:data:load --fixtures=src/Bundle/MiamBundle/Resources/data/fixtures/doctrine/data.php
+    php miam/console-test doctrine:data:load --fixtures=src/Bundle/MiamBundle/Resources/data/fixtures/doctrine/data.php
   
 Run unit tests
 

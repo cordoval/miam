@@ -14,5 +14,5 @@
     <table>
         <?php echo $form ?>
     </table>
-    <input id="submit" "type="submit" value="Valider" />
+    <input id="submit" type="submit" value="Valider" />
 </form>
