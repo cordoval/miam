@@ -34,3 +34,22 @@ $story3->setBody("I never spend much time in school\n
 \n
 __I've gotten burned__ over Cheryl Tiegs, `blown u` for Raquel Welch.");
 $story3->setProject($pKnp);
+
+use Bundle\DoctrineUserBundle\Entities\User as User;
+
+$admin = new User();
+$admin->setUsername('admin');
+$admin->setPassword('admin');
+$admin->setIsSuperAdmin(true);
+
+$laet = new User();
+$laet->setUsername('laet');
+$laet->setPassword('changeme');
+
+$matt = new User();
+$matt->setUsername('matt');
+$matt->setPassword('changeme');
+
+$thib = new User();
+$thib->setUsername('thib');
+$thib->setPassword('changeme');

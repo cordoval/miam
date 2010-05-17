@@ -47,7 +47,6 @@ a
   top: 20px;
   min-width: 996px;
   width: 100%;
-  _width: expression(document.body.clientWidth <= 996 ? "996px" : "");
   height: 338px;
 }
 
@@ -63,7 +62,6 @@ a
   max-width: 1200px;
   min-width: 996px;
   width: 100%;
-  _width: expression(document.body.clientWidth >= 1200 ? "1200px": document.body.clientWidth <= 996 ? "996px" :"100%");
   margin: auto;
   background-color: #fff;
   display: block;
@@ -120,6 +118,20 @@ a
 .hd .title_header_home span
 {
   color: #d6cecf;
+}
+
+.auth {
+    padding-top: 10px;
+    float: right;
+}
+
+.auth a {
+    color: #fff;
+}
+
+.auth .username {
+    color: #fff;
+    font-weight: bold;
 }
 
 .menu
