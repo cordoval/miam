@@ -18,7 +18,7 @@ class editAStoryTest extends \WebTestCase
         $crawler = $this->client->getCrawler();
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'story_edit');
-        $this->client->assertRequestParameter('_controller', 'MiamBundle:Miam:edit');
+        $this->client->assertRequestParameter('_controller', 'MiamBundle:Story:edit');
 
         $form = $crawler->filter('#submit')->form();
         // Equivalent to 

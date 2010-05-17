@@ -8,7 +8,7 @@ use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\StoryRenderer;
 use Bundle\MiamBundle\Form\StoryForm;
 
-class MiamController extends Controller
+class StoryController extends Controller
 {
 
     public function indexAction()
@@ -19,7 +19,7 @@ class MiamController extends Controller
 
         $storyRenderer = new StoryRenderer($this->container->getRouterService());
 
-        return $this->render('MiamBundle:Miam:index', array(
+        return $this->render('MiamBundle:Story:index', array(
             'stories' => $stories,
             'storiesRenderer' => $storyRenderer,
         ));
@@ -49,7 +49,7 @@ class MiamController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        return $this->render('MiamBundle:Miam:show', array(
+        return $this->render('MiamBundle:Story:show', array(
             'story' => $story
         ));
     }
@@ -79,7 +79,7 @@ class MiamController extends Controller
             }
         }
 
-        return $this->render('MiamBundle:Miam:edit', array(
+        return $this->render('MiamBundle:Story:edit', array(
             'form' => $form,
             'story' => $story
         ));
@@ -104,7 +104,7 @@ class MiamController extends Controller
             
         }
 
-        return $this->render('MiamBundle:Miam:new', array(
+        return $this->render('MiamBundle:Story:new', array(
             'form' => $form
         ));
     }

@@ -13,7 +13,7 @@ class createAStoryTest extends \WebTestCase
       
       $this->addRequestTester();
       $this->client->assertRequestParameter('_route', 'story_new');
-      $this->client->assertRequestParameter('_controller', 'MiamBundle:Miam:new');
+      $this->client->assertRequestParameter('_controller', 'MiamBundle:Story:new');
       
       $form = $crawler->selectButton('Valider')->form();
       $this->client->submit($form, array(
