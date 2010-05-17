@@ -94,8 +94,17 @@ class StoryController extends Controller
 
             if($form->isValid()) {
                 $form->updateObject();
-                $form->getObject()->moveToTheEnd();
-                $this->getEntityManager()->persist($form->getObject());
+                $story = $form->getObject();
+                $story->moveToTheEnd();
+                
+                // Tmp
+                $project = $this->getEntityManager()
+                ->getRepository('Bundle\MiamBundle\Entities\Project')
+                ->findDummyProject();
+                
+                $story->setProject($project);
+                
+                $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
                 
                 $this->getUser()->setFlash('story_create', array('story' => $form->getObject()->__toString()));

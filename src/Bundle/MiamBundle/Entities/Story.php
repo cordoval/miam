@@ -165,4 +165,5 @@ class Story
     {
         $this->setPriority(1000);
     }
+    
 }

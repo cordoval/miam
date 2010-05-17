@@ -84,6 +84,19 @@ class Project
     }
 
     /**
+     * Return an array version of a Story's properties
+     * @return array
+     */
+    public function toArray()
+    {
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'created_at' => $this->getCreatedAt(),
+        );
+    }
+
+    /**
      * Get id
      */
     public function getId()

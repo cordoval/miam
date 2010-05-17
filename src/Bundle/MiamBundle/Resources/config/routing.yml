@@ -17,3 +17,20 @@ story:
 story_edit:
   pattern:  /story/:id/edit
   defaults: { _controller: MiamBundle:Story:edit }
+  
+projects:
+  pattern:  /projects
+  defaults: { _controller: MiamBundle:Project:index }
+  
+project_new:
+  pattern:  /project/new
+  defaults: { _controller: MiamBundle:Project:new }
+
+project:
+  pattern:  /project/:id
+  defaults: { _controller: MiamBundle:Project:show }
+
+project_edit:
+  pattern:  /project/:id/edit
+  defaults: { _controller: MiamBundle:Project:edit }
+
