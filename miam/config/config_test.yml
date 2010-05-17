@@ -1,11 +1,14 @@
 imports:
   - { resource: config.yml }
 
-parameters:
-  user.session.class: Symfony\Framework\WebBundle\Session\ArraySession
-
 zend.logger:
   priority: debug
   path:     %kernel.logs_dir%/%kernel.environment%.log
 
 kernel.test: ~
+
+parameters:
+  session.options.test.session_path: /tmp/sf2
+  
+services:
+  user.session: @user.session.test

@@ -66,6 +66,18 @@ class MiamController extends Controller
         }
 
         $form = new StoryForm($story);
+        
+        if('POST' === $this->getRequest()->getMethod()) {
+            $form->bind($this->getRequest()->request->get($form->getName()));
+
+            if($form->isValid()) {
+                $form->updateObject();
+                $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->flush();
+                $this->getUser()->setFlash('story_update', array('story' => $form->getObject()->__toString()));
+                return $this->redirect($this->generateUrl('backlog'));
+            }
+        }
 
         return $this->render('MiamBundle:Miam:edit', array(
             'form' => $form,
@@ -82,9 +94,11 @@ class MiamController extends Controller
 
             if($form->isValid()) {
                 $form->updateObject();
+                $form->getObject()->moveToTheEnd();
                 $this->getEntityManager()->persist($form->getObject());
                 $this->getEntityManager()->flush();
-                $this->getUser()->setFlash('info', strtr('La story "{story}" a été créée avec succès !', array('{story}' => $form->getObject()->getName())));
+                
+                $this->getUser()->setFlash('story_create', array('story' => $form->getObject()->__toString()));
                 return $this->redirect($this->generateUrl('backlog'));
             }
             

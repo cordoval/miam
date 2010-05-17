@@ -41,6 +41,8 @@ class Story
      */
     protected $id;
 
+    const DEFAULT_NAME = '(story sans nom)';
+    
     public function __construct()
     {
         $this->createdAt = new \DateTime();
@@ -138,4 +140,14 @@ class Story
         );
     }
 
+    public function __toString()
+    {
+        $name = $this->getName();
+        return (isset($name) && null !== $name) ? $name : self::DEFAULT_NAME;
+    }
+    
+    public function moveToTheEnd()
+    {
+        $this->setPriority(1000);
+    }
 }

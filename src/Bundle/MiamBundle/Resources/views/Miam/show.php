@@ -1,6 +1,10 @@
 <?php $view->extend('MiamBundle::layout') ?>
 
-<a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">« Retour au backlog</a>
+<div id="breadcrumb">
+  <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
+  &gt;
+  <?php echo $story->getName() ?>
+</div>
 
 <h1 class="story"><?php echo $story->getName() ?></h1>
 

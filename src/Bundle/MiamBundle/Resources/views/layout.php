@@ -1,6 +1,4 @@
 <?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/base.css') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/component.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/story.css') ?>
 
@@ -21,11 +19,7 @@
         <?php echo $view->render('MiamBundle:Miam:header') ?>
         <div class="bd">
             <div class="content">
-                <?php if($view->user->hasFlash('info')): ?>
-                    <div class="flash_info">
-                        <?php echo $view->user->getFlash('info') ?>
-                    </div>
-                <?php endif ?>
+                <?php echo $view->render('MiamBundle:Miam:messages') ?>
                 <?php $view->slots->output('_content') ?>
             </div>
         </div>
