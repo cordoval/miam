@@ -1,19 +1,19 @@
 backlog:
   pattern:  /
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: index }
+  defaults: { _controller: MiamBundle:Miam:index }
 
 story_new:
   pattern:  /story/new
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: new }
+  defaults: { _controller: MiamBundle:Miam:new }
 
 story_sort:
   pattern:  /story/sort
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: sort }
+  defaults: { _controller: MiamBundle:Miam:sort }
 
 story:
   pattern:  /story/:id
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: show }
+  defaults: { _controller: MiamBundle:Miam:show }
 
 story_edit:
   pattern:  /story/:id/edit
-  defaults: { _bundle: MiamBundle, _controller: Miam, _action: edit }
+  defaults: { _controller: MiamBundle:Miam:edit }
