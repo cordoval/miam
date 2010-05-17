@@ -18,11 +18,18 @@ To configure your DB for your development and test environments, edit your `/mia
 
 Create your database and tables
 
+    php miam/console doctrine:database:drop
     php miam/console doctrine:database:create
     php miam/console doctrine:schema:create
 
+    php miam/console-test doctrine:database:drop
     php miam/console-test doctrine:database:create
     php miam/console-test doctrine:schema:create
+
+Generate the doctrine proxies
+
+    php miam/console doctrine:generate:proxies
+    php miam/console-test doctrine:generate:proxies
 
 Load fixtures
 

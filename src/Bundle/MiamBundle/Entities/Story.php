@@ -8,7 +8,12 @@ namespace Bundle\MiamBundle\Entities;
  */
 class Story
 {
-
+    /**
+    * @ManyToOne(targetEntity="Project", inversedBy="stories")
+    * @JoinColumn(name="project_id", nullable=false)
+    */
+    protected $project;
+    
     /**
      * @Column(name="created_at", type="datetime")
      */
@@ -122,6 +127,16 @@ class Story
     public function getPoints()
     {
         return $this->points;
+    }
+    
+    public function setProject(Project $project)
+    {
+        $this->project = $project;
+    }
+    
+    public function getProject()
+    {
+        return $this->project;
     }
 
     /**
