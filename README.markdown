@@ -33,8 +33,8 @@ Generate the doctrine proxies
 
 Load fixtures
 
-    php miam/console doctrine:data:load --fixtures=src/Bundle/MiamBundle/Resources/data/fixtures/doctrine/data.php
-    php miam/console-test doctrine:data:load --fixtures=src/Bundle/MiamBundle/Resources/data/fixtures/doctrine/data.php
+    php miam/console doctrine:data:load
+    php miam/console-test doctrine:data:load
   
 Run unit tests
 
