@@ -42,3 +42,13 @@ li.story .editLink a
 {
   color: #B12822;
 }
+
+.story_points
+{
+  font-size:0.7em;
+  background: #B12822;
+  color: #fff;
+  padding: 3px 5px;
+  -moz-border-radius: 6px;
+  margin-left: 5px;
+}
