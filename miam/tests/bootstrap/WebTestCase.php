@@ -1,6 +1,6 @@
 <?php
 
-use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
+use Bundle\PHPUnitBundle\Functional\WebDoctrineTestCase as BaseWebTestCase;
 
 /**
  * Extend the genereric TestCase with projet-specific objects (Kernel…)
@@ -9,6 +9,7 @@ use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
 class WebTestCase extends BaseWebTestCase
 {
     protected $testFlashes = false;
+    protected $kernel;
     
     /**
      * Creates a Kernel.
@@ -17,7 +18,7 @@ class WebTestCase extends BaseWebTestCase
      */
     protected function createKernel()
     {
-        return $kernel = new \MiamKernel('test', true);
+        return $this->kernel = new \MiamKernel('test', true);
     }
     
 }
