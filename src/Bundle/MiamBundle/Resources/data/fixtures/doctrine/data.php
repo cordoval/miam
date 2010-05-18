@@ -2,6 +2,7 @@
 
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Entities\Project;
+use Bundle\DoctrineUserBundle\Entities\User as User;
 
 $pMiam = new Project();
 $pMiam->setName('Miam');
@@ -34,8 +35,6 @@ $story3->setBody("I never spend much time in school\n
 \n
 __I've gotten burned__ over Cheryl Tiegs, `blown u` for Raquel Welch.");
 $story3->setProject($pKnp);
-
-use Bundle\DoctrineUserBundle\Entities\User as User;
 
 $admin = new User();
 $admin->setUsername('admin');
