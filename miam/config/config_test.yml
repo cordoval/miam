@@ -12,3 +12,17 @@ parameters:
   
 services:
   user.session: @user.session.test
+
+doctrine.orm:
+  default_entity_manager:   default
+  cache_driver:             array           # array, apc, memcache, xcache
+  entity_managers:
+    default:
+      connection:           default
+
+doctrine.dbal:
+  connections:
+    default:
+      driver:               PDOSqlite
+      dbname:               miam
+      path:                 /tmp/miam.sqlite

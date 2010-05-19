@@ -1,6 +1,6 @@
 <?php
 
-use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
+use Bundle\PHPUnitBundle\Functional\WebSqliteTestCase as BaseWebTestCase;
 
 /**
  * Extend the genereric TestCase with projet-specific objects (Kernel…)
@@ -20,5 +20,5 @@ class WebTestCase extends BaseWebTestCase
     {
         return $this->kernel = new \MiamKernel('test', true);
     }
-    
+       
 }
