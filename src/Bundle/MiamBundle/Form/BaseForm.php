@@ -59,13 +59,6 @@ abstract class BaseForm extends \sfForm
         return $this->getObject();
     }
 
-    protected function doUpdateObject($values)
-    {
-        $this->getObject()->setName($values['name']);
-        $this->getObject()->setBody($values['body']);
-        $this->getObject()->setPoints($values['points']);
-    }
-
     /**
      * Updates the default values of the form with the current values of the current object.
      */

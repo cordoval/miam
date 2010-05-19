@@ -151,7 +151,8 @@ class Story
             'name' => $this->getName(),
             'created_at' => $this->getCreatedAt(),
             'priority' => $this->getPriority(),
-            'points' => $this->getPoints()
+            'points' => $this->getPoints(),
+            'project' => $this->getProject() ? $this->getProject()->getId() : null,
         );
     }
 

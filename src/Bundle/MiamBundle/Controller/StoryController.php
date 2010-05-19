@@ -60,12 +60,13 @@ class StoryController extends Controller
         ->getRepository('Bundle\MiamBundle\Entities\Story')
         ->find($id);
 
-        if (!$story)
-        {
+        if (!$story) {
             throw new NotFoundHttpException("Story not found");
         }
 
-        $form = new StoryForm($story);
+        $projects = $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Project')->findAllIndexedById();
+
+        $form = new StoryForm($story, array('projects' => $projects));
         
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get($form->getName()));
@@ -87,7 +88,9 @@ class StoryController extends Controller
 
     public function newAction()
     {
-        $form = new StoryForm(new Story());
+        $projects = $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Project')->findAllIndexedById();
+
+        $form = new StoryForm(new Story(), array('projects' => $projects));
 
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get('story'));
@@ -96,13 +99,6 @@ class StoryController extends Controller
                 $form->updateObject();
                 $story = $form->getObject();
                 $story->moveToTheEnd();
-                
-                // Tmp
-                $project = $this->getEntityManager()
-                ->getRepository('Bundle\MiamBundle\Entities\Project')
-                ->findDummyProject();
-                
-                $story->setProject($project);
                 
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();

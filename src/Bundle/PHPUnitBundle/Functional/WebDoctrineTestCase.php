@@ -12,7 +12,6 @@ abstract class WebDoctrineTestCase extends WebTestCase
     
     public function postConnect(EventArgs $e)
     {
-        echo "X: creating a connection\n";
         $conn = $e->getConnection();
         $this->connections[] = $conn;
         $conn->beginTransaction();
