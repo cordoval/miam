@@ -4,13 +4,16 @@ use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Entities\Project;
 use Bundle\DoctrineUserBundle\Entities\User as User;
 
+$colors = $this->container->getParameter('miam.colors');
+$colorIt = 0;
+
 $pMiam = new Project();
 $pMiam->setName('Miam');
-$pMiam->setColor('#2897B7');
+$pMiam->setColor($colors[$colorIt++]);
 
 $pKnp = new Project();
 $pKnp->setName('knplabs.com');
-$pKnp->setColor('#FF4848');
+$pKnp->setColor($colors[$colorIt++]);
 
 $story1 = new Story();
 $story1->setName('Smoke in the water');
@@ -39,6 +42,24 @@ $story3->setBody("I never spend much time in school\n
 \n
 __I've gotten burned__ over Cheryl Tiegs, `blown u` for Raquel Welch.");
 $story3->setProject($pKnp);
+
+for($itProject=1; $itProject<=5; $itProject++)
+{
+  $p = 'project_'.$itProject;
+  $$p = new Project();
+  $$p->setName($p);
+  $$p->setColor($colors[$colorIt++]);
+
+  for($itStory = 1; $itStory<=8; $itStory++)
+  {
+    $s = 'story_'.$itStory;
+    $$s = new Story();
+    $$s->setName($s);
+    $$s->setPriority($itStory);
+    $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
+    $$s->setProject($$p);
+  }
+}
 
 $admin = new User();
 $admin->setUsername('admin');
