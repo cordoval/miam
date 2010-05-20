@@ -8,6 +8,7 @@ use Symfony\Foundation\Bundle\Bundle as BaseBundle;
 
 use Symfony\Components\DependencyInjection\ContainerInterface;
 use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;
+use Symfony\Components\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Components\DependencyInjection\BuilderConfiguration;
 
 class Bundle extends BaseBundle
@@ -17,7 +18,8 @@ class Bundle extends BaseBundle
         $configuration = new BuilderConfiguration();
         $loader = new XmlFileLoader(__DIR__.'/Resources/config');
         $configuration->merge($loader->load('auth.xml'));
-
+        $loader = new YamlFileLoader(__DIR__.'/Resources/config');
+        $configuration->merge($loader->load('colors.yml'));
         return $configuration;
     }
 }
