@@ -1,13 +1,15 @@
 <?php $view->extend('MiamBundle::layout') ?>
 
 <div id="breadcrumb">
-  <a id="back_backlog" href="<?php echo $view->router->generate('projects') ?>">Projets</a>
+  <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
   &gt;
   <?php echo $project->getName() ?>
 </div>
 
-<h1 class="project"><?php echo $project->getName() ?></h1>
+<h1 class="project">Backlog de <?php echo $project->getName() ?></h1>
 
 <a href="<?php echo $view->router->generate('project_edit', array('id' => $project->getId())) ?>">
-    Modifier
+    Modifier le projet
 </a>
+
+<?php echo $view->render('MiamBundle:Story:backlog', array('stories' => $project->getStories())) ?>

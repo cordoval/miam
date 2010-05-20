@@ -3,6 +3,8 @@
 <div id="breadcrumb">
   <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
   &gt;
+  <a id="back_project" href="<?php echo $view->router->generate('project', array('id' => $story->getProject()->getId())) ?>"><?php echo $story->getProject()->getName() ?></a>
+  &gt;
   <?php echo $story->getName() ?>
 </div>
 

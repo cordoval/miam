@@ -36,6 +36,24 @@ class ProjectRepository extends EntityRepository
         return $this->getOrderByInterestQuery()
         ->execute();
     }
+    
+    /**
+     * Return the project having the id $id with its stories (ordered by priority).
+     *
+     * @param int Project id
+     * @return Project
+     */
+    public function findWithBacklog($id)
+    {
+        return $this->createQueryBuilder('p')
+        ->where('p.id = :id')
+        ->leftJoin('p.stories', 's')
+        ->orderBy('s.priority', 'asc')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getSingleResult()
+        ;
+    }
 
     /**
      * Return a project. Any project.

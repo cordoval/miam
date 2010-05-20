@@ -26,7 +26,7 @@ class ProjectController extends Controller
     {
         $project = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Project')
-        ->find($id);
+        ->findWithBacklog($id);
 
         if (!$project) {
             throw new NotFoundHttpException("Project not found");
