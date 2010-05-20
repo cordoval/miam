@@ -125,6 +125,12 @@ class Project
         $this->id = $id;
     }
 
+
+    public function getStories()
+    {
+        return $this->stories;
+    }
+    
     public function __toString()
     {
         return $this->getName();

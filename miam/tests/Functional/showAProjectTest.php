@@ -17,7 +17,7 @@ class showAProjectTest extends \WebTestCase
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Project:show');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('h1.project', array('_text'), array('Miam'));
+        $this->client->assertResponseSelectEquals('h1.project', array('_text'), array('Backlog de Miam'));
     }
 
 }
