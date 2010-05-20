@@ -12,9 +12,15 @@ class ProjectForm extends BaseForm
     {
         $this->widgetSchema['name'] = new \sfWidgetFormInputText(array(
         ));
+        $this->widgetSchema['color'] = new \sfWidgetFormInputText(array(
+        ));
+
 
         $this->validatorSchema['name'] = new \sfValidatorString(array(
               'max_length' => 255,
+        ));
+        $this->validatorSchema['color'] = new \sfValidatorString(array(
+              'max_length' => 7,
         ));
         $this->widgetSchema->setNameFormat('project[%s]');
     }
@@ -22,6 +28,7 @@ class ProjectForm extends BaseForm
     protected function doUpdateObject($values)
     {
         $this->getObject()->setName($values['name']);
+        $this->getObject()->setColor($values['color']);
     }
 
     public function getModelName()

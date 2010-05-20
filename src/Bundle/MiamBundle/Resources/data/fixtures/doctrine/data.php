@@ -6,9 +6,11 @@ use Bundle\DoctrineUserBundle\Entities\User as User;
 
 $pMiam = new Project();
 $pMiam->setName('Miam');
+$pMiam->setColor('#2897B7');
 
 $pKnp = new Project();
 $pKnp->setName('knplabs.com');
+$pKnp->setColor('#FF4848');
 
 $story1 = new Story();
 $story1->setName('Smoke in the water');
@@ -25,10 +27,12 @@ $story2->setBody("Ulysses, Ulysses\n
 - In search of Earth\n
 - flying in to the night.");
 $story2->setProject($pMiam);
+$story2->setPoints(5);
 
 $story3 = new Story();
 $story3->setName('Saucerful of secrets');
 $story3->setPriority(3);
+$story3->setPoints(8);
 $story3->setBody("I never spend much time in school\n
     but I taught ladies plenty.\n
     It's true I hire my body out for pay, hey hey.\n

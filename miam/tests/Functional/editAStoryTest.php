@@ -10,7 +10,7 @@ class editAStoryTest extends \WebTestCase
     public function testEditAStoryShowsItOnTheBacklog()
     {
         $crawler = $this->client->request('GET', '/');
-        $this->client->click($crawler->selectLink('#1 [Miam] − Smoke in the water')->link());
+        $this->client->click($crawler->selectLink('#1 − Smoke in the water')->link());
         
         $crawler = $this->client->getCrawler();
         $this->client->click($crawler->selectLink('Modifier')->link());

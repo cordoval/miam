@@ -18,6 +18,7 @@ class createAProjectTest extends \WebTestCase
         $form = $crawler->selectButton('Valider')->form();
         $this->client->submit($form, array(
             'project[name]' => 'Life',
+            'project[color]' => '#00FF00',
         ));
         $this->client->followRedirect();
 

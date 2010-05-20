@@ -52,3 +52,18 @@ li.story .editLink a
   -moz-border-radius: 6px;
   margin-left: 5px;
 }
+
+.story_project
+{
+  font-size:0.7em;
+  color: #fff;
+  padding: 3px 5px;
+  -moz-border-radius: 6px;
+  margin-left: 5px;
+}
+
+.story_project a
+{
+  color: #fff;
+  text-decoration: none;
+}

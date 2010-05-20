@@ -29,6 +29,11 @@ class Project
     protected $isActive;
 
     /**
+     * @Column(name="color", type="string", length=7)
+     */
+    protected $color;
+    
+    /**
      * @Column(name="id", type="integer")
      * @Id
      * @GeneratedValue(strategy="AUTO")
@@ -82,6 +87,16 @@ class Project
     {
         return $this->isActive;
     }
+    
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+    
+    public function getColor()
+    {
+        return $this->color;
+    }
 
     /**
      * Return an array version of a Story's properties
@@ -92,6 +107,7 @@ class Project
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'color' => $this->getColor(),
             'created_at' => $this->getCreatedAt(),
         );
     }

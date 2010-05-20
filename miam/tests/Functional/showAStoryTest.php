@@ -10,7 +10,7 @@ class showAStoryTest extends \WebTestCase
     public function testShowAStory()
     {
         $crawler = $this->client->request('GET', '/');
-        $this->client->click($crawler->selectLink('#1 [Miam] − Smoke in the water')->link());
+        $this->client->click($crawler->selectLink('#1 − Smoke in the water')->link());
 
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'story');
