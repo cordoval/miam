@@ -62,6 +62,19 @@ $oldSprint->setEndsAt($end);
 $oldSprint->setIsCurrent(false);
 unset($start, $end);
 
+$sentences = explode("\n", "home connectée
+Lister les nouveaux vélibataires
+Passer en mode visible / invisible
+Recherche 4 critères
+Tirer au hasard un vélibataire
+Carte Google Maps avec le nombre de vélibataires / station
+Google Maps obtenir des détails sur une station (nb velibataiers, ballades prevues, nb vélos dispos)
+Lister les membres connectés
+Nb de velibataires dans mon qg
+Lister les ballades prévues
+Lister les membres du QG (photo, pseudo, age, sexe, recherche)
+Lister les messages du QG (pseudo, date )");
+
 for($itProject=1; $itProject<=5; $itProject++)
 {
   $p = 'project_'.$itProject;
@@ -73,17 +86,18 @@ for($itProject=1; $itProject<=5; $itProject++)
   {
     $s = 'story_'.$itProject.'_'.$itStory;
     $$s = new Story();
-    $$s->setName($s);
+    $$s->setName(($sentences[($itProject*8+$itStory)%(count($sentences)-1)]));
     $$s->setPriority($itStory);
     $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
-    $$s->setStatus(array_rand($$s->getStatuses()));
+    $status = array_rand($$s->getStatuses());
+    $$s->setPoints(rand(1, 20));
+    $$s->setStatus($status);
     if($$s->getStatus() == Story::STATUS_FINISHED)
     {
       $$s->setSprint($oldSprint);
     }
-    elseif($$s->getStatus() >= Story::STATUS_ESTIMATED)
+    elseif($$s->getStatus() >= Story::STATUS_PENDING)
     {
-      $$s->setPoints(rand(1, 20));
       $$s->setSprint($sprint);
     }
     $$s->setProject($$p);
