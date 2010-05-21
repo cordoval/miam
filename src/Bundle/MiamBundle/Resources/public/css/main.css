@@ -36,7 +36,7 @@ a
 
 .content
 {
-  width: 947px;
+  width: 1200px;
   margin: 0 auto;
   padding-left: 49px;
 }
@@ -59,8 +59,8 @@ a
 
 .hd, .bd, .ft
 {
-  max-width: 1200px;
-  min-width: 996px;
+  max-width: 1400px;
+  min-width: 1200px;
   width: 100%;
   margin: auto;
   background-color: #fff;
