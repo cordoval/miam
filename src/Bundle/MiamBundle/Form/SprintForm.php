@@ -48,7 +48,7 @@ class SprintForm extends BaseForm
     {
         $sprint = $this->getObject();
         $sprint->setStartsAt(new \DateTime($values['starts_at']));
-        $sprint->setEndsAt(new \DateTime($values['starts_at']));
+        $sprint->setEndsAt(new \DateTime($values['ends_at']));
     }
 
     public function getModelName()
