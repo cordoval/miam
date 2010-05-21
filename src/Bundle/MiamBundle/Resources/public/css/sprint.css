@@ -1,0 +1,10 @@
+.project {
+  color: #fff;
+  font-weight: bold;
+  text-shadow: 0 0 3px #000;
+}
+.story {
+  padding: 0.5em;
+  border: 1px solid #E0E0E0;
+  background: #F4F4F4;
+}

@@ -172,6 +172,11 @@ class Story
         return $this->status;
     }
 
+    public function isStatus($status)
+    {
+      return $this->status == $status;
+    }
+
     public function setStatus($status)
     {
         if(!in_array($status, array_keys($this->getStatuses())))
@@ -197,6 +202,13 @@ class Story
         self::STATUS_FINISHED => 'finished'
       );
     }
+
+    public static function getSprintStatuses()
+    {
+      $statuses = self::getStatuses();
+      unset($statuses[self::STATUS_CREATED]);
+      return $statuses;
+    } 
 
     public function getStatusName()
     {

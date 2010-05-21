@@ -1,4 +1,5 @@
 <?php $view->extend('MiamBundle::layout') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
 <?php $view->slots->set('active_menu', 'sprint_current') ?>
 
 <div id="sprint_current">
@@ -17,8 +18,19 @@
       </thead>
       <tbody>
         <?php foreach($projects as $project): ?>
-        <tr>
-        </tr>
+          <tr>
+            <th colspan="4" class="project" style="background: <?php echo $project->getColor() ?>"><?php echo $project ?></th>
+          </tr>
+          <?php foreach($project->getStories() as $story): ?>
+            <tr>
+              <?php foreach($statuses as $status => $name): ?>
+                <td>
+                  <?php if($story->isStatus($status)): ?>
+                    <div class="story"><?php echo $story ?></div>
+                  <?php endif; ?>
+                </td>
+              <?php endforeach; ?>
+          <?php endforeach; ?>
         <?php endforeach; ?>
       </tbody>
     </table>
