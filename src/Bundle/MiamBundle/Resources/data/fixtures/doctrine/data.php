@@ -68,12 +68,12 @@ Passer en mode visible / invisible
 Recherche 4 critères
 Tirer au hasard un vélibataire
 Carte Google Maps avec le nombre de vélibataires / station
-Google Maps obtenir des détails sur une station (nb velibataiers, ballades prevues, nb vélos dispos)
+Google Maps obtenir des détails sur une station
 Lister les membres connectés
 Nb de velibataires dans mon qg
 Lister les ballades prévues
-Lister les membres du QG (photo, pseudo, age, sexe, recherche)
-Lister les messages du QG (pseudo, date )");
+Lister les membres du QG
+Lister les messages du QG");
 
 for($itProject=1; $itProject<=5; $itProject++)
 {
