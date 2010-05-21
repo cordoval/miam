@@ -13,7 +13,13 @@ class Story
     * @JoinColumn(name="project_id", nullable=false)
     */
     protected $project;
-    
+ 
+    /**
+    * @ManyToOne(targetEntity="Sprint", inversedBy="stories")
+    * @JoinColumn(name="sprint_id", nullable=true)
+    */
+    protected $sprint;   
+ 
     /**
      * @Column(name="created_at", type="datetime")
      */
@@ -51,12 +57,6 @@ class Story
     const STATUS_WAITING = 50;
     const STATUS_WIP = 60;
     const STATUS_FINISHED = 70;
-
-    /**
-    * @ManyToOne(targetEntity="Sprint", inversedBy="stories")
-    * @JoinColumn(name="sprint_id", nullable=true)
-    */
-    protected $sprint;
 
     /**
      * @Column(name="id", type="integer")
@@ -149,7 +149,7 @@ class Story
         return $this->points;
     }
   
-    public function setSprint(Sprint $sprint)
+    public function setSprint(Sprint $sprint = null)
     {
         $this->sprint = $sprint;
     }
@@ -216,8 +216,7 @@ class Story
             'created_at' => $this->getCreatedAt(),
             'priority' => $this->getPriority(),
             'points' => $this->getPoints(),
-            'project' => $this->getProject() ? $this->getProject()->getId() : null,
-            'sprint' => $this->setSprint() ? $this->getSprint()->getId() : null
+            'project' => $this->getProject() ? $this->getProject()->getId() : null
         );
     }
 
