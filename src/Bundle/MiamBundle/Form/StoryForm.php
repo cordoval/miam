@@ -48,7 +48,7 @@ class StoryForm extends BaseForm
         $this->widgetSchema->setNameFormat('story[%s]');
     }
 
-    protected function doUpdateObject($values)
+    protected function doUpdateObject(array $values)
     {
         $this->getObject()->setName($values['name']);
         $this->getObject()->setBody($values['body']);

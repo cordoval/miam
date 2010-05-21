@@ -9,23 +9,22 @@ abstract class BaseForm extends \sfForm
 {
 
     protected $object;
+    protected $isNew = false;
 
     public function __construct($object, $options = array(), $CSRFSecret = null)
     {
         $class = $this->getModelName();
-        if (!$object)
-        {
+        if (!$object) {
             $this->object = new $class();
-        }
-        else
-        {
-            if (!$object instanceof $class)
-            {
+            $this->isNew = true;
+
+        } else {
+            if (!$object instanceof $class) {
                 throw new \Exception(sprintf('The "%s" form only accepts a "%s" object.', get_class($this), $class));
             }
 
             $this->object = $object;
-            //$this->isNew = !$this->getObject()->exists();
+            // $this->isNew = !$this->getObject()->exists();
         }
 
         parent::__construct(array(), $options, $CSRFSecret);
@@ -58,6 +57,8 @@ abstract class BaseForm extends \sfForm
 
         return $this->getObject();
     }
+    
+    abstract protected function doUpdateObject(array $values);
 
     /**
      * Updates the default values of the form with the current values of the current object.
@@ -66,7 +67,11 @@ abstract class BaseForm extends \sfForm
     {
         $defaults = $this->getDefaults();
 
-        $defaults = $this->getObject()->toArray() + $defaults;
+        if($this->isNew) {
+            $defaults = $defaults + $this->getObject()->toArray();
+        } else {
+            $defaults = $this->getObject()->toArray() + $defaults;
+        }
 
         $this->setDefaults($defaults);
     }

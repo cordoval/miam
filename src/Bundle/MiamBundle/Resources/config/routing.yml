@@ -34,3 +34,7 @@ project_edit:
   pattern:  /project/:id/edit
   defaults: { _controller: MiamBundle:Project:edit }
 
+
+sprint_new:
+  pattern:  /sprint/new
+  defaults: { _controller: MiamBundle:Sprint:new }

@@ -25,7 +25,7 @@ class ProjectForm extends BaseForm
         $this->widgetSchema->setNameFormat('project[%s]');
     }
 
-    protected function doUpdateObject($values)
+    protected function doUpdateObject(array $values)
     {
         $this->getObject()->setName($values['name']);
         $this->getObject()->setColor($values['color']);
