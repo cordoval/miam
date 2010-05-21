@@ -15,7 +15,8 @@
             <ul>
                 <?php $activeMenu = $view->slots->get('active_menu') ?>
                 <li><a <?php if('backlog' === $activeMenu): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('backlog') ?>">BACKLOG</a></li>
-                <li><a <?php if(strpos($activeMenu, 'sprint_') !== false): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('sprint_current') ?>">SPRINT</a></li>
+                <li><a <?php if(in_array($activeMenu, array('sprint_new', 'sprint_current'))): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('sprint_current') ?>">SPRINT</a></li>
+                <li><a <?php if('sprint_schedule' === $activeMenu): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('sprint_schedule') ?>">PLANIFIER LE SPRINT</a></li>
                 <li><a <?php if('projects' === $activeMenu): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('projects') ?>">PROJETS</a></li>
                 <li><a <?php if('story_new' === $activeMenu): ?>class="active"<?php endif ?> href="<?php echo $view->router->generate('story_new') ?>">NOUVELLE STORY</a></li>
             </ul>

@@ -67,3 +67,27 @@ li.story .editLink a
   color: #fff;
   text-decoration: none;
 }
+
+.story_planCard
+{
+  border: 2px solid grey;
+  padding: 10px;
+  background: #EEE;
+}
+
+#scheduling_backlog
+{
+  width: 600px;
+  float: left;
+}
+
+#scheduling_sprint
+{
+  width: 600px;
+  float: right;
+}
+
+#scheduling li.story
+{
+  font-size: 1em;
+}
