@@ -13,6 +13,7 @@ $loader->registerNamespaces(array(
 ));
 $loader->registerPrefixes(array(
   'Zend_'  => __DIR__.'/vendor/zend/library',
+  'Twig_'  => __DIR__.'/vendor/Twig/lib',
 ));
 $loader->register();
 

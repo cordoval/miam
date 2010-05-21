@@ -27,3 +27,5 @@ doctrine.orm:
   entity_managers:
     default:
       connection:           default
+      
+twig.config: ~

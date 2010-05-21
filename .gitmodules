@@ -16,3 +16,6 @@
 [submodule "src/Bundle/MarkdownBundle"]
 	path = src/Bundle/MarkdownBundle
 	url = git://github.com/knplabs/MarkdownBundle.git
+[submodule "src/vendor/Twig"]
+	path = src/vendor/Twig
+	url = http://github.com/fabpot/Twig.git
