@@ -2,6 +2,7 @@
 
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Entities\Project;
+use Bundle\MiamBundle\Entities\Sprint;
 use Bundle\DoctrineUserBundle\Entities\User as User;
 
 $colors = $this->container->getParameter('miam.colors');
@@ -43,6 +44,24 @@ $story3->setBody("I never spend much time in school\n
 __I've gotten burned__ over Cheryl Tiegs, `blown u` for Raquel Welch.");
 $story3->setProject($pKnp);
 
+$sprint = new Sprint();
+$start = new DateTime();
+$start->sub(new DateInterval('P3D'));
+$sprint->setStartsAt($start);
+$end = new DateTime();
+$end->add(new DateInterval('P4D'));
+$sprint->setEndsAt($end);
+
+$oldSprint = new Sprint();
+$start = new DateTime();
+$start->sub(new DateInterval('P12D'));
+$oldSprint->setStartsAt($start);
+$end = new DateTime();
+$end->sub(new DateInterval('P5D'));
+$oldSprint->setEndsAt($end);
+$oldSprint->setIsCurrent(false);
+unset($start, $end);
+
 for($itProject=1; $itProject<=5; $itProject++)
 {
   $p = 'project_'.$itProject;
@@ -63,9 +82,18 @@ for($itProject=1; $itProject<=5; $itProject++)
       $$s->setPoints(rand(1, 20));
     }
     $$s->setProject($$p);
+    if($itStory < 5)
+    {
+      $$s->setSprint($oldSprint);
+    }
+    else
+    {
+      $$s->setSprint($sprint);
+    }
   }
 
 }
+
 
 $admin = new User();
 $admin->setUsername('admin');
