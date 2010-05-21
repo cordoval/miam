@@ -52,13 +52,14 @@ for($itProject=1; $itProject<=5; $itProject++)
 
   for($itStory = 1; $itStory<=8; $itStory++)
   {
-    $s = 'story_'.$itStory;
+    $s = 'story_'.$itProject.'_'.$itStory;
     $$s = new Story();
     $$s->setName($s);
     $$s->setPriority($itStory);
     $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
     $$s->setProject($$p);
   }
+
 }
 
 $admin = new User();
