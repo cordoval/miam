@@ -90,3 +90,41 @@ li.story .editLink a
 {
   font-size: 1em;
 }
+
+#sprintBacklog thead th
+{
+  width: 25%;
+  color: #B12822;
+}
+
+#sprintBacklog 
+{
+  margin-top: 20px;
+}
+
+#sprintBacklog th
+{
+  text-align: center;
+}
+
+#sprintBacklog th, #sprintBacklog td
+{
+  border-left: 4px solid #B12822;
+}
+
+.titleWithActions
+{
+  overflow: hidden;
+}
+
+.titleWithActions h1
+{
+  float: left;
+}
+
+.titleWithActions a
+{
+  float: right;
+  padding: 20px 0 15px 0;
+  line-height: 37px;
+}

@@ -3,11 +3,12 @@
 <?php $view->slots->set('active_menu', 'sprint_current') ?>
 
 <div id="sprint_current">
-    <h1>Current Sprint</h1>
-
-    <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Nouveau sprint</a>
+    <div class="titleWithActions">
+        <h1>Backlog de Sprint</h1>
+        <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Changer de sprint</a>
+    </div>
     
-    <table>
+    <table id="sprintBacklog">
       <thead>
         <tr>
           <th>En attente</th>
