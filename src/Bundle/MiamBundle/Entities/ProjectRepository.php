@@ -6,11 +6,27 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-
+  /**
+   * Return all projects which have at least one story assigned to the given sprint
+   *
+   * @return array
+   */
+  public function findForSprint(Sprint $sprint)
+  {
+        return $this->createQueryBuilder('p')
+        ->innerJoin('p.stories', 's')
+        ->where('s.sprint = :id')
+        ->orderBy('s.priority', 'asc')
+        ->setParameter('id', $sprint->getId())
+        ->getQuery()
+        ->getResult()
+        ;
+  }
+  
   /**
    * Return all projects sorted by interest, indexed by id
    *
-   * @return Associvative array of Project
+   * @return Associative array of Project
    */
   public function findAllIndexedById()
   {
