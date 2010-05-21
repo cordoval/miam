@@ -10,7 +10,7 @@ use Bundle\MiamBundle\Form\ProjectForm;
 
 class ProjectController extends Controller
 {
-
+    
     public function indexAction()
     {
         $projects = $this->getEntityManager()

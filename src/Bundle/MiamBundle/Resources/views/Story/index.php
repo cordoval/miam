@@ -4,6 +4,6 @@
 <div id="backlog" data-sort-url="<?php echo $view->router->generate('story_sort') ?>">
     <h1>Backlog</h1>
 
-    <?php echo $view->render('MiamBundle:Story:backlog', array('stories' => $stories)) ?>
+    <?php $view->output('MiamBundle:Story:backlog', array('stories' => $stories)) ?>
 
 </div>

@@ -10,7 +10,7 @@ use Bundle\MiamBundle\Form\StoryForm;
 
 class StoryController extends Controller
 {
-
+    
     public function indexAction()
     {
         $stories = $this->getEntityManager()
