@@ -41,3 +41,8 @@ sprint_current:
 sprint_new:
   pattern:  /sprint/new
   defaults: { _controller: MiamBundle:Sprint:new }
+
+sprint_schedule:
+  pattern:  /sprint/schedule
+  defaults: { _controller: MiamBundle:Sprint:schedule }
+  

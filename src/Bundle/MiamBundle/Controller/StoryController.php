@@ -17,11 +17,8 @@ class StoryController extends Controller
         ->getRepository('Bundle\MiamBundle\Entities\Story')
         ->findAllOrderByPriority();
 
-        $storyRenderer = new StoryRenderer($this->container->getRouterService());
-
         return $this->render('MiamBundle:Story:index', array(
             'stories' => $stories,
-            'storiesRenderer' => $storyRenderer,
         ));
     }
 

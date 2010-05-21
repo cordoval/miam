@@ -15,7 +15,7 @@ class SprintRepository extends EntityRepository
     public function findCurrent()
     {
         return $this->createQueryBuilder('s')
-        ->where('s.current = 1')
+        ->where('s.isCurrent = 1')
         ->getQuery()
         ->getSingleResult()
         ;

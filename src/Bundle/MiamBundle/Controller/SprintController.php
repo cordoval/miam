@@ -46,5 +46,29 @@ class SprintController extends Controller
     {
         return $this->render('MiamBundle:Sprint:current');
     }
+    
+    public function scheduleAction()
+    {
+        $sprint = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+        ->findCurrent();
+
+        $stories = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->findAllOrderByPriority();
+        
+        $story = $stories[0];
+
+        return $this->render('MiamBundle:Sprint:schedule', array(
+            'backlogStories' => $stories,
+            'sprintStories' => $sprint->getStories(),
+            'story' => $story,
+        ));
+    }
+    
+    public function addToSprintAction()
+    {
+        # code...
+    }
 
 }
