@@ -36,4 +36,28 @@ class StoryTest extends \PHPUnit_Framework_TestCase
         $story->setName('Bla');
         $this->assertEquals('Bla', sprintf('%s', $story));
     }
+
+    public function testInitialStatus()
+    {
+        $story = new Story();
+        $this->assertEquals(Story::STATUS_CREATED, $story->getStatus());
+        $this->assertEquals('created', $story->getStatusName());
+    }
+
+    public function testSetValidStatus()
+    {
+        $story = new Story();
+        $story->setStatus(Story::STATUS_WIP);
+        $this->assertEquals(Story::STATUS_WIP, $story->getStatus());
+        $this->assertEquals('work in progress', $story->getStatusName());
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     **/
+    public function testSetInvalidStatus()
+    {
+        $story = new Story();
+        $story->setStatus('troublada');
+    }
 }

@@ -40,6 +40,25 @@ class Story
     protected $points;
 
     /**
+     * @Column(name="status", type="integer") 
+     */
+    protected $status;
+
+    const STATUS_CREATED = 10;
+    const STATUS_ACCEPTED = 20;
+    const STATUS_ESTIMATED = 30;
+    const STATUS_PLANIFIED = 40;
+    const STATUS_WAITING = 50;
+    const STATUS_WIP = 60;
+    const STATUS_FINISHED = 70;
+
+    /**
+    * @ManyToOne(targetEntity="Sprint", inversedBy="stories")
+    * @JoinColumn(name="sprint_id", nullable=true)
+    */
+    protected $sprint;
+
+    /**
      * @Column(name="id", type="integer")
      * @Id
      * @GeneratedValue(strategy="AUTO")
@@ -51,6 +70,7 @@ class Story
     public function __construct()
     {
         $this->createdAt = new \DateTime();
+        $this->status    = self::STATUS_CREATED;
     }
 
     /**
@@ -128,7 +148,17 @@ class Story
     {
         return $this->points;
     }
+  
+    public function setSprint(Sprint $sprint)
+    {
+        $this->sprint = $sprint;
+    }
     
+    public function getSprint()
+    {  
+      return $this->sprint;
+    }
+
     public function setProject(Project $project)
     {
         $this->project = $project;
@@ -139,6 +169,40 @@ class Story
         return $this->project;
     }
 
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    public function setStatus($status)
+    {
+        if(!in_array($status, array_keys($this->getStatuses())))
+        {
+          throw new \InvalidArgumentException(sprintf('%s is not a valid story status like %s', $status, implode(', ', array_keys($this->getStatuses()))));
+        }
+        $this->status = $status;
+    }
+
+    public static function getStatuses()
+    {
+      return array(
+        self::STATUS_CREATED => 'created',
+        self::STATUS_ACCEPTED => 'accepted',
+        self::STATUS_ESTIMATED => 'estimated',
+        self::STATUS_PLANIFIED => 'planified',
+        self::STATUS_WAITING => 'waiting',
+        self::STATUS_WIP => 'work in progress',
+        self::STATUS_FINISHED => 'finished'
+      );
+    }
+
+    public function getStatusName()
+    {
+        $statuses = $this->getStatuses();
+
+        return $statuses[$this->status];
+    } 
+        
     /**
      * Return an array version of a Story's properties
      * @return array
@@ -153,6 +217,7 @@ class Story
             'priority' => $this->getPriority(),
             'points' => $this->getPoints(),
             'project' => $this->getProject() ? $this->getProject()->getId() : null,
+            'sprint' => $this->setSprint() ? $this->getSprint()->getId() : null
         );
     }
 
