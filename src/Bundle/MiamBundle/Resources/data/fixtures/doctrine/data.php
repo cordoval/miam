@@ -57,6 +57,11 @@ for($itProject=1; $itProject<=5; $itProject++)
     $$s->setName($s);
     $$s->setPriority($itStory);
     $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
+    $$s->setStatus(array_rand($$s->getStatuses()));
+    if($$s->getStatus() >= Story::STATUS_ESTIMATED)
+    {
+      $$s->setPoints(rand(1, 20));
+    }
     $$s->setProject($$p);
   }
 
