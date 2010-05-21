@@ -51,12 +51,10 @@ class Story
     protected $status;
 
     const STATUS_CREATED = 10;
-    const STATUS_ACCEPTED = 20;
-    const STATUS_ESTIMATED = 30;
-    const STATUS_SCHEDULED = 40;
-    const STATUS_WAITING = 50;
-    const STATUS_WIP = 60;
-    const STATUS_FINISHED = 70;
+    const STATUS_PENDING = 20;
+    const STATUS_TODO = 30;
+    const STATUS_WIP = 40;
+    const STATUS_FINISHED = 50;
 
     /**
      * @Column(name="id", type="integer")
@@ -180,6 +178,12 @@ class Story
         {
           throw new \InvalidArgumentException(sprintf('%s is not a valid story status like %s', $status, implode(', ', array_keys($this->getStatuses()))));
         }
+
+        if($status >= self::STATUS_PENDING && !$this->getPoints())
+        {
+          throw new \LogicException('Story '.$this.' can not be scheduled because it has no points');
+        }
+
         $this->status = $status;
     }
 
@@ -187,10 +191,8 @@ class Story
     {
       return array(
         self::STATUS_CREATED => 'created',
-        self::STATUS_ACCEPTED => 'accepted',
-        self::STATUS_ESTIMATED => 'estimated',
-        self::STATUS_SCHEDULED => 'scheduled',
-        self::STATUS_WAITING => 'waiting',
+        self::STATUS_PENDING => 'pending',
+        self::STATUS_TODO => 'todo',
         self::STATUS_WIP => 'work in progress',
         self::STATUS_FINISHED => 'finished'
       );

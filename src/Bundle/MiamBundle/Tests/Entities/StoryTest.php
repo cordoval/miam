@@ -60,4 +60,10 @@ class StoryTest extends \PHPUnit_Framework_TestCase
         $story = new Story();
         $story->setStatus('troublada');
     }
+
+    public function testSetAndGetSprint()
+    {
+      $story = new Story();
+      $story->setSprint(new Sprint());
+    }
 }
