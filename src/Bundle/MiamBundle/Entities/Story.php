@@ -53,7 +53,7 @@ class Story
     const STATUS_CREATED = 10;
     const STATUS_ACCEPTED = 20;
     const STATUS_ESTIMATED = 30;
-    const STATUS_PLANIFIED = 40;
+    const STATUS_SCHEDULED = 40;
     const STATUS_WAITING = 50;
     const STATUS_WIP = 60;
     const STATUS_FINISHED = 70;
@@ -189,7 +189,7 @@ class Story
         self::STATUS_CREATED => 'created',
         self::STATUS_ACCEPTED => 'accepted',
         self::STATUS_ESTIMATED => 'estimated',
-        self::STATUS_PLANIFIED => 'planified',
+        self::STATUS_SCHEDULED => 'scheduled',
         self::STATUS_WAITING => 'waiting',
         self::STATUS_WIP => 'work in progress',
         self::STATUS_FINISHED => 'finished'
