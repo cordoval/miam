@@ -10,6 +10,8 @@ require_once __DIR__.'/Functional/createAStoryTest.php';
 require_once __DIR__.'/Functional/showAStoryTest.php';
 require_once __DIR__.'/Functional/editAStoryTest.php';
 
+require_once __DIR__.'/Functional/createASprintTest.php';
+
 class AllTests
 {
   public static function suite()
@@ -23,6 +25,8 @@ class AllTests
     $suite->addTestSuite('Miam\Tests\Functional\showAStoryTest');
     $suite->addTestSuite('Miam\Tests\Functional\createAStoryTest');
     $suite->addTestSuite('Miam\Tests\Functional\editAStoryTest');
+
+    $suite->addTestSuite('Miam\Tests\Functional\createASprintTest');
 
     return $suite;
   }
