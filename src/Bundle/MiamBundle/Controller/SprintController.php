@@ -10,4 +10,8 @@ use Bundle\MiamBundle\Form\SprintForm;
 
 class SprintController extends Controller
 {
+    public function currentAction()
+    {
+        return $this->render('MiamBundle:Sprint:current');
+    }
 }
