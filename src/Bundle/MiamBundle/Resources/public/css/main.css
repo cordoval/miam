@@ -418,7 +418,8 @@ td, th {
 textarea {
     width: 600px;
     height: 300px;
-    font-family: Arial;
+    font-family: Monaco, Courier;
+    font-size: 0.8em;
 }
 
 #story_name {

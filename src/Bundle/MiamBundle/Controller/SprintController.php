@@ -80,6 +80,7 @@ class SprintController extends Controller
             'backlogStories' => $stories,
             'sprintStories' => $sprint->getStories(),
             'story' => $story,
+            'sprint' => $sprint
         ));
     }
     

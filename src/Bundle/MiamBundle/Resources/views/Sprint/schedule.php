@@ -4,25 +4,37 @@
 <div id="scheduling">
     <h1>Planification de sprint</h1>
 
-    <h2>Ajouter une story</h2>
+    <div class="col col_left">
+        <h2>Story candidate</h2>
 
-    <div class="story_planCard">
-        <h3 class="story"><?php echo $story->getName() ?></h3>
+        <div class="story_planCard">
+            <h3 class="story"><?php echo $story->getName() ?></h3>
 
-        <div class="story_body">
-          <?php echo $view->markdown->transform($story->getBody()) ?>
+            <div class="story_body">
+              <?php echo $view->markdown->transform($story->getBody()) ?>
+            </div>
         </div>
     </div>
     
-    <div id="scheduling_backlog">
+    <div class="col col_right">
+        <h2>Sprint</h2>
+        <ul>
+            <li><strong>Dates:</strong> <?php echo $sprint->getStartsAt()->format('d/m/Y') ?> au <?php echo $sprint->getEndsAt()->format('d/m/Y') ?></li>
+        </ul>
+    </div>
+
+    <div style="clear:both"></div>
+    
+    <div class="col col_left">
         <h2>Backlog</h2>
         <?php $view->output('MiamBundle:Story:backlog', array('stories' => $backlogStories)) ?>
     </div>
-
-    <div id="scheduling_sprint">
-        <h2>Sprint</h2>
+    
+    <div class="col col_right">
+        <h2>Backlog de sprint</h2>
         <?php $view->output('MiamBundle:Story:backlog', array('stories' => $sprintStories)) ?>
     </div>
+    
     
     <div style="clear:both"></div>
 </div>

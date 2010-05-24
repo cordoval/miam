@@ -74,15 +74,18 @@ li.story .editLink a
   background: #EEE;
 }
 
-#scheduling_backlog
+.col
 {
-  width: 600px;
+  width: 47.5%;
+}
+
+.col_left
+{
   float: left;
 }
 
-#scheduling_sprint
+.col_right
 {
-  width: 600px;
   float: right;
 }
 
@@ -95,11 +98,16 @@ li.story .editLink a
 {
   width: 25%;
   color: #B12822;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 #sprintBacklog 
 {
   margin-top: 20px;
+  border-right: 4px solid #B12822;
+  font-family: Monaco;
+  font-size: 0.75em;
 }
 
 #sprintBacklog th
