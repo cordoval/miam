@@ -15,7 +15,7 @@ class StoryController extends Controller
     {
         $stories = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->findAllOrderByPriority();
+        ->findBacklog();
 
         return $this->render('MiamBundle:Story:index', array(
             'stories' => $stories,

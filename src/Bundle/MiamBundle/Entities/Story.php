@@ -245,4 +245,8 @@ class Story
         $this->setPriority(1000);
     }
     
+    public function addToSprint(Sprint $sprint)
+    {
+        $this->sprint = $sprint;
+    }
 }

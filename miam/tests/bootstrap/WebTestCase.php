@@ -33,5 +33,9 @@ class WebTestCase extends BaseWebTestCase
     {
         return $this->kernel = new \MiamKernel('test', true);
     }
-       
+ 
+    protected function debugOutput()
+    {
+        die($this->client->getResponse()->getContent());
+    }
 }

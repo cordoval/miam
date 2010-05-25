@@ -7,6 +7,7 @@
     <div class="col col_left">
         <h2>Story candidate</h2>
 
+        <?php if($story): ?>
         <div class="story_planCard">
             <h3 class="story"><?php echo $story->getName() ?></h3>
 
@@ -14,6 +15,15 @@
               <?php echo $view->markdown->transform($story->getBody()) ?>
             </div>
         </div>
+        <form action="<?php echo $view->router->generate('sprint_addStory') ?>" method="put">
+            <input type="hidden" name="story[id]" value="<?php echo $story->getId() ?>" />
+            <input type="submit" id="addStory" value="Ajouter au sprint &rarr;" />
+        </form>
+        <?php else: ?>
+        <div>
+            Il ne reste rien dans le backlog. Va travailler maintenant.
+        </div>
+        <?php endif ?>
     </div>
     
     <div class="col col_right">

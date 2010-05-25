@@ -72,9 +72,13 @@ class SprintController extends Controller
 
         $stories = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->findAllOrderByPriority();
+        ->findBacklog();
         
-        $story = $stories[0];
+        if(count($stories)) {
+            $story = $stories[0];
+        } else {
+            $story = null;
+        }
 
         return $this->render('MiamBundle:Sprint:schedule', array(
             'backlogStories' => $stories,
@@ -84,9 +88,25 @@ class SprintController extends Controller
         ));
     }
     
-    public function addToSprintAction()
+    public function addStoryAction()
     {
-        # code...
+        $fakeForm = $this->getRequest()->get('story');
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id = $fakeForm['id']);
+
+        if (!$story) {
+            throw new NotFoundHttpException("Story '$id' not found");
+        }
+        
+        $sprint = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+        ->findCurrent();
+
+        $story->addToSprint($sprint);
+        $this->getEntityManager()->flush();
+        
+        return $this->redirect($this->generateUrl('sprint_schedule'));
     }
 
 }

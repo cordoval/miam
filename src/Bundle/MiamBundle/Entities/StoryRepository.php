@@ -7,10 +7,11 @@ use Doctrine\ORM\EntityRepository;
 class StoryRepository extends EntityRepository
 {
 
-    public function findAllOrderByPriority()
+    public function findBacklog()
     {
-        return $this->createQueryBuilder('e')
-        ->orderBy('e.priority', 'asc')
+        return $this->createQueryBuilder('s')
+        ->orderBy('s.priority', 'asc')
+        ->where('s.sprint is null')
         ->getQuery()
         ->execute();
     }
