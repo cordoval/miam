@@ -90,9 +90,9 @@ for($itProject=1; $itProject<=5; $itProject++)
     $$s->setName(($sentences[($itProject*8+$itStory)%(count($sentences)-1)]));
     $$s->setPriority($itStory);
     $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
-    $status = array_rand($$s->getStatuses());
-    $$s->setPoints(rand(1, 20));
-    $$s->setStatus($status);
+    
+    $$s->setPoints(1 + ($itStory * 4) % 20);
+    $$s->setStatus(10 + (($itStory*10) % 40));
     if($$s->getStatus() == Story::STATUS_FINISHED)
     {
       $$s->setSprint($oldSprint);

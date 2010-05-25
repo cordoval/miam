@@ -16,9 +16,9 @@ class scheduleASprintTest extends \WebTestCase
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Sprint:schedule');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectCount('.col_left .story', 11);
-        $this->client->assertResponseSelectCount('.col_right .story', 26);
-        $this->client->assertResponseSelectEquals('#sprint_points', array('_text'), array('261'));
+        $this->client->assertResponseSelectCount('.col_left .story', 14);
+        $this->client->assertResponseSelectCount('.col_right .story', 30);
+        $this->client->assertResponseSelectEquals('#sprint_points', array('_text'), array('210'));
         $this->client->assertResponseSelectEquals('h3.story', array('_text'), array('Smoke in the water'));
     }
 
@@ -38,9 +38,9 @@ class scheduleASprintTest extends \WebTestCase
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Sprint:schedule');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectCount('.col_left .story', 10);
-        $this->client->assertResponseSelectCount('.col_right .story', 27);
-        $this->client->assertResponseSelectEquals('#sprint_points', array('_text'), array('271'));
+        $this->client->assertResponseSelectCount('.col_left .story', 13);
+        $this->client->assertResponseSelectCount('.col_right .story', 31);
+        $this->client->assertResponseSelectEquals('#sprint_points', array('_text'), array('220'));
         $this->client->assertResponseSelectEquals('h3.story', array('_text'), array('Danse on a volcano'));
     }
 
