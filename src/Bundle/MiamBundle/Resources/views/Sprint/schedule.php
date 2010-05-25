@@ -29,7 +29,8 @@
     <div class="col col_right">
         <h2>Sprint</h2>
         <ul>
-            <li><strong>Dates:</strong> <?php echo $sprint->getStartsAt()->format('d/m/Y') ?> au <?php echo $sprint->getEndsAt()->format('d/m/Y') ?></li>
+            <li><strong>Dates :</strong> <?php echo $sprint->getStartsAt()->format('d/m/Y') ?> au <?php echo $sprint->getEndsAt()->format('d/m/Y') ?></li>
+            <li><strong>Points :</strong> <span id="sprint_points"><?php echo $sprint->getRemainingPoints() ?></span></li>
         </ul>
     </div>
 

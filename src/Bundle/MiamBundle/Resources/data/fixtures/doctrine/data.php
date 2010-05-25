@@ -22,6 +22,7 @@ $story1->setPriority(1);
 $story1->setBody("##Hey there where ya goin'\n
 not exactly knowin', **who says** you have to call just one place home. He's goin' everywhere, B.J. McKay and his best friend Bear.");
 $story1->setProject($pMiam);
+$story1->setPoints(10);
 
 $story2 = new Story();
 $story2->setName('Danse on a volcano');

@@ -2,6 +2,8 @@
 
 namespace Bundle\MiamBundle\Entities;
 
+use Bundle\MiamBundle\Entities\Story;
+
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\SprintRepository")
  * @Table(name="miam_sprint")
@@ -106,6 +108,23 @@ class Sprint
     public function __toString()
     {
         return 'Sprint du ' . $this->getStartsAt()->format('d/m/Y') . ' au ' . $this->getEndsAt()->format('d/m/Y');
+    }
+    
+    public function getRemainingPoints()
+    {
+        $sum = 0;
+        foreach($this->stories as $story) {
+            $status = $story->getStatus();
+            if(in_array($status, array(
+                Story::STATUS_CREATED,
+                Story::STATUS_PENDING,
+                Story::STATUS_TODO,
+                Story::STATUS_WIP,
+            ))) {
+                $sum += $story->getPoints();
+            }
+        }
+        return $sum;
     }
     
 }
