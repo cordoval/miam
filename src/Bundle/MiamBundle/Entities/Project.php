@@ -56,11 +56,11 @@ class Project
         $this->createdAt = new \DateTime();
         $this->isActive = true;
     }
-    
+     
     public static function loadValidatorMetadata(ClassMetadata $metadata)
     {
       $metadata->addPropertyConstraint('name', new MinLength(3));
-      $metadata->addPropertyConstraint('color', new Regex('/^#?[0-9A-F]{6}$/'));
+      $metadata->addPropertyConstraint('color', new Regex('/^#?[0-9A-F]{6}$/i'));
     }
 
     /**
