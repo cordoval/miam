@@ -7,9 +7,9 @@
 
 <h1>Création d'un projet</h1>
 
-<?php echo $form->renderFormTag($view->router->generate('project_new')) ?>
+<form action="<?php echo $view->router->generate('project_new') ?>" method="post">
     <table>
-        <?php echo $form ?>
+        <?php echo $form->render() ?>
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>

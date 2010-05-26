@@ -47,16 +47,14 @@ class ProjectController extends Controller
             throw new NotFoundHttpException("Project not found");
         }
 
-        $form = new ProjectForm($project);
+        $form = $this->createForm($project);
         
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get($form->getName()));
-
             if($form->isValid()) {
-                $form->updateObject();
-                $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
-                $this->getUser()->setFlash('project_update', array('project' => $form->getObject()->__toString()));
+                $this->getUser()->setFlash('project_update', array('project' => $project->__toString()));
                 return $this->redirect($this->generateUrl('projects'));
             }
         }
@@ -69,25 +67,32 @@ class ProjectController extends Controller
 
     public function newAction()
     {
-        $form = new ProjectForm(new Project());
-
-        if('POST' === $this->getRequest()->getMethod()) {
+      $form = $this->createForm(new Project());
+      
+      if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get('project'));
-
             if($form->isValid()) {
-                $form->updateObject();
-                $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
                 
-                $this->getUser()->setFlash('project_create', array('project' => $form->getObject()->__toString()));
+                $this->getUser()->setFlash('project_create', array('project' => $project));
                 return $this->redirect($this->generateUrl('projects'));
             }
-            
         }
 
         return $this->render('MiamBundle:Project:new', array(
             'form' => $form
         ));
+    }
+
+    public function createForm(Project $project)
+    {
+        $options = array(
+          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
+          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
+        );
+
+        return new ProjectForm($project, $options);
     }
 
 }
