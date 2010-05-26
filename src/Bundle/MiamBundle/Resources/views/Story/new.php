@@ -2,7 +2,9 @@
 <?php $view->slots->set('active_menu', 'story_new') ?>
 
 <div id="breadcrumb">
-  <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
+    <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
+    &gt;
+    Nouvelle story
 </div>
 
 <h1>Création d'une nouvelle story</h1>
