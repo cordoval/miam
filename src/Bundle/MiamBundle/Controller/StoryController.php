@@ -55,7 +55,7 @@ class StoryController extends Controller
     {
         $story = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+        ->findOneByIdWithProject($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
