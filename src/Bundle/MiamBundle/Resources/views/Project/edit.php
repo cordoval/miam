@@ -10,9 +10,9 @@
 
 <h1>Projet <em><?php echo $project->getName() ?></em></h1>
 
-<?php echo $form->renderFormTag($view->router->generate('project_edit', array('id' => $project->getId()))) ?>
+<form action="<?php echo $view->router->generate('project_edit', array('id' => $project->getId())) ?>" method="post">
     <table>
-        <?php echo $form ?>
+        <?php echo $form->render() ?>
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>
