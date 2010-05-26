@@ -9,7 +9,11 @@
 
 <form action="<?php echo $view->router->generate('project_new') ?>" method="post">
     <table>
-        <?php echo $form->render() ?>
+      <?php echo $form['name']->renderErrors() ?>
+      <label>Name: <?php echo $form['name']->render(); ?></label>
+<br />
+      <?php echo $form['color']->renderErrors() ?>
+      <label>Color: <?php echo $form['color']->render(); ?></label> 
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>

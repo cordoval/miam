@@ -67,7 +67,8 @@ class ProjectController extends Controller
 
     public function newAction()
     {
-      $form = $this->createForm(new Project());
+      $project = new Project();
+      $form = $this->createForm($project);
       
       if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get('project'));

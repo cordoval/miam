@@ -12,7 +12,10 @@
 
 <form action="<?php echo $view->router->generate('project_edit', array('id' => $project->getId())) ?>" method="post">
     <table>
+      <?php echo $form['name']->renderErrors() ?>
       <label>Name: <?php echo $form['name']->render(); ?></label>
+<br />
+      <?php echo $form['color']->renderErrors() ?>
       <label>Color: <?php echo $form['color']->render(); ?></label> 
     </table>
     <input id="submit" type="submit" value="Valider" />
