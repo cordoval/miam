@@ -7,7 +7,7 @@
 
 <h1>Création d'un projet</h1>
 
-<form action="<?php echo $view->router->generate('project_new') ?>" method="post">
+<?php echo $form->renderFormTag($view->router->generate('project_new')) ?>
     <table>
       <?php echo $form['name']->renderErrors() ?>
       <label>Name: <?php echo $form['name']->render(); ?></label>
