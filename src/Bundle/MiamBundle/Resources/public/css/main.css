@@ -7,7 +7,7 @@ html, body
 
 body
 {
-  font: 1em Georgia, "Times New Roman", serif;
+  font: 0.8em verdana;
   color: #626262;
   text-align: left;
 }
@@ -440,4 +440,22 @@ textarea {
 #breadcrumb a
 {
   color: #880000;
+}
+
+.bd ul.menu_actions
+{
+  background: #BBB;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.bd ul.menu_actions li
+{
+  margin:0;
+  list-style: none;
+}
+
+.bd ul.menu_actions li a
+{
+  color: #000;
 }

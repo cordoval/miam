@@ -42,6 +42,14 @@ li.story .editLink a
   color: #B12822;
 }
 
+.story_id
+{
+  width: 50px;
+  display: block;
+  float: left;
+  opacity: 0.5;
+}
+
 .story_points
 {
   font-size:0.7em;
@@ -106,8 +114,8 @@ li.story .editLink a
 {
   margin-top: 20px;
   border-right: 4px solid #B12822;
-  font-family: Monaco;
   font-size: 0.75em;
+  width: 100%;
 }
 
 #sprintBacklog th
@@ -123,16 +131,28 @@ li.story .editLink a
 .titleWithActions
 {
   overflow: hidden;
+  margin-bottom: 15px;
 }
 
 .titleWithActions h1
 {
   float: left;
+  padding: 20px 0 10px;
 }
 
 .titleWithActions a
 {
-  float: right;
-  padding: 20px 0 15px 0;
+  float: left;
+  padding: 0px 10px;
+  margin: 15px 0 0px 30px;
   line-height: 37px;
+  background: #C96964;
+  color: #FFFFFF;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.story a
+{
+  text-decoration: none;
 }

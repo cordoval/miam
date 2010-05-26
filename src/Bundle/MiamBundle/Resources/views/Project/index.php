@@ -2,10 +2,11 @@
 <?php $view->slots->set('active_menu', 'projects') ?>
 
 <div id="projects">
-    <h1>Projets</h1>
+    <div class="titleWithActions">
+        <h1>Backlog</h1>
+        <a id="newSprint" href="<?php echo $view->router->generate('project_new') ?>">Créer un projet</a>
+    </div>
 
-    <a id="newProject" href="<?php echo $view->router->generate('project_new') ?>">Nouveau projet</a>
-    
     <ol class="projects">
         <?php foreach ($projects as $project): ?>
             <li class="project" id="project_<?php echo $project->getId() ?>">
