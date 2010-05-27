@@ -1,5 +1,6 @@
 <?php $view->extend('MiamBundle::layout') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
+<?php $view->javascripts->add('/bundles/miam/css/sprint.js') ?>
 <?php $view->slots->set('active_menu', 'sprint_current') ?>
 
 <div id="sprint_current">
