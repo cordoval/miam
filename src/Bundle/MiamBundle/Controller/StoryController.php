@@ -24,7 +24,7 @@ class StoryController extends Controller
 
     public function moveAction()
     {
-        $id = $this->getRequest()->request->get('story_id');
+        $id = $this->getRequest()->get('story_id');
 
         $story = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
@@ -35,7 +35,7 @@ class StoryController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        $status = $this->getRequest()->request->get('status');
+        $status = $this->getRequest()->get('status');
 
         if(!Story::isValidStatus($status))
         {
@@ -50,7 +50,7 @@ class StoryController extends Controller
 
     public function sortAction()
     {
-        $ids = $this->getRequest()->request->get('story');
+        $ids = $this->getRequest()->get('story');
 
         $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
@@ -92,7 +92,7 @@ class StoryController extends Controller
         $form = $this->createForm($story, $projects);
         
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get($form->getName()));
+            $form->bind($this->getRequest()->get($form->getName()));
 
             if($form->isValid()) {
                 $this->getEntityManager()->persist($story);
@@ -116,7 +116,7 @@ class StoryController extends Controller
         $form = $this->createForm($story, $projects);
 
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get('story'));
+            $form->bind($this->getRequest()->get('story'));
 
             if($form->isValid()) {
                 $story->moveToTheEnd();

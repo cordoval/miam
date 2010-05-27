@@ -50,7 +50,7 @@ class ProjectController extends Controller
         $form = $this->createForm($project);
         
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get($form->getName()));
+            $form->bind($this->getRequest()->get($form->getName()));
             if($form->isValid()) {
                 $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
@@ -71,7 +71,7 @@ class ProjectController extends Controller
       $form = $this->createForm($project);
       
       if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->query->get('project'));
+            $form->bind($this->getRequest()->get('project'));
             if($form->isValid()) {
                 $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
