@@ -1,6 +1,5 @@
 <?php $view->extend('MiamBundle::layout') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
-<?php $view->javascripts->add('/bundles/miam/css/sprint.js') ?>
 <?php $view->slots->set('active_menu', 'sprint_current') ?>
 
 <div id="sprint_current">
@@ -9,7 +8,7 @@
         <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Changer de sprint</a>
     </div>
     
-    <table id="sprintBacklog">
+    <table id="sprintBacklog" data-move-url="<?php echo $view->router->generate('story_move') ?>">
       <thead>
         <tr>
           <th>En attente</th>
@@ -24,9 +23,9 @@
             <th colspan="4" class="project" style="background: <?php echo $project->getColor() ?>"><?php echo $project ?></th>
           </tr>
           <?php foreach($project->getStories() as $story): ?>
-            <tr>
+            <tr id="story_column_<?php echo $story->getId() ?>">
               <?php foreach($statuses as $status => $name): ?>
-                <td>
+                <td data-status="<?php echo $status ?>">
                   <?php if($story->isStatus($status)): ?>
                     <div class="story"><?php echo $story ?></div>
                   <?php endif; ?>
