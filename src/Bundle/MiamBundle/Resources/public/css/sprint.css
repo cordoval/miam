@@ -8,6 +8,7 @@ div.story {
   border: 1px solid #E0E0E0;
   background: #F4F4F4;
   cursor: move;
+  color: #444;
 }
 div.story.ui-draggable-dragging {
 }
