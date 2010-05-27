@@ -2,7 +2,6 @@
 
 namespace Bundle\MiamBundle\Tests;
 
-require_once 'PHPUnit/Framework.php';
 require_once __DIR__.'/Functional/createAProjectTest.php';
 require_once __DIR__.'/Functional/showAProjectTest.php';
 require_once __DIR__.'/Functional/editAProjectTest.php';
