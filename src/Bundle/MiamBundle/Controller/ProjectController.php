@@ -71,7 +71,7 @@ class ProjectController extends Controller
       $form = $this->createForm($project);
       
       if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get('project'));
+            $form->bind($this->getRequest()->query->get('project'));
             if($form->isValid()) {
                 $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
