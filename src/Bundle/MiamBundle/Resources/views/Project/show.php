@@ -7,7 +7,7 @@
 </div>
 
 <div class="titleWithActions">
-    <h1>Backlog de <?php echo $project->getName() ?></h1>
+    <h1 class="project">Backlog de <?php echo $project->getName() ?></h1>
     <a id="newSprint" href="<?php echo $view->router->generate('project_edit', array('id' => $project->getId())) ?>">Modifier</a>
 </div>
 
