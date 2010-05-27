@@ -9,7 +9,9 @@ $loader->registerNamespaces(array(
   'Symfony'     => __DIR__.'/vendor/Symfony/src',
   'Bundle'      => __DIR__,
   'Doctrine\DBAL\Migrations' => __DIR__.'/vendor/migrations/lib',
-  'Doctrine'    => __DIR__.'/vendor/doctrine/lib'
+  'Doctrine\DBAL'    => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-dbal/lib',
+  'Doctrine\Common'    => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-common/lib',
+  'Doctrine'    => __DIR__.'/vendor/doctrine/lib',
 ));
 $loader->registerPrefixes(array(
   'Zend_'  => __DIR__.'/vendor/zend/library',
