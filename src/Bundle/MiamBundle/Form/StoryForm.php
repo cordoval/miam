@@ -2,67 +2,70 @@
 
 namespace Bundle\MiamBundle\Form;
 
-use Bundle\MiamBundle\Form\BaseForm;
-use Doctrine\ORM\EntityManager;
+use Symfony\Components\Form\Form;
+use Symfony\Components\Form\FieldGroup;
+use Symfony\Components\Form\ChoiceField;
+use Symfony\Components\Form\TextField;
+use Symfony\Components\Form\TextareaField;
+use Symfony\Components\Form\CheckboxField;
+use Symfony\Components\Form\NumberField;
+use Symfony\Components\Form\PasswordField;
+use Symfony\Components\Form\DoubleTextField;
+use Symfony\Components\Validator\Validator;
+use Symfony\Components\Validator\ConstraintValidatorFactory;
+use Symfony\Components\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Components\Validator\Mapping\ClassMetadata;
+use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
+use Symfony\Components\Validator\Mapping\Loader\StaticMethodLoader;
+use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
+use Symfony\Components\Validator\MessageInterpolator\XliffMessageInterpolator;
+use Symfony\Foundation\UniversalClassLoader;
+
 use Bundle\MiamBundle\Entities\Project;
 
-class StoryForm extends BaseForm
+class StoryForm extends Form
 {
-    protected $projects;
-    
-    public function configure()
+  protected $projects;
+
+  public function __construct($object, array $options = array())
+  {
+    $this->addOption('projects');
+    $this->addOption('message_file');
+    $this->addOption('validation_file');
+    $validator = $this->createValidator($options['message_file'], $options['validation_file']);
+    parent::__construct('story', $object, $validator, $options, $options);
+
+    $this->add(new TextField('name'));
+    $this->add(new TextAreaField('body'));
+    $this->add(new TextField('points'));
+    $this->add(new ChoiceField('project', array(
+      'choices' => $this->getProjectChoices()
+    )));
+  }
+
+  public function getProjectChoices()
+  {
+    $projects = $this->getOption('projects', array());
+    $choices = array();
+    foreach($projects as $project)
     {
-        $this->projects = $this->getOption('projects', array());
-        
-        $this->widgetSchema['name'] = new \sfWidgetFormInputText(array(
-        ));
-
-        $this->widgetSchema['body'] = new \sfWidgetFormTextarea(array(
-        ));
-
-        $this->widgetSchema['points'] = new \sfWidgetFormInputText(array(
-        ));
-
-        $this->widgetSchema['project'] = new \sfWidgetFormChoice(array(
-            'choices' => $this->projects,
-        ));
-
-        $this->validatorSchema['name'] = new \sfValidatorString(array(
-            'max_length' => 255,
-        ));
-
-        $this->validatorSchema['body'] = new \sfValidatorString(array(
-             'max_length' => 50000,
-             'required' => false
-        ));
-
-        $this->validatorSchema['points'] = new \sfValidatorInteger(array(
-            'min' => 1,
-            'required' => false
-        ));
-
-        $this->validatorSchema['project'] = new \sfValidatorChoice(array(
-            'choices' => array_keys($this->projects)
-        ));
-        
-        $this->widgetSchema->setNameFormat('story[%s]');
+      $choices[$project->getId()] = $project->getName();
     }
 
-    protected function doUpdateObject(array $values)
-    {
-        $this->getObject()->setName($values['name']);
-        $this->getObject()->setBody($values['body']);
-        $this->getObject()->setPoints($values['points']);
-        
-        $projectId = $values['project'];
-        $project = $this->projects[$projectId];
-        
-        $this->getObject()->setProject($project);
-    }
+    return $choices;
+  }
 
-    public function getModelName()
-    {
-        return 'Bundle\MiamBundle\Entities\Story';
-    }
+  public function createValidator($messageFile, $validationFile)
+  {
+    $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
+      new StaticMethodLoader('loadValidatorMetadata'),
+      new XmlFileLoader($validationFile)
+    )));
+    $validatorFactory = new ConstraintValidatorFactory();
+    $messageInterpolator = new XliffMessageInterpolator($messageFile);
+    $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
+
+    return $validator;
+  }
 
 }

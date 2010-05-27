@@ -30,8 +30,9 @@ class ProjectForm extends Form
   public function __construct($object, array $options = array())
   {
     $this->addOption('message_file');
-    $this->addOption('validation_file');
-    parent::__construct('project', $object, $this->createValidator($options['message_file'], $options['validation_file']), $options);
+    $this->addOption('validation_file'); 
+    $validator = $this->createValidator($options['message_file'], $options['validation_file']);
+    parent::__construct('project', $object, $validator, $options);
 
     $this->add(new TextField('name'));
     $this->add(new TextField('color'));

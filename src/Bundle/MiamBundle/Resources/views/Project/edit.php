@@ -10,7 +10,7 @@
 
 <h1>Projet <em><?php echo $project->getName() ?></em></h1>
 
-<form action="<?php echo $view->router->generate('project_edit', array('id' => $project->getId())) ?>" method="post">
+<?php echo $form->renderFormTag($view->router->generate('project_edit', array('id' => $project->getId()))) ?>
     <table>
       <?php echo $form['name']->renderErrors() ?>
       <label>Name: <?php echo $form['name']->render(); ?></label>

@@ -8,10 +8,19 @@
 </div>
 
 <h1>Création d'une nouvelle story</h1>
-
 <?php echo $form->renderFormTag($view->router->generate('story_new')) ?>
     <table>
-        <?php echo $form ?>
+      <?php echo $form['name']->renderErrors() ?>
+      <label>Name: <?php echo $form['name']->render(); ?></label>
+<br />
+      <?php echo $form['body']->renderErrors() ?>
+      <label>Body: <?php echo $form['body']->render(); ?></label> 
+<br />
+      <?php echo $form['project']->renderErrors() ?>
+      <label>Project: <?php echo $form['project']->render(); ?></label> 
+<br />
+      <?php echo $form['points']->renderErrors() ?>
+      <label>Points: <?php echo $form['points']->render(); ?></label> 
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>

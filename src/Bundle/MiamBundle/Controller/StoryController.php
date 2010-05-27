@@ -55,7 +55,7 @@ class StoryController extends Controller
     {
         $story = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+        ->findOneByIdWithProject($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
@@ -63,16 +63,15 @@ class StoryController extends Controller
 
         $projects = $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Project')->findAllIndexedById();
 
-        $form = new StoryForm($story, array('projects' => $projects));
+        $form = $this->createForm($story, $projects);
         
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get($form->getName()));
 
             if($form->isValid()) {
-                $form->updateObject();
-                $this->getEntityManager()->persist($form->getObject());
+                $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
-                $this->getUser()->setFlash('story_update', array('story' => $form->getObject()->__toString()));
+                $this->getUser()->setFlash('story_update', array('story' => $story));
                 return $this->redirect($this->generateUrl('backlog'));
             }
         }
@@ -87,20 +86,19 @@ class StoryController extends Controller
     {
         $projects = $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Project')->findAllIndexedById();
 
-        $form = new StoryForm(new Story(), array('projects' => $projects));
+        $story = new Story();
+        $form = $this->createForm($story, $projects);
 
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->request->get('story'));
 
             if($form->isValid()) {
-                $form->updateObject();
-                $story = $form->getObject();
                 $story->moveToTheEnd();
                 
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
                 
-                $this->getUser()->setFlash('story_create', array('story' => $form->getObject()->__toString()));
+                $this->getUser()->setFlash('story_create', array('story' => $story));
                 return $this->redirect($this->generateUrl('backlog'));
             }
             
@@ -109,6 +107,16 @@ class StoryController extends Controller
         return $this->render('MiamBundle:Story:new', array(
             'form' => $form
         ));
+    }
+
+    public function createForm(Story $story, array $projects)
+    {
+        $options = array(
+          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
+          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
+        );
+
+        return new StoryForm($story, array_merge($options, array('projects' => $projects)));
     }
 
     

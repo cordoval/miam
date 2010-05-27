@@ -7,6 +7,17 @@ use Doctrine\ORM\EntityRepository;
 class StoryRepository extends EntityRepository
 {
 
+    public function findOneByIdWithProject($id)
+    {
+      return $this->createQueryBuilder('s')
+        ->select('s, p')
+        ->where('s.id = :id')
+        ->leftJoin('s.project', 'p')
+        ->setParameter('id', $id)
+        ->getQuery()
+        ->getSingleResult();
+    }
+
     public function findBacklog()
     {
         return $this->createQueryBuilder('s')
