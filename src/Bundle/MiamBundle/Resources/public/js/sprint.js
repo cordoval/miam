@@ -7,12 +7,13 @@
     {
         var self = this;
         
-        this.element.find('td div.story').draggable({
+        this.element.find('td div.story').each(function()
+        {
+          $(this).draggable({
             distance:   0,
-            axis:       'x',
-            containment: this.element.find('tbody'),
-            revert: 'invalid',
-            
+            containment: $(this).parent().parent(),
+            revert: 'invalid'
+          });
         });
 
         this.element.find('td').each(function()
@@ -23,7 +24,7 @@
             accept: '#'+id+' div.story',
             activeClass: 'droppable_active',
             hoverClass: 'droppable_hover',
-            //tolerance:    'touch',
+            tolerance:    'intersect',
             drop: function(e, ui)
             {
                 $.ajax({
@@ -34,7 +35,7 @@
                      status:   $(this).attr('data-status')
                    }
                 });
-                ui.draggable.css('left', 0).appendTo($(this));
+                ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));
              }
           });
        });
