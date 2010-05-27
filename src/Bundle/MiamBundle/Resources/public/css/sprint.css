@@ -1,10 +1,20 @@
-.project {
+th.project {
   color: #fff;
   font-weight: bold;
   text-shadow: 0 0 3px #000;
 }
-.story {
+div.story {
   padding: 0.5em;
   border: 1px solid #E0E0E0;
   background: #F4F4F4;
+  cursor: move;
+}
+div.story.ui-draggable-dragging {
+}
+
+td.droppable_active {
+  background: #FFF39D;
+}
+td.droppable_hover {
+  background: #88FF88;
 }

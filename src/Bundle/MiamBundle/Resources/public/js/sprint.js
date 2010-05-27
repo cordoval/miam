@@ -8,15 +8,11 @@
         var self = this;
         
         this.element.find('td div.story').draggable({
-            distance:   10,
+            distance:   0,
             axis:       'x',
-            update:     function(event, ui) {
-                $.ajax({
-                   type:    'POST',
-                   url:     self.element.attr('data-move-url'),
-                   data:    $(this).sortable('serialize')
-                });
-            }
+            containment: this.element.find('tbody'),
+            revert: 'invalid',
+            
         });
 
         this.element.find('td').each(function()
@@ -27,7 +23,7 @@
             accept: '#'+id+' div.story',
             activeClass: 'droppable_active',
             hoverClass: 'droppable_hover',
-            //          tolerance:    'touch',
+            //tolerance:    'touch',
             drop: function(e, ui)
             {
                 $.ajax({
@@ -38,6 +34,7 @@
                      status:   $(this).attr('data-status')
                    }
                 });
+                ui.draggable.css('left', 0).appendTo($(this));
              }
           });
        });
