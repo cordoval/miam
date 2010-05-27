@@ -213,6 +213,17 @@ class Story
       );
     }
 
+    /**
+     * Tell if the given status code is valid 
+     * 
+     * @param string $status 
+     * @return bool  true if the status is valid
+     */
+    public static function isValidStatus($status)
+    {
+      return in_array($status, array_keys(self::getStatuses()));
+    }
+
     public static function getSprintStatuses()
     {
       $statuses = self::getStatuses();

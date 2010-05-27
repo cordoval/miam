@@ -27,7 +27,7 @@
               <?php foreach($statuses as $status => $name): ?>
                 <td data-status="<?php echo $status ?>">
                   <?php if($story->isStatus($status)): ?>
-                    <div class="story"><?php echo $story ?></div>
+                    <div class="story" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?></div>
                   <?php endif; ?>
                 </td>
               <?php endforeach; ?>

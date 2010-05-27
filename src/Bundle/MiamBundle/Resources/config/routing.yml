@@ -10,6 +10,10 @@ story_sort:
   pattern:  /story/sort
   defaults: { _controller: MiamBundle:Story:sort }
 
+story_move:
+  pattern:  /story/move
+  defaults: { _controller: MiamBundle:Story:move }
+
 story:
   pattern:  /story/:id
   defaults: { _controller: MiamBundle:Story:show }

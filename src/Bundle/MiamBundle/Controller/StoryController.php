@@ -22,6 +22,32 @@ class StoryController extends Controller
         ));
     }
 
+    public function moveAction()
+    {
+        $id = $this->getRequest()->request->get('story_id');
+
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story)
+        {
+            throw new NotFoundHttpException("Story not found");
+        }
+
+        $status = $this->getRequest()->request->get('status');
+
+        if(!Story::isValidStatus($status))
+        {
+          throw new NotFoundHttpException("Status $status does not exist");
+        }
+
+        $story->setStatus($status);
+        $this->getEntityManager()->flush();
+
+        return $this->createResponse('done');
+    }
+
     public function sortAction()
     {
         $ids = $this->getRequest()->request->get('story');
