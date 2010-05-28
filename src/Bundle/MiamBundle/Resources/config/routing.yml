@@ -21,6 +21,10 @@ story:
 story_edit:
   pattern:  /story/:id/edit
   defaults: { _controller: MiamBundle:Story:edit }
+
+story_delete:
+  pattern:  /story/:id/delete
+  defaults: { _controller: MiamBundle:Story:delete }
   
 projects:
   pattern:  /projects

@@ -25,14 +25,16 @@ li.story span.drag {
     background: url(../images/drag.png) top left no-repeat;
 }
 
-li.story .editLink
+li.story .editLink,
+li.story .deleteLink
 {
   margin-left: 10px;
   font-size: 12px;
   display: none;
 }
 
-li.story:hover .editLink
+li.story:hover .editLink,
+li.story:hover .deleteLink
 {
   display: inline;
 }

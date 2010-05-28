@@ -44,3 +44,8 @@ Run functional tests
 
     phpunit --bootstrap miam/tests/bootstrap/functional.php miam/tests/AllTests.php
 
+To generate migrations from your current schema
+
+    php miam/console doctrine:migrations:diff --bundle=Bundle\\MiamBundle
+    php miam/console doctrine:migrations:migrate --bundle=Bundle\\MiamBundle
+    php miam/console doctrine:generate:proxies

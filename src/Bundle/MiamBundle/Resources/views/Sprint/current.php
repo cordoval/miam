@@ -27,7 +27,11 @@
               <?php foreach($statuses as $status => $name): ?>
                 <td data-status="<?php echo $status ?>">
                   <?php if($story->isStatus($status)): ?>
-                    <div class="story" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?></div>
+                    <div class="story" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?>
+                        <div class="story_points_wrapper">
+                            <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+                        </div>
+                    </div>
                   <?php endif; ?>
                 </td>
               <?php endforeach; ?>
