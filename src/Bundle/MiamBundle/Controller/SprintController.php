@@ -17,7 +17,7 @@ class SprintController extends Controller
         $form = new SprintForm(null);
 
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->request->get($form->getName()));
+            $form->bind($this->getRequest()->get($form->getName()));
 
             if($form->isValid()) {
                 $form->updateObject();
