@@ -19,3 +19,12 @@ td.droppable_active {
 td.droppable_hover {
   background: #88FF88;
 }
+
+.story_points_wrapper {
+  overflow: hidden;
+}
+
+#sprint_current .story_points {
+  float: right;
+  font-size: 0.9em;
+}
