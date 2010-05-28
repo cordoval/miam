@@ -2,8 +2,6 @@
 
 namespace Bundle\MiamBundle\Entities;
 
-use Bundle\MiamBundle\Entities\Story;
-
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\SprintRepository")
  * @Table(name="miam_sprint")
@@ -41,6 +39,7 @@ class Sprint
     public function __construct()
     {
         $this->isCurrent = true;
+        $this->stories   = array();
     }
 
     public function getIsCurrent()
@@ -77,6 +76,12 @@ class Sprint
     {
         return $this->stories;
     }
+
+    public function addStory(Story $story)
+    {
+        $this->stories[] = $story;
+        $story->setSprint($this);
+    }  
 
     /**
      * Return an array version of a Story's properties

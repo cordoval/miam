@@ -103,7 +103,7 @@ class SprintController extends Controller
         ->getRepository('Bundle\MiamBundle\Entities\Sprint')
         ->findCurrent();
 
-        $story->addToSprint($sprint);
+        $sprint->addStory($story);
         $this->getEntityManager()->flush();
         
         return $this->redirect($this->generateUrl('sprint_schedule'));
