@@ -158,7 +158,8 @@ class StoryController extends Controller
     {
         $options = array(
           'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
-          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
+          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml',
+          'em' => $this->getEntityManager()
         );
 
         return new StoryForm($story, array_merge($options, array('projects' => $projects)));

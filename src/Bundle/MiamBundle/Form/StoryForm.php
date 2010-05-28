@@ -2,7 +2,8 @@
 
 namespace Bundle\MiamBundle\Form;
 
-use Symfony\Components\Form\Form;
+use Bundle\MiamBundle\DoctrineForm\DoctrineForm;
+use Bundle\MiamBundle\DoctrineForm\DoctrineChoiceField;
 use Symfony\Components\Form\FieldGroup;
 use Symfony\Components\Form\ChoiceField;
 use Symfony\Components\Form\TextField;
@@ -23,7 +24,7 @@ use Symfony\Foundation\UniversalClassLoader;
 
 use Bundle\MiamBundle\Entities\Project;
 
-class StoryForm extends Form
+class StoryForm extends DoctrineForm
 {
   protected $projects;
 
@@ -38,13 +39,14 @@ class StoryForm extends Form
     $this->add(new TextField('name'));
     $this->add(new TextAreaField('body'));
     $this->add(new TextField('points'));
-    $this->add(new ChoiceField('project', array(
+    $this->add(new DoctrineChoiceField('project', array(
       'choices' => $this->getProjectChoices()
     )));
   }
 
   public function getProjectChoices()
   {
+    return $this->getOption('projects', array());
     $projects = $this->getOption('projects', array());
     $choices = array();
     foreach($projects as $project)
