@@ -46,6 +46,6 @@ Run functional tests
 
 To generate migrations from your current schema
 
-    php miam/console symfony doctrine:migrations:diff --bundle=Bundle\\MiamBundle
+    php miam/console doctrine:migrations:diff --bundle=Bundle\\MiamBundle
     php miam/console doctrine:migrations:migrate --bundle=Bundle\\MiamBundle
     php miam/console doctrine:generate:proxies

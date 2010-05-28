@@ -1,0 +1,6 @@
+.svn
+/web/uploads/*
+/miam/cache/*
+/miam/logs/*
+/web/*_dev.php
+.git*
