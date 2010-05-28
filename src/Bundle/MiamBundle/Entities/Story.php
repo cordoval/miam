@@ -80,8 +80,6 @@ class Story
     }
 
     /**
-
-    /**
      * Set createdAt
      */
     public function setCreatedAt($value)

@@ -3,7 +3,7 @@
 
 <div id="projects">
     <div class="titleWithActions">
-        <h1>Backlog</h1>
+        <h1>Projets</h1>
         <a id="newSprint" href="<?php echo $view->router->generate('project_new') ?>">Créer un projet</a>
     </div>
 

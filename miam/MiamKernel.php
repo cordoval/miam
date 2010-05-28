@@ -20,6 +20,7 @@ class MiamKernel extends Kernel
     $bundles = array(
       new Symfony\Foundation\Bundle\KernelBundle(),
       new Symfony\Framework\DoctrineBundle\Bundle(),
+      new Symfony\Framework\DoctrineMigrationsBundle\Bundle(),
       new Symfony\Framework\WebBundle\Bundle(),
       new Symfony\Framework\ZendBundle\Bundle(),
       new Symfony\Framework\TwigBundle\Bundle(),
