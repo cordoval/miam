@@ -9,7 +9,7 @@
 </div>
 
 <div class="titleWithActions">
-    <h1><?php echo $story->getName() ?></h1>
+    <h1 class="story"><?php echo $story->getName() ?></h1>
     <a id="newSprint" href="<?php echo $view->router->generate('story_edit', array('id' => $story->getId())) ?>">Modifier</a>
 </div>
 
