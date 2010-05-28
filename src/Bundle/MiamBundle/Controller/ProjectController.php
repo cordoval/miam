@@ -37,6 +37,23 @@ class ProjectController extends Controller
         ));
     }
 
+    public function deleteAction($id)
+    {
+        $project = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->find($id);
+
+        if (!$project) {
+            throw new NotFoundHttpException("Project not found");
+        }
+
+        $this->getEntityManager()->remove($project);
+        $this->getEntityManager()->flush();
+
+        return $this->redirect($this->generateUrl('projects'));
+    }
+
+
     public function editAction($id)
     {
         $project = $this->getEntityManager()

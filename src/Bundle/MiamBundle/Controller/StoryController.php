@@ -77,6 +77,25 @@ class StoryController extends Controller
         ));
     }
 
+    public function deleteAction($id)
+    {
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story) {
+            throw new NotFoundHttpException("Story not found");
+        }
+
+        $this->getEntityManager()->remove($story);
+        $this->getEntityManager()->flush();
+        $this->getUser()->setFlash('story_delete', array('story' => $story));
+
+        return $this->redirect($this->generateUrl('backlog'));
+    }
+
+
+
     public function editAction($id)
     {
         $story = $this->getEntityManager()
