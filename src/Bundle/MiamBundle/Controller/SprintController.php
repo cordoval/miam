@@ -104,6 +104,7 @@ class SprintController extends Controller
         ->findCurrent();
 
         $sprint->addStory($story);
+        $story->setStatus(Story::STATUS_TODO);
         $this->getEntityManager()->flush();
         
         return $this->redirect($this->generateUrl('sprint_schedule'));
