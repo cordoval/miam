@@ -15,6 +15,8 @@ class createAProjectTest extends \WebTestCase
         $this->client->assertRequestParameter('_route', 'project_new');
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Project:new');
 
+        $this->client->assertResponseRegExp('/<form action=".+" method="post">/');
+
         $form = $crawler->selectButton('Valider')->form();
         $this->client->submit($form, array(
             'project[name]' => 'Life',
