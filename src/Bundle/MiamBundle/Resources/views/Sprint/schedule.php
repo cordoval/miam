@@ -38,12 +38,12 @@
     
     <div class="col col_left">
         <h2>Backlog</h2>
-        <?php $view->output('MiamBundle:Story:backlog', array('stories' => $backlogStories)) ?>
+        <?php $view->output('MiamBundle:Sprint:_listStories', array('stories' => $backlogStories)) ?>
     </div>
     
     <div class="col col_right">
         <h2>Backlog de sprint</h2>
-        <?php $view->output('MiamBundle:Story:backlog', array('stories' => $sprintStories)) ?>
+        <?php $view->output('MiamBundle:Sprint:_listStories', array('stories' => $sprintStories)) ?>
     </div>
     
     

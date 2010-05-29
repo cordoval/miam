@@ -28,7 +28,6 @@ class Sprint
      */
     protected $isCurrent;
 
-
     /**
      * @Column(name="id", type="integer")
      * @Id
@@ -81,6 +80,12 @@ class Sprint
     {
         $this->stories[] = $story;
         $story->setSprint($this);
+    }  
+
+    public function removeStory(Story $story)
+    {
+        $this->getStories()->removeElement($story);
+        $story->setSprint(null);
     }  
 
     /**

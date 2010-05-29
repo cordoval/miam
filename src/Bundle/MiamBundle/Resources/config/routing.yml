@@ -54,6 +54,10 @@ sprint_schedule:
   pattern:  /sprint/schedule
   defaults: { _controller: MiamBundle:Sprint:schedule }
 
+sprint_unschedule:
+  pattern:  /sprint/unschedule/:id
+  defaults: { _controller: MiamBundle:Sprint:unschedule }
+
 sprint_addStory:
   pattern:  /sprint/addStory
   defaults: { _controller: MiamBundle:Sprint:addStory }

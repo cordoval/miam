@@ -197,6 +197,11 @@ class Story
       return $this->status == $status;
     }
 
+    public function isScheduled()
+    {
+        return $this->getStatus() > self::STATUS_CREATED;
+    }
+
     public function setStatus($status)
     {
         if(!in_array($status, array_keys($this->getStatuses())))

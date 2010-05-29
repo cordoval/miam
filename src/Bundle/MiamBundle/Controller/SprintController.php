@@ -87,6 +87,25 @@ class SprintController extends Controller
             'sprint' => $sprint
         ));
     }
+
+    public function unscheduleAction($id)
+    {
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story) {
+            throw new NotFoundHttpException("Story '$id' not found");
+        }
+        
+        $sprint = $story->getSprint();
+
+        $sprint->removeStory($story);
+        $story->setStatus(Story::STATUS_CREATED);
+        $this->getEntityManager()->flush();
+        
+        return $this->redirect($this->generateUrl('sprint_schedule'));
+    }
     
     public function addStoryAction()
     {
