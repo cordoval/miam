@@ -76,7 +76,7 @@ class Sprint
         return $this->stories;
     }
 
-    public function addStory(Story $story)
+    public function addStory($story)
     {
         $this->stories[] = $story;
         $story->setSprint($this);
