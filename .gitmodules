@@ -3,7 +3,7 @@
 	url = git://github.com/knplabs/symfony.git
 [submodule "src/vendor/doctrine"]
 	path = src/vendor/doctrine
-	url = git://github.com/doctrine/doctrine2.git
+	url = git://github.com/knplabs/doctrine2.git
 [submodule "src/vendor/zend"]
 	path = src/vendor/zend
 	url = git://github.com/tjohns/zf.git
