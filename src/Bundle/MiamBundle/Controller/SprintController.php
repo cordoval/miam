@@ -68,7 +68,7 @@ class SprintController extends Controller
     {
         $sprint = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Sprint')
-        ->findCurrent();
+        ->findCurrentWithStories();
 
         $stories = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
@@ -123,7 +123,7 @@ class SprintController extends Controller
         ->findCurrent();
 
         $sprint->addStory($story);
-        $story->setStatus(Story::STATUS_TODO);
+        $story->setStatus($this->getRequest()->get('pending') ? Story::STATUS_PENDING : Story::STATUS_TODO);
         $this->getEntityManager()->flush();
         
         return $this->redirect($this->generateUrl('sprint_schedule'));

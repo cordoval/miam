@@ -228,6 +228,13 @@ class Story
       );
     }
 
+    public function renderStatus()
+    {
+        $statuses = self::getStatuses();
+
+        return $statuses[$this->getStatus()];
+    }
+
     /**
      * Tell if the given status code is valid 
      * 

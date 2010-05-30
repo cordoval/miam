@@ -20,6 +20,23 @@ class SprintRepository extends EntityRepository
         ->getSingleResult()
         ;
     }
+
+    /**
+     * Find the current sprint, with its stories
+     *
+     * @return Sprint
+     */
+    public function findCurrentWithStories()
+    {
+        return $this->createQueryBuilder('s')
+        ->select('s, story')
+        ->where('s.isCurrent = 1')
+        ->leftJoin('s.stories', 'story')
+        ->orderBy('story.priority', 'asc')
+        ->getQuery()
+        ->getSingleResult()
+        ;
+    }
     
     /**
      * Mark all sprint except $sprint as not current

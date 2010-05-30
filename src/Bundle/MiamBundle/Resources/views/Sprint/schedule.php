@@ -17,7 +17,8 @@
         </div>
         <form action="<?php echo $view->router->generate('sprint_addStory') ?>" method="put">
             <input type="hidden" name="story[id]" value="<?php echo $story->getId() ?>" />
-            <input type="submit" id="addStory" value="Ajouter au sprint &rarr;" />
+            <input type="submit" name="todo" id="addStory" value="Ajouter au sprint &rarr;" />
+            <input type="submit" name="pending" id="addStoryPending" value="Ajouter au sprint (en attente) &rarr;" />
         </form>
         <?php else: ?>
         <div>
