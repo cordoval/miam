@@ -3,9 +3,10 @@
 namespace Bundle\MiamBundle\Tests\Entities;
 
 use Bundle\MiamBundle\Entities\Story;
+use Bundle\MiamBundle\Entities\Sprint;
 
-require_once 'PHPUnit/Framework.php';
 require_once __DIR__.'/../../Entities/Story.php';
+require_once __DIR__.'/../../Entities/Sprint.php';
 
 class StoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -47,6 +48,7 @@ class StoryTest extends \PHPUnit_Framework_TestCase
     public function testSetValidStatus()
     {
         $story = new Story();
+        $story->setPoints(10);
         $story->setStatus(Story::STATUS_WIP);
         $this->assertEquals(Story::STATUS_WIP, $story->getStatus());
         $this->assertEquals('work in progress', $story->getStatusName());
