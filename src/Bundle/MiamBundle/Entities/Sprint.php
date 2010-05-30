@@ -126,7 +126,6 @@ class Sprint
         foreach($this->stories as $story) {
             $status = $story->getStatus();
             if(in_array($status, array(
-                Story::STATUS_CREATED,
                 Story::STATUS_PENDING,
                 Story::STATUS_TODO,
                 Story::STATUS_WIP,
