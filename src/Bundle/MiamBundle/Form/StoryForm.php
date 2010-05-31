@@ -19,7 +19,7 @@ use Symfony\Components\Validator\Mapping\ClassMetadata;
 use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Components\Validator\Mapping\Loader\StaticMethodLoader;
 use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
-use Symfony\Components\Validator\MessageInterpolator\XliffMessageInterpolator;
+use Bundle\MiamBundle\Validator\BlackHoleMessageInterpolator;
 use Symfony\Foundation\UniversalClassLoader;
 
 use Bundle\MiamBundle\Entities\Project;
@@ -64,7 +64,7 @@ class StoryForm extends DoctrineForm
       new XmlFileLoader($validationFile)
     )));
     $validatorFactory = new ConstraintValidatorFactory();
-    $messageInterpolator = new XliffMessageInterpolator($messageFile);
+    $messageInterpolator = new BlackHoleMessageInterpolator($messageFile);
     $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
 
     return $validator;
