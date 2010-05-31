@@ -2,17 +2,6 @@
 
 namespace Bundle\MiamBundle\Entities;
 
-use Symfony\Components\Validator\Mapping\ClassMetadata;
-use Symfony\Components\Validator\Constraints\Min;
-use Symfony\Components\Validator\Constraints\Max;
-use Symfony\Components\Validator\Constraints\MinLength;
-use Symfony\Components\Validator\Constraints\MaxLength;
-use Symfony\Components\Validator\Constraints\AssertType;
-use Symfony\Components\Validator\Constraints\Email;
-use Symfony\Components\Validator\Constraints\Choice;
-use Symfony\Components\Validator\Constraints\Valid;
-use Symfony\Components\Validator\Constraints\Regex;
-
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\ProjectRepository")
  * @Table(name="miam_project")
