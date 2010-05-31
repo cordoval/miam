@@ -12,7 +12,8 @@ div.story {
   border: 1px solid #E0E0E0;
   background: #F4F4F4;
   cursor: move;
-  color: #444;
+  color: #000;
+  font-size: 1.1em;
 }
 div.story.ui-draggable-dragging {
 }
@@ -26,9 +27,6 @@ td.droppable_hover {
 
 #sprint_current .story {
   overflow: hidden;
-}
-#sprint_current .story_name {
-  font-size: 0.95em;
 }
 
 #sprint_current .story_points {
