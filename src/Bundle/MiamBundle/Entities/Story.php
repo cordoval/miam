@@ -17,6 +17,7 @@ use Symfony\Components\Validator\Constraints\Regex;
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\StoryRepository")
  * @Table(name="miam_story")
+ * @HasLifecycleCallbacks
  */
 class Story
 {
@@ -36,6 +37,11 @@ class Story
      * @Column(name="created_at", type="datetime")
      */
     protected $createdAt;
+ 
+    /**
+     * @Column(name="updated_at", type="datetime")
+     */
+    protected $updatedAt;
 
     /**
      * @Column(name="name", type="string", length=255)
@@ -79,7 +85,6 @@ class Story
     
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
         $this->status    = self::STATUS_CREATED;
     }
      
@@ -92,19 +97,28 @@ class Story
     }
 
     /**
-     * Set createdAt
-     */
-    public function setCreatedAt($value)
-    {
-        $this->createdAt = $value;
-    }
-
-    /**
      * Get createdAt
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
+    }
+
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /** @PreUpdate */
+    public function doStuffOnPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /** @PrePersist */
+    public function doStuffOnPrePersist()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
     /**
@@ -291,10 +305,5 @@ class Story
     public function moveToTheEnd()
     {
         $this->setPriority(1000);
-    }
-    
-    public function addToSprint(Sprint $sprint)
-    {
-        $this->sprint = $sprint;
     }
 }
