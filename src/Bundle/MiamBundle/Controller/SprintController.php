@@ -45,22 +45,24 @@ class SprintController extends Controller
     
     public function currentAction()
     {
-        $sprint = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Sprint')
-        ->findCurrent();
-
-        if(!$sprint)
+        try
         {
-          throw new NotFoundHttpException('There is no current sprint!');
+            $sprint = $this->getEntityManager()
+                ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+                ->findCurrent();
         }
-        
+        catch(\Doctrine\ORM\NoResultException $e)
+        {
+            return $this->redirect($this->generateUrl('sprint_new'));
+        }
+
         $projects = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
-        ->findForSprint($sprint);
+            ->getRepository('Bundle\MiamBundle\Entities\Project')
+            ->findForSprint($sprint);
 
         return $this->render('MiamBundle:Sprint:current', array(
-          'projects' => $projects,
-          'statuses' => Story::getSprintStatuses() 
+            'projects' => $projects,
+            'statuses' => Story::getSprintStatuses() 
         ));
     }
     
