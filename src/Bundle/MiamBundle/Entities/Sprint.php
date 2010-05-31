@@ -84,7 +84,12 @@ class Sprint
 
     public function removeStory(Story $story)
     {
-        $this->getStories()->removeElement($story);
+        if(is_array($this->stories)) {
+            unset($this->stories[array_search($story, $this->stories)]);
+        }
+        else {
+            $this->getStories()->removeElement($story);
+        }
         $story->setSprint(null);
     }  
 
@@ -124,12 +129,7 @@ class Sprint
     {
         $sum = 0;
         foreach($this->stories as $story) {
-            $status = $story->getStatus();
-            if(in_array($status, array(
-                Story::STATUS_PENDING,
-                Story::STATUS_TODO,
-                Story::STATUS_WIP,
-            ))) {
+            if(!$story->isFinished()) {
                 $sum += $story->getPoints();
             }
         }
