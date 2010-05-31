@@ -11,6 +11,7 @@ require_once __DIR__.'/Functional/editAStoryTest.php';
 
 require_once __DIR__.'/Functional/createASprintTest.php';
 require_once __DIR__.'/Functional/scheduleASprintTest.php';
+require_once __DIR__.'/Functional/showCurrentSprintTest.php';
 
 class AllTests
 {
@@ -28,6 +29,7 @@ class AllTests
 
     $suite->addTestSuite('Miam\Tests\Functional\createASprintTest');
     $suite->addTestSuite('Miam\Tests\Functional\scheduleASprintTest');
+    $suite->addTestSuite('Miam\Tests\Functional\showCurrentSprintTest');
 
     return $suite;
   }
