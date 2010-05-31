@@ -2,17 +2,39 @@
 
 namespace Bundle\MiamBundle\Form;
 
-use Bundle\MiamBundle\Form\BaseForm;
-use Doctrine\ORM\EntityManager;
-use Bundle\MiamBundle\Entities\Project;
+use Symfony\Components\Form\Form;
+use Symfony\Components\Form\FieldGroup;
+use Symfony\Components\Form\ChoiceField;
+use Symfony\Components\Form\TextField;
+use Symfony\Components\Form\CheckboxField;
+use Symfony\Components\Form\NumberField;
+use Symfony\Components\Form\PasswordField;
+use Symfony\Components\Form\DoubleTextField;
+use Symfony\Components\Validator\Validator;
+use Symfony\Components\Validator\ConstraintValidatorFactory;
+use Symfony\Components\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Components\Validator\Mapping\ClassMetadata;
+use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
+use Symfony\Components\Validator\Mapping\Loader\StaticMethodLoader;
+use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
+use Bundle\MiamBundle\Validator\BlackHoleMessageInterpolator;
+use Symfony\Foundation\UniversalClassLoader;
 
-class SprintForm extends BaseForm
+class SprintForm extends Form
 {
     protected $projects;
     
+    public function __construct()
+    {
+        $this->addOption('validation_file'); 
+        $validator = $this->createValidator($options['message_file']);
+        parent::__construct('project', $object, $validator, $options);
+    }
+
     public function configure()
     {
-        $this->projects = $this->getOption('projects', array());
+        $this->add(new TextField('name'));
+        $this->add(new TextField('color'));
         
         // WidgetSchema
         $dateFormat = '%day%/%month%/%year%';
@@ -54,6 +76,19 @@ class SprintForm extends BaseForm
     public function getModelName()
     {
         return 'Bundle\MiamBundle\Entities\Sprint';
+    }
+
+    public function createValidator($messageFile)
+    {
+        $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
+            new StaticMethodLoader('loadValidatorMetadata'),
+            new XmlFileLoader($validationFile)
+        )));
+        $validatorFactory = new ConstraintValidatorFactory();
+        $messageInterpolator = new BlackHoleMessageInterpolator();
+        $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
+
+        return $validator;
     }
 
 }
