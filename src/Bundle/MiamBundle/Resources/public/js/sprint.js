@@ -25,6 +25,15 @@
             });
           });
         });
+        
+        $(this).find('div.story_points').click(function()
+        {
+          var oldPoints = $(this).html();
+          var points = prompt("Nombre de points pour cette story :", oldPoints);
+          if(points && points != oldPoints) {
+            $(this).html(points);
+          }
+        });
       });
 
       this.element.find('td').each(function()

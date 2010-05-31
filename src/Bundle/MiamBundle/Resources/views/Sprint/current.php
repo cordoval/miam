@@ -28,8 +28,8 @@
                 <td data-status="<?php echo $status ?>">
                   <?php if($story->isStatus($status)): ?>
                     <div class="story" data-story-id="<?php echo $story->getId() ?>">
-                          <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
-                        <span class="story_name"><?php echo $story->getName() ?></span>
+                      <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+                      <span class="story_name"><?php echo $story->getName() ?></span>
                     </div>
                   <?php endif; ?>
                 </td>

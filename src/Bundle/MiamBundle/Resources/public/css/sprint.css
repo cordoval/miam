@@ -34,4 +34,5 @@ td.droppable_hover {
   width: 14px;
   float: right;
   text-align: center;
+  cursor: pointer;
 }
