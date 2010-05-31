@@ -141,7 +141,9 @@ class Sprint
         $string = '';
         foreach($this->getStories() as $story)
         {
-            $string .= $story->getUpdatedAt()->getTimestamp();
+            if($story->getUpdatedAt()) {
+                $string .= $story->getUpdatedAt()->getTimestamp();
+            }
         }
 
         return md5($string);
