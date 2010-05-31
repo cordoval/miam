@@ -20,6 +20,10 @@ class createAProjectTest extends \WebTestCase
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'project_new');
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Project:new');
+
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('/This value is too short/');
+        $this->client->assertResponseRegExp('/This value is not valid/');
     }
     
     public function testCreateAProjectShowsItOnTheBacklog()
