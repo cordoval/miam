@@ -31,6 +31,8 @@
 
       this.element.find('td div.story').each(function()
       {
+        var storyId = $(this).attr('data-story-id');
+        
         $(this).draggable({
           distance:   5,
           containment: $(this).parent().parent(),
@@ -45,6 +47,28 @@
               'content': $(this).html()
             });
           });
+        });
+        
+        $(this).find('div.story_points').click(function()
+        {
+          var oldPoints = $(this).html();
+          var points = prompt("Nombre de points pour cette story :", oldPoints);
+          if(points && points != oldPoints) {
+            if(isNaN(parseInt(points))) {
+              alert("Nombre de points invalide : " + points);
+              
+            } else  {
+              $(this).html(points);
+              $.ajax({
+                type:    'POST',
+                url:     self.element.attr('data-reestimate-url'),
+                data:    {
+                  story_id: storyId,
+                  points:   points
+                }
+              });
+            }
+          }
         });
       });
 
