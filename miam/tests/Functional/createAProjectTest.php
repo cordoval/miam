@@ -16,6 +16,10 @@ class createAProjectTest extends \WebTestCase
             'project[name]' => null,
             'project[color]' => null
         ));
+
+        $this->addRequestTester();
+        $this->client->assertRequestParameter('_route', 'project_new');
+        $this->client->assertRequestParameter('_controller', 'MiamBundle:Project:new');
     }
     
     public function testCreateAProjectShowsItOnTheBacklog()
