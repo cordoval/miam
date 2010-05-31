@@ -1,15 +1,9 @@
-html, body
-{
-  width: 100%;
-  height: 100%;
-  background-color: #d9dadb;
-}
-
 body
 {
   font: 0.8em verdana;
   color: #626262;
   text-align: left;
+  background: url(../images/paper_background_2.jpg) top left repeat;
 }
 
 h1, h2, h3, h4
@@ -62,8 +56,11 @@ a
   min-width: 1200px;
   width: 100%;
   margin: auto;
-  background-color: #fff;
   display: block;
+}
+
+.bd {
+  background: url(../images/paper_background.jpg) top left repeat-x;
 }
 
 .hd
