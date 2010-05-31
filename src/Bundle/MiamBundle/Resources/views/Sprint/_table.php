@@ -1,10 +1,10 @@
 <table data-move-url="<?php echo $view->router->generate('story_move') ?>" data-story-url="<?php echo $view->router->generate('story', array('id' => '_ID_')) ?>" data-ping-url="<?php echo $view->router->generate('sprint_ping', array('hash' => '_HASH_')) ?>" data-sprint-hash="<?php echo $sprint->getHash() ?>" data-reestimate-url="<?php echo $view->router->generate('story_reestimate') ?>">
     <thead>
     <tr>
-        <th>En attente</th>
-        <th>A faire</th>
-        <th>En cours</th>
-        <th>Fait</th>
+        <th class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</th>
+        <th class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_TODO) ?>)</th>
+        <th class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_WIP) ?>)</th>
+        <th class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</th>
     </tr>
     </thead>
     <tbody>

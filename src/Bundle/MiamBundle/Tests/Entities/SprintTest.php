@@ -57,7 +57,7 @@ class SprintTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(2, count($sprint->getStories()));
     }
 
-    public function testGetRemainingPoints($sprint)
+    public function testGetRemainingPoints()
     {
         $sprint = $this->testSchedule();
         $this->assertEquals(30, $sprint->getRemainingPoints());

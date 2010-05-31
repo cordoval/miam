@@ -136,6 +136,17 @@ class Sprint
         return $sum;
     }
 
+    public function getPointsByStatus($status)
+    {
+        $sum = 0;
+        foreach($this->stories as $story) {
+            if($story->isStatus($status)) {
+                $sum += $story->getPoints();
+            }
+        }
+        return $sum;
+    }
+
     public function getHash()
     {
         $string = '';

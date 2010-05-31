@@ -4,7 +4,7 @@
 
 <div id="sprint_current">
     <div class="titleWithActions">
-        <h1>Backlog de Sprint</h1>
+        <h1 class="sprint">Backlog de Sprint</h1>
         <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Changer de sprint</a>
     </div>
 
