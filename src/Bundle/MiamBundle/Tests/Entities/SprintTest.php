@@ -13,21 +13,55 @@ class SprintTest extends \PHPUnit_Framework_TestCase
     public function testSchedule()
     {
         $sprint = new Sprint();
-        $storyStub = $this->getMock('Story');
-        $storyStub->expects($this->any())->method('setSprint')->will($this->returnValue(null));
-        $sprint->addStory($storyStub);
+
+        for($it=0; $it<3; $it++)
+        {
+            $storyStub = $this->getMock(
+                'Bundle\MiamBundle\Entities\Story',
+                array('setSprint', 'getPoints', 'isFinished')
+            );
+            $storyStub->expects($this->any())
+                ->method('setSprint')
+                ->will($this->returnValue(null));
+            $storyStub->expects($this->any())
+                ->method('getPoints')
+                ->will($this->returnValue(10));
+            $storyStub->expects($this->any())
+                ->method('isFinished')
+                ->will($this->returnValue(false));
+
+            $sprint->addStory($storyStub);
+        }
+        $this->assertEquals(30, $sprint->getRemainingPoints());
+
+        return $sprint;
     }
 
-    protected function getStoryStub()
+    /**
+     * @depends testSchedule
+     */
+    public function testGetStoriesReturnsAllAssignedStories($sprint)
     {
-        $stub = $this->getMock('Story');
-
-        $stub->expects($this->any())
-            ->method('getPoints')
-            ->will($this->returnValue(10));
-
-        return $stub;
+        $stories = $sprint->getStories();
+        $this->assertEquals(3, count($stories));
     }
+
+    /**
+     * @depends testSchedule
+     */
+    public function testRemoveStoryDecresasesTheStoryCount($sprint)
+    {
+        $stories = $sprint->getStories();
+        $story = array_shift($stories);
+        $sprint->removeStory($story);
+        $this->assertEquals(2, count($sprint->getStories()));
+    }
+
+    public function testGetRemainingPoints($sprint)
+    {
+        $sprint = $this->testSchedule();
+        $this->assertEquals(30, $sprint->getRemainingPoints());
+    } 
 
     public function testInitialStatus()
     {
