@@ -202,6 +202,11 @@ class Story
         return $this->getStatus() > self::STATUS_CREATED;
     }
 
+    public function isFinished()
+    {
+        return $this->getStatus() === self::STATUS_FINISHED;
+    }
+
     public function setStatus($status)
     {
         if(!in_array($status, array_keys($this->getStatuses())))

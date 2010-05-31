@@ -3,10 +3,8 @@
 namespace Bundle\MiamBundle\Tests\Entities;
 
 use Bundle\MiamBundle\Entities\Story;
-use Bundle\MiamBundle\Entities\Sprint;
 
 require_once __DIR__.'/../../Entities/Story.php';
-require_once __DIR__.'/../../Entities/Sprint.php';
 
 class StoryTest extends \PHPUnit_Framework_TestCase
 {
@@ -61,11 +59,5 @@ class StoryTest extends \PHPUnit_Framework_TestCase
     {
         $story = new Story();
         $story->setStatus('troublada');
-    }
-
-    public function testSetAndGetSprint()
-    {
-      $story = new Story();
-      $story->setSprint(new Sprint());
     }
 }
