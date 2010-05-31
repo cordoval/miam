@@ -93,7 +93,6 @@ class Story
       $metadata->addPropertyConstraint('name', new MinLength(3));
       $metadata->addPropertyConstraint('body', new MaxLength(5000));
       $metadata->addPropertyConstraint('project', new Valid()); 
-      $metadata->addPropertyConstraint('points', new Min(1));
     }
 
     /**
