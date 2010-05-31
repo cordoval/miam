@@ -6,6 +6,17 @@ use Bundle\PHPUnitBundle\Functional;
 
 class createAProjectTest extends \WebTestCase
 {
+
+    public function testFormValidation()
+    {
+        $crawler = $this->client->request('GET', '/project/new');
+
+        $form = $crawler->selectButton('Valider')->form();
+        $this->client->submit($form, array(
+            'project[name]' => null,
+            'project[color]' => null
+        ));
+    }
     
     public function testCreateAProjectShowsItOnTheBacklog()
     {
