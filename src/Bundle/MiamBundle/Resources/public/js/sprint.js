@@ -6,7 +6,7 @@
     _init: function()
     {
       var self = this;
-      $('body').append($('<div id="fancy_story">')); 
+      $('body').append($('<div id="fancy_story">').hide()); 
 
       setInterval(function()
       {
