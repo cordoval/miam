@@ -72,7 +72,16 @@ class StoryController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        return $this->render('MiamBundle:Story:show', array(
+        if($this->getRequest()->isXmlHttpRequest())
+        {
+          $template = 'show.ajax';
+        }
+        else
+        {
+          $template = 'show';
+        }
+
+        return $this->render('MiamBundle:Story:'.$template, array(
             'story' => $story
         ));
     }
