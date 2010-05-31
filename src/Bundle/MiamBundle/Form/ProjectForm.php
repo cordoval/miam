@@ -29,23 +29,22 @@ class ProjectForm extends Form
 {
   public function __construct($object, array $options = array())
   {
-    $this->addOption('message_file');
     $this->addOption('validation_file'); 
-    $validator = $this->createValidator($options['message_file'], $options['validation_file']);
+    $validator = $this->createValidator($options['validation_file']);
     parent::__construct('project', $object, $validator, $options);
 
     $this->add(new TextField('name'));
     $this->add(new TextField('color'));
   } 
 
-  public function createValidator($messageFile, $validationFile)
+  public function createValidator($validationFile)
   {
     $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
       new StaticMethodLoader('loadValidatorMetadata'),
       new XmlFileLoader($validationFile)
     )));
     $validatorFactory = new ConstraintValidatorFactory();
-    $messageInterpolator = new BlackHoleMessageInterpolator($messageFile);
+    $messageInterpolator = new BlackHoleMessageInterpolator();
     $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
 
     return $validator;
