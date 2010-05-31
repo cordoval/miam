@@ -8,7 +8,10 @@
         <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Changer de sprint</a>
     </div>
     
-    <table id="sprintBacklog" data-move-url="<?php echo $view->router->generate('story_move') ?>" data-story-url="<?php echo $view->router->generate('story', array('id' => '_ID_')) ?>">
+    <table id="sprintBacklog" 
+      data-move-url="<?php echo $view->router->generate('story_move') ?>"
+      data-story-url="<?php echo $view->router->generate('story', array('id' => '_ID_')) ?>"
+      data-reestimate-url="<?php echo $view->router->generate('story_reestimate') ?>">
       <thead>
         <tr>
           <th>En attente</th>

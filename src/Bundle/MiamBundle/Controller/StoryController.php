@@ -48,6 +48,28 @@ class StoryController extends Controller
         return $this->createResponse('done');
     }
 
+
+    public function reestimateAction()
+    {
+        $id = $this->getRequest()->get('story_id');
+
+        $story = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->find($id);
+
+        if (!$story)
+        {
+            throw new NotFoundHttpException("Story not found");
+        }
+
+        $points = intval($this->getRequest()->get('points'));
+
+        $story->setPoints($points);
+        $this->getEntityManager()->flush();
+
+        return $this->createResponse('done');
+    }
+    
     public function sortAction()
     {
         $ids = $this->getRequest()->get('story');
