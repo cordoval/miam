@@ -11,6 +11,12 @@ abstract class WebTestCase extends BaseWebTestCase
 {
     protected $client;
     protected $functionalServices;
+    /**
+     * container 
+     * 
+     * @var Symfony\Components\DependencyInjection\Container;
+     */
+    protected $container;
 
     function __construct() {
     }
@@ -39,6 +45,7 @@ abstract class WebTestCase extends BaseWebTestCase
         $client->setServerParameters($server);
         $client->setTestCase($this);
         
+        $this->container = $kernel->getContainer();
         
         return $client;
     }
@@ -82,6 +89,16 @@ abstract class WebTestCase extends BaseWebTestCase
     {
         $this->client->addTester('response', new ResponseTester($this->client->getResponse()));
         return $this;
+    }
+
+    /**
+     * getContainer 
+     * 
+     * @return Symfony\Components\DependencyInjection\Container;
+     */
+    public function getContainer()
+    {
+       return $this->container;
     }
     
 }
