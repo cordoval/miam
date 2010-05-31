@@ -45,6 +45,9 @@ class Story
 
     /**
      * @Column(name="name", type="string", length=255)
+     * @Validation({
+     *   @MinLength(3)
+     * })
      */
     protected $name;
 
@@ -55,6 +58,9 @@ class Story
 
     /**
      * @Column(name="body", type="text")
+     * @Validation({
+     *   @MaxLength(5000)
+     * })
      */
     protected $body;
 
@@ -88,13 +94,6 @@ class Story
         $this->status    = self::STATUS_CREATED;
     }
      
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-      $metadata->addPropertyConstraint('name', new MinLength(3));
-      $metadata->addPropertyConstraint('body', new MaxLength(5000));
-      $metadata->addPropertyConstraint('project', new Valid()); 
-    }
-
     /**
      * getCreatedAt 
      * 
