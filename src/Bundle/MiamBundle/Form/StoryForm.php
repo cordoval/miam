@@ -31,9 +31,8 @@ class StoryForm extends DoctrineForm
   public function __construct($object, array $options = array())
   {
     $this->addOption('projects');
-    $this->addOption('message_file');
     $this->addOption('validation_file');
-    $validator = $this->createValidator($options['message_file'], $options['validation_file']);
+    $validator = $this->createValidator($options['validation_file']);
     parent::__construct('story', $object, $validator, $options, $options);
 
     $this->add(new TextField('name'));
@@ -57,14 +56,14 @@ class StoryForm extends DoctrineForm
     return $choices;
   }
 
-  public function createValidator($messageFile, $validationFile)
+  public function createValidator($validationFile)
   {
     $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
       new StaticMethodLoader('loadValidatorMetadata'),
       new XmlFileLoader($validationFile)
     )));
     $validatorFactory = new ConstraintValidatorFactory();
-    $messageInterpolator = new BlackHoleMessageInterpolator($messageFile);
+    $messageInterpolator = new BlackHoleMessageInterpolator();
     $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
 
     return $validator;
