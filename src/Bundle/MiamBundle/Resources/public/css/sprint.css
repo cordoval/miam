@@ -20,11 +20,18 @@ td.droppable_hover {
   background: #88FF88;
 }
 
-.story_points_wrapper {
+#sprint_current .story {
   overflow: hidden;
+}
+#sprint_current .story_name {
+  font-size: 0.95em;
 }
 
 #sprint_current .story_points {
   float: right;
   font-size: 0.9em;
+  overflow: auto;
+  width: 14px;
+  float: right;
+  text-align: center;
 }
