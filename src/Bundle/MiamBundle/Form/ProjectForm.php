@@ -17,16 +17,13 @@ use Symfony\Components\Validator\Mapping\ClassMetadata;
 use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Components\Validator\Mapping\Loader\StaticMethodLoader;
 use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
-use Bundle\MiamBundle\Validator\BlackHoleMessageInterpolator;
-use Symfony\Foundation\UniversalClassLoader;
-
+use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
+use Symfony\Foundation\UniversalClassLoader; 
 use Bundle\MiamBundle\Entities\Project;
 
 /**
  * test project form
- */
-class ProjectForm extends Form
-{
+ */ class ProjectForm extends Form {
   public function __construct($object, array $options = array())
   {
     $this->addOption('message_file');
@@ -45,7 +42,7 @@ class ProjectForm extends Form
       new XmlFileLoader($validationFile)
     )));
     $validatorFactory = new ConstraintValidatorFactory();
-    $messageInterpolator = new BlackHoleMessageInterpolator($messageFile);
+    $messageInterpolator = new NoValidationXliffMessageInterpolator($messageFile);
     $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
 
     return $validator;
