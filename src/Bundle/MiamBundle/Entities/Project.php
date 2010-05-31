@@ -31,6 +31,9 @@ class Project
 
     /**
      * @Column(name="name", type="string", length=255)
+     * @Validation({
+     *   @MinLength(3)
+     * })
      */
     protected $name;
 
@@ -41,6 +44,9 @@ class Project
 
     /**
      * @Column(name="color", type="string", length=7)
+     * @Validation({
+     *   @Regex("/^#?[0-9A-F]{6}$/i")
+     * })
      */
     protected $color;
     
@@ -57,12 +63,6 @@ class Project
         $this->isActive = true;
     }
      
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-      $metadata->addPropertyConstraint('name', new MinLength(3));
-      $metadata->addPropertyConstraint('color', new Regex('/^#?[0-9A-F]{6}$/i'));
-    }
-
     /**
      * Set createdAt
      */
