@@ -2,5 +2,6 @@
 /web/uploads/*
 /miam/cache/*
 /miam/logs/*
+/miam/config/rsync_exclude.txt
 /web/*_dev.php
 .git*
