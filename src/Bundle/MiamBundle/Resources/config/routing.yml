@@ -46,6 +46,10 @@ sprint_current:
   pattern:  /sprint
   defaults: { _controller: MiamBundle:Sprint:current }
 
+sprint_ping:
+  pattern:  /sprint/ping/:hash
+  defaults: { _controller: MiamBundle:Sprint:ping }
+
 sprint_new:
   pattern:  /sprint/new
   defaults: { _controller: MiamBundle:Sprint:new }

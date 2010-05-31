@@ -97,13 +97,20 @@ class Story
     }
 
     /**
-     * Get createdAt
+     * getCreatedAt 
+     * 
+     * @return \DateTime
      */
     public function getCreatedAt()
     {
         return $this->createdAt;
     }
 
+    /**
+     * getUpdatedAt 
+     * 
+     * @return \DateTime
+     */
     public function getUpdatedAt()
     {
         return $this->updatedAt;

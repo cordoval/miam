@@ -54,7 +54,7 @@ class StoryTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @expectedException \InvalidArgumentException
-     **/
+     */
     public function testSetInvalidStatus()
     {
         $story = new Story();

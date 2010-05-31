@@ -42,6 +42,28 @@ class SprintController extends Controller
             'form' => $form
         ));
     }
+
+    public function pingAction($hash)
+    {
+        $sprint = $this->getEntityManager()
+            ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+            ->findCurrentWithStories();
+
+        if($sprint->getHash() != $hash) {
+
+            $projects = $this->getEntityManager()
+                ->getRepository('Bundle\MiamBundle\Entities\Project')
+                ->findForSprint($sprint);
+
+            return $this->render('MiamBundle:Sprint:_table', array(
+                'projects' => $projects,
+                'sprint' => $sprint,
+                'statuses' => Story::getSprintStatuses() 
+            ));
+        }
+
+        return $this->createResponse('noop');
+    }
     
     public function currentAction()
     {
@@ -49,7 +71,7 @@ class SprintController extends Controller
         {
             $sprint = $this->getEntityManager()
                 ->getRepository('Bundle\MiamBundle\Entities\Sprint')
-                ->findCurrent();
+                ->findCurrentWithStories();
         }
         catch(\Doctrine\ORM\NoResultException $e)
         {
@@ -62,6 +84,7 @@ class SprintController extends Controller
 
         return $this->render('MiamBundle:Sprint:current', array(
             'projects' => $projects,
+            'sprint' => $sprint,
             'statuses' => Story::getSprintStatuses() 
         ));
     }

@@ -7,7 +7,28 @@
     {
       var self = this;
       $('body').append($('<div id="fancy_story">')); 
-      
+
+      setInterval(function()
+      {
+        $.ajax({
+          url: self.element.find('table').attr('data-ping-url').replace(/_HASH_/, self.element.find('table').attr('data-sprint-hash')),
+          success: function(html)
+          {
+            if('noop' == html) return;
+
+            self.element.html(html);
+            self.element.sprint('refresh');
+          }
+        });
+      }, 5000);
+
+      this.refresh();
+    },
+
+    refresh: function()
+    {
+      var self = this;
+
       this.element.find('td div.story').each(function()
       {
         $(this).draggable({
@@ -17,7 +38,7 @@
         }).dblclick(function()
         {
           $.fancybox.showActivity();
-          url = self.element.attr('data-story-url').replace(/_ID_/, $(this).attr('data-story-id'));
+          url = self.element.find('table').attr('data-story-url').replace(/_ID_/, $(this).find('table').attr('data-story-id'));
           $('#fancy_story').html('Loading').load(url, function(){
             $.fancybox.hideActivity();
             $.fancybox({
@@ -40,7 +61,7 @@
           {
             $.ajax({
               type:    'POST',
-              url:     self.element.attr('data-move-url'),
+              url:     self.element.find('table').attr('data-move-url'),
               data:    {
                 story_id: ui.draggable.attr('data-story-id'),
                 status:   $(this).attr('data-status')
@@ -51,6 +72,5 @@
         });
       });
     }
-
   });
 })(jQuery);

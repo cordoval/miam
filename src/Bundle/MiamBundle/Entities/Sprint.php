@@ -135,5 +135,16 @@ class Sprint
         }
         return $sum;
     }
+
+    public function getHash()
+    {
+        $string = '';
+        foreach($this->getStories() as $story)
+        {
+            $string .= $story->getUpdatedAt()->getTimestamp();
+        }
+
+        return md5($string);
+    }
     
 }
