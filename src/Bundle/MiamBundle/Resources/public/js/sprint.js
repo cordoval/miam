@@ -11,7 +11,7 @@
       setInterval(function()
       {
         $.ajax({
-          url: self.element.find('table').attr('data-ping-url').replace(/_HASH_/, self.element.find('table').attr('data-sprint-hash')),
+          url: self.table.attr('data-ping-url').replace(/_HASH_/, self.table.attr('data-sprint-hash')),
           success: function(html)
           {
             if('noop' == html) return;
@@ -28,6 +28,7 @@
     refresh: function()
     {
       var self = this;
+      self.table = self.element.find('table');
 
       this.element.find('td div.story').each(function()
       {
@@ -40,7 +41,7 @@
         }).dblclick(function()
         {
           $.fancybox.showActivity();
-          url = self.element.find('table').attr('data-story-url').replace(/_ID_/, $(this).find('table').attr('data-story-id'));
+          url = self.table.attr('data-story-url').replace(/_ID_/, $(this).find('table').attr('data-story-id'));
           $('#fancy_story').html('Loading').load(url, function(){
             $.fancybox.hideActivity();
             $.fancybox({
@@ -61,7 +62,7 @@
               $(this).html(points);
               $.ajax({
                 type:    'POST',
-                url:     self.element.attr('data-reestimate-url'),
+                url:     self.table.attr('data-reestimate-url'),
                 data:    {
                   story_id: storyId,
                   points:   points
@@ -85,7 +86,7 @@
           {
             $.ajax({
               type:    'POST',
-              url:     self.element.find('table').attr('data-move-url'),
+              url:     self.table.attr('data-move-url'),
               data:    {
                 story_id: ui.draggable.attr('data-story-id'),
                 status:   $(this).attr('data-status')
