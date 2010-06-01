@@ -15,6 +15,7 @@
     <service id="miam_observer" class="%miam.observer.class%" shared="true">
       <argument type="service" id="doctrine.orm.default_entity_manager" />
       <argument type="service" id="event_dispatcher" />
+      <argument type="service" id="user" />
     </service>
     
   </services>
