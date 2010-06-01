@@ -13,7 +13,7 @@
         <th colspan="4" class="project" style="background: <?php echo $project->getColor() ?>"><?php echo $project ?></th>
         </tr>
         <?php foreach($project->getStories() as $story): ?>
-        <tr id="story_column_<?php echo $story->getId() ?>">
+        <tr class="story_line" id="story_column_<?php echo $story->getId() ?>">
             <?php foreach($statuses as $status => $name): ?>
             <td data-status="<?php echo $status ?>">
                 <?php if($story->isStatus($status)): ?>
