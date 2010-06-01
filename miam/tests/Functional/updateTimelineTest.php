@@ -3,6 +3,7 @@
 namespace Miam\Tests\Functional;
 
 use Bundle\PHPUnitBundle\Functional;
+use Bundle\MiamBundle\Entities\Story;
 
 class UpdateTimelineTest extends \WebTestCase
 {
@@ -22,6 +23,38 @@ class UpdateTimelineTest extends \WebTestCase
         $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a ajouté Smoke in the water [Miam] au sprint à %s', date('H:i'))));
     }
 
+    public function testChangeStoryStatusUpdatesTimeline()
+    {
+        $this->login('laet', 'changeme');
+
+        $crawler = $this->client->request('GET', '/sprint');
+
+        $firstStoryId = $crawler->filter('#sprintBacklog div.story')->attr('data-story-id');
+
+        $this->assertTrue(!empty($firstStoryId));
+
+        $matches = array(
+            Story::STATUS_WIP => 'laet a commencé à travailler sur Lister les ballades prévues [project_1] à %s',
+            Story::STATUS_TODO => 'laet a passé Lister les ballades prévues [project_1] dans l\'état À FAIRE à %s',
+            Story::STATUS_FINISHED => 'laet a fini Lister les ballades prévues [project_1] à %s',
+            Story::STATUS_PENDING => 'laet a passé Lister les ballades prévues [project_1] dans l\'état EN ATTENTE à %s'
+        );
+
+        foreach($matches as $status => $tentry) {
+            $this->client->request('POST', '/story/move', array(
+                'status' => $status,
+                'story_id' => $firstStoryId
+            ));
+            $this->addResponseTester();
+            $this->client->assertResponseRegExp('/done/');
+
+            $crawler = $this->client->request('GET', '/timeline');
+
+            $this->addResponseTester();
+            $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf($tentry, date('H:i'))));
+            $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
+        }
+    }
    
     public function testCreateStoryUpdatesTimeline()
     {
