@@ -3,8 +3,8 @@ backlog:
   defaults: { _controller: MiamBundle:Story:index }
 
 timeline:
-  pattern:  /timeline
-  defaults: { _controller: MiamBundle:Timeline:index }
+  pattern:  /timeline.:_format
+  defaults: { _controller: MiamBundle:Timeline:index, _format: html }
 
 story_new:
   pattern:  /story/new
