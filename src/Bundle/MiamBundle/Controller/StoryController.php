@@ -7,6 +7,7 @@ use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\StoryRenderer;
 use Bundle\MiamBundle\Form\StoryForm;
+use Symfony\Components\EventDispatcher\Event;
 
 class StoryController extends Controller
 {
@@ -172,6 +173,9 @@ class StoryController extends Controller
                 $story->moveToTheEnd();
                 
                 $this->getEntityManager()->persist($story);
+                
+                $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
+
                 $this->getEntityManager()->flush();
                 
                 $this->getUser()->setFlash('story_create', array('story' => $story));

@@ -7,6 +7,7 @@ use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 use Bundle\MiamBundle\Entities\Project;
 use Bundle\MiamBundle\Renderer\ProjectRenderer;
 use Bundle\MiamBundle\Form\ProjectForm;
+use Symfony\Components\EventDispatcher\Event;
 
 class ProjectController extends Controller
 {
@@ -93,6 +94,8 @@ class ProjectController extends Controller
                 $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
                 
+                $this->container->getEventDispatcherService()->notify(new Event($project, 'miam.project.create'));
+
                 $this->getUser()->setFlash('project_create', array('project' => $project));
                 return $this->redirect($this->generateUrl('projects'));
             }
