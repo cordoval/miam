@@ -43,16 +43,9 @@ class Observer
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_REESTIMATE);
         });
 
-        $this->dispatcher->connect('miam.story.create', array($this, 'listenToStoryCreateEvent'));
-
-        //$this->dispatcher->connect('miam.story.create', function(Event $event) use ($observer) {
-            //$observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_CREATE);
-        //});
-    }
-
-    public function listenToStoryCreateEvent(Event $event)
-    {
-        $this->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_CREATE);
+        $this->dispatcher->connect('miam.story.create', function(Event $event) use ($observer) {
+            $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_CREATE);
+        });
     }
 
     public function addStoryEntry(Story $story, $action)
@@ -70,7 +63,7 @@ class Observer
         $tentry->setAction($action);
 
         $this->em->persist($tentry);
-        //$this->em->flush();
+        $this->em->flush();
     }
 
 }

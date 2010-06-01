@@ -173,10 +173,9 @@ class StoryController extends Controller
                 $story->moveToTheEnd();
                 
                 $this->getEntityManager()->persist($story);
+                $this->getEntityManager()->flush();
                 
                 $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
-
-                $this->getEntityManager()->flush();
                 
                 $this->getUser()->setFlash('story_create', array('story' => $story));
                 return $this->redirect($this->generateUrl('backlog'));
