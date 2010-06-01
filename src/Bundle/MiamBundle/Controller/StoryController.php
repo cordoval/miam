@@ -126,8 +126,6 @@ class StoryController extends Controller
         return $this->redirect($this->generateUrl('backlog'));
     }
 
-
-
     public function editAction($id)
     {
         $story = $this->getEntityManager()
@@ -143,11 +141,21 @@ class StoryController extends Controller
         $form = $this->createForm($story, $projects);
         
         if('POST' === $this->getRequest()->getMethod()) {
+            $oldPoints = $story->getPoints();
             $form->bind($this->getRequest()->get($form->getName()));
 
             if($form->isValid()) {
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
+                if($story->getPoints() && !$oldPoints)
+                {
+                    $this->notify(new Event($story, 'miam.story.estimate'));
+                }
+                elseif($story->getPoints() != $oldPoints)
+                {
+                    $this->notify(new Event($story, 'miam.story.reestimate'));
+                }
+
                 $this->getUser()->setFlash('story_update', array('story' => $story));
                 return $this->redirect($this->generateUrl('backlog'));
             }
@@ -199,5 +207,9 @@ class StoryController extends Controller
         return new StoryForm($story, array_merge($options, array('projects' => $projects)));
     }
 
+    protected function notify(Event $event)
+    {
+        $this->container->getEventDispatcherService()->notify($event);
+    }
     
 }

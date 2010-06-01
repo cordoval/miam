@@ -46,8 +46,8 @@ class TimelineEntry
 
     protected $textualActions = array(
         self::ACTION_CREATE => 'a créé {story}',
-        self::ACTION_ESTIMATE => 'a estimé {story}',
-        self::ACTION_REESTIMATE => 'a réestimé {story}',
+        self::ACTION_ESTIMATE => 'a estimé {story} à {points} points',
+        self::ACTION_REESTIMATE => 'a réestimé {story} à {points} points',
         self::ACTION_COMMENT => 'a commenté {story}',
         self::ACTION_EDIT => 'a mis à jour {story}',
         self::ACTION_SCHEDULE => 'a ajouté {story} au sprint',

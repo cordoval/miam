@@ -43,6 +43,10 @@ class Observer
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_REESTIMATE);
         });
 
+        $this->dispatcher->connect('miam.story.estimate', function(Event $event) use ($observer) {
+            $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_ESTIMATE);
+        });
+
         $this->dispatcher->connect('miam.story.create', function(Event $event) use ($observer) {
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_CREATE);
         });
