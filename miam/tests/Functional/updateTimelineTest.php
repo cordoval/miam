@@ -6,7 +6,23 @@ use Bundle\PHPUnitBundle\Functional;
 
 class UpdateTimelineTest extends \WebTestCase
 {
-    
+    public function testScheduleStoryUpdatesTimeline()
+    {
+        $this->login('laet', 'changeme');
+
+        $crawler = $this->client->request('GET', '/sprint/schedule');
+
+        $form = $crawler->selectButton('Ajouter au sprint →')->form();
+        $this->client->submit($form, array());
+
+        $crawler = $this->client->request('GET', '/timeline');
+
+        $this->addResponseTester();
+        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
+        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a ajouté Smoke in the water [Miam] au sprint à %s', date('H:i'))));
+    }
+
+   
     public function testCreateStoryUpdatesTimeline()
     {
         $this->login('laet', 'changeme');
@@ -71,6 +87,26 @@ class UpdateTimelineTest extends \WebTestCase
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
         $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a réestimé Smoke in the water [Miam] à 100 points à %s', date('H:i'))));
+    }
+ 
+    public function testEditStoryUpdatesTimeline()
+    {
+        $this->login('laet', 'changeme');
+        
+        $crawler = $this->client->request('GET', '/');
+        
+        $crawler = $this->client->click($crawler->selectLink('Smoke in the water')->link());
+        $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
+        $form = $crawler->selectButton('Valider')->form();
+        $this->client->submit($form, array(
+            'story[name]' => 'Water in the smoke',
+            'story[points]' => 10
+        ));
+        $crawler = $this->client->request('GET', '/timeline');
+
+        $this->addResponseTester();
+        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
+        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a mis à jour Water in the smoke [Miam] à %s', date('H:i'))));
     }
 
 }

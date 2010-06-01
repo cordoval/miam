@@ -141,19 +141,22 @@ class StoryController extends Controller
         $form = $this->createForm($story, $projects);
         
         if('POST' === $this->getRequest()->getMethod()) {
-            $oldPoints = $story->getPoints();
+            $snapshot = $story->toArray();
             $form->bind($this->getRequest()->get($form->getName()));
 
             if($form->isValid()) {
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
-                if($story->getPoints() && !$oldPoints)
-                {
+
+                if($story->getPoints() && !$snapshot['points']) {
                     $this->notify(new Event($story, 'miam.story.estimate'));
                 }
-                elseif($story->getPoints() != $oldPoints)
-                {
+                elseif($story->getPoints() != $snapshot['points']) {
                     $this->notify(new Event($story, 'miam.story.reestimate'));
+                }
+
+                if($story->getName() != $snapshot['name'] || $story->getBody() != $snapshot['body']) {
+                    $this->notify(new Event($story, 'miam.story.edit'));
                 }
 
                 $this->getUser()->setFlash('story_update', array('story' => $story));

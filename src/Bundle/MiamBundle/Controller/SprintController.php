@@ -8,6 +8,7 @@ use Bundle\MiamBundle\Entities\Sprint;
 use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\SprintRenderer;
 use Bundle\MiamBundle\Form\SprintForm;
+use Symfony\Components\EventDispatcher\Event;
 
 class SprintController extends Controller
 {
@@ -150,8 +151,15 @@ class SprintController extends Controller
         $sprint->addStory($story);
         $story->setStatus($this->getRequest()->get('pending') ? Story::STATUS_PENDING : Story::STATUS_TODO);
         $this->getEntityManager()->flush();
+
+        $this->notify(new Event($story, 'miam.story.schedule'));
         
         return $this->redirect($this->generateUrl('sprint_schedule'));
+    }
+
+    protected function notify(Event $event)
+    {
+        $this->container->getEventDispatcherService()->notify($event);
     }
 
 }
