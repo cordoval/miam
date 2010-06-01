@@ -3,7 +3,6 @@ body
   font: 0.8em verdana;
   color: #626262;
   text-align: left;
-  background: url(../images/paper_background_2.jpg) top left repeat;
 }
 
 h1, h2, h3, h4
@@ -55,10 +54,6 @@ a
   width: 100%;
   margin: auto;
   display: block;
-}
-
-.bd {
-  background: url(../images/paper_background.jpg) top left repeat-x;
 }
 
 .hd

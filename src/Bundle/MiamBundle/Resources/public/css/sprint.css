@@ -1,3 +1,11 @@
+body {
+  background: url(../images/paper_background_2.jpg) top left repeat;
+}
+
+.bd {
+  background: url(../images/paper_background.jpg) top left repeat-x;
+}
+
 div.bd {
   padding-top: 20px;
 }
