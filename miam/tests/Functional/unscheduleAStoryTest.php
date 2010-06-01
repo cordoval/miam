@@ -4,7 +4,7 @@ namespace Miam\Tests\Functional;
 
 use Bundle\PHPUnitBundle\Functional;
 
-class unsheduleAStoryTest extends \WebTestCase
+class unscheduleAStoryTest extends \WebTestCase
 {
     
     public function testSchedule()
