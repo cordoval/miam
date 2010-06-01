@@ -35,6 +35,21 @@ class WebTestCase extends BaseWebTestCase
     {
         return $this->kernel = new \MiamKernel('test', true);
     }
+
+    protected function login($username, $password)
+    {
+        $crawler = $this->client->request('GET', '/user/login');
+
+        $form = $crawler->selectButton('Log in')->form();
+        $this->client->submit($form, array(
+            'username' => $username,
+            'password' => $password
+        ));
+
+        $this->client->followRedirect();
+        $this->addResponseTester();
+        $this->client->assertResponseSelectEquals('div.auth span.username', array('_text'), array($username));
+    }
  
     protected function debugOutput()
     {
