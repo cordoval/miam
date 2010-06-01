@@ -67,8 +67,11 @@ class StoryController extends Controller
 
         $points = intval($this->getRequest()->get('points'));
 
-        $story->setPoints($points);
-        $this->getEntityManager()->flush();
+        if($story->getPoints() != $points) {
+            $story->setPoints($points);
+            $this->getEntityManager()->flush();
+            $this->notify(new Event($story, 'miam.story.reestimate'));
+        }
 
         return $this->createResponse('done');
     }
