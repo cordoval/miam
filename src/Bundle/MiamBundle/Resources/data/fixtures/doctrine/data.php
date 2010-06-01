@@ -4,6 +4,7 @@ use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Entities\Project;
 use Bundle\MiamBundle\Entities\Sprint;
 use Bundle\DoctrineUserBundle\Entities\User as User;
+use Bundle\MiamBundle\Entities\TimelineEntry;
 
 $colors = $this->container->getParameter('miam.colors');
 $colorIt = 0;
@@ -123,3 +124,17 @@ $matt->setPassword('changeme');
 $thib = new User();
 $thib->setUsername('thib');
 $thib->setPassword('changeme');
+
+
+// Timeline
+$e = new TimelineEntry();
+$e->setStory($story1);
+$e->setUser($matt);
+$e->setAction(TimelineEntry::ACTION_CREATE);
+$e->setCreatedAt(new Datetime('2011-11-24 15:00:23'));
+
+$e2 = new TimelineEntry();
+$e2->setStory($story2);
+$e2->setUser($thib);
+$e2->setCreatedAt(new Datetime('2010-11-24 16:02:25'));
+$e2->setAction(TimelineEntry::ACTION_COMMENT);

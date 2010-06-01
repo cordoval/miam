@@ -2,18 +2,6 @@
 
 namespace Bundle\MiamBundle\Entities;
 
-use Symfony\Components\Validator\Mapping\ClassMetadata;
-use Symfony\Components\Validator\Constraints\Min;
-use Symfony\Components\Validator\Constraints\Max;
-use Symfony\Components\Validator\Constraints\MinLength;
-use Symfony\Components\Validator\Constraints\MaxLength;
-use Symfony\Components\Validator\Constraints\AssertType;
-use Symfony\Components\Validator\Constraints\Email;
-use Symfony\Components\Validator\Constraints\Choice;
-use Symfony\Components\Validator\Constraints\Valid;
-use Symfony\Components\Validator\Constraints\Regex;
-
-
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\StoryRepository")
  * @Table(name="miam_story")
@@ -45,6 +33,9 @@ class Story
 
     /**
      * @Column(name="name", type="string", length=255)
+     * @Validation({
+     *   @MinLength(3)
+     * })
      */
     protected $name;
 
@@ -55,6 +46,9 @@ class Story
 
     /**
      * @Column(name="body", type="text")
+     * @Validation({
+     *   @MaxLength(5000)
+     * })
      */
     protected $body;
 
@@ -88,13 +82,6 @@ class Story
         $this->status    = self::STATUS_CREATED;
     }
      
-    public static function loadValidatorMetadata(ClassMetadata $metadata)
-    {
-      $metadata->addPropertyConstraint('name', new MinLength(3));
-      $metadata->addPropertyConstraint('body', new MaxLength(5000));
-      $metadata->addPropertyConstraint('project', new Valid()); 
-    }
-
     /**
      * getCreatedAt 
      * 

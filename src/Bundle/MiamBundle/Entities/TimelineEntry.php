@@ -1,6 +1,8 @@
 <?php
 
 namespace Bundle\MiamBundle\Entities;
+use Bundle\DoctrineUserBundle\Entities\User;
+use Bundle\MiamBundle\Entities\Story;
 
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\TimelineEntryRepository")
@@ -10,7 +12,7 @@ namespace Bundle\MiamBundle\Entities;
 class TimelineEntry
 {
     /**
-    * @ManyToOne(targetEntity="User", inversedBy="timelineEntries")
+    * @ManyToOne(targetEntity="Bundle\DoctrineUserBundle\Entities\User", inversedBy="timelineEntries")
     * @JoinColumn(name="user_id", nullable=false)
     */
     protected $user;
@@ -42,6 +44,19 @@ class TimelineEntry
     const ACTION_STATE_WIP = 1020;
     const ACTION_STATE_FINISHED = 1030;
 
+    protected $textualActions = array(
+        self::ACTION_CREATE => 'a créé {story}',
+        self::ACTION_ESTIMATE => 'a estimé {story}',
+        self::ACTION_REESTIMATE => 'a réestimé {story}',
+        self::ACTION_COMMENT => 'a commenté {story}',
+        self::ACTION_EDIT => 'a mis à jour {story}',
+        self::ACTION_SCHEDULE => 'a ajouté {story} au sprint',
+        self::ACTION_STATE_PENDING => "a passé {story} dans l'état EN ATTENTE",
+        self::ACTION_STATE_TODO => "a passé {story} dans l'état À FAIRE",
+        self::ACTION_STATE_WIP => "a commencé à travailler sur {story}",
+        self::ACTION_STATE_FINISHED => "a fini {story}"
+    );
+    
     /**
      * @Column(name="id", type="integer")
      * @Id
@@ -51,13 +66,15 @@ class TimelineEntry
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        // $this->createdAt = new \DateTime();
     }
     
     /** @PrePersist */
     public function doStuffOnPrePersist()
     {
-        $this->createdAt = new \DateTime();
+        // if(null === $this->createdAt) {
+        //     $this->createdAt = new \DateTime();
+        // }
     }
     
     /**
@@ -100,6 +117,12 @@ class TimelineEntry
           self::ACTION_STATE_FINISHED => 'state_finished',
       );
     }
+    
+    public function renderAction()
+    {
+      return $this->textualActions[$this->action];
+    }
+    
     /**
      * Get action
      */
