@@ -31,20 +31,24 @@ class StoryController extends Controller
         ->getRepository('Bundle\MiamBundle\Entities\Story')
         ->find($id);
 
-        if (!$story)
-        {
+        if (!$story) {
             throw new NotFoundHttpException("Story not found");
         }
 
         $status = $this->getRequest()->get('status');
 
-        if(!Story::isValidStatus($status))
-        {
+        if($story->getStatus() == $status) {
+            return $this->createResponse('done');
+        }
+
+        if(!Story::isValidStatus($status)) {
           throw new NotFoundHttpException("Status $status does not exist");
         }
 
         $story->setStatus($status);
         $this->getEntityManager()->flush();
+
+        $this->notify(new Event($story, 'miam.story.status', array('status' => $story->getStatus())));
 
         return $this->createResponse('done');
     }

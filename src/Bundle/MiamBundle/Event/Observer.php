@@ -58,6 +58,11 @@ class Observer
         $this->dispatcher->connect('miam.story.schedule', function(Event $event) use ($observer) {
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_SCHEDULE);
         });
+
+        $this->dispatcher->connect('miam.story.status', function(Event $event) use ($observer) {
+            $action = TimelineEntry::getActionForStoryStatus($event['status']);
+            $observer->addStoryEntry($event->getSubject(), $action);
+        });
     }
 
     public function addStoryEntry(Story $story, $action)

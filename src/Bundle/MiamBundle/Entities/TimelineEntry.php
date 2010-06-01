@@ -104,7 +104,7 @@ class TimelineEntry
 
     public static function getActions()
     {
-      return array(
+      static $actions = array(
           self::ACTION_CREATE => 'create',
           self::ACTION_ESTIMATE => 'estimate',
           self::ACTION_REESTIMATE => 'reestimate',
@@ -116,6 +116,20 @@ class TimelineEntry
           self::ACTION_STATE_WIP => 'state_wip',
           self::ACTION_STATE_FINISHED => 'state_finished',
       );
+
+      return $actions;
+    }
+
+    public static function getActionForStoryStatus($status)
+    {
+      static $matches = array(
+        Story::STATUS_PENDING => self::ACTION_STATE_PENDING,
+        Story::STATUS_TODO => self::ACTION_STATE_TODO,
+        Story::STATUS_WIP => self::ACTION_STATE_WIP,
+        Story::STATUS_FINISHED => self::ACTION_STATE_FINISHED
+      );
+
+      return isset($matches[$status]) ? $matches[$status] : null;
     }
     
     public function renderAction()
