@@ -66,15 +66,15 @@ class TimelineEntry
 
     public function __construct()
     {
-        // $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime();
     }
     
     /** @PrePersist */
     public function doStuffOnPrePersist()
     {
-        // if(null === $this->createdAt) {
-        //     $this->createdAt = new \DateTime();
-        // }
+        if(null === $this->createdAt) {
+            $this->createdAt = new \DateTime();
+        }
     }
     
     /**
