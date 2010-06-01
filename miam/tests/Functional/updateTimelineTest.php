@@ -46,7 +46,6 @@ class UpdateTimelineTest extends \WebTestCase
                 'story_id' => $firstStoryId
             ));
             $this->addResponseTester();
-            $this->client->assertResponseRegExp('/done/');
 
             $crawler = $this->client->request('GET', '/timeline');
 

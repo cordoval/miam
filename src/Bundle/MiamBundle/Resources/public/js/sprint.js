@@ -94,6 +94,7 @@
           tolerance:    'intersect',
           drop: function(e, ui)
           {
+            ui.draggable.css('opacity', 0.4);
             $.ajax({
               type:    'POST',
               url:     self.table.attr('data-move-url'),
@@ -101,9 +102,10 @@
                 story_id: ui.draggable.attr('data-story-id'),
                 status:   $(this).attr('data-status')
               },
-              success: function()
+              success: function(html)
               {
-                self.element.sprint('reload');
+                self.element.html(html);
+                self.element.sprint('refresh');
               }
             });
             ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));

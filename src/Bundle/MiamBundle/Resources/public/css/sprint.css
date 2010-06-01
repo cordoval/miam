@@ -98,6 +98,7 @@ div.bd div.content {
 
 table {
     width: 100%;
+    background: #fff;
 }
 
 th.project {
@@ -119,10 +120,6 @@ div.story {
 div.story:hover {
   background: -moz-linear-gradient(center top , #FAFAFA, #F0CDCA) repeat scroll 0 0 #EFEFEF;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F0CDCA));
-}
-
-div.story.ui-draggable-dragging {
-  opacity: 0.5;
 }
 
 td.droppable_hover {

@@ -37,20 +37,18 @@ class StoryController extends Controller
 
         $status = $this->getRequest()->get('status');
 
-        if($story->getStatus() == $status) {
-            return $this->createResponse('done');
+        if($story->getStatus() != $status) {
+            if(!Story::isValidStatus($status)) {
+                throw new NotFoundHttpException("Status $status does not exist");
+            }
+
+            $story->setStatus($status);
+            $this->getEntityManager()->flush();
+
+            $this->notify(new Event($story, 'miam.story.status', array('status' => $story->getStatus())));
         }
 
-        if(!Story::isValidStatus($status)) {
-          throw new NotFoundHttpException("Status $status does not exist");
-        }
-
-        $story->setStatus($status);
-        $this->getEntityManager()->flush();
-
-        $this->notify(new Event($story, 'miam.story.status', array('status' => $story->getStatus())));
-
-        return $this->createResponse('done');
+        return $this->forward('MiamBundle:Sprint:ping', array('hash' => null));
     }
 
 
