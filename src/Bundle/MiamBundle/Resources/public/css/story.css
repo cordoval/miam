@@ -108,32 +108,6 @@ li.story .editLink a
   font-size: 1em;
 }
 
-#sprintBacklog thead th
-{
-  width: 25%;
-  color: #B12822;
-  text-transform: uppercase;
-  font-weight: bold;
-}
-
-#sprintBacklog 
-{
-  margin-top: 20px;
-  border-right: 4px solid #B12822;
-  font-size: 0.75em;
-  width: 100%;
-}
-
-#sprintBacklog th
-{
-  text-align: center;
-}
-
-#sprintBacklog th, #sprintBacklog td
-{
-  border-left: 4px solid #B12822;
-}
-
 .titleWithActions
 {
   overflow: hidden;
