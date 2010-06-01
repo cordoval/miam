@@ -8,6 +8,7 @@ class createAStoryTest extends \WebTestCase
 {
     public function testFormValidation()
     {
+        $this->login('thib', 'changeme');
         $crawler = $this->client->request('GET', '/story/new');
 
         $form = $crawler->selectButton('Valider')->form();
