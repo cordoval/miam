@@ -6,6 +6,25 @@ use Bundle\PHPUnitBundle\Functional;
 
 class createAProjectTest extends \WebTestCase
 {
+
+    public function testFormValidation()
+    {
+        $crawler = $this->client->request('GET', '/project/new');
+
+        $form = $crawler->selectButton('Valider')->form();
+        $this->client->submit($form, array(
+            'project[name]' => null,
+            'project[color]' => null
+        ));
+
+        $this->addRequestTester();
+        $this->client->assertRequestParameter('_route', 'project_new');
+        $this->client->assertRequestParameter('_controller', 'MiamBundle:Project:new');
+
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('/This value is too short/');
+        $this->client->assertResponseRegExp('/This value is not valid/');
+    }
     
     public function testCreateAProjectShowsItOnTheBacklog()
     {

@@ -10,19 +10,25 @@
 
       setInterval(function()
       {
-        $.ajax({
-          url: self.table.attr('data-ping-url').replace(/_HASH_/, self.table.attr('data-sprint-hash')),
-          success: function(html)
-          {
-            if('noop' == html) return;
-
-            self.element.html(html);
-            self.element.sprint('refresh');
-          }
-        });
+        self.element.sprint('reload');
       }, 5000);
 
       this.refresh();
+    },
+
+    reload: function()
+    {
+      var self = this;
+      $.ajax({
+        url: self.table.attr('data-ping-url').replace(/_HASH_/, self.table.attr('data-sprint-hash')),
+        success: function(html)
+        {
+          if('noop' == html) return;
+
+          self.element.html(html);
+          self.element.sprint('refresh');
+        }
+      });
     },
 
     refresh: function()
@@ -66,6 +72,10 @@
                 data:    {
                   story_id: storyId,
                   points:   points
+                },
+                success: function()
+                {
+                  self.element.sprint('reload');
                 }
               });
             }
@@ -90,6 +100,10 @@
               data:    {
                 story_id: ui.draggable.attr('data-story-id'),
                 status:   $(this).attr('data-status')
+              },
+              success: function()
+              {
+                self.element.sprint('reload');
               }
             });
             ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));
