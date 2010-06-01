@@ -4,6 +4,8 @@ use Bundle\PHPUnitBundle\Functional\WebTestCase as BaseWebTestCase;
 
 use Bundle\PHPUnitBundle\Functional\Service\BackupSqliteService;
 
+use Bundle\PHPUnitBundle\Client;
+
 /**
  * Extend the genereric TestCase with projet-specific objects (Kernel…)
  *

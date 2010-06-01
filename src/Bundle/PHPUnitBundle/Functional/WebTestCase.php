@@ -3,9 +3,9 @@
 namespace Bundle\PHPUnitBundle\Functional;
 
 use Symfony\Foundation\Test\WebTestCase as BaseWebTestCase;
-use Symfony\Foundation\Test\Client;
 use Symfony\Components\HttpKernel\Test\RequestTester;
 use Symfony\Components\HttpKernel\Test\ResponseTester;
+use Bundle\PHPUnitBundle\Client;
 
 abstract class WebTestCase extends BaseWebTestCase
 {
@@ -34,7 +34,7 @@ abstract class WebTestCase extends BaseWebTestCase
     /**
      * Creates a Client.
      *
-     * @return Symfony\Foundation\Test\Client A Client instance
+     * @return Bundle\PHPUnitBundle\Client A Client instance
      */
     public function createClient(array $server = array())
     {
