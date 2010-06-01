@@ -1,3 +1,90 @@
+div.bd {
+  padding-top: 20px;
+}
+
+div.bd div.content {
+  background: #fff;
+  border: 1px solid #C4C4C4;
+  border-radius: 9px 9px 0 0;
+  -moz-border-radius: 9px 9px 0 0;
+  -webkit-border-radius: 9px 9px 0 0;
+  -moz-box-shadow: 0 0 9px rgba(90, 90, 90, 0.5);
+  padding-top: 0;
+}
+
+#sprintBacklog 
+{
+  font-size: 0.95em;
+  font-family:Arial,sans-serif;
+  width: 100%;
+}
+
+#sprint_current .titleWithActions {
+  margin-bottom: 0;
+  background: #F5F5F5;
+  background: -moz-linear-gradient(center top , #FAFAFA, #EAEAEA) repeat scroll 0 0 #EFEFEF;
+  border-bottom: 1px solid #C4C4C4;
+  -moz-border-radius: 9px 9px 0 0;
+  -webkit-border-radius: 9px 9px 0 0;
+  border-radius: 9px 9px 0 0;
+  font-family:Arial,sans-serif;
+}
+
+#sprint_current .titleWithActions .sprint {
+  font-family:Arial,sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+  padding: 1px 0 0 20px;
+  line-height: 50px;
+  color: #888;
+  font-size: 1.4em;
+}
+
+
+#sprint_current .titleWithActions a {
+  float: right;
+  font-size: 1.1em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  color: #AAA;
+  background: none;
+  line-height: 32px;
+  padding-right: 20px;
+  margin-top: 12px;
+}
+
+#sprint_current .titleWithActions a:hover {
+  color: #B12822;
+}
+
+#sprintBacklog thead th
+{
+  width: 25%;
+  color: #B12822;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+#sprintBacklog th, #sprintBacklog td
+{
+  border-left: 1px solid #C4C4C4;
+}
+
+#sprintBacklog tr.story_line td {
+  padding: 5px 5px 0px 5px;
+}
+
+
+#sprintBacklog th
+{
+  text-align: center;
+}
+
+#sprintBacklog th:first-child, #sprintBacklog td:first-child {
+  border: none;
+}
+
 table {
     width: 100%;
 }
@@ -8,19 +95,23 @@ th.project {
   text-shadow: 0 0 3px #000;
 }
 div.story {
-  padding: 0.5em;
+  padding: 3px 5px;
   border: 1px solid #E0E0E0;
-  background: #F4F4F4;
+  background: -moz-linear-gradient(center top , #FAFAFA, #E6E6E6) repeat scroll 0 0 #EFEFEF;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
   cursor: move;
-  color: #000;
-  font-size: 1.1em;
+  color: #333;
 }
-div.story.ui-draggable-dragging {
+div.story:hover {
+  background: -moz-linear-gradient(center top , #FAFAFA, #F0CDCB) repeat scroll 0 0 #EFEFEF;
 }
 
-td.droppable_active {
-  background: #FFF39D;
+div.story.ui-draggable-dragging {
+  opacity: 0.5;
 }
+
 td.droppable_hover {
   background: #88FF88;
 }
@@ -37,4 +128,7 @@ td.droppable_hover {
   float: right;
   text-align: center;
   cursor: pointer;
+  padding: 2px 3px;
+  font-weight: bold;
+  opacity: 0.6;
 }
