@@ -4,11 +4,8 @@ namespace Bundle\MiamBundle\Controller;
 
 use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Bundle\MiamBundle\Entities\Project;
-use Bundle\MiamBundle\Renderer\ProjectRenderer;
-use Bundle\MiamBundle\Form\ProjectForm;
 
-class ProjectController extends Controller
+class TimelineController extends Controller
 {
 
     public function indexAction()
