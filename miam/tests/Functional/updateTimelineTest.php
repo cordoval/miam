@@ -120,6 +120,26 @@ class UpdateTimelineTest extends \WebTestCase
         $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
         $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a réestimé Smoke in the water [Miam] à 100 points à %s', date('H:i'))));
     }
+  
+    public function testReestimateStoryFromSprintUpdatesTimeline()
+    {
+        $this->login('laet', 'changeme');
+
+        $crawler = $this->client->request('GET', '/sprint');
+
+        $firstStoryId = $crawler->filter('#sprintBacklog div.story')->attr('data-story-id');
+
+        $crawler = $this->client->request('POST', '/story/reestimate', array(
+            'story_id' => $firstStoryId,
+            'points' => 100
+        ));
+
+        $crawler = $this->client->request('GET', '/timeline');
+
+        $this->addResponseTester();
+        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
+        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a réestimé Lister les ballades prévues [project_1] à 100 points à %s', date('H:i'))));
+    }
  
     public function testEditStoryUpdatesTimeline()
     {
