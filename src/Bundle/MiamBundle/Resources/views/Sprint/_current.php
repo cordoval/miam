@@ -5,9 +5,9 @@
 ?>
 
 <div class="titleWithActions">
+    <?php $view->output('MiamBundle:Sprint:_sprintometer', array('percentage' => $percentage)) ?>
     <h1 class="sprint">Backlog de Sprint</h1>
     <span class="finished"><?php echo $finished ?>/<?php echo $total ?></span>
-    <span class="percentage"><?php echo $percentage ?>%</span>
     <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Changer de sprint</a>
 </div>
 

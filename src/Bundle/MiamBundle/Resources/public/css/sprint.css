@@ -43,7 +43,8 @@ div.bd div.content {
   font-family:Arial,sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 1px 20px 0 20px;
+  padding: 0 1em 0 0;
+  margin-left: -20px;
   line-height: 50px;
   color: #888;
   font-size: 1.4em;
@@ -56,6 +57,7 @@ div.bd div.content {
   color: #aaa;
   padding: 0 1em 0 0;
   font-weight: normal;
+  margin-left: 0px;
 }
 
 #sprint_current .titleWithActions a {
@@ -69,6 +71,12 @@ div.bd div.content {
   line-height: 32px;
   padding-right: 20px;
   margin-top: 12px;
+}
+
+.sprintometer {
+    vertical-align: -15px;
+    display: inline;
+    opacity: 0.7;
 }
 
 #sprint_current .titleWithActions a:hover {
