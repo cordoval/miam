@@ -5,6 +5,7 @@ namespace Bundle\MiamBundle\Entities;
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\ProjectRepository")
  * @Table(name="miam_project")
+ * @HasLifecycleCallbacks
  */
 class Project
 {
@@ -48,7 +49,6 @@ class Project
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
         $this->isActive = true;
     }
      
@@ -116,6 +116,18 @@ class Project
             'color' => $this->getColor(),
             'created_at' => $this->getCreatedAt(),
         );
+    }
+
+    /** @PreUpdate */
+    public function doStuffOnPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /** @PrePersist */
+    public function doStuffOnPrePersist()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
     /**
