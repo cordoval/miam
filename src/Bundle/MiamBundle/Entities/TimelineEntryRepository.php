@@ -15,13 +15,15 @@ class TimelineEntryRepository extends EntityRepository
      */
     public function findLatest($limit = 50)
     {
-      return $this->createQueryBuilder('e')
-        ->leftJoin('e.story', 's')
-        ->leftJoin('s.project', 'p')
-        ->leftJoin('e.user', 'u')
-        ->orderBy('e.id', 'desc')
-        ->getQuery()
-        ->setMaxResults($limit)
-        ->execute();
+      return $this->_em->createQueryBuilder()
+          ->select('e, s, p')
+          ->from($this->_entityName, 'e')
+          ->leftJoin('e.story', 's')
+          ->leftJoin('s.project', 'p')
+          ->leftJoin('e.user', 'u')
+          ->orderBy('e.id', 'desc')
+          ->getQuery()
+          ->setMaxResults($limit)
+          ->execute();
     }
 }
