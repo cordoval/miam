@@ -16,6 +16,7 @@ class TimelineController extends Controller
 
         return $this->render('MiamBundle:Timeline:index', array(
             'timeline' => $timeline,
+            'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
 

@@ -27,3 +27,9 @@ doctrine.orm:
   entity_managers:
     default:
       connection:           default
+
+parameters:
+  miam.user.emails:
+    laet:                   laet.wagner@gmail.com
+    matt:                   matthieu.bontemps@gmail.com
+    thib:                   thibault.duplessis@gmail.com

@@ -7,6 +7,6 @@
         <h1>Timeline</h1>
     </div>
 
-    <?php echo $view->render('MiamBundle:Timeline:list', array('timeline' => $timeline)) ?>
+    <?php echo $view->render('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails)) ?>
 
 </div>
