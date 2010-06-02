@@ -55,6 +55,7 @@ div.bd div.content {
 #sprint_current .titleWithActions .finished {
   color: #aaa;
   padding: 0 1em 0 0;
+  font-weight: normal;
 }
 
 #sprint_current .titleWithActions a {
