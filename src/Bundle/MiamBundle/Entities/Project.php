@@ -5,6 +5,7 @@ namespace Bundle\MiamBundle\Entities;
 /**
  * @Entity(repositoryClass="Bundle\MiamBundle\Entities\ProjectRepository")
  * @Table(name="miam_project")
+ * @HasLifecycleCallbacks
  */
 class Project
 {
@@ -21,7 +22,8 @@ class Project
     /**
      * @Column(name="name", type="string", length=255)
      * @Validation({
-     *   @MinLength(3)
+     *   @MinLength(3),
+     *   @NotNull
      * })
      */
     protected $name;
@@ -34,7 +36,8 @@ class Project
     /**
      * @Column(name="color", type="string", length=7)
      * @Validation({
-     *   @Regex("/^#?[0-9A-F]{6}$/i")
+     *   @Regex("/^#?[0-9A-F]{6}$/i"),
+     *   @NotNull
      * })
      */
     protected $color;
@@ -48,7 +51,6 @@ class Project
 
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
         $this->isActive = true;
     }
      
@@ -116,6 +118,18 @@ class Project
             'color' => $this->getColor(),
             'created_at' => $this->getCreatedAt(),
         );
+    }
+
+    /** @PreUpdate */
+    public function doStuffOnPreUpdate()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    /** @PrePersist */
+    public function doStuffOnPrePersist()
+    {
+        $this->createdAt = $this->updatedAt = new \DateTime();
     }
 
     /**

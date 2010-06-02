@@ -23,7 +23,7 @@ class createAStoryTest extends \WebTestCase
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Story:new');
 
         $this->addResponseTester();
-        $this->client->assertResponseRegExp('/This value is too short/');
+        $this->client->assertResponseRegExp('/This value should not be null/');
     }
 
     
