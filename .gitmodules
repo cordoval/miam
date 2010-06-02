@@ -19,3 +19,6 @@
 [submodule "src/vendor/Twig"]
 	path = src/vendor/Twig
 	url = http://github.com/fabpot/Twig.git
+[submodule "src/Bundle/GravatarBundle"]
+	path = src/Bundle/GravatarBundle
+	url = git://github.com/ornicar/GravatarBundle.git
