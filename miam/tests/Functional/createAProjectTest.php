@@ -23,7 +23,6 @@ class createAProjectTest extends \WebTestCase
 
         $this->addResponseTester();
         $this->client->assertResponseRegExp('/This value should not be null/');
-        $this->client->assertResponseRegExp('/This value should not be null/');
     }
     
     public function testCreateAProjectShowsItOnTheBacklog()
