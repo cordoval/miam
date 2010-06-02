@@ -2,7 +2,7 @@
 {
     $('#backlog').backlog();
 
-    $('#sprintBacklog').sprint();
+    $('#sprint_current').sprint();
 
     $('a.js_confirm, input.js_confirm').live('click', function(e)
     {

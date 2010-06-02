@@ -56,7 +56,7 @@ class SprintController extends Controller
                 ->getRepository('Bundle\MiamBundle\Entities\Project')
                 ->findForSprint($sprint);
 
-            return $this->render('MiamBundle:Sprint:_table', array(
+            return $this->render('MiamBundle:Sprint:_current', array(
                 'projects' => $projects,
                 'sprint' => $sprint,
                 'statuses' => Story::getSprintStatuses() 
