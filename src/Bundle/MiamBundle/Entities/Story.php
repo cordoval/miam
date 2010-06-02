@@ -63,6 +63,11 @@ class Story
      */
     protected $status;
 
+    /**
+     * @OneToMany(targetEntity="TimelineEntry", mappedBy="story")
+     */
+    protected $timelineEntries;
+
     const STATUS_CREATED = 10;
     const STATUS_PENDING = 20;
     const STATUS_TODO = 30;

@@ -12,15 +12,15 @@ use Bundle\MiamBundle\Entities\Story;
 class TimelineEntry
 {
     /**
-    * @ManyToOne(targetEntity="Bundle\DoctrineUserBundle\Entities\User", inversedBy="timelineEntries")
-    * @JoinColumn(name="user_id", nullable=false)
-    */
+     * @ManyToOne(targetEntity="Bundle\DoctrineUserBundle\Entities\User", inversedBy="timelineEntries")
+     * @JoinColumn(name="user_id", nullable=false)
+     */
     protected $user;
 
     /**
-    * @ManyToOne(targetEntity="Story", inversedBy="timelineEntries")
-    * @JoinColumn(name="story_id", nullable=false)
-    */
+     * @ManyToOne(targetEntity="Story", inversedBy="timelineEntries")
+     * @JoinColumn(name="story_id", nullable=false)
+     */
     protected $story;
 
     /**
