@@ -1,5 +1,9 @@
-backlog:
+homepage:
   pattern:  /
+  defaults: { _controller: MiamBundle:Miam:index }
+
+backlog:
+  pattern:  /backlog
   defaults: { _controller: MiamBundle:Story:index }
 
 timeline:
