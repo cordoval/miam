@@ -70,7 +70,8 @@ div.bd div.content {
   background: none;
   line-height: 32px;
   padding-right: 20px;
-  margin-top: 12px;
+  margin-top: 11px;
+  margin-left: 0;
 }
 
 .sprintometer {
