@@ -22,7 +22,8 @@ class Project
     /**
      * @Column(name="name", type="string", length=255)
      * @Validation({
-     *   @MinLength(3)
+     *   @MinLength(3),
+     *   @NotNull
      * })
      */
     protected $name;
@@ -35,7 +36,8 @@ class Project
     /**
      * @Column(name="color", type="string", length=7)
      * @Validation({
-     *   @Regex("/^#?[0-9A-F]{6}$/i")
+     *   @Regex("/^#?[0-9A-F]{6}$/i"),
+     *   @NotNull
      * })
      */
     protected $color;
