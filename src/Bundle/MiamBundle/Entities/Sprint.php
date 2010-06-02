@@ -136,6 +136,20 @@ class Sprint
         return $sum;
     }
 
+    public function getFinishedPoints()
+    {
+        return $this->getPointsByStatus(Story::STATUS_FINISHED);
+    }
+
+    public function getTotalPoints()
+    {
+        $sum = 0;
+        foreach($this->stories as $story) {
+            $sum += $story->getPoints();
+        }
+        return $sum;
+    }
+
     public function getPointsByStatus($status)
     {
         $sum = 0;

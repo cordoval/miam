@@ -37,16 +37,25 @@ div.bd div.content {
   font-family:Arial,sans-serif;
 }
 
-#sprint_current .titleWithActions .sprint {
+#sprint_current .titleWithActions .sprint,
+#sprint_current .titleWithActions .percentage,
+#sprint_current .titleWithActions .finished {
   font-family:Arial,sans-serif;
   text-transform: uppercase;
   font-weight: bold;
-  padding: 1px 0 0 20px;
+  padding: 1px 20px 0 20px;
   line-height: 50px;
   color: #888;
   font-size: 1.4em;
+  display: inline;
+  float: none;
 }
 
+#sprint_current .titleWithActions .percentage,
+#sprint_current .titleWithActions .finished {
+  color: #aaa;
+  padding: 0 1em 0 0;
+}
 
 #sprint_current .titleWithActions a {
   float: right;
