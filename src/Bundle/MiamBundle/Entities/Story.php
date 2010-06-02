@@ -34,7 +34,8 @@ class Story
     /**
      * @Column(name="name", type="string", length=255)
      * @Validation({
-     *   @MinLength(3)
+     *   @MinLength(3),
+     *   @NotNull
      * })
      */
     protected $name;
@@ -45,7 +46,7 @@ class Story
     protected $priority;
 
     /**
-     * @Column(name="body", type="text")
+     * @Column(name="body", type="text", nullable=true)
      * @Validation({
      *   @MaxLength(5000)
      * })
