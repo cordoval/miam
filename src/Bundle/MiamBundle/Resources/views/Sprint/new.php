@@ -11,7 +11,11 @@
 
 <?php echo $form->renderFormTag($view->router->generate('sprint_new')) ?>
     <table>
-        <?php echo $form ?>
+      <?php echo $form['startsAt']->renderErrors() ?>
+      <label>Début: <?php echo $form['startsAt']->render(); ?></label>
+<br />
+      <?php echo $form['endsAt']->renderErrors() ?>
+      <label>Fin: <?php echo $form['endsAt']->render(); ?></label> 
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>

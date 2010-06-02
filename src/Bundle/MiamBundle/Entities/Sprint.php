@@ -15,11 +15,19 @@ class Sprint
     
     /**
      * @Column(name="starts_at", type="date")
+     * @Validation({
+     *   @Date,
+     *   @NotNull
+     * })
      */
     protected $startsAt;
 
     /**
      * @Column(name="endsAt", type="date")
+     * @Validation({
+     *   @Date,
+     *   @NotNull
+     * })
      */
     protected $endsAt;
 

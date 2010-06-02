@@ -15,17 +15,14 @@ class SprintController extends Controller
     
     public function newAction()
     {
-        $form = new SprintForm(null);
+        $sprint = new Sprint();
+        $form = $this->createForm($sprint);
 
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->get($form->getName()));
+            $form->bind($this->getRequest()->get('sprint'));
 
             if($form->isValid()) {
-                $form->updateObject();
-                $sprint = $form->getObject();
-                                
                 $this->getEntityManager()->persist($sprint);
-                
                 $this->getEntityManager()->flush();
 
                 $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Sprint')->setCurrentSprint($sprint);
@@ -175,5 +172,16 @@ class SprintController extends Controller
     {
         $this->container->getEventDispatcherService()->notify($event);
     }
+
+    public function createForm(Sprint $sprint)
+    {
+        $options = array(
+          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
+          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
+        );
+
+        return new SprintForm($sprint, $options);
+    }
+
 
 }
