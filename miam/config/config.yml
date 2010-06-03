@@ -31,5 +31,5 @@ doctrine.orm:
 parameters:
   miam.user.emails:
     laet:                   laet.wagner@gmail.com
-    matt:                   matthieu.bontemps@gmail.com
+    mbontemps:              matthieu.bontemps@gmail.com
     thib:                   thibault.duplessis@gmail.com
