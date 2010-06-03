@@ -6,41 +6,42 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
-  /**
-   * Return all projects which have at least one story assigned to the given sprint
-   *
-   * @return array
-   */
-  public function findForSprint(Sprint $sprint)
-  {
+    /**
+     * Return all projects which have at least one story assigned to the given sprint
+     *
+     * @return array
+     */
+    public function findForSprint(Sprint $sprint)
+    {
         return $this->createQueryBuilder('p')
         ->innerJoin('p.stories', 's')
         ->where('s.sprint = :id')
-        ->orderBy('s.priority', 'asc')
+        ->orderBy('p.name', 'asc')
+        ->addOrderBy('s.priority', 'asc')
         ->setParameter('id', $sprint->getId())
         ->getQuery()
         ->getResult()
         ;
-  }
+    }
   
-  /**
-   * Return all projects sorted by interest, indexed by id
-   *
-   * @return Associative array of Project
-   */
-  public function findAllIndexedById()
-  {
+    /**
+    * Return all projects sorted by interest, indexed by id
+    *
+    * @return Associative array of Project
+    */
+    public function findAllIndexedById()
+    {
       $projects = $this->getOrderByInterestQuery()
       ->execute();
-      
+  
       // TODO: find how to INDEX BY id
       $projectsIndexed = array();
       foreach($projects as $project) {
           $projectsIndexed[$project->getId()] = $project;
       }
       return $projectsIndexed;
-  }
-  
+    }
+
     /**
      * Return all projects sorted by interest.
      * For now, most recent projects should be at the top.
@@ -52,7 +53,7 @@ class ProjectRepository extends EntityRepository
         return $this->getOrderByInterestQuery()
         ->execute();
     }
-    
+
     /**
      * Return the project having the id $id with its stories (ordered by priority).
      *
@@ -83,7 +84,7 @@ class ProjectRepository extends EntityRepository
         ->setMaxResults(1)
         ->getSingleResult();
     }
-    
+
     protected function getOrderByInterestQuery()
     {
         return $this->createQueryBuilder('p')
@@ -91,4 +92,4 @@ class ProjectRepository extends EntityRepository
         ->getQuery()
         ;
     }
-}
+    }

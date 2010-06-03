@@ -32,7 +32,8 @@ class SprintRepository extends EntityRepository
         ->select('s, story')
         ->where('s.isCurrent = 1')
         ->leftJoin('s.stories', 'story')
-        ->orderBy('story.priority', 'asc')
+        ->orderBy('s.id', 'asc')
+        ->addOrderBy('story.priority', 'asc')
         ->getQuery()
         ->getSingleResult()
         ;
