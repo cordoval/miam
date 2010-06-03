@@ -3,13 +3,7 @@
 namespace Bundle\MiamBundle\Form;
 
 use Symfony\Components\Form\Form;
-use Symfony\Components\Form\FieldGroup;
-use Symfony\Components\Form\ChoiceField;
 use Symfony\Components\Form\TextField;
-use Symfony\Components\Form\CheckboxField;
-use Symfony\Components\Form\NumberField;
-use Symfony\Components\Form\PasswordField;
-use Symfony\Components\Form\DoubleTextField;
 use Symfony\Components\Validator\Validator;
 use Symfony\Components\Validator\ConstraintValidatorFactory;
 use Symfony\Components\Validator\Mapping\ClassMetadataFactory;
@@ -18,12 +12,11 @@ use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Components\Validator\Mapping\Loader\AnnotationLoader;
 use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
 use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
-use Symfony\Foundation\UniversalClassLoader; 
 use Bundle\MiamBundle\Entities\Project;
 
 class ProjectForm extends Form
 {
-  public function __construct($object, array $options = array())
+  public function __construct(Project $object, array $options = array())
   {
     $this->addOption('message_file');
     $this->addOption('validation_file'); 
