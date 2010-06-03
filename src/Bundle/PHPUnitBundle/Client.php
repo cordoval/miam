@@ -15,13 +15,25 @@ class Client extends BaseClient
      */
     protected function doRequest($request)
     {
-        $attributes = $this->kernel->getContainer()->user->getAttributes();
-        $session = $this->kernel->getContainer()->getUser_Session_TestService();
-        $session->write('_user', $attributes);
-        $session->sessionClose();
+        $this->writeSession($this->kernel->getContainer()->getUserService()->getAttributes());
 
         $this->kernel->reboot();
 
         return $this->kernel->handle($request);
+    }
+
+    protected function writeSession(array $attributes)
+    {
+        $session = $this->kernel->getContainer()->getUser_Session_TestService();
+        $session->write('_user', $attributes);
+        $session->sessionClose();
+    }
+
+    public function resetSession()
+    {
+      return $this->writeSession(array(
+        '_flash' => array(),
+        '_culture' => 'en'
+      ));
     }
 }
