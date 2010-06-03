@@ -9,7 +9,8 @@ class editAStoryTest extends \WebTestCase
     
     public function testEditAStoryShowsItOnTheBacklog()
     {
-        $crawler = $this->client->request('GET', '/');
+        $this->login('thib', 'changeme');
+        $crawler = $this->client->request('GET', '/backlog');
         $this->client->click($crawler->selectLink('Smoke in the water')->link());
         
         $crawler = $this->client->getCrawler();
@@ -33,6 +34,7 @@ class editAStoryTest extends \WebTestCase
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'backlog');
         
+        $this->addResponseTester();
         // echo $this->client->getResponse()->getContent();
         
         $this->client->assertResponseRegExp('/Edited you/');

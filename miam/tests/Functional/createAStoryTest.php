@@ -29,6 +29,7 @@ class createAStoryTest extends \WebTestCase
     
     public function testCreateAStoryShowsItOnTheBacklog()
     {
+        $this->login('thib', 'changeme');
         $crawler = $this->client->request('GET', '/story/new');
 
         $this->addRequestTester();

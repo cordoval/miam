@@ -24,6 +24,7 @@ class scheduleASprintTest extends \WebTestCase
 
     public function testScheduleDefault()
     {
+        $this->login('thib', 'changeme');
         $crawler = $this->client->request('GET', '/sprint/schedule');
 
         $form = $crawler->filter('#addStory')->form();
@@ -45,6 +46,7 @@ class scheduleASprintTest extends \WebTestCase
 
     public function testSchedulePending()
     {
+        $this->login('thib', 'changeme');
         $crawler = $this->client->request('GET', '/sprint/schedule');
 
         $form = $crawler->filter('#addStoryPending')->form();
