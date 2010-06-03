@@ -12,7 +12,6 @@ require_once __DIR__.'/Functional/editAStoryTest.php';
 require_once __DIR__.'/Functional/createASprintTest.php';
 require_once __DIR__.'/Functional/scheduleASprintTest.php';
 require_once __DIR__.'/Functional/showCurrentSprintTest.php';
-require_once __DIR__.'/Functional/showTheTimelineTest.php';
 require_once __DIR__.'/Functional/updateTimelineTest.php';
 require_once __DIR__.'/Functional/noSprintAvailableTest.php';
 require_once __DIR__.'/Functional/unscheduleAStoryTest.php';
@@ -37,7 +36,6 @@ class AllTests
     $suite->addTestSuite('Miam\Tests\Functional\showCurrentSprintTest');
     $suite->addTestSuite('Miam\Tests\Functional\noSprintAvailableTest');
     
-    $suite->addTestSuite('Miam\Tests\Functional\showTheTimelineTest');
     $suite->addTestSuite('Miam\Tests\Functional\updateTimelineTest');
 
     return $suite;

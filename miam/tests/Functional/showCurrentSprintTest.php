@@ -18,7 +18,6 @@ class showCurrentSprintTest extends \WebTestCase
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('h1.sprint', array('_text'), array('Backlog de Sprint'));
         $this->client->assertResponseSelectEquals('span.finished', array('_text'), array('0/210'));
-        $this->client->assertResponseSelectEquals('span.percentage', array('_text'), array('0%'));
 
         $this->client->assertResponseSelectEquals('th.status_pending', array('_text'), array('En attente (30)'));
         $this->client->assertResponseSelectEquals('th.status_todo', array('_text'), array('A faire (70)'));

@@ -4,6 +4,7 @@ namespace Miam\Tests\Functional;
 
 use Bundle\PHPUnitBundle\Functional;
 use Bundle\MiamBundle\Entities\Story;
+use Bundle\MiamBundle\Entities\TimelineEntry;
 
 class UpdateTimelineTest extends \WebTestCase
 {
@@ -19,8 +20,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a ajouté Smoke in the water [Miam] au sprint à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_SCHEDULE.' .tentry_user', array('_text'), array('laet'));
     }
 
     public function testChangeStoryStatusUpdatesTimeline()
@@ -50,8 +50,8 @@ class UpdateTimelineTest extends \WebTestCase
             $crawler = $this->client->request('GET', '/timeline');
 
             $this->addResponseTester();
-            $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf($tentry, date('H:i'))));
-            $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
+            $action = TimelineEntry::getActionForStoryStatus($status);
+            $this->client->assertResponseSelectEquals('.tentry.first.action_'.$action.' .tentry_user', array('_text'), array('laet'));
         }
     }
    
@@ -68,11 +68,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry .tentry_user', array('_text'), array('laet', 'thib', 'matt'));
-        $this->client->assertResponseSelectEquals('.tentry ', array('_text'), array(sprintf('laet a créé bluk [Miam] à %s', date('H:i')), 'thib a commenté Danse on a volcano [Miam] à 16:02', 'matt a créé Smoke in the water [Miam] à 15:00'));
-
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a créé bluk [Miam] à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_CREATE.' .tentry_user', array('_text'), array('laet'));
     }
     
     public function testEstimateStoryUpdatesTimeline()
@@ -97,8 +93,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a estimé bluk [Miam] à 100 points à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_ESTIMATE.' .tentry_user', array('_text'), array('laet'));
     }
  
     public function testReestimateStoryUpdatesTimeline()
@@ -117,8 +112,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a réestimé Smoke in the water [Miam] à 100 points à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_REESTIMATE.' .tentry_user', array('_text'), array('laet'));
     }
   
     public function testReestimateStoryFromSprintUpdatesTimeline()
@@ -137,8 +131,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a réestimé Lister les ballades prévues [project_1] à 100 points à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_REESTIMATE.' .tentry_user', array('_text'), array('laet'));
     }
  
     public function testEditStoryUpdatesTimeline()
@@ -157,8 +150,7 @@ class UpdateTimelineTest extends \WebTestCase
         $crawler = $this->client->request('GET', '/timeline');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('.tentry.first .tentry_user', array('_text'), array('laet'));
-        $this->client->assertResponseSelectEquals('.tentry.first', array('_text'), array(sprintf('laet a mis à jour Water in the smoke [Miam] à %s', date('H:i'))));
+        $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_EDIT.' .tentry_user', array('_text'), array('laet'));
     }
 
 }
