@@ -117,9 +117,9 @@ $laet = new User();
 $laet->setUsername('laet');
 $laet->setPassword('changeme');
 
-$matt = new User();
-$matt->setUsername('matt');
-$matt->setPassword('changeme');
+$mbontemps = new User();
+$mbontemps->setUsername('mbontemps');
+$mbontemps->setPassword('changeme');
 
 $thib = new User();
 $thib->setUsername('thib');
@@ -129,7 +129,7 @@ $thib->setPassword('changeme');
 // Timeline
 $e = new TimelineEntry();
 $e->setStory($story1);
-$e->setUser($matt);
+$e->setUser($mbontemps);
 $e->setAction(TimelineEntry::ACTION_CREATE);
 $e->setCreatedAt(new Datetime('2011-11-24 15:00:23'));
 
