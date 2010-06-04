@@ -34,7 +34,7 @@ class SprintController extends Controller
                 
                 $this->getUser()->setFlash('sprint_create', array('sprint' => $sprint->__toString()));
 
-                return $this->redirect($this->generateUrl('backlog'));
+                return $this->redirect($this->generateUrl('sprint_schedule'));
             }
             
         }

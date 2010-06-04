@@ -81,7 +81,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'bluk'
         ));
         
-        $crawler = $this->client->request('GET', '/backlog');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('bluk')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
@@ -100,7 +100,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
         
-        $crawler = $this->client->request('GET', '/backlog');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('Smoke in the water')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
@@ -138,7 +138,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
         
-        $crawler = $this->client->request('GET', '/backlog');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('Smoke in the water')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());

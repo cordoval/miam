@@ -28,7 +28,7 @@ class createASprintTest extends \WebTestCase
         $this->client->followRedirect();
 
         $this->addRequestTester();
-        $this->client->assertRequestParameter('_route', 'backlog');
+        $this->client->assertRequestParameter('_route', 'sprint_schedule');
 
         if($this->testFlashes) {
             $this->client->assertResponseRegExp('/Le sprint/');

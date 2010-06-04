@@ -17,7 +17,7 @@
         <title>Miam</title>
         <?php echo $view->stylesheets ?>
     </head>
-    <body>
+    <body class="fullPage">
         <?php echo $view->render('MiamBundle:Miam:header') ?>
         <div class="bd">
                 <?php echo $view->render('MiamBundle:Miam:messages') ?>

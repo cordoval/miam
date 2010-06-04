@@ -1,13 +1,13 @@
 body
 {
-  font: 0.8em verdana;
+  font: normal normal normal 13.34px/normal helvetica, arial, freesans, clean, sans-serif;
   color: #626262;
   text-align: left;
 }
 
 h1, h2, h3, h4
 {
-  font: 1em Georgia, "Times New Roman", serif;
+  font: 1em;
 }
 
 a
@@ -97,7 +97,6 @@ a
 .hd .title_header div
 {
   color: #595959;
-  font-family: Georgia, "Times New Roman", serif;
   font-weight: normal;
   font-size: 0.588em;
   line-height: 1.1em;
@@ -155,6 +154,11 @@ a
   color: #444;
 }
 
+.fullPage .bd
+{
+  margin: 0 15px;
+  overflow: auto;
+}
 .bd .content
 {
   padding-top: 20px;
@@ -183,7 +187,6 @@ a
 
 .page_title
 {
-  font-family: Georgia, "Times New Roman", serif;
   font-size: 1.79em;
   margin-bottom: 40px;
 }
@@ -219,7 +222,6 @@ a
 .intro p
 {
   color: #595959;
-  font-family: Georgia, "Times New Roman", serif;
 }
 
 
@@ -278,8 +280,8 @@ a
 
 h2
 {
-  font: 1em Georgia, "Times New Roman", serif;
   color: #444;
+  font-weight: bold;
   margin-bottom: 5px;
   padding: 15px 0 10px 0;
   font-size: 1.4em;
@@ -459,3 +461,7 @@ textarea {
   visibility:hidden;
 }
 .clearfix {display:inline-block;}
+
+.story a {
+  color: #222;
+}

@@ -1,5 +1,5 @@
 <?php $view->extend('MiamBundle::layout') ?>
-<?php $view->slots->set('active_menu', 'backlog') ?>
+<?php $view->slots->set('active_menu', 'sprint_schedule') ?>
 
 <div id="backlog" data-sort-url="<?php echo $view->router->generate('story_sort') ?>">
 

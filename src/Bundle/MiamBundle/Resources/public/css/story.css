@@ -85,7 +85,32 @@ li.story .editLink a
 {
   border: 2px solid grey;
   padding: 10px;
-  background: #EEE;
+  border: 1px solid #E0E0E0;
+  background: -moz-linear-gradient(center top , #FAFAFA, #E6E6E6) repeat scroll 0 0 #EFEFEF;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#E6E6E6));
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  cursor: move;
+  color: #333;
+}
+
+.story_planCard .story_points
+{
+  cursor:pointer;
+  float:right;
+  font-size:0.9em;
+  font-weight:bold;
+  opacity:0.6;
+  overflow:auto;
+  padding:2px 3px;
+  text-align:center;
+  width:14px;
+}
+
+#story_actions
+{
+  margin-top: 15px;
 }
 
 .col

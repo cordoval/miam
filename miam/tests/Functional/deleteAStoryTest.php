@@ -23,7 +23,7 @@ class deleteAStoryTest extends \WebTestCase
         $this->client->followRedirect();
 
         $this->addRequestTester();
-        $this->client->assertRequestParameter('_route', 'backlog');
+        $this->client->assertRequestParameter('_route', 'sprint_schedule');
         
         $this->client->assertResponseNotRegExp('/Smoke in the water/');
         if($this->testFlashes) {
