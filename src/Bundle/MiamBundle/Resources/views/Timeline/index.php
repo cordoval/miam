@@ -7,7 +7,6 @@
     <div class="titleWithActions">
         <h1>Timeline</h1>
     </div>
-
-    <?php echo $view->render('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails)) ?>
+    <?php $view->actions->output('MiamBundle:Timeline:_list', array('timeline' => $timeline, 'emails' => $emails)) ?>
 
 </div>

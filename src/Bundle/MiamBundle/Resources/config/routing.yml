@@ -1,6 +1,6 @@
 homepage:
   pattern:  /
-  defaults: { _controller: MiamBundle:Miam:index }
+  defaults: { _controller: MiamBundle:Sprint:current }
 
 backlog:
   pattern:  /backlog
@@ -55,7 +55,7 @@ project_edit:
   defaults: { _controller: MiamBundle:Project:edit }
 
 sprint_current:
-  pattern:  /sprint
+  pattern:  /
   defaults: { _controller: MiamBundle:Sprint:current }
 
 sprint_ping:

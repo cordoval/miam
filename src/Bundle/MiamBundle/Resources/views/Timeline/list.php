@@ -3,7 +3,7 @@
     <?php $story = $entry->getStory() ?>
     <li class="tentry<?php !$index && print ' first' ?> action_<?php echo $entry->getAction() ?> clearfix" id="tentry_<?php echo $entry->getId() ?>">
 
-        <img class="gravatar" src="<?php echo Bundle\GravatarBundle\Api::getUrl($emails[$entry->getUser()->getUsername()], array('size' => 40)) ?>" width="40" height="40"/>
+        <img class="gravatar" src="<?php echo Bundle\GravatarBundle\Api::getUrl(@$emails[$entry->getUser()->getUsername()], array('size' => 40)) ?>" width="40" height="40"/>
         <div class="title">
         <?php
         $storyUrl = $view->router->generate('story', array('id' => $story->getId()));

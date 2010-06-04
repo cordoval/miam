@@ -83,10 +83,16 @@ class SprintController extends Controller
             ->getRepository('Bundle\MiamBundle\Entities\Project')
             ->findForSprint($sprint);
 
+        $timeline = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
+        ->findLatest();
+
         return $this->render('MiamBundle:Sprint:current', array(
             'projects' => $projects,
             'sprint' => $sprint,
-            'statuses' => Story::getSprintStatuses() 
+            'statuses' => Story::getSprintStatuses(),
+            'timeline' => $timeline,
+            'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
     

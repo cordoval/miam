@@ -8,6 +8,10 @@
       var self = this;
       $('body').append($('<div id="fancy_story">').hide()); 
 
+      $('#timeline_close').click(function(){
+        $('.colRight').hide();
+      });
+      
       setInterval(function()
       {
         self.element.sprint('reload');
