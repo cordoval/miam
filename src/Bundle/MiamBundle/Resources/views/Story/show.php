@@ -17,3 +17,7 @@
 <div class="story_body">
   <?php echo $view->markdown->transform($story->getBody()) ?>
 </div>
+
+<div class="story_timeline">
+  <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails)) ?>
+</div>

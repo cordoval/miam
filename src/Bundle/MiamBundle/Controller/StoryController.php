@@ -109,8 +109,14 @@ class StoryController extends Controller
           $template = 'show';
         }
 
+        $timeline = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
+        ->findByStory($story);
+
         return $this->render('MiamBundle:Story:'.$template, array(
-            'story' => $story
+          'story' => $story,
+          'timeline' => $timeline,
+          'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
 

@@ -1,5 +1,4 @@
 <?php $view->extend('MiamBundle::layout') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/timeline.css') ?>
 <?php $view->slots->set('active_menu', 'timeline') ?>
 
 <div id="timeline">

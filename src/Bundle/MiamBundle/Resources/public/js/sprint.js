@@ -46,13 +46,13 @@
           revert: 'invalid'
         }).dblclick(function()
         {
-          $.fancybox.showActivity();
-          url = self.table.attr('data-story-url').replace(/_ID_/, storyId);
-          $('#fancy_story').html('Loading').load(url, function(){
-            $.fancybox.hideActivity();
-            $.fancybox({
-              'content': $(this).html()
-            });
+          $.ajax({
+            url: self.table.attr('data-story-url').replace(/_ID_/, storyId),
+            success: function(html) {
+              $.modal(html, {
+                overlayClose: true
+              });
+            }
           });
         });
         
