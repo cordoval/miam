@@ -16,7 +16,7 @@ class noSprintAvailableTest extends \WebTestCase
             ->getQuery()
             ->execute();
         
-        $crawler = $this->client->request('GET', '/sprint');
+        $crawler = $this->client->request('GET', '/');
 
         $this->client->followRedirect();
 
