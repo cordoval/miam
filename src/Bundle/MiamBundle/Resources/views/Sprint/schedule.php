@@ -12,7 +12,7 @@
 
         <?php if($story): ?>
         <div class="story story_planCard">
-            <?php echo $story->getName() ?>
+            <div class="story_name"><?php echo $story->getName() ?></div>
             <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
         </div>
         <form id="story_actions" action="<?php echo $view->router->generate('sprint_addStory') ?>" method="put">
