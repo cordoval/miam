@@ -31,5 +31,10 @@ class deleteAStoryTest extends \WebTestCase
         }
         
     }
+    
+    public function testDeleteAStoryWithAnEntry()
+    {
+        // TODO
+    }
 
 }

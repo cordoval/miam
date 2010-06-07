@@ -124,7 +124,7 @@ class StoryController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        $this->getEntityManager()->remove($story);
+        $story->markAsDeleted();
         $this->getEntityManager()->flush();
         $this->getUser()->setFlash('story_delete', array('story' => $story));
 

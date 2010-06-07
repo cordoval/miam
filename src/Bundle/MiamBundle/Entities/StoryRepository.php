@@ -12,7 +12,7 @@ class StoryRepository extends EntityRepository
       return $this->createQueryBuilder('s')
         ->select('s, p')
         ->where('s.id = :id')
-        ->leftJoin('s.project', 'p')
+        ->innerJoin('s.project', 'p')
         ->setParameter('id', $id)
         ->getQuery()
         ->getSingleResult();
@@ -23,6 +23,7 @@ class StoryRepository extends EntityRepository
         return $this->createQueryBuilder('s')
         ->orderBy('s.priority', 'asc')
         ->where('s.sprint is null')
+        ->andWhere('s.status > 0')
         ->getQuery()
         ->execute();
     }
