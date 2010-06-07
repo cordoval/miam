@@ -1,6 +1,7 @@
 <?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/story.css') ?>
+<?php $view->stylesheets->add('/bundles/miam/css/timeline.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/modal.css') ?>
 
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>

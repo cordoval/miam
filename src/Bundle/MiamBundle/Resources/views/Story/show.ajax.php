@@ -17,5 +17,5 @@
 </div>
 
 <div class="story_timeline">
-  <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails)) ?>
+  <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails, 'disable' => true)) ?>
 </div>

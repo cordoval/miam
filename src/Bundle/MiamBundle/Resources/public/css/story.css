@@ -15,11 +15,6 @@ li.story:hover .unscheduleLink {
   display: inline;
 }
 
-li.story .editLink a
-{
-  color: #B12822;
-}
-
 .story_id
 {
   width: 50px;
@@ -42,11 +37,6 @@ li.story .editLink a
 {
   color: #fff;
   text-decoration: none;
-}
-
-#story_actions
-{
-  margin-top: 15px;
 }
 
 .stories .story {
@@ -79,17 +69,6 @@ li.story .editLink a
   font-size: 1em;
 }
 
-.titleWithActions
-{
-  overflow: hidden;
-  margin-bottom: 15px;
-}
-
-.story a
-{
-  text-decoration: none;
-}
-
 .story {
   padding: 3px 5px;
   border: 1px solid #E0E0E0;
@@ -112,7 +91,6 @@ li.story .editLink a
   background: #BBB;
   width: 14px;
   text-align: center;
-  cursor: pointer;
   padding: 2px 3px;
   font-weight: bold;
   -moz-border-radius: 6px;
@@ -120,3 +98,6 @@ li.story .editLink a
   color: #fff;
 }
 
+.story_object .story_points {
+    cursor: pointer;
+}

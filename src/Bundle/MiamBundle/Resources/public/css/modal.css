@@ -10,17 +10,11 @@ div.simplemodal-data {
   max-width: 800px;
 }
 
-div.simplemodal-data .timeline .tentry {
-    display: block;
-    border-top: 1px solid #ddd;
-    padding: 0.5em;
-}
-
 div.simplemodal-overlay {
   background: #000;
 }
 
-div.simplemodal-container .story_title{
+div.simplemodal-container .story_title {
   padding: 1em;
   margin: 0;
   background: -moz-linear-gradient(center top , #EAEAEA, #CACACA) repeat scroll 0 0 #EFEFEF;
@@ -37,9 +31,10 @@ div.simplemodal-container .story_actions {
 
 div.simplemodal-container .story_actions a {
   float: right;
-  margin: 0 0.5em;
+  margin: 0 0 0 0.8em;
   color: #888;
   font-size: 0.8em;
+  text-decoration: none;
 }
 
 div.simplemodal-container .story_infos {
@@ -49,35 +44,15 @@ div.simplemodal-container .story_infos {
 }
 
 div.simplemodal-container .story_body {
-  /*border-radius: 0 0 9px 9px;*/
-  /*-moz-border-radius: 0 0 9px 9px;*/
-  /*-webkit-border-radius: 0 0 9px 9px;*/
   padding: 1em;
+  display: block;
 }
 
 div.simplemodal-container .timeline {
     background: #FFFFFF;
+    border-top: 1px solid #aaa;
 }
 
-div.simplemodal-container .timeline li:nth-child(even) {
-    background-color: #FAFAFA;
-}
-
-div.simplemodal-container .timeline img.gravatar {
-  float: left;
-  margin-right: 1em;
-}
-
-div.simplemodal-container .timeline .details {
-  margin-top: 0.4em;
-}
-
-div.simplemodal-container .timeline .points {
-  padding: 2px 5px;
-  background: #BBB;
-  color: #fff;
-  font-weight: bold;
-  border-radius: 12px;
-  -moz-border-radius: 12px;
-  -webkit-border-radius: 12px;
+div.simplemodal-container .timeline .tentry {
+    padding: 0.5em 0;
 }

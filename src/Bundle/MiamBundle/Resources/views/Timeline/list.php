@@ -10,14 +10,18 @@
         echo strtr(
             '<strong class="tentry_action"><span class="tentry_user">{user}</span> ' . $entry->renderAction() . ' </strong><span class="date">{date}</span>',
             array(
-                '{story}' => '<a href="' . $storyUrl . '">#'. $story->getId().'</a>',
+                '{story}' => '',
                 '{user}' => $entry->getUser()->getUsername(),
                 '{date}' => '<span class="tentry_ago">à ' . $entry->getCreatedAt()->format('H:i') . '</span>',
                 '{points}' => $story->getPoints() ? $story->getPoints() : '?'
         )) ?>
         </div>
-        <div class="details story_object" data-story-id="<?php echo $story->getId() ?>">
-            <a href="<?php echo $storyUrl ?>"><?php echo $story->getName() ?></a>
+        <div class="details <?php empty($disable) && print 'story_object' ?>" data-story-id="<?php echo $story->getId() ?>">
+            <?php if(empty($disable)): ?>
+                <a class="story_name" href="<?php echo $storyUrl ?>"><?php echo $story->getName() ?></a>
+            <?php else: ?>
+                <span class="story_name"><?php echo $story->getName() ?></span>
+            <?php endif; ?>
             <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
         </div>
     </li>
