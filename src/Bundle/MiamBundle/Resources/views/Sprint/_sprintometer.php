@@ -3,7 +3,7 @@
 $url = 'http://chart.apis.google.com/chart?chs=widthxheight&cht=type&chd=data&chl=label&chf=background';
 
 $params = array(
-    'width' => 90,
+    'width' => 120,
     'height' => 43,
     'type' => 'gom',
     'data' => 't:'.$percentage,
