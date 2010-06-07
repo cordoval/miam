@@ -48,6 +48,7 @@ class TimelineEntry
     protected $id;
 
     const ACTION_CREATE = 10;
+    const ACTION_DELETE = 15;
     const ACTION_ESTIMATE = 20;
     const ACTION_REESTIMATE = 30;
     const ACTION_COMMENT = 40;
@@ -61,6 +62,7 @@ class TimelineEntry
 
     protected $textualActions = array(
         self::ACTION_CREATE => 'a créé {story}',
+        self::ACTION_DELETE => 'a supprimé {story}',
         self::ACTION_ESTIMATE => 'a estimé {story} à {points} points',
         self::ACTION_REESTIMATE => 'a réestimé {story} à {points} points',
         self::ACTION_COMMENT => 'a commenté {story}',

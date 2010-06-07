@@ -55,6 +55,10 @@ class Observer
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_CREATE);
         });
 
+        $this->dispatcher->connect('miam.story.delete', function(Event $event) use ($observer) {
+            $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_DELETE);
+        });
+
         $this->dispatcher->connect('miam.story.schedule', function(Event $event) use ($observer) {
             $observer->addStoryEntry($event->getSubject(), TimelineEntry::ACTION_SCHEDULE);
         });

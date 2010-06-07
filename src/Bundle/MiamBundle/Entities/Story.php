@@ -221,6 +221,11 @@ class Story
         return $this->getStatus() === self::STATUS_FINISHED;
     }
 
+    public function isDeleted()
+    {
+        return $this->getStatus() === self::STATUS_DELETED;
+    }
+
     public function setStatus($status)
     {
         if(!in_array($status, array_keys($this->getStatuses())))
