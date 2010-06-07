@@ -13,7 +13,7 @@
                 '{story}' => '',
                 '{user}' => $entry->getUser()->getUsername(),
                 '{date}' => '<span class="tentry_ago">à ' . $entry->getCreatedAt()->format('H:i') . '</span>',
-                '{points}' => $story->getPoints() ? $story->getPoints() : '?'
+                '{points}' => $entry->getPoints() ? $entry->getPoints() : '?'
         )) ?>
         </div>
         <div class="details <?php empty($disable) && print 'story_object' ?>" data-story-id="<?php echo $story->getId() ?>">
@@ -22,7 +22,7 @@
             <?php else: ?>
                 <span class="story_name"><?php echo $story->getName() ?></span>
             <?php endif; ?>
-            <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
+            <span class="story_points"><?php echo $entry->getPoints() ? $entry->getPoints() : '?' ?></span>
         </div>
     </li>
     <?php endforeach ?>
