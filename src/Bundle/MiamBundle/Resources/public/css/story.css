@@ -5,28 +5,13 @@ ol.stories
   padding: 0;
 }
 
-li.story span.drag {
-    float: right;
-    width: 16px;
-    height: 16px;
-    display: block;
-    cursor: move;
-    background: url(../images/drag.png) top left no-repeat;
-}
-
-li.story .editLink,
-li.story .unscheduleLink,
-li.story .deleteLink
-{
+li.story .unscheduleLink {
   margin-left: 10px;
   font-size: 12px;
   display: none;
 }
 
-li.story:hover .editLink,
-li.story:hover .unscheduleLink,
-li.story:hover .deleteLink
-{
+li.story:hover .unscheduleLink {
   display: inline;
 }
 
@@ -125,14 +110,11 @@ li.story .editLink a
   -webkit-border-radius: 4px;
   border-radius: 4px;
   color: #333;
+  cursor: pointer;
 }
 .story:hover {
   background: -moz-linear-gradient(center top , #FAFAFA, #F0CDCA) repeat scroll 0 0 #EFEFEF;
   background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F0CDCA));
-}
-.story.ui-draggable,
-.ui-sortable .story{
-    cursor: move;
 }
 
 .story_points {
