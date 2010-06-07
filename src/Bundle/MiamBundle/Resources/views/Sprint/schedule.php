@@ -11,7 +11,7 @@
         <h2>Story candidate</h2>
 
         <?php if($story): ?>
-        <div class="story story_planCard" data-story-id="<?php echo $story->getId() ?>">
+        <div class="story story_object story_planCard" data-story-id="<?php echo $story->getId() ?>">
             <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
             <strong class="story_name"><?php echo $story->getName() ?></strong>
             <span class="story_project" style="background:<?php echo $story->getProject()->getColor() ?>">
