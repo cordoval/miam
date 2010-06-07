@@ -269,7 +269,7 @@ class Story
     public static function getSprintStatuses()
     {
       $statuses = self::getStatuses();
-      unset($statuses[self::STATUS_CREATED]);
+      unset($statuses[self::STATUS_CREATED], $statuses[self::STATUS_DELETED]);
       return $statuses;
     } 
 
