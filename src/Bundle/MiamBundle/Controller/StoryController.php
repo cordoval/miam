@@ -91,6 +91,11 @@ class StoryController extends Controller
 
     public function showAction($id)
     {
+        if(!$this->getRequest()->isXmlHttpRequest())
+        {
+            throw new \Exception('The story show view can only be accessed from ajax');
+        }
+
         $story = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
         ->find($id);
@@ -100,20 +105,11 @@ class StoryController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        if($this->getRequest()->isXmlHttpRequest())
-        {
-          $template = 'show.ajax';
-        }
-        else
-        {
-          $template = 'show';
-        }
-
         $timeline = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
         ->findByStory($story);
 
-        return $this->render('MiamBundle:Story:'.$template, array(
+        return $this->render('MiamBundle:Story:show.ajax', array(
           'story' => $story,
           'timeline' => $timeline,
           'emails' => $this->container->getParameter('miam.user.emails')
