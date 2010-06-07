@@ -9,7 +9,11 @@ class deleteAStoryTest extends \WebTestCase
     
     public function testDeleteAStoryRemovesItFromTheBacklog()
     {
+        $this->login('laet', 'changeme');
+
         $crawler = $this->client->request('GET', '/');
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('#Smoke in the water</a>#');
         $this->client->click($crawler->selectLink('Smoke in the water')->link());
         
         $crawler = $this->client->getCrawler();
@@ -25,11 +29,13 @@ class deleteAStoryTest extends \WebTestCase
         $this->addRequestTester();
         $this->client->assertRequestParameter('_route', 'sprint_schedule');
         
-        $this->client->assertResponseNotRegExp('/Smoke in the water/');
+        // flash message
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('/Smoke in the water/');
+        $this->client->assertResponseNotRegExp('/Smoke in the water<\/a>/');
         if($this->testFlashes) {
             $this->client->assertResponseSelectEquals('.flash_info', array('_text'), array('/La story <b>"Smoke in the water"<\/b> a été supprimée'));
         }
-        
     }
     
     public function testDeleteAStoryWithAnEntry()

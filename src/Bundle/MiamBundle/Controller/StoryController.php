@@ -126,7 +126,7 @@ class StoryController extends Controller
 
         $story->markAsDeleted();
         $this->getEntityManager()->flush();
-        $this->getUser()->setFlash('story_delete', array('story' => $story));
+        $this->getUser()->setFlash('story_delete', array('story' => $story->getName()));
 
         return $this->redirect($this->generateUrl('sprint_schedule'));
     }

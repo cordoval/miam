@@ -11,7 +11,7 @@ class UpdateTimelineTest extends \WebTestCase
     public function testScheduleStoryUpdatesTimeline()
     {
         $this->login('laet', 'changeme');
-
+        
         $crawler = $this->client->request('GET', '/sprint/schedule');
 
         $form = $crawler->selectButton('Ajouter au sprint →')->form();
