@@ -38,9 +38,27 @@ class deleteAStoryTest extends \WebTestCase
         }
     }
     
-    public function testDeleteAStoryWithAnEntry()
+    public function testDeleteAStoryRemovesItFromTheSprint()
     {
-        // TODO
+        //$this->login('laet', 'changeme');
+
+        //$crawler = $this->client->request('GET', '/sprint/schedule');
+        //$form = $crawler->filter('#addStory')->form();
+        //$this->client->submit($form, array(
+        //));
+        //$this->client->followRedirect();
+
+        //$crawler = $this->client->request('GET', '/');
+        //$this->client->click($crawler->selectLink('Smoke in the water')->link());
+
+        //$crawler = $this->client->click($crawler->selectLink('Supprimer')->link());
+        //$this->addRequestTester();
+        //$this->client->assertRequestParameter('_route', 'story_delete');
+        //$this->client->assertRequestParameter('_controller', 'MiamBundle:Story:delete');
+        //$this->client->followRedirect();
+
+        //$crawler = $this->client->request('GET', '/');
+        //$this->addResponseTester();
     }
 
 }
