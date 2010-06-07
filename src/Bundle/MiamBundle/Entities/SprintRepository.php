@@ -28,11 +28,12 @@ class SprintRepository extends EntityRepository
      */
     public function findCurrentWithStories()
     {
-        return $this->createQueryBuilder('s')
-        ->select('s, story')
-        ->where('s.isCurrent = 1')
-        ->leftJoin('s.stories', 'story')
-        ->orderBy('s.id', 'asc')
+        return $this->createQueryBuilder('sprint')
+        ->select('sprint, story')
+        ->where('sprint.isCurrent = 1')
+        ->leftJoin('sprint.stories', 'story', \Doctrine\ORM\Query\Expr\Join::WITH, 'story.status > 0')
+        ->leftJoin('story.project', 'project')
+        ->orderBy('story.status', 'asc')
         ->addOrderBy('story.priority', 'asc')
         ->getQuery()
         ->getSingleResult()

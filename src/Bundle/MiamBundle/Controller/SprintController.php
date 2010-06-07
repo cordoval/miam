@@ -34,7 +34,7 @@ class SprintController extends Controller
                 
                 $this->getUser()->setFlash('sprint_create', array('sprint' => $sprint->__toString()));
 
-                return $this->redirect($this->generateUrl('backlog'));
+                return $this->redirect($this->generateUrl('sprint_schedule'));
             }
             
         }
@@ -83,10 +83,16 @@ class SprintController extends Controller
             ->getRepository('Bundle\MiamBundle\Entities\Project')
             ->findForSprint($sprint);
 
+        $timeline = $this->getEntityManager()
+        ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
+        ->findLatest();
+
         return $this->render('MiamBundle:Sprint:current', array(
             'projects' => $projects,
             'sprint' => $sprint,
-            'statuses' => Story::getSprintStatuses() 
+            'statuses' => Story::getSprintStatuses(),
+            'timeline' => $timeline,
+            'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
     

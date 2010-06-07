@@ -1,7 +1,7 @@
 <?php $view->extend('MiamBundle::layout') ?>
 
 <div id="breadcrumb">
-  <a id="back_backlog" href="<?php echo $view->router->generate('backlog') ?>">Backlog</a>
+  <a id="back_backlog" href="<?php echo $view->router->generate('sprint_schedule') ?>">Backlog</a>
   &gt;
   <a id="back_project" href="<?php echo $view->router->generate('project', array('id' => $story->getProject()->getId())) ?>"><?php echo $story->getProject()->getName() ?></a>
   &gt;

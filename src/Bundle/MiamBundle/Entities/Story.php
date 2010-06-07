@@ -73,6 +73,7 @@ class Story
     const STATUS_TODO = 30;
     const STATUS_WIP = 40;
     const STATUS_FINISHED = 50;
+    const STATUS_DELETED = -10;
 
     /**
      * @Column(name="id", type="integer")
@@ -242,7 +243,8 @@ class Story
         self::STATUS_PENDING => 'pending',
         self::STATUS_TODO => 'todo',
         self::STATUS_WIP => 'work in progress',
-        self::STATUS_FINISHED => 'finished'
+        self::STATUS_FINISHED => 'finished',
+        self::STATUS_DELETED => 'deleted'
       );
     }
 
@@ -267,7 +269,7 @@ class Story
     public static function getSprintStatuses()
     {
       $statuses = self::getStatuses();
-      unset($statuses[self::STATUS_CREATED]);
+      unset($statuses[self::STATUS_CREATED], $statuses[self::STATUS_DELETED]);
       return $statuses;
     } 
 
@@ -304,5 +306,11 @@ class Story
     public function moveToTheEnd()
     {
         $this->setPriority(1000);
+    }
+    
+    public function markAsDeleted()
+    {
+        $this->setStatus(self::STATUS_DELETED);
+        $this->setSprint();
     }
 }

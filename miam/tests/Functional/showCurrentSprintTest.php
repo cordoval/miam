@@ -9,10 +9,9 @@ class showCurrentSprintTest extends \WebTestCase
     
     public function testShowSprint()
     {
-        $crawler = $this->client->request('GET', '/sprint');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addRequestTester();
-        $this->client->assertRequestParameter('_route', 'sprint_current');
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Sprint:current');
 
         $this->addResponseTester();

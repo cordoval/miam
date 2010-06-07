@@ -11,13 +11,13 @@ class UpdateTimelineTest extends \WebTestCase
     public function testScheduleStoryUpdatesTimeline()
     {
         $this->login('laet', 'changeme');
-
+        
         $crawler = $this->client->request('GET', '/sprint/schedule');
 
         $form = $crawler->selectButton('Ajouter au sprint →')->form();
         $this->client->submit($form, array());
 
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_SCHEDULE.' .tentry_user', array('_text'), array('laet'));
@@ -27,7 +27,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
 
-        $crawler = $this->client->request('GET', '/sprint');
+        $crawler = $this->client->request('GET', '/');
 
         $firstStoryId = $crawler->filter('#sprintBacklog div.story')->attr('data-story-id');
 
@@ -47,7 +47,7 @@ class UpdateTimelineTest extends \WebTestCase
             ));
             $this->addResponseTester();
 
-            $crawler = $this->client->request('GET', '/timeline');
+            $crawler = $this->client->request('GET', '/');
 
             $this->addResponseTester();
             $action = TimelineEntry::getActionForStoryStatus($status);
@@ -65,7 +65,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'bluk'
         ));
         
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_CREATE.' .tentry_user', array('_text'), array('laet'));
@@ -81,7 +81,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'bluk'
         ));
         
-        $crawler = $this->client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('bluk')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
@@ -90,7 +90,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'bluk',
             'story[points]' => 100
         ));
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_ESTIMATE.' .tentry_user', array('_text'), array('laet'));
@@ -100,7 +100,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
         
-        $crawler = $this->client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('Smoke in the water')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
@@ -109,7 +109,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'Smoke in the water',
             'story[points]' => 100
         ));
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_REESTIMATE.' .tentry_user', array('_text'), array('laet'));
@@ -119,7 +119,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
 
-        $crawler = $this->client->request('GET', '/sprint');
+        $crawler = $this->client->request('GET', '/');
 
         $firstStoryId = $crawler->filter('#sprintBacklog div.story')->attr('data-story-id');
 
@@ -128,7 +128,7 @@ class UpdateTimelineTest extends \WebTestCase
             'points' => 100
         ));
 
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_REESTIMATE.' .tentry_user', array('_text'), array('laet'));
@@ -138,7 +138,7 @@ class UpdateTimelineTest extends \WebTestCase
     {
         $this->login('laet', 'changeme');
         
-        $crawler = $this->client->request('GET', '/');
+        $crawler = $this->client->request('GET', '/sprint/schedule');
         
         $crawler = $this->client->click($crawler->selectLink('Smoke in the water')->link());
         $crawler = $this->client->click($crawler->selectLink('Modifier')->link());
@@ -147,7 +147,7 @@ class UpdateTimelineTest extends \WebTestCase
             'story[name]' => 'Water in the smoke',
             'story[points]' => 10
         ));
-        $crawler = $this->client->request('GET', '/timeline');
+        $crawler = $this->client->request('GET', '/');
 
         $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.tentry.first.action_'.TimelineEntry::ACTION_EDIT.' .tentry_user', array('_text'), array('laet'));

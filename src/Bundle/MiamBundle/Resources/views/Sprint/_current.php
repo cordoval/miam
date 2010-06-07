@@ -1,7 +1,7 @@
 <?php
     $total = $sprint->getTotalPoints();
     $finished = $sprint->getFinishedPoints();
-    $percentage = floor($finished/$total*100);
+    $percentage = $total ? floor($finished/$total*100) : 0;
 ?>
 
 <div class="titleWithActions">

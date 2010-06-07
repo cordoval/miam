@@ -130,11 +130,11 @@ class StoryController extends Controller
             throw new NotFoundHttpException("Story not found");
         }
 
-        $this->getEntityManager()->remove($story);
+        $story->markAsDeleted();
         $this->getEntityManager()->flush();
-        $this->getUser()->setFlash('story_delete', array('story' => $story));
+        $this->getUser()->setFlash('story_delete', array('story' => $story->getName()));
 
-        return $this->redirect($this->generateUrl('backlog'));
+        return $this->redirect($this->generateUrl('sprint_schedule'));
     }
 
     public function editAction($id)
@@ -171,7 +171,7 @@ class StoryController extends Controller
                 }
 
                 $this->getUser()->setFlash('story_update', array('story' => $story));
-                return $this->redirect($this->generateUrl('backlog'));
+                return $this->redirect($this->generateUrl('sprint_schedule'));
             }
         }
 
@@ -200,7 +200,7 @@ class StoryController extends Controller
                 $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
                 
                 $this->getUser()->setFlash('story_create', array('story' => $story));
-                return $this->redirect($this->generateUrl('backlog'));
+                return $this->redirect($this->generateUrl('sprint_schedule'));
             }
             
         }

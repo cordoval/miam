@@ -14,7 +14,8 @@ class ProjectRepository extends EntityRepository
     public function findForSprint(Sprint $sprint)
     {
         return $this->createQueryBuilder('p')
-        ->innerJoin('p.stories', 's')
+        ->select('p', 's')
+        ->innerJoin('p.stories', 's', 'WITH', 's.status > 0')
         ->where('s.sprint = :id')
         ->orderBy('p.name', 'asc')
         ->addOrderBy('s.priority', 'asc')
