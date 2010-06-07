@@ -77,6 +77,7 @@ class Observer
         $tentry = new TimelineEntry();
         $tentry->setUser($doctrineUser);
         $tentry->setStory($story);
+        $tentry->setPoints($story->getPoints());
         $tentry->setAction($action);
 
         $this->em->persist($tentry);
