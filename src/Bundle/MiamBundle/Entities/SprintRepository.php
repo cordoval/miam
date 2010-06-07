@@ -33,13 +33,13 @@ class SprintRepository extends EntityRepository
         ->where('sprint.isCurrent = 1')
         ->leftJoin('sprint.stories', 'story', \Doctrine\ORM\Query\Expr\Join::WITH, 'story.status > 0')
         ->leftJoin('story.project', 'project')
-        ->orderBy('story.status', 'asc')
-        ->addOrderBy('story.priority', 'asc')
+        ->orderBy('project.name', 'asc')
+        ->addOrderBy('story.name', 'asc')
         ->getQuery()
         ->getSingleResult()
         ;
     }
-    
+
     /**
      * Mark all sprint except $sprint as not current
      *

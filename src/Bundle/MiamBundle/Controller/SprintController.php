@@ -51,7 +51,6 @@ class SprintController extends Controller
             ->findCurrentWithStories();
 
         if($sprint->getHash() != $hash) {
-
             $projects = $this->getEntityManager()
                 ->getRepository('Bundle\MiamBundle\Entities\Project')
                 ->findForSprint($sprint);
