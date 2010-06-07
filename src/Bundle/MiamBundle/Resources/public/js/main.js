@@ -15,7 +15,7 @@
       return true;
     });
 
-    $('.story .story_points').live('click', function()
+    $('.story_object .story_points').live('click', function()
     {
         var oldPoints = $(this).text();
         var points = prompt("Nombre de points pour cette story :", oldPoints);
@@ -36,7 +36,7 @@
         return false;
     });
 
-    $('.story').live('click', function()
+    $('.story_object').live('click', function()
     {
         var storyId = $(this).attr('data-story-id');
         $.modal('');

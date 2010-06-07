@@ -32,7 +32,7 @@
                 <?php foreach($statuses as $status => $name): ?>
                 <td data-status="<?php echo $status ?>">
                     <?php if($story->isStatus($status)): ?>
-                    <div class="story" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?>
+                    <div class="story story_object" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?>
                         <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
                     </div>
                     <?php endif; ?>

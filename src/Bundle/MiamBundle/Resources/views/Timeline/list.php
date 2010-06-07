@@ -16,9 +16,9 @@
                 '{points}' => $story->getPoints() ? $story->getPoints() : '?'
         )) ?>
         </div>
-        <div class="details">
+        <div class="details story_object" data-story-id="<?php echo $story->getId() ?>">
             <a href="<?php echo $storyUrl ?>"><?php echo $story->getName() ?></a>
-            <span class="points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
+            <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
         </div>
     </li>
     <?php endforeach ?>

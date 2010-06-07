@@ -28,17 +28,6 @@ li.story .editLink a
   opacity: 0.5;
 }
 
-.story_points
-{
-  font-size:0.7em;
-  background: #B12822;
-  color: #fff;
-  padding: 3px 5px;
-  -moz-border-radius: 6px;
-  -webkit-border-radius: 6px;
-  margin-left: 5px;
-}
-
 .story_project
 {
   font-size:0.7em;
@@ -120,13 +109,14 @@ li.story .editLink a
 .story_points {
   float: right;
   font-size: 0.9em;
-  overflow: auto;
+  background: #BBB;
   width: 14px;
-  float: right;
   text-align: center;
   cursor: pointer;
   padding: 2px 3px;
   font-weight: bold;
-  opacity: 0.6;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  color: #fff;
 }
 
