@@ -13,7 +13,7 @@
 <?php echo $form->renderFormTag($view->router->generate('story_edit', array('id' => $story->getId()))) ?>
      <table>
       <?php echo $form['name']->renderErrors() ?>
-      <label>Name: <?php echo $form['name']->render(); ?></label>
+      <label>Name: <?php echo $form['name']->render(array('class' => 'focus_me')); ?></label>
 <br />
       <?php echo $form['body']->renderErrors() ?>
       <label>Body: <?php echo $form['body']->render(); ?></label> 

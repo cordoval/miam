@@ -15,6 +15,8 @@
       return true;
     });
 
+    $('.focus_me').focus();
+
     $('.story_object .story_points').live('click', function()
     {
         var oldPoints = $(this).text();
