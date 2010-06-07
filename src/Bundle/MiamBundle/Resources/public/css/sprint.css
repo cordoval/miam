@@ -177,7 +177,7 @@ div#timeline {
 }
 
 .bd .timeline li:nth-child(even) {
-    background-color: #F4F4F4;
+    background-color: #FAFAFA;
 }
 
 .bd .timeline li:last-child {

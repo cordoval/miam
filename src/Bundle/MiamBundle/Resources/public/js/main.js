@@ -38,14 +38,12 @@
 
     $('.story').live('click', function()
     {
-        $.ajax({
-            url: miam_config.story_url.replace(/_ID_/, $(this).attr('data-story-id')),
-            success: function(html) {
-                $.modal(html, {
-                overlayClose: true
-                });
-            }
-        });
+        var storyId = $(this).attr('data-story-id');
+        $.modal('');
+        $.ajax({ url: miam_config.story_url.replace(/_ID_/, storyId), success: function(html) {
+            $.modal.close();
+            $.modal(html, { overlayClose: true });
+        }});
 
         return false;
     });
