@@ -17,7 +17,7 @@ class showAStoryTest extends \WebTestCase
         $this->client->assertRequestParameter('_controller', 'MiamBundle:Story:show');
 
         $this->addResponseTester();
-        $this->client->assertResponseSelectEquals('h1.story', array('_text'), array('Smoke in the water'));
+        $this->client->assertResponseSelectEquals('.story_title', array('_text'), array('Smoke in the water'));
     }
 
 }

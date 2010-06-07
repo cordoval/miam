@@ -15,8 +15,8 @@ class StoryController extends Controller
     public function indexAction()
     {
         $stories = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->findBacklog();
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->findBacklog();
 
         return $this->render('MiamBundle:Story:index', array(
             'stories' => $stories,
@@ -28,8 +28,8 @@ class StoryController extends Controller
         $id = $this->getRequest()->get('story_id');
 
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->find($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
@@ -57,8 +57,8 @@ class StoryController extends Controller
         $id = $this->getRequest()->get('story_id');
 
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->find($id);
 
         if (!$story)
         {
@@ -75,14 +75,14 @@ class StoryController extends Controller
 
         return $this->createResponse('done');
     }
-    
+
     public function sortAction()
     {
         $ids = $this->getRequest()->get('story');
 
         $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->sort($ids);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->sort($ids);
 
         $this->getEntityManager()->flush();
 
@@ -91,36 +91,36 @@ class StoryController extends Controller
 
     public function showAction($id)
     {
-        if(!$this->getRequest()->isXmlHttpRequest())
-        {
-            throw new \Exception('The story show view can only be accessed from ajax');
+        if(!$this->getRequest()->isXmlHttpRequest()) {
+            if('test' !== $this->container['kernel.environment']) {
+                throw new \Exception('The story show view can only be accessed from ajax');
+            }
         }
 
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->find($id);
 
-        if (!$story)
-        {
+        if (!$story) {
             throw new NotFoundHttpException("Story not found");
         }
 
         $timeline = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
-        ->findByStory($story);
+            ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
+            ->findByStory($story);
 
         return $this->render('MiamBundle:Story:show.ajax', array(
-          'story' => $story,
-          'timeline' => $timeline,
-          'emails' => $this->container->getParameter('miam.user.emails')
+            'story' => $story,
+            'timeline' => $timeline,
+            'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
 
     public function deleteAction($id)
     {
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->find($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
@@ -136,8 +136,8 @@ class StoryController extends Controller
     public function editAction($id)
     {
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->findOneByIdWithProject($id);
+            ->getRepository('Bundle\MiamBundle\Entities\Story')
+            ->findOneByIdWithProject($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
@@ -146,7 +146,7 @@ class StoryController extends Controller
         $projects = $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Project')->findAllIndexedById();
 
         $form = $this->createForm($story, $projects);
-        
+
         if('POST' === $this->getRequest()->getMethod()) {
             $snapshot = $story->toArray();
             $form->bind($this->getRequest()->get($form->getName()));
@@ -189,16 +189,16 @@ class StoryController extends Controller
 
             if($form->isValid()) {
                 $story->moveToTheEnd();
-                
+
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
-                
+
                 $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
-                
+
                 $this->getUser()->setFlash('story_create', array('story' => $story));
                 return $this->redirect($this->generateUrl('sprint_schedule'));
             }
-            
+
         }
 
         return $this->render('MiamBundle:Story:new', array(
@@ -209,9 +209,9 @@ class StoryController extends Controller
     public function createForm(Story $story, array $projects)
     {
         $options = array(
-          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
-          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml',
-          'em' => $this->getEntityManager()
+            'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
+            'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml',
+            'em' => $this->getEntityManager()
         );
 
         return new StoryForm($story, array_merge($options, array('projects' => $projects)));
@@ -221,5 +221,5 @@ class StoryController extends Controller
     {
         $this->container->getEventDispatcherService()->notify($event);
     }
-    
+
 }

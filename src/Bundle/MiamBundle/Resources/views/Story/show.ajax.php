@@ -1,6 +1,4 @@
-<div class="story_title">
-    <?php echo $story->getName() ?>
-</div>
+<div class="story_title"><?php echo $story->getName() ?></div>
 
 <div class="story_body clearfix">
     <?php echo $view->markdown->transform($story->getBody()) ?>
