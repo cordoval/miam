@@ -24,6 +24,13 @@ class TimelineEntry
     protected $story;
 
     /**
+     * The story points when this entry was created
+     * @Column(name="points", type="integer", nullable=true)
+     * @var int
+     */
+    protected $points = null;
+
+    /**
      * @Column(name="created_at", type="datetime")
      */
     protected $createdAt;
@@ -32,6 +39,13 @@ class TimelineEntry
      * @Column(name="action", type="integer") 
      */
     protected $action;
+    
+    /**
+     * @Column(name="id", type="integer")
+     * @Id
+     * @GeneratedValue(strategy="AUTO")
+     */
+    protected $id;
 
     const ACTION_CREATE = 10;
     const ACTION_ESTIMATE = 20;
@@ -56,13 +70,6 @@ class TimelineEntry
         self::ACTION_STATE_WIP => "a commencé à travailler sur {story}",
         self::ACTION_STATE_FINISHED => "a fini {story}"
     );
-    
-    /**
-     * @Column(name="id", type="integer")
-     * @Id
-     * @GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
 
     public function __construct()
     {
@@ -75,6 +82,25 @@ class TimelineEntry
         if(null === $this->createdAt) {
             $this->createdAt = new \DateTime();
         }
+    }
+    
+    /**
+     * Get points
+     * @return int
+     */
+    public function getPoints()
+    {
+      return $this->points;
+    }
+    
+    /**
+     * Set points
+     * @param  int
+     * @return null
+     */
+    public function setPoints($points)
+    {
+      $this->points = $points;
     }
     
     /**
