@@ -1,0 +1,76 @@
+div.simplemodal-data {
+  background: #F0F0F0;
+  box-shadow: 0 0 10px #444;
+  -moz-box-shadow: 0 0 10px #444;
+  -webkit-box-shadow: 0 0 10px #444;
+  /*border-radius: 9px;*/
+  /*-moz-border-radius: 9px;*/
+  /*-webkit-border-radius: 9px;*/
+  font-family:Arial,sans-serif;
+  min-width: 400px;
+  max-width: 800px;
+}
+
+div.simplemodal-data .timeline .tentry {
+    display: block;
+    border-top: 1px solid #ddd;
+    padding: 0.5em;
+}
+
+div.simplemodal-overlay {
+  background: #fff;
+}
+
+div.simplemodal-container .titleWithActions {
+  /*border-radius: 9px 9px 0 0;*/
+  /*-moz-border-radius: 9px 9px 0 0;*/
+  /*-webkit-border-radius: 9px 9px 0 0;*/
+  background: #E0E0E0;
+  padding: 1em;
+  margin: 0;
+}
+
+div.simplemodal-container .titleWithActions .story_title {
+  font-family:Arial,sans-serif;
+  font-weight: bold;
+}
+
+div.simplemodal-container .titleWithActions a {
+  float: right;
+  margin: 0 0.5em;
+  color: #888;
+}
+
+div.simplemodal-container .story_body {
+  /*border-radius: 0 0 9px 9px;*/
+  /*-moz-border-radius: 0 0 9px 9px;*/
+  /*-webkit-border-radius: 0 0 9px 9px;*/
+  padding: 1em;
+}
+
+div.simplemodal-container .timeline {
+    background: #FFFFFF;
+}
+
+div.simplemodal-container .timeline li:nth-child(even) {
+    background-color: #F4F4F4;
+}
+
+div.simplemodal-container .timeline img.gravatar {
+  float: left;
+  margin-right: 1em;
+}
+
+div.simplemodal-container .timeline .details {
+  margin-top: 0.4em;
+}
+
+div.simplemodal-container .timeline .points {
+  padding: 2px 5px;
+  background: #BBB;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 12px;
+  -moz-border-radius: 12px;
+  -webkit-border-radius: 12px;
+}

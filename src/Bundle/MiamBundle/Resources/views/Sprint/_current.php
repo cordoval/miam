@@ -13,7 +13,7 @@
 </div>
 
 <div id="sprintBacklog">
-    <table data-move-url="<?php echo $view->router->generate('story_move') ?>" data-story-url="<?php echo $view->router->generate('story', array('id' => '_ID_')) ?>" data-ping-url="<?php echo $view->router->generate('sprint_ping', array('hash' => '_HASH_')) ?>" data-sprint-hash="<?php echo $sprint->getHash() ?>" data-reestimate-url="<?php echo $view->router->generate('story_reestimate') ?>">
+    <table data-move-url="<?php echo $view->router->generate('story_move') ?>" data-ping-url="<?php echo $view->router->generate('sprint_ping', array('hash' => '_HASH_')) ?>" data-sprint-hash="<?php echo $sprint->getHash() ?>">
         <thead>
         <tr>
             <th class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</th>

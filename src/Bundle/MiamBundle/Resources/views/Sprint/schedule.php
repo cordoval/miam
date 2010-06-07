@@ -11,9 +11,15 @@
         <h2>Story candidate</h2>
 
         <?php if($story): ?>
-        <div class="story story_planCard">
-            <div class="story_name"><?php echo $story->getName() ?></div>
+        <div class="story story_planCard" data-story-id="<?php echo $story->getId() ?>">
             <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+            <strong class="story_name"><?php echo $story->getName() ?></strong>
+            <span class="story_project" style="background:<?php echo $story->getProject()->getColor() ?>">
+                <a href="<?php echo $view->router->generate('project', array('id' => $story->getProject()->getId())) ?>">
+                    <?php echo $story->getProject()->getName() ?>
+                </a>
+            </span>
+            <div class="story_body"><?php echo $story->getBody() ?></div>
         </div>
         <form id="story_actions" action="<?php echo $view->router->generate('sprint_addStory') ?>" method="put">
             <input type="hidden" name="story[id]" value="<?php echo $story->getId() ?>" />

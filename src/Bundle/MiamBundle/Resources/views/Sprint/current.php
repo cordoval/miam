@@ -1,6 +1,5 @@
 <?php $view->extend('MiamBundle::layoutFullpage') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/timeline.css') ?>
 <?php $view->slots->set('active_menu', 'sprint_current') ?>
 
 

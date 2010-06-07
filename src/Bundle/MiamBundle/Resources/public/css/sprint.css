@@ -135,21 +135,6 @@ th.project {
   font-weight: bold;
   text-shadow: 0 0 3px #000;
 }
-div.story {
-  padding: 3px 5px;
-  border: 1px solid #E0E0E0;
-  background: -moz-linear-gradient(center top , #FAFAFA, #E6E6E6) repeat scroll 0 0 #EFEFEF;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#E6E6E6));
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-  cursor: move;
-  color: #333;
-}
-div.story:hover {
-  background: -moz-linear-gradient(center top , #FAFAFA, #F0CDCA) repeat scroll 0 0 #EFEFEF;
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#FAFAFA), to(#F0CDCA));
-}
 
 td.droppable_hover {
   background: #88FF88;
@@ -158,20 +143,6 @@ td.droppable_hover {
 #sprint_current .story {
   overflow: hidden;
 }
-
-#sprint_current .story_points {
-  float: right;
-  font-size: 0.9em;
-  overflow: auto;
-  width: 14px;
-  float: right;
-  text-align: center;
-  cursor: pointer;
-  padding: 2px 3px;
-  font-weight: bold;
-  opacity: 0.6;
-}
-
 
 .colLeft {
   overflow: auto;
@@ -203,6 +174,10 @@ div#timeline {
   display: block;
   padding: 1em 0;
   border-bottom: 1px solid #EAEAEA;
+}
+
+.bd .timeline li:nth-child(even) {
+    background-color: #F4F4F4;
 }
 
 .bd .timeline li:last-child {

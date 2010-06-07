@@ -48,43 +48,8 @@
           distance:   5,
           containment: $(this).parent().parent(),
           revert: 'invalid'
-        }).dblclick(function()
-        {
-          $.ajax({
-            url: self.table.attr('data-story-url').replace(/_ID_/, storyId),
-            success: function(html) {
-              $.modal(html, {
-                overlayClose: true
-              });
-            }
-          });
         });
         
-        $(this).find('div.story_points').click(function()
-        {
-          var oldPoints = $(this).html();
-          var points = prompt("Nombre de points pour cette story :", oldPoints);
-          if(points && points != oldPoints) {
-            if(isNaN(parseInt(points))) {
-              alert("Nombre de points invalide : " + points);
-              
-            } else  {
-              $(this).html(points);
-              $.ajax({
-                type:    'POST',
-                url:     self.table.attr('data-reestimate-url'),
-                data:    {
-                  story_id: storyId,
-                  points:   points
-                },
-                success: function()
-                {
-                  self.element.sprint('reload');
-                }
-              });
-            }
-          }
-        });
       });
 
       this.element.find('td').each(function()
