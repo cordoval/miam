@@ -28,6 +28,7 @@ div.bd div.content {
   background:none repeat scroll 0 0 #FFFFFF;
   border:1px solid #C4C4C4;
   padding-top:0;
+  margin-left: 15px;
 }
 
 #sprintBacklog 
