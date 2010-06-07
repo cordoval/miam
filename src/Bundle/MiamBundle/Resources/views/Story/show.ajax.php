@@ -11,6 +11,9 @@
     <div class="story_actions">
         <a href="<?php echo $view->router->generate('story_edit', array('id' => $story->getId())) ?>">Modifier</a>
         <a title="Supprimer la story" class="js_confirm"  href="<?php echo $view->router->generate('story_delete', array('id' => $story->getId())) ?>">Supprimer</a>
+        <?php if($story->isScheduled()): ?>
+            <a title="Retirer la story du sprint" class="js_confirm" href="<?php echo $view->router->generate('sprint_unschedule', array('id' => $story->getId())) ?>">Déplanifier</a> 
+        <?php endif; ?>
     </div>
 </div>
 

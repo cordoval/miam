@@ -134,6 +134,7 @@ class SprintController extends Controller
 
         $sprint->removeStory($story);
         $story->setStatus(Story::STATUS_CREATED);
+        $this->notify(new Event($story, 'miam.story.unschedule'));
         $this->getEntityManager()->flush();
         
         return $this->redirect($this->generateUrl('sprint_schedule'));

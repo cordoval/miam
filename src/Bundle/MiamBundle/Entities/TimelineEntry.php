@@ -53,6 +53,7 @@ class TimelineEntry
     const ACTION_COMMENT = 40;
     const ACTION_EDIT = 50;
     const ACTION_SCHEDULE = 60;
+    const ACTION_UNSCHEDULE = 70;
     const ACTION_STATE_PENDING = 1000;
     const ACTION_STATE_TODO = 1010;
     const ACTION_STATE_WIP = 1020;
@@ -65,6 +66,7 @@ class TimelineEntry
         self::ACTION_COMMENT => 'a commenté {story}',
         self::ACTION_EDIT => 'a mis à jour {story}',
         self::ACTION_SCHEDULE => 'a ajouté {story} au sprint',
+        self::ACTION_UNSCHEDULE => 'a retiré {story} du sprint',
         self::ACTION_STATE_PENDING => "a passé {story} dans l'état EN ATTENTE",
         self::ACTION_STATE_TODO => "a passé {story} dans l'état À FAIRE",
         self::ACTION_STATE_WIP => "a commencé à travailler sur {story}",
