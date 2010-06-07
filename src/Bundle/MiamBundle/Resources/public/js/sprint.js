@@ -15,7 +15,7 @@
       setInterval(function()
       {
         self.element.sprint('reload');
-      }, 5000);
+      }, 8000);
 
       this.refresh();
     },
