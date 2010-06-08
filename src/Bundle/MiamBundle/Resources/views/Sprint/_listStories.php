@@ -8,9 +8,6 @@
                 </a>
             </span>
             <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
-            <?php if ($story->isScheduled()): ?>
-                <span class="unscheduleLink"><a class="js_confirm" title="Retirer cette story"  href="<?php echo $view->router->generate('sprint_unschedule', array('id' => $story->getId())) ?>">annuler</a></span>
-            <?php endif; ?>
         </li>
     <?php endforeach ?>
 </ol>

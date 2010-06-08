@@ -5,16 +5,6 @@ ol.stories
   padding: 0;
 }
 
-li.story .unscheduleLink {
-  margin-left: 10px;
-  font-size: 12px;
-  display: none;
-}
-
-li.story:hover .unscheduleLink {
-  display: inline;
-}
-
 .story_id
 {
   width: 50px;
