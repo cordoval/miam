@@ -9,7 +9,10 @@ class unscheduleAStoryTest extends \WebTestCase
     
     public function testSchedule()
     {
+        $this->login('laet', 'changeme');
+
         $crawler = $this->client->request('GET', '/sprint/schedule');
+        $this->addResponseTester();
         $this->client->assertResponseSelectEquals('.story_planCard .story_name', array('_text'), array('Smoke in the water'));
     
         $this->client->click($crawler->filter('span.unscheduleLink a')->link());
