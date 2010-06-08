@@ -9,7 +9,7 @@
 </div>
 
 <div id="sprint_current" class="colLeft">
-  <?php $view->output('MiamBundle:Sprint:_current', array('sprint' => $sprint, 'projects' => $projects, 'statuses' => $statuses)); ?>    
+  <?php $view->output('MiamBundle:Sprint:_current', array('sprint' => $sprint, 'hash' => $hash, 'projects' => $projects, 'statuses' => $statuses)); ?>    
 </div>
 
 <div style="clear:both"></div>

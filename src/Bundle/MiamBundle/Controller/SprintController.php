@@ -46,11 +46,14 @@ class SprintController extends Controller
 
     public function pingAction($hash)
     {
-        $sprint = $this->getEntityManager()
+        $realHash = $this->getEntityManager()
             ->getRepository('Bundle\MiamBundle\Entities\Sprint')
-            ->findCurrentWithStories();
+            ->getCurrentHash();
 
-        if($sprint->getHash() != $hash) {
+        if($realHash != $hash) {
+            $sprint = $this->getEntityManager()
+                ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+                ->findCurrentWithStories();
             $projects = $this->getEntityManager()
                 ->getRepository('Bundle\MiamBundle\Entities\Project')
                 ->findForSprint($sprint);
@@ -58,6 +61,7 @@ class SprintController extends Controller
             return $this->render('MiamBundle:Sprint:_current', array(
                 'projects' => $projects,
                 'sprint' => $sprint,
+                'hash' => $realHash,
                 'statuses' => Story::getSprintStatuses() 
             ));
         }
@@ -86,9 +90,14 @@ class SprintController extends Controller
         ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
         ->findLatest();
 
+        $hash = $this->getEntityManager()
+            ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+            ->getCurrentHash();
+
         return $this->render('MiamBundle:Sprint:current', array(
             'projects' => $projects,
             'sprint' => $sprint,
+            'hash' => $hash,
             'statuses' => Story::getSprintStatuses(),
             'timeline' => $timeline,
             'emails' => $this->container->getParameter('miam.user.emails')
