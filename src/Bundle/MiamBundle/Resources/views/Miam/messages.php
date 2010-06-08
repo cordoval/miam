@@ -13,5 +13,5 @@
 <?php endforeach ?>
 
 <?php if(!$view->user->getAttribute('identity')): ?>
-<div class="flash_info">Tu n'es pas connecté ! <a href="<?php echo $view->router->generate('login') ?>">Connexion</a></div>
+    <?php echo $view->actions->render('MiamBundle:Miam:fastLogin', array('path' => array('username' => null), 'ignore_errors' => false)) ?>
 <?php endif; ?>

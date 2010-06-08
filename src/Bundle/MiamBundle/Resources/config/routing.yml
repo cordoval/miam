@@ -74,3 +74,6 @@ sprint_addStory:
   pattern:  /sprint/addStory
   defaults: { _controller: MiamBundle:Sprint:addStory }
   
+fast_login:
+  pattern:  /fast-login/:username
+  defaults: { _controller: MiamBundle:Miam:fastLogin, username: 'pouet' }

@@ -23,4 +23,25 @@ class MiamController extends Controller
             'timeline' => $timeline 
         ));
     }
+
+    public function fastLoginAction($username)
+    {
+        if($username) {
+            $user = $this->getEntityManager()
+                ->getRepository('Bundle\DoctrineUserBundle\Entities\User')
+                ->findOneByUsername($username);
+            if(!$user) {
+                throw new NotFoundHttpException('There is no user '.$username);
+            }
+            $this->getUser()->setAttribute('identity', $user);
+            return $this->redirect($_SERVER['HTTP_REFERER']);
+        }
+        $users = $this->getEntityManager()
+            ->getRepository('Bundle\DoctrineUserBundle\Entities\User')
+            ->findByIsActive(true);
+        return $this->render('MiamBundle:Miam:fastLogin', array(
+            'users' => $users
+        ));
+    }
+        
 }

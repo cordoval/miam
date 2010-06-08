@@ -23,4 +23,21 @@ class securityTest extends \WebTestCase
         $this->client->assertResponseRegExp('/Hello, thib!/');
     }
 
+    public function testLogout()
+    {
+        $crawler = $this->client->request('GET', '/user/logout');
+        $this->client->followRedirect();
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('/Tu n\'es pas connecté/');
+    }
+
+    public function testFastLogin()
+    {
+        $crawler = $this->client->request('GET', '/');
+        $this->addResponseTester();
+        $this->client->assertResponseRegExp('/Tu n\'es pas connecté/');
+        $this->client->click($crawler->selectLink('thib')->link());
+        $this->addResponseTester();
+        $this->client->assertResponseNotRegExp('/Tu n\'es pas connecté/');
+    }
 }

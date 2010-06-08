@@ -30,6 +30,11 @@
           if('noop' == html) return;
 
           self.element.html(html);
+          if(!$('#sprint_current').html)
+          {
+            alert('Bad ping response! Check firebug then reload the page');
+            console.debug(html);
+          }
           self.element.sprint('refresh');
         }
       });
