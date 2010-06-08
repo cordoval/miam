@@ -12,14 +12,9 @@ $loader->registerNamespaces(array(
   'Doctrine\DBAL'    => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-dbal/lib',
   'Doctrine\Common'    => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-common/lib',
   'Doctrine'    => __DIR__.'/vendor/doctrine/lib',
-));
-$loader->registerPrefixes(array(
-  'Zend_'  => __DIR__.'/vendor/zend/library',
-  'Twig_'  => __DIR__.'/vendor/Twig/lib',
+  'Zend'    => __DIR__.'/vendor/zend/library',
 ));
 $loader->register();
-
-set_include_path(__DIR__.'/vendor/zend/library'.PATH_SEPARATOR.get_include_path());
 
 // Include symfony 1 stuff like sfForm
 require_once __DIR__ . '/vendor/symfony1/autoload/sfCoreAutoload.class.php';
