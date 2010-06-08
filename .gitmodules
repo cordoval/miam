@@ -6,7 +6,7 @@
 	url = git://github.com/knplabs/doctrine2.git
 [submodule "src/vendor/zend"]
 	path = src/vendor/zend
-	url = git://github.com/tjohns/zf.git
+	url = git://github.com/zendframework/zf2.git
 [submodule "src/vendor/migrations"]
 	path = src/vendor/migrations
 	url = git://github.com/doctrine/migrations.git
