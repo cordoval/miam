@@ -2,16 +2,10 @@ imports:
   - { resource: config.yml }
 
 zend.logger:
-  priority: debug
+  priority: warn
   path:     %kernel.logs_dir%/%kernel.environment%.log
 
 kernel.test: ~
-
-parameters:
-  session.options.test.session_path: /tmp/sf2
-  
-services:
-  user.session: @user.session.test
 
 doctrine.orm:
   default_entity_manager:   default

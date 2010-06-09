@@ -8,10 +8,7 @@ web.user: ~
 
 # miam.config: ~
 
-markdown.parser:
-  class:                    %markdown.parser.min.class%
-
-markdown.helper: ~
+markdown.parser: ~
 
 doctrine.dbal:
   default_connection:       default
@@ -34,4 +31,3 @@ parameters:
     laet:                   laet.wagner@gmail.com
     mbontemps:              matthieu.bontemps@gmail.com
     thib:                   thibault.duplessis@gmail.com
-  session.options.lifetime: 2592000 # one month 

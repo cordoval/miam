@@ -1,0 +1,2 @@
+parameters:
+  session.options.lifetime: 2592000 # one month 
