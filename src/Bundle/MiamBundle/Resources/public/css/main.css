@@ -398,6 +398,11 @@ p
   margin: 0 15px 15px 15px;
 }
 
+.flash_info.fast_login a {
+    margin-left: 1em;
+    color: #B12822;
+}
+
 td, th {
     padding :5px;
     vertical-align: top;

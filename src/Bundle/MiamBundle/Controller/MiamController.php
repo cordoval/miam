@@ -34,7 +34,7 @@ class MiamController extends Controller
                 throw new NotFoundHttpException('There is no user '.$username);
             }
             $this->getUser()->setAttribute('identity', $user);
-            return $this->redirect($_SERVER['HTTP_REFERER']);
+            return $this->redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $this->generateUrl('homepage'));
         }
         $users = $this->getEntityManager()
             ->getRepository('Bundle\DoctrineUserBundle\Entities\User')
