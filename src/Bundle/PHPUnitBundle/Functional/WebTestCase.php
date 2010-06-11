@@ -36,18 +36,16 @@ abstract class WebTestCase extends BaseWebTestCase
      *
      * @return Bundle\PHPUnitBundle\Client A Client instance
      */
-    public function createClient(array $server = array())
+    public function createClient($environment = 'test', $debug = true, array $server = array())
     {
-        $kernel = $this->createKernel();
+        $kernel = $this->createKernel($environment, $debug);
         $kernel->boot();
 
         $client = $kernel->getContainer()->getTest_ClientService();
         $client->setServerParameters($server);
         $client->setTestCase($this);
         $client->resetSession();
-        
-        $this->container = $kernel->getContainer();
-        
+
         return $client;
     }
 

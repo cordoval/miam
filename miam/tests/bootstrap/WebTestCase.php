@@ -31,7 +31,7 @@ class WebTestCase extends BaseWebTestCase
      *
      * @return Symfony\Foundation\Kernel A Kernel instance
      */
-    protected function createKernel()
+    protected function createKernel($environment = 'test', $debug = true)
     {
         return $this->kernel = new \MiamKernel('test', true);
     }
