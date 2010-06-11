@@ -21,12 +21,11 @@
     {
         var oldPoints = $(this).text();
         var points = prompt("Nombre de points pour cette story :", oldPoints);
-        if(!points || points == oldPoints) return false;
+        if(points == oldPoints) return false;
         if(isNaN(parseInt(points))) {
-            alert("Nombre de points invalide : " + points);
-            return false;
+            points = null;
         }
-        $(this).html(points);
+        $(this).html(points ? points : '?');
         $.ajax({
             type:    'POST',
             url:    miam_config.story_reestimate_url, 
