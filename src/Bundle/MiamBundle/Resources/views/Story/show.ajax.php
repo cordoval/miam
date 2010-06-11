@@ -18,6 +18,12 @@
         <?php endif; ?>
     </div>
 </div>
+<?php if (!$story->isScheduled()): ?>
+<div class="story_schedule">
+    <a title="Planifier la story à faire" href="<?php echo $view->router->generate('sprint_addStory', array('id' => $story->getId(), 'pending' => false)) ?>">Planifier (à faire)</a>
+    <a title="Planifier la story en attente" href="<?php echo $view->router->generate('sprint_addStory', array('id' => $story->getId(), 'pending' => true)) ?>">Planifier (en attente)</a>
+</div>
+<?php endif; ?>
 
 <div class="story_timeline">
   <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails, 'disable' => true)) ?>

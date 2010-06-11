@@ -71,7 +71,7 @@ sprint_unschedule:
   defaults: { _controller: MiamBundle:Sprint:unschedule }
 
 sprint_addStory:
-  pattern:  /sprint/addStory
+  pattern:  /sprint/addStory/:id
   defaults: { _controller: MiamBundle:Sprint:addStory }
   
 fast_login:

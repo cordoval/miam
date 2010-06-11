@@ -2,37 +2,6 @@
 <?php $view->slots->set('active_menu', 'sprint_schedule') ?>
 
 <div id="scheduling">
-    <div class="titleWithActions">
-        <h1>Backlog / Planification de sprint</h1>
-        <a id="newSprint" href="<?php echo $view->router->generate('story_new') ?>">Créer une story</a>
-    </div>
-
-    <div class="col col_left">
-        <h2>Story candidate</h2>
-
-        <?php if($story): ?>
-        <div class="story story_object story_planCard" data-story-id="<?php echo $story->getId() ?>">
-            <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
-            <strong class="story_name"><?php echo $story->getName() ?></strong>
-            <span class="story_project" style="background:<?php echo $story->getProject()->getColor() ?>">
-                <a href="<?php echo $view->router->generate('project', array('id' => $story->getProject()->getId())) ?>">
-                    <?php echo $story->getProject()->getName() ?>
-                </a>
-            </span>
-            <div class="story_body"><?php echo $story->getBody() ?></div>
-        </div>
-        <form id="story_actions" action="<?php echo $view->router->generate('sprint_addStory') ?>" method="put">
-            <input type="hidden" name="story[id]" value="<?php echo $story->getId() ?>" />
-            <input type="submit" name="todo" id="addStory" value="Ajouter au sprint &rarr;" />
-            <input type="submit" name="pending" id="addStoryPending" value="Ajouter au sprint (en attente) &rarr;" />
-        </form>
-        <?php else: ?>
-        <div>
-            Il ne reste rien dans le backlog. Va travailler maintenant.
-        </div>
-        <?php endif ?>
-    </div>
-    
     <div class="col col_right">
         <h2>Sprint en cours</h2>
         <ul>
@@ -40,8 +9,11 @@
             <li><strong>Points :</strong> <span id="sprint_points"><?php echo $sprint->getRemainingPoints() ?></span></li>
         </ul>
     </div>
-
-    <div style="clear:both"></div>
+    
+    <div class="titleWithActions">
+        <h1>Backlog / Planification de sprint</h1>
+        <a id="newSprint" href="<?php echo $view->router->generate('story_new') ?>">Créer une story</a>
+    </div>
     
     <div class="col col_left" id="backlog" data-sort-url="<?php echo $view->router->generate('story_sort') ?>">
         <h2>Backlog</h2>

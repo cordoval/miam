@@ -148,12 +148,11 @@ class SprintController extends Controller
         return $this->redirect($this->generateUrl('sprint_schedule'));
     }
     
-    public function addStoryAction()
+    public function addStoryAction($id)
     {
-        $fakeForm = $this->getRequest()->get('story');
         $story = $this->getEntityManager()
         ->getRepository('Bundle\MiamBundle\Entities\Story')
-        ->find($id = $fakeForm['id']);
+        ->find($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story '$id' not found");

@@ -48,6 +48,19 @@ div.simplemodal-container .story_body {
   display: block;
 }
 
+div.simplemodal-container .story_schedule {
+  padding: 1em;
+  display: block;
+  background: #DADADA;
+  border-top: 1px solid #aaa;
+  text-align: center;
+}
+
+div.simplemodal-container .story_schedule a {
+    color: #444;
+    margin: 0 1em;
+}
+
 div.simplemodal-container .timeline {
     background: #FFFFFF;
     border-top: 1px solid #aaa;
