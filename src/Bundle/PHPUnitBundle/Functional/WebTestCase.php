@@ -97,7 +97,7 @@ abstract class WebTestCase extends BaseWebTestCase
      */
     public function getContainer()
     {
-       return $this->container;
+       return $this->kernel->getContainer();
     }
     
 }
