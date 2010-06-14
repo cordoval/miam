@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<phpunit backupGlobals="false"
+    backupStaticAttributes="false"
+    colors="false"
+    convertErrorsToExceptions="true"
+    convertNoticesToExceptions="true"
+    convertWarningsToExceptions="true"
+    processIsolation="true"
+    stopOnFailure="false"
+    syntaxCheck="false"
+    bootstrap="../src/autoload.php"
+    >
+    <php>
+        <var name="doctrine2-path" value="../src/vendor/doctrine/lib/vendor/doctrine-common/lib" />
+    </php>
+    <testsuites>
+        <testsuite name="Miam Test Suite">
+            <directory>../src/Bundle/*/Tests</directory>
+        </testsuite>
+    </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>../src/Bundle</directory>
+            <exclude>
+                <directory>../src/Bundle/*/Resources</directory>
+                <directory>../src/Bundle/*/Tests</directory>
+            </exclude>
+        </whitelist>
+    </filter>
+</phpunit>
