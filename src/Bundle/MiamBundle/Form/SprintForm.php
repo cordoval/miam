@@ -4,32 +4,17 @@ namespace Bundle\MiamBundle\Form;
 
 use Symfony\Components\Form\Form;
 use Symfony\Components\Form\DateField;
-use Symfony\Components\Validator\Validator;
-use Symfony\Components\Validator\ConstraintValidatorFactory;
-use Symfony\Components\Validator\Mapping\ClassMetadataFactory;
-use Symfony\Components\Validator\Mapping\ClassMetadata;
-use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
-use Symfony\Components\Validator\Mapping\Loader\AnnotationLoader;
-use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
-use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
+use Symfony\Components\Form\ValueTransformer\DateTimeToArrayTransformer;
 use Bundle\MiamBundle\Entities\Sprint;
 
 class SprintForm extends Form
 {
     protected $projects;
     
-    public function __construct($object, array $options = array())
-    {
-        $this->addOption('message_file');
-        $this->addOption('validation_file'); 
-        $validator = $this->createValidator($options['message_file'], $options['validation_file']);
-        parent::__construct('sprint', $object, $validator, $options);
-    }
-
     public function configure()
     {
-        $this->add(new DateField('startsAt', array('widget' => 'select')));
-        $this->add(new DateField('endsAt'));
+        $this->add(new DateField('startsAt', array('widget' => 'select')))->setValueTransformer(new DateTimeToArrayTransformer());
+        $this->add(new DateField('endsAt', array('widget' => 'select')))->setValueTransformer(new DateTimeToArrayTransformer());
         
         // WidgetSchema
         //$dateFormat = '%day%/%month%/%year%';
@@ -60,30 +45,4 @@ class SprintForm extends Form
         //$this->setDefault('ends_at', time() + 4*60*60*24);
         
     }
-
-    //protected function doUpdateObject(array $values)
-    //{
-        //$sprint = $this->getObject();
-        //$sprint->setStartsAt(new \DateTime($values['starts_at']));
-        //$sprint->setEndsAt(new \DateTime($values['ends_at']));
-    //}
-
-    //public function getModelName()
-    //{
-        //return 'Bundle\MiamBundle\Entities\Sprint';
-    //}
-
-    public function createValidator($messageFile, $validationFile)
-    {
-        $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
-            new AnnotationLoader(),
-            new XmlFileLoader($validationFile)
-        )));
-        $validatorFactory = new ConstraintValidatorFactory();
-        $messageInterpolator = new NoValidationXliffMessageInterpolator($messageFile);
-        $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
-
-        return $validator;
-    }
-
 }

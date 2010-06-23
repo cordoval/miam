@@ -11,12 +11,9 @@
     syntaxCheck="false"
     bootstrap="../src/autoload.php"
     >
-    <php>
-        <var name="doctrine2-path" value="../src/vendor/doctrine/lib/vendor/doctrine-common/lib" />
-    </php>
     <testsuites>
         <testsuite name="Miam Test Suite">
-            <directory>../src/Bundle/*/Tests</directory>
+            <directory>../src/Bundle/MiamBundle/Tests</directory>
         </testsuite>
     </testsuites>
 
@@ -24,8 +21,8 @@
         <whitelist>
             <directory>../src/Bundle</directory>
             <exclude>
-                <directory>../src/Bundle/*/Resources</directory>
-                <directory>../src/Bundle/*/Tests</directory>
+                <directory>../src/Bundle/MiamBundle/Resources</directory>
+                <directory>../src/Bundle/MiamBundle/Tests</directory>
             </exclude>
         </whitelist>
     </filter>

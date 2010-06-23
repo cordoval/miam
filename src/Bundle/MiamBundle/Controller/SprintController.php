@@ -9,6 +9,14 @@ use Bundle\MiamBundle\Entities\Story;
 use Bundle\MiamBundle\Renderer\SprintRenderer;
 use Bundle\MiamBundle\Form\SprintForm;
 use Symfony\Components\EventDispatcher\Event;
+use Symfony\Components\Validator\Mapping\ClassMetadataFactory;
+use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
+use Symfony\Components\Validator\Mapping\Loader\AnnotationLoader;
+use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
+use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
+use Symfony\Components\Validator\ConstraintValidatorFactory;
+use Symfony\Components\Validator\Mapping\ClassMetadata;
+use Symfony\Components\Validator\Validator;
 
 class SprintController extends Controller
 {
@@ -16,6 +24,7 @@ class SprintController extends Controller
     public function newAction()
     {
         $sprint = new Sprint();
+        $sprint->setStartsAt(new \DateTime());
         $form = $this->createForm($sprint);
 
         if('POST' === $this->getRequest()->getMethod()) {
@@ -175,12 +184,14 @@ class SprintController extends Controller
 
     public function createForm(Sprint $sprint)
     {
-        $options = array(
-          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
-          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
-        );
-
-        return new SprintForm($sprint, $options);
+        $metadataFactory = new ClassMetadataFactory(new LoaderChain(array(
+            new AnnotationLoader(),
+            new XmlFileLoader(realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml')
+        )));
+        $validatorFactory = new ConstraintValidatorFactory();
+        $messageInterpolator = new NoValidationXliffMessageInterpolator(realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml');
+        $validator = new Validator($metadataFactory, $validatorFactory, $messageInterpolator);
+        return new SprintForm('sprint', $sprint, $validator);
     }
 
 
