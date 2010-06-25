@@ -22,8 +22,8 @@ class MiamKernel extends Kernel
       new Symfony\Framework\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
       new Symfony\Framework\FoundationBundle\FoundationBundle(),
       new Symfony\Framework\ZendBundle\ZendBundle(),
-      new Bundle\MarkdownBundle\Bundle(),
-      new Bundle\DoctrineUserBundle\Bundle(),
+      new Bundle\MarkdownBundle\MarkdownBundle(),
+      new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
       new Bundle\MiamBundle\MiamBundle()
     );
 
