@@ -1,12 +1,12 @@
 imports:
-  - { resource: config.yml }
+    - { resource: config.yml }
 
 zend.logger:
-  priority: debug
-  path:     %kernel.logs_dir%/%kernel.environment%.log
-
-profiler.config:
-  toolbar: true
+    priority: debug
+    path:     %kernel.logs_dir%/%kernel.environment%.log
 
 doctrine.orm:
-  cache_driver:             array           # array, apc, memcache, xcache
+    cache_driver:             array           # array, apc, memcache, xcache
+
+web.config:
+    toolbar: true

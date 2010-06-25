@@ -1,7 +1,6 @@
 <?php
 
 require_once __DIR__.'/../src/autoload.php';
-require_once __DIR__.'/../src/vendor/Symfony/src/Symfony/Foundation/bootstrap.php';
 
 use Symfony\Foundation\Kernel;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader as ContainerLoader;
@@ -19,20 +18,14 @@ class MiamKernel extends Kernel
   {
     $bundles = array(
       new Symfony\Foundation\Bundle\KernelBundle(),
-      new Symfony\Framework\DoctrineBundle\Bundle(),
-      new Symfony\Framework\DoctrineMigrationsBundle\Bundle(),
-      new Symfony\Framework\WebBundle\Bundle(),
-      new Symfony\Framework\ZendBundle\Bundle(),
-      //new Symfony\Framework\TwigBundle\Bundle(),
+      new Symfony\Framework\DoctrineBundle\DoctrineBundle(),
+      new Symfony\Framework\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+      new Symfony\Framework\FoundationBundle\FoundationBundle(),
+      new Symfony\Framework\ZendBundle\ZendBundle(),
       new Bundle\MarkdownBundle\Bundle(),
       new Bundle\DoctrineUserBundle\Bundle(),
-      new Bundle\MiamBundle\Bundle()
+      new Bundle\MiamBundle\MiamBundle()
     );
-
-    if ($this->isDebug())
-    {
-      $bundles[] = new Symfony\Framework\ProfilerBundle\Bundle();
-    }
 
     return $bundles;
   }

@@ -1,6 +1,6 @@
 kernel.config: ~
 
-web.web: ~
+web.config: ~
 
 web.templating: ~
 

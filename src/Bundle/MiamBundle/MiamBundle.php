@@ -11,7 +11,7 @@ use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Components\DependencyInjection\BuilderConfiguration;
 
-class Bundle extends BaseBundle
+class MiamBundle extends BaseBundle
 {
     public function buildContainer(ContainerInterface $container)
     {
