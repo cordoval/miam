@@ -5,7 +5,7 @@ namespace Bundle\MiamBundle\Event;
 use Doctrine\ORM\EntityManager;
 use Symfony\Foundation\EventDispatcher;
 use Symfony\Components\EventDispatcher\Event;
-use Symfony\Framework\WebBundle\User as SymfonyUser;
+use Symfony\Framework\FoundationBundle\User as SymfonyUser;
 use Bundle\MiamBundle\Entities\TimelineEntry;
 use Bundle\MiamBundle\Entities\Story;
 
