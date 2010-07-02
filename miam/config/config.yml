@@ -1,6 +1,10 @@
 kernel.config: ~
 
-web.config: ~
+web.config:
+    validation:
+        enabled: true
+        annotations: true
+
 
 web.templating: ~
 
