@@ -11,23 +11,23 @@ web.user: ~
 markdown.parser: ~
 
 doctrine.dbal:
-  default_connection:       default
-  connections:
-    default:
-      event_manager_class:  Doctrine\Common\EventManager
-      configuration_class:  Doctrine\DBAL\Configuration
-      wrapper_class:        ~
-      options:              []
+    default_connection:       default
+    connections:
+        default:
+            event_manager_class:  Doctrine\Common\EventManager
+            configuration_class:  Doctrine\DBAL\Configuration
+            wrapper_class:        ~
+            options:              []
 
 doctrine.orm:
-  default_entity_manager:   default
-  cache_driver:             apc           # array, apc, memcache, xcache
-  entity_managers:
-    default:
-      connection:           default
+    default_entity_manager:   default
+    cache_driver:             apc           # array, apc, memcache, xcache
+    entity_managers:
+        default:
+            connection:           default
 
 parameters:
-  miam.user.emails:
-    laet:                   laet.wagner@gmail.com
-    mbontemps:              matthieu.bontemps@gmail.com
-    thib:                   thibault.duplessis@gmail.com
+    miam.user.emails:
+        laet:                   laet.wagner@gmail.com
+        mbontemps:              matthieu.bontemps@gmail.com
+        thib:                   thibault.duplessis@gmail.com
