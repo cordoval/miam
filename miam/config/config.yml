@@ -17,6 +17,10 @@ web.templating:
 
 markdown.parser: ~      # Enable the parser service
 
+auth.config: ~
+
+miam.config: ~
+
 doctrine.orm:
     default_entity_manager:   default
     cache_driver:             apc           # array, apc, memcache, xcache

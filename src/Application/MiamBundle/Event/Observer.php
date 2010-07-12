@@ -31,8 +31,6 @@ class Observer
         $this->em = $em;
         $this->dispatcher = $dispatcher;
         $this->user = $user;
-
-        $this->connect();
     }
 
     protected function connect()

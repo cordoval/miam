@@ -26,6 +26,7 @@ class MiamKernel extends Kernel
 
             // register your bundles here
             new Bundle\MarkdownBundle\MarkdownBundle(),
+            new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
 
             // register your applications here
             new Application\MiamBundle\MiamBundle()
