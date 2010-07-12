@@ -1,6 +1,0 @@
-parameters:
-  data_collector_manager.class: 'Bundle\MiamBundle\Profiler\DataCollectorManager'
-  test.client.class:            'Bundle\PHPUnitBundle\Client'
-
-services:
-  user.session: @user.session.test

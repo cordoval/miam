@@ -69,7 +69,6 @@ class MiamKernel extends Kernel
         $loader = new ContainerLoader($this->getBundleDirs());
 
         $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
-        $configuration->merge($loader->load(__DIR__.'/config/dic_'.$this->getEnvironment().'.yml'));
 
         return $configuration;
     }
