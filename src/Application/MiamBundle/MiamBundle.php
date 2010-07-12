@@ -1,10 +1,10 @@
 <?php
 
-namespace Bundle\MiamBundle;
+namespace Application\MiamBundle;
 
 use Bundle\MiamBundle\DependencyInjection\MiamExtension;
 
-use Symfony\Foundation\Bundle\Bundle as BaseBundle;
+use Symfony\Framework\Bundle\Bundle as BaseBundle;
 
 use Symfony\Components\DependencyInjection\ContainerInterface;
 use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;
