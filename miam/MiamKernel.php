@@ -2,19 +2,12 @@
 
 require_once __DIR__.'/../src/autoload.php';
 
-use Symfony\Foundation\Kernel;
+use Symfony\Framework\Kernel;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader as ContainerLoader;
 use Symfony\Components\Routing\Loader\YamlFileLoader as RoutingLoader;
 
-use Symfony\Foundation\KernelBundle;
-use Symfony\Framework\FoundationBundle\FoundationBundle;
-use Symfony\Framework\ZendBundle\ZendBundle;
-use Symfony\Framework\DoctrineBundle\DoctrineBundle;
-use Symfony\Framework\DoctrineMigrationsBundle\DoctrineMigrationsBundle;
-
 class MiamKernel extends Kernel
 {
-
     public function registerRootDir()
     {
         return __DIR__;
@@ -23,14 +16,19 @@ class MiamKernel extends Kernel
     public function registerBundles()
     {
         $bundles = array(
-            new KernelBundle(),
-            new FoundationBundle(),
-            new DoctrineBundle(),
-            new DoctrineMigrationsBundle(),
-            new ZendBundle(),
+            new Symfony\Framework\KernelBundle(),
+            new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+
+            // enable third-party bundles
+            new Symfony\Bundle\ZendBundle\ZendBundle(),
+            new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
+            //new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+
+            // register your bundles here
             new Bundle\MarkdownBundle\MarkdownBundle(),
-            new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
-            new Bundle\MiamBundle\MiamBundle()
+
+            // register your applications here
+            new Application\MiamBundle\MiamBundle()
         );
 
         return $bundles;
@@ -39,8 +37,9 @@ class MiamKernel extends Kernel
     public function registerBundleDirs()
     {
         return array(
+            'Application'        => __DIR__.'/../src/Application',
             'Bundle'             => __DIR__.'/../src/Bundle',
-            'Symfony\\Framework' => __DIR__.'/../src/vendor/Symfony/src/Symfony/Framework',
+            'Symfony\\Bundle'    => __DIR__.'/../src/vendor/Symfony/src/Symfony/Bundle',
         );
     }
 
