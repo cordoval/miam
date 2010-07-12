@@ -1,5 +1,9 @@
 parameters:
     kernel.include_core_classes: false
+    miam.user.emails:
+        laet:                   laet.wagner@gmail.com
+        mbontemps:              matthieu.bontemps@gmail.com
+        thib:                   thibault.duplessis@gmail.com
 
 kernel.config:
     charset:             UTF-8
@@ -27,9 +31,3 @@ doctrine.orm:
     entity_managers:
         default:
         connection:           default
-
-parameters:
-    miam.user.emails:
-        laet:                   laet.wagner@gmail.com
-        mbontemps:              matthieu.bontemps@gmail.com
-        thib:                   thibault.duplessis@gmail.com
