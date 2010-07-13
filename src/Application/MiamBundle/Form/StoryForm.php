@@ -24,19 +24,11 @@ class StoryForm extends Form
         )));
     }
 
-    protected function updateProperty(&$objectOrArray, PropertyPath $propertyPath)
+    protected function doBind(array $data)
     {
-        var_dump($propertyPath);
-        var_dump($objectOrArray);
-        die;
-        // what an ugly hack.
-        if($data instanceof Story && 'project' == $element)
-        {
-            $value = $this->getOption('em')
-                ->getRepository('Application\MiamBundle\Entities\Project')
-                ->find($value);
-        }
+        $projects = $this->getOption('projects');
+        $data['project'] = $projects[$data['project']];
 
-        return parent::updateElement($data, $element, $value);  
+        return parent::doBind($data);
     }
 }

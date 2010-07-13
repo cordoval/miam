@@ -1,6 +1,8 @@
 <?php
 
 namespace Application\MiamBundle\Entities;
+use Symfony\Components\Validator\Mapping\ClassMetadata;
+use Symfony\Components\Validator\Constraints;
 
 /**
  * @Entity(repositoryClass="Application\MiamBundle\Entities\StoryRepository")
