@@ -26,6 +26,7 @@ class MiamKernel extends Kernel
 
             // register your bundles here
             new Bundle\MarkdownBundle\MarkdownBundle(),
+            new Bundle\DoctrineUserBundle\DoctrineUserBundle(),
 
             // register your applications here
             new Application\MiamBundle\MiamBundle()
@@ -69,7 +70,6 @@ class MiamKernel extends Kernel
         $loader = new ContainerLoader($this->getBundleDirs());
 
         $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
-        $configuration->merge($loader->load(__DIR__.'/config/dic_'.$this->getEnvironment().'.yml'));
 
         return $configuration;
     }

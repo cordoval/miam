@@ -1,18 +1,13 @@
 imports:
-  - { resource: config.yml }
+    - { resource: config_dev.yml }
 
 zend.logger:
-  priority: warn
-  path:     %kernel.logs_dir%/%kernel.environment%.log
+    priority: warn
 
 kernel.test: ~
 
-doctrine.orm:
-  default_entity_manager:   default
-  cache_driver:             array           # array, apc, memcache, xcache
-  entity_managers:
-    default:
-      connection:           default
+web.config:
+    toolbar: false;
 
 doctrine.dbal:
   connections:

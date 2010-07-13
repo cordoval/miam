@@ -1,13 +1,13 @@
 <?php
 
-namespace Bundle\MiamBundle\Controller;
+namespace Application\MiamBundle\Controller;
 
-use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Bundle\MiamBundle\Entities\Sprint;
-use Bundle\MiamBundle\Entities\Story;
-use Bundle\MiamBundle\Renderer\SprintRenderer;
-use Bundle\MiamBundle\Form\SprintForm;
+use Application\MiamBundle\Entities\Sprint;
+use Application\MiamBundle\Entities\Story;
+use Application\MiamBundle\Renderer\SprintRenderer;
+use Application\MiamBundle\Form\SprintForm;
 use Symfony\Components\EventDispatcher\Event;
 
 class SprintController extends Controller

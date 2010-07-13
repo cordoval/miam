@@ -1,11 +1,11 @@
 <?php
 
-namespace Bundle\MiamBundle\Event;
+namespace Application\MiamBundle\Event;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Foundation\EventDispatcher;
+use Symfony\Framework\EventDispatcher;
 use Symfony\Components\EventDispatcher\Event;
-use Symfony\Framework\FoundationBundle\User as SymfonyUser;
+use Symfony\Components\HttpFoundation\Session;
 use Bundle\MiamBundle\Entities\TimelineEntry;
 use Bundle\MiamBundle\Entities\Story;
 
@@ -22,20 +22,18 @@ class Observer
     protected $dispatcher;
 
     /**
-     * @var SymfonyUser
+     * @var Session
      */
-    protected $user;
+    protected $session;
 
-    public function __construct(EntityManager $em, EventDispatcher $dispatcher, SymfonyUser $user)
+    public function __construct(EntityManager $em, EventDispatcher $dispatcher, Session $session)
     {
         $this->em = $em;
         $this->dispatcher = $dispatcher;
-        $this->user = $user;
-
-        $this->connect();
+        $this->session = $session;
     }
 
-    protected function connect()
+    public function connect()
     {
         $observer = $this;
         
@@ -75,7 +73,7 @@ class Observer
 
     public function addStoryEntry(Story $story, $action)
     {
-        $identity = $this->user->getAttribute('identity');
+        $identity = $this->session->getAttribute('identity');
 
         if(!$identity) {
             throw new \Exception('No user logged in');

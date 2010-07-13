@@ -1,37 +1,33 @@
-kernel.config: ~
+parameters:
+    kernel.include_core_classes: false
+    miam.user.emails:
+        laet:                   laet.wagner@gmail.com
+        mbontemps:              matthieu.bontemps@gmail.com
+        thib:                   thibault.duplessis@gmail.com
+
+kernel.config:
+    charset:             UTF-8
+    error_handler_level: null
+
+kernel.session:
+    lifetime: 2592000 # one month 
 
 web.config:
     validation:
         enabled: true
-        annotations: true
 
+web.templating:
+    escaping:       htmlspecialchars
 
-web.templating: ~
+markdown.parser: ~      # Enable the parser service
 
-web.user: ~
+auth.config: ~
 
-# miam.config: ~
-
-markdown.parser: ~
-
-doctrine.dbal:
-    default_connection:       default
-    connections:
-        default:
-            event_manager_class:  Doctrine\Common\EventManager
-            configuration_class:  Doctrine\DBAL\Configuration
-            wrapper_class:        ~
-            options:              []
+miam.config: ~
 
 doctrine.orm:
     default_entity_manager:   default
     cache_driver:             apc           # array, apc, memcache, xcache
     entity_managers:
         default:
-            connection:           default
-
-parameters:
-    miam.user.emails:
-        laet:                   laet.wagner@gmail.com
-        mbontemps:              matthieu.bontemps@gmail.com
-        thib:                   thibault.duplessis@gmail.com
+        connection:           default
