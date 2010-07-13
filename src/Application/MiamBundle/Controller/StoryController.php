@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 use Application\MiamBundle\Entities\Story;
 use Application\MiamBundle\Renderer\StoryRenderer;
@@ -183,7 +183,7 @@ class StoryController extends Controller
         $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
 
         $story = new Story();
-        $form = $this->createForm($story, $projects);
+        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects));
 
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->get('story'));

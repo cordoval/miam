@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 
 class MiamController extends Controller
@@ -33,7 +33,8 @@ class MiamController extends Controller
             if(!$user) {
                 throw new NotFoundHttpException('There is no user '.$username);
             }
-            $this->getUser()->setAttribute('identity', $user);
+            $this->container->getSessionService()->start();
+            $this->container->getSessionService()->setAttribute('identity', $user);
             return $this->redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $this->generateUrl('homepage'));
         }
         $users = $this->getEntityManager()

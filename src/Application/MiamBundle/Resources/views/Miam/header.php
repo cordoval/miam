@@ -4,7 +4,7 @@
             <a href="<?php echo $view->router->generate('homepage') ?>" id="logo">MIAM</a>
         </h1>
         <div class="auth">
-            <?php if($user = $view->user->getAttribute('identity')): ?>
+            <?php if($user = $view->session->getAttribute('identity')): ?>
                 <span class="username"><?php echo $user; ?></span>
                 <a href="<?php echo $view->router->generate('logout') ?>">Logout</a>
             <?php else: ?>

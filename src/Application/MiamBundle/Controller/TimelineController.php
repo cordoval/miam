@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 
 class TimelineController extends Controller

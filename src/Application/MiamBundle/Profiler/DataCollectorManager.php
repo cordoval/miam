@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Profiler;
 
-use Symfony\Framework\ProfilerBundle\DataCollector\DataCollectorManager as Base;
+use Symfony\Bundle\ProfilerBundle\DataCollector\DataCollectorManager as Base;
 use Symfony\Components\EventDispatcher\Event;
 use Symfony\Components\HttpKernel\Response;
 use Symfony\Components\HttpKernel\HttpKernelInterface;

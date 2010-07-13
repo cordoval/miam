@@ -1,4 +1,4 @@
-<?php foreach($view->user->getAttribute('_flash') as $key => $details): ?>
+<?php foreach($view->session->getAttribute('_flash') as $key => $details): ?>
     <div class="flash_info">
         <?php switch($key):
         case 'story_update': printf('La story <em>"%s"</em> a été mise à jour.', $details['story']); break;
@@ -12,6 +12,6 @@
     </div>
 <?php endforeach ?>
 
-<?php if(!$view->user->getAttribute('identity')): ?>
+<?php if(!$view->session->getAttribute('identity')): ?>
     <?php echo $view->actions->render('MiamBundle:Miam:fastLogin', array('path' => array('username' => null), 'ignore_errors' => false)) ?>
 <?php endif; ?>

@@ -3,7 +3,7 @@
 namespace Application\MiamBundle\Event;
 
 use Doctrine\ORM\EntityManager;
-use Symfony\Framework\EventDispatcher;
+use Symfony\Components\EventDispatcher\EventDispatcher;
 use Symfony\Components\EventDispatcher\Event;
 use Symfony\Components\HttpFoundation\Session;
 use Application\MiamBundle\Entities\TimelineEntry;
@@ -73,6 +73,7 @@ class Observer
 
     public function addStoryEntry(Story $story, $action)
     {
+        $this->session->start();
         $identity = $this->session->getAttribute('identity');
 
         if(!$identity) {
