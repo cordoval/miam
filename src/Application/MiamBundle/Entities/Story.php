@@ -9,6 +9,12 @@ namespace Application\MiamBundle\Entities;
  */
 class Story
 {
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('name', new Constraints\NotBlank());
+        $metadata->addPropertyConstraint('name', new Constraints\MinLength(3));
+    }
+
     /**
     * @ManyToOne(targetEntity="Project", inversedBy="stories")
     * @JoinColumn(name="project_id", nullable=false)
@@ -33,10 +39,6 @@ class Story
 
     /**
      * @Column(name="name", type="string", length=255)
-     * @Validation({
-     *   @MinLength(3),
-     *   @NotNull
-     * })
      */
     protected $name;
 
@@ -47,9 +49,6 @@ class Story
 
     /**
      * @Column(name="body", type="text", nullable=true)
-     * @Validation({
-     *   @MaxLength(5000)
-     * })
      */
     protected $body;
 

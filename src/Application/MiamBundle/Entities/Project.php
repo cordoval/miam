@@ -9,6 +9,14 @@ namespace Application\MiamBundle\Entities;
  */
 class Project
 {
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+        $metadata->addPropertyConstraint('name', new Constraints\NotBlank());
+        $metadata->addPropertyConstraint('name', new Constraints\MinLength(3));
+        $metadata->addPropertyConstraint('color', new Constraints\NotBlank());
+        $metadata->addPropertyConstraint('color', new Constraints\Regex('/^#?[0-9A-F]{6}$/i'));
+    }
+
     /**
     * @OneToMany(targetEntity="Story", mappedBy="project")
     */
@@ -21,10 +29,6 @@ class Project
 
     /**
      * @Column(name="name", type="string", length=255)
-     * @Validation({
-     *   @MinLength(3),
-     *   @NotNull
-     * })
      */
     protected $name;
 
@@ -35,10 +39,6 @@ class Project
 
     /**
      * @Column(name="color", type="string", length=7)
-     * @Validation({
-     *   @Regex("/^#?[0-9A-F]{6}$/i"),
-     *   @NotNull
-     * })
      */
     protected $color;
     

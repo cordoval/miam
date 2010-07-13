@@ -8,6 +8,10 @@ namespace Application\MiamBundle\Entities;
  */
 class Sprint
 {
+    public static function loadValidatorMetadata(ClassMetadata $metadata)
+    {
+    }
+
     /**
     * @OneToMany(targetEntity="Story", mappedBy="sprint")
     */
