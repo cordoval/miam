@@ -10,17 +10,47 @@
 <h1>Création d'une nouvelle story</h1>
 <?php echo $form->renderFormTag($view->router->generate('story_new')) ?>
     <table>
-      <?php echo $form['name']->renderErrors() ?>
-      <label>Name: <?php echo $form['name']->render(array('class' => 'focus_me')); ?></label>
-<br />
-      <?php echo $form['body']->renderErrors() ?>
-      <label>Body: <?php echo $form['body']->render(); ?></label> 
-<br />
-      <?php echo $form['project']->renderErrors() ?>
-      <label>Project: <?php echo $form['project']->render(); ?></label> 
-<br />
-      <?php echo $form['points']->renderErrors() ?>
-      <label>Points: <?php echo $form['points']->render(); ?></label> 
+      
+      <tr>
+        <th>
+          <label for="story_project">Projet*</label>
+        </th>
+        <td>
+          <?php echo $form['project']->render(array('class' => 'focus_me')); ?>
+          <?php echo $form['project']->renderErrors() ?>
+        </td>
+      </tr>
+      
+      <tr>
+        <th>
+          <label for="story_name">Nom*</label>
+        </th>
+        <td>
+          <?php echo $form['name']->render(); ?>
+          <?php echo $form['name']->renderErrors() ?>
+        </td>
+      </tr>
+      
+      <tr>
+        <th>
+          <label for="story_points">Points</label>
+        </th>
+        <td>
+          <?php echo $form['points']->render(); ?>
+          <?php echo $form['points']->renderErrors() ?>
+        </td>
+      </tr>
+
+      <tr>
+        <th>
+          <label for="story_body">Description</label>
+        </th>
+        <td>
+          <?php echo $form['body']->render(); ?>
+          <?php echo $form['body']->renderErrors() ?>
+        </td>
+      </tr>
+          
     </table>
     <input id="submit" type="submit" value="Valider" />
 </form>
