@@ -65,7 +65,7 @@ class ProjectController extends Controller
             throw new NotFoundHttpException("Project not found");
         }
 
-        $form = $this->createForm($project);
+        $form = new ProjectForm('project', $project, $this->container->getValidatorService());
         
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->get($form->getName()));
@@ -86,7 +86,7 @@ class ProjectController extends Controller
     public function newAction()
     {
       $project = new Project();
-      $form = $this->createForm($project);
+      $form = new ProjectForm('project', $project, $this->container->getValidatorService());
       
       if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->get('project'));
@@ -105,15 +105,4 @@ class ProjectController extends Controller
             'form' => $form
         ));
     }
-
-    public function createForm(Project $project)
-    {
-        $options = array(
-          'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
-          'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml'
-        );
-
-        return new ProjectForm($project, $options);
-    }
-
 }
