@@ -67,6 +67,10 @@ class MiamKernel extends Kernel
 
     public function registerContainerConfiguration()
     {
+        Symfony\Components\OutputEscaper\Escaper::markClassesAsSafe(array(
+            'Symfony\Components\Form\Form',
+            'Symfony\Components\Form\Field'
+        ));
         $loader = new ContainerLoader($this->getBundleDirs());
 
         $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
