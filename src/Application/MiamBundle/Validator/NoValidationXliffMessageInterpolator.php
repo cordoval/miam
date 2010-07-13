@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Validator;
+namespace Application\MiamBundle\Validator;
 
 use Symfony\Components\Validator\MessageInterpolator\XliffMessageInterpolator; 
 

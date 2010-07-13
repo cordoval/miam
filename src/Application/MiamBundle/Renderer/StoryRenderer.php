@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\MiamBundle\Renderer;
+namespace Application\MiamBundle\Renderer;
 
-use Bundle\MiamBundle\Entity;
+use Application\MiamBundle\Entity;
 
 /**
  * Render a story or an array of stories.

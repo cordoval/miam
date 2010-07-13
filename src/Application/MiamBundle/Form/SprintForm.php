@@ -1,10 +1,10 @@
 <?php
 
-namespace Bundle\MiamBundle\Form;
+namespace Application\MiamBundle\Form;
 
-use Bundle\MiamBundle\Form\BaseForm;
+use Application\MiamBundle\Form\BaseForm;
 use Doctrine\ORM\EntityManager;
-use Bundle\MiamBundle\Entities\Project;
+use Application\MiamBundle\Entities\Project;
 
 class SprintForm extends BaseForm
 {
@@ -53,7 +53,7 @@ class SprintForm extends BaseForm
 
     public function getModelName()
     {
-        return 'Bundle\MiamBundle\Entities\Sprint';
+        return 'Application\MiamBundle\Entities\Sprint';
     }
 
 }

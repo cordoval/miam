@@ -1,9 +1,9 @@
 <?php
 
-namespace Bundle\MiamBundle\Form;
+namespace Application\MiamBundle\Form;
 
-use Bundle\MiamBundle\DoctrineForm\DoctrineForm;
-use Bundle\MiamBundle\DoctrineForm\DoctrineChoiceField;
+use Application\MiamBundle\DoctrineForm\DoctrineForm;
+use Application\MiamBundle\DoctrineForm\DoctrineChoiceField;
 use Symfony\Components\Form\FieldGroup;
 use Symfony\Components\Form\ChoiceField;
 use Symfony\Components\Form\TextField;
@@ -20,9 +20,9 @@ use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Components\Validator\Mapping\Loader\AnnotationLoader;
 use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
 use Symfony\Foundation\UniversalClassLoader;
-use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
+use Application\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
 
-use Bundle\MiamBundle\Entities\Project;
+use Application\MiamBundle\Entities\Project;
 
 class StoryForm extends DoctrineForm
 {

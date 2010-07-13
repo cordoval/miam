@@ -28,7 +28,7 @@ class SprintController extends Controller
                 
                 $this->getEntityManager()->flush();
 
-                $this->getEntityManager()->getRepository('Bundle\MiamBundle\Entities\Sprint')->setCurrentSprint($sprint);
+                $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->setCurrentSprint($sprint);
                 
                 $this->getEntityManager()->flush();
                 
@@ -47,15 +47,15 @@ class SprintController extends Controller
     public function pingAction($hash)
     {
         $realHash = $this->getEntityManager()
-            ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+            ->getRepository('Application\MiamBundle\Entities\Sprint')
             ->getCurrentHash();
 
         if($realHash != $hash) {
             $sprint = $this->getEntityManager()
-                ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+                ->getRepository('Application\MiamBundle\Entities\Sprint')
                 ->findCurrentWithStories();
             $projects = $this->getEntityManager()
-                ->getRepository('Bundle\MiamBundle\Entities\Project')
+                ->getRepository('Application\MiamBundle\Entities\Project')
                 ->findForSprint($sprint);
 
             return $this->render('MiamBundle:Sprint:_current', array(
@@ -74,7 +74,7 @@ class SprintController extends Controller
         try
         {
             $sprint = $this->getEntityManager()
-                ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+                ->getRepository('Application\MiamBundle\Entities\Sprint')
                 ->findCurrentWithStories();
         }
         catch(\Doctrine\ORM\NoResultException $e)
@@ -83,15 +83,15 @@ class SprintController extends Controller
         }
 
         $projects = $this->getEntityManager()
-            ->getRepository('Bundle\MiamBundle\Entities\Project')
+            ->getRepository('Application\MiamBundle\Entities\Project')
             ->findForSprint($sprint);
 
         $timeline = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\TimelineEntry')
+        ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
         ->findLatest();
 
         $hash = $this->getEntityManager()
-            ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+            ->getRepository('Application\MiamBundle\Entities\Sprint')
             ->getCurrentHash();
 
         return $this->render('MiamBundle:Sprint:current', array(
@@ -107,11 +107,11 @@ class SprintController extends Controller
     public function scheduleAction()
     {
         $sprint = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+        ->getRepository('Application\MiamBundle\Entities\Sprint')
         ->findCurrentWithStories();
 
         $stories = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->getRepository('Application\MiamBundle\Entities\Story')
         ->findBacklog();
         
         if(count($stories)) {
@@ -131,7 +131,7 @@ class SprintController extends Controller
     public function unscheduleAction($id)
     {
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->getRepository('Application\MiamBundle\Entities\Story')
         ->find($id);
 
         if (!$story) {
@@ -151,7 +151,7 @@ class SprintController extends Controller
     public function addStoryAction($id)
     {
         $story = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Story')
+        ->getRepository('Application\MiamBundle\Entities\Story')
         ->find($id);
 
         if (!$story) {
@@ -159,7 +159,7 @@ class SprintController extends Controller
         }
         
         $sprint = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Sprint')
+        ->getRepository('Application\MiamBundle\Entities\Sprint')
         ->findCurrent();
 
         $sprint->addStory($story);

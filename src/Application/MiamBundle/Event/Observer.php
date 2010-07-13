@@ -6,8 +6,8 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Framework\EventDispatcher;
 use Symfony\Components\EventDispatcher\Event;
 use Symfony\Components\HttpFoundation\Session;
-use Bundle\MiamBundle\Entities\TimelineEntry;
-use Bundle\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entities\TimelineEntry;
+use Application\MiamBundle\Entities\Story;
 
 class Observer
 {

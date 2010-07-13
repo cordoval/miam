@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Form;
+namespace Application\MiamBundle\Form;
 
 use Symfony\Components\Form\Form;
 use Symfony\Components\Form\TextField;
@@ -11,8 +11,8 @@ use Symfony\Components\Validator\Mapping\ClassMetadata;
 use Symfony\Components\Validator\Mapping\Loader\LoaderChain;
 use Symfony\Components\Validator\Mapping\Loader\AnnotationLoader;
 use Symfony\Components\Validator\Mapping\Loader\XmlFileLoader;
-use Bundle\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
-use Bundle\MiamBundle\Entities\Project;
+use Application\MiamBundle\Validator\NoValidationXliffMessageInterpolator;
+use Application\MiamBundle\Entities\Project;
 
 class ProjectForm extends Form
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Form;
+namespace Application\MiamBundle\Form;
 
 use Bundle\DoctrineFormBundle\Form\DoctrineForm;
 use Doctrine\ORM\EntityManager;
@@ -82,7 +82,7 @@ class StoryForm_new extends Form\Form
 
     public function getModelName()
     {
-        return 'Bundle\MiamBundle\Entities\Story';
+        return 'Application\MiamBundle\Entities\Story';
     }
 
 }

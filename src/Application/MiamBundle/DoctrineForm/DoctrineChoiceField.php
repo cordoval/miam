@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\DoctrineForm;
+namespace Application\MiamBundle\DoctrineForm;
 
 use Symfony\Components\Form\Renderer\SelectRenderer;
 use Symfony\Components\Form\ChoiceField;

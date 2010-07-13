@@ -1,9 +1,9 @@
 <?php
 
-namespace Bundle\MiamBundle\Entities;
+namespace Application\MiamBundle\Entities;
 
 use Doctrine\ORM\EntityRepository;
-use Bundle\MiamBundle\Entities\Sprint;
+use Application\MiamBundle\Entities\Sprint;
 use Doctrine\ORM\Query;
 
 class SprintRepository extends EntityRepository

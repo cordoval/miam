@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\MiamBundle\Tests\Entities;
+namespace Application\MiamBundle\Tests\Entities;
 
-use Bundle\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entities\Story;
 
 require_once __DIR__.'/../../Entities/Story.php';
 

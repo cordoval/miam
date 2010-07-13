@@ -1,12 +1,12 @@
 <?php
 
-namespace Bundle\MiamBundle\Controller;
+namespace Application\MiamBundle\Controller;
 
 use Symfony\Framework\DoctrineBundle\Controller\DoctrineController as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Bundle\MiamBundle\Entities\Project;
-use Bundle\MiamBundle\Renderer\ProjectRenderer;
-use Bundle\MiamBundle\Form\ProjectForm;
+use Application\MiamBundle\Entities\Project;
+use Application\MiamBundle\Renderer\ProjectRenderer;
+use Application\MiamBundle\Form\ProjectForm;
 use Symfony\Components\EventDispatcher\Event;
 
 class ProjectController extends Controller
@@ -15,7 +15,7 @@ class ProjectController extends Controller
     public function indexAction()
     {
         $projects = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->getRepository('Application\MiamBundle\Entities\Project')
         ->findAllOrderByInterest();
 
         return $this->render('MiamBundle:Project:index', array(
@@ -26,7 +26,7 @@ class ProjectController extends Controller
     public function showAction($id)
     {
         $project = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->getRepository('Application\MiamBundle\Entities\Project')
         ->findWithBacklog($id);
 
         if (!$project) {
@@ -41,7 +41,7 @@ class ProjectController extends Controller
     public function deleteAction($id)
     {
         $project = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->getRepository('Application\MiamBundle\Entities\Project')
         ->find($id);
 
         if (!$project) {
@@ -58,7 +58,7 @@ class ProjectController extends Controller
     public function editAction($id)
     {
         $project = $this->getEntityManager()
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->getRepository('Application\MiamBundle\Entities\Project')
         ->find($id);
 
         if (!$project) {

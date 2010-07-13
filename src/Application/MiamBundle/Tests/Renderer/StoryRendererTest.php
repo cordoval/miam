@@ -1,8 +1,8 @@
 <?php
 
-namespace Bundle\MiamBundle\Tests\Renderer;
+namespace Application\MiamBundle\Tests\Renderer;
 
-use Bundle\MiamBundle\Renderer\StoryRenderer,
+use Application\MiamBundle\Renderer\StoryRenderer,
     Symfony\Components\Routing\RouterInterface;
 
 require_once 'PHPUnit/Framework.php';

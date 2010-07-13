@@ -1,13 +1,13 @@
 <?php
 
-namespace Bundle\MiamBundle\DoctrineForm;
+namespace Application\MiamBundle\DoctrineForm;
 
 use Symfony\Components\Form\Form;
 use Symfony\Components\Validator\ValidatorInterface;
 use Symfony\Components\Validator\ConstraintViolation;
 use Symfony\Components\I18N\TranslatorInterface;
 use Symfony\Components\File\UploadedFile;
-use Bundle\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entities\Story;
 
 class DoctrineForm extends Form
 {
@@ -24,7 +24,7 @@ class DoctrineForm extends Form
     if($data instanceof Story && 'project' == $element)
     {
       $value = $this->getOption('em')
-        ->getRepository('Bundle\MiamBundle\Entities\Project')
+        ->getRepository('Application\MiamBundle\Entities\Project')
         ->find($value);
     }
 

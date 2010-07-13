@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Profiler;
+namespace Application\MiamBundle\Profiler;
 
 use Symfony\Framework\ProfilerBundle\DataCollector\DataCollectorManager as Base;
 use Symfony\Components\EventDispatcher\Event;

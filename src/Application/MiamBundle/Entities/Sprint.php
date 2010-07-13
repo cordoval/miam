@@ -1,9 +1,9 @@
 <?php
 
-namespace Bundle\MiamBundle\Entities;
+namespace Application\MiamBundle\Entities;
 
 /**
- * @Entity(repositoryClass="Bundle\MiamBundle\Entities\SprintRepository")
+ * @Entity(repositoryClass="Application\MiamBundle\Entities\SprintRepository")
  * @Table(name="miam_sprint")
  */
 class Sprint

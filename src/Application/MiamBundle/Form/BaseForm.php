@@ -1,6 +1,6 @@
 <?php
 
-namespace Bundle\MiamBundle\Form;
+namespace Application\MiamBundle\Form;
 
 use Bundle\DoctrineFormBundle\Form\DoctrineForm;
 use Doctrine\ORM\EntityManager;

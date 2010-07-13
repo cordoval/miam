@@ -1,9 +1,9 @@
 <?php
 
-namespace Bundle\MiamBundle\Entities;
+namespace Application\MiamBundle\Entities;
 
 /**
- * @Entity(repositoryClass="Bundle\MiamBundle\Entities\ProjectRepository")
+ * @Entity(repositoryClass="Application\MiamBundle\Entities\ProjectRepository")
  * @Table(name="miam_project")
  * @HasLifecycleCallbacks
  */

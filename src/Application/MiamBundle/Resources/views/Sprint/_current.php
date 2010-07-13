@@ -16,10 +16,10 @@
     <table data-move-url="<?php echo $view->router->generate('story_move') ?>" data-ping-url="<?php echo $view->router->generate('sprint_ping', array('hash' => '_HASH_')) ?>" data-sprint-hash="<?php echo $hash ?>">
         <thead>
         <tr>
-            <th class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</th>
-            <th class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_TODO) ?>)</th>
-            <th class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_WIP) ?>)</th>
-            <th class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Bundle\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</th>
+            <th class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</th>
+            <th class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_TODO) ?>)</th>
+            <th class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_WIP) ?>)</th>
+            <th class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</th>
         </tr>
         </thead>
         <tbody>
