@@ -8,12 +8,10 @@
 <h1>Création d'un projet</h1>
 
 <?php echo $form->renderFormTag($view->router->generate('project_new')) ?>
-    <table>
       <?php echo $form['name']->renderErrors() ?>
       <label>Name: <?php echo $form['name']->render(array('class' => 'focus_me')); ?></label>
 <br />
       <?php echo $form['color']->renderErrors() ?>
       <label>Color: <?php echo $form['color']->render(); ?></label> 
-    </table>
     <input id="submit" type="submit" value="Valider" />
 </form>
