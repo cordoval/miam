@@ -109,7 +109,7 @@ class StoryController extends Controller
             ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
             ->findByStory($story);
 
-        return $this->render('MiamBundle:Story:show.ajax', array(
+        return $this->render('MiamBundle:Story:show', array(
             'story' => $story,
             'timeline' => $timeline,
             'emails' => $this->container->getParameter('miam.user.emails')
