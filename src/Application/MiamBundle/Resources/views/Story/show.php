@@ -1,5 +1,3 @@
-<div class="story_title"><?php echo $story->getName() ?></div>
-
 <div class="story_body clearfix">
     <?php echo $view->markdown->transform($story->getBody()) ?>
     <div class="story_infos">
@@ -26,5 +24,5 @@
 <?php endif; ?>
 
 <div class="story_timeline">
-  <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails, 'disable' => true)) ?>
+  <?php $view->output('MiamBundle:Timeline:show', array('timeline' => $timeline, 'emails' => $emails, 'disable' => true)) ?>
 </div>

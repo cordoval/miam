@@ -1,6 +1,3 @@
-<?php $view->extend('MiamBundle::layoutFullpage') ?>
-<?php $view->slots->set('active_menu', 'sprint_schedule') ?>
-
 <div id="scheduling">
     <div class="col col_right">
         <h2>Sprint en cours</h2>

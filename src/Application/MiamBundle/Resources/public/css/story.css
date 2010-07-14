@@ -29,12 +29,6 @@ ol.stories
   text-decoration: none;
 }
 
-.stories .story {
-    margin: 5px 0;
-    width: 500px;
-    padding-bottom: 5px;
-}
-
 .col
 {
   width: 47.5%;

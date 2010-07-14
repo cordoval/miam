@@ -8,13 +8,13 @@ use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 class TimelineController extends Controller
 {
 
-    public function indexAction()
+    public function showAction()
     {
         $timeline = $this->getEntityManager()
         ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
         ->findLatest();
 
-        return $this->render('MiamBundle:Timeline:index', array(
+        return $this->render('MiamBundle:Timeline:show', array(
             'timeline' => $timeline,
             'emails' => $this->container->getParameter('miam.user.emails')
         ));

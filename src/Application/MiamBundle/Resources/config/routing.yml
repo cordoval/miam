@@ -4,7 +4,7 @@ homepage:
 
 timeline:
   pattern:  /timeline.:_format
-  defaults: { _controller: MiamBundle:Timeline:index, _format: html }
+  defaults: { _controller: MiamBundle:Timeline:show, _format: html }
 
 story_new:
   pattern:  /story/new

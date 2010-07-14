@@ -1,9 +1,5 @@
 (function($)
 {
-    $('#backlog').backlog();
-
-    $('#sprint_current').sprint();
-
     $('a.js_confirm, input.js_confirm').live('click', function(e)
     {
       e.stopPropagation();
@@ -38,10 +34,16 @@
     $('.story_object').live('click', function()
     {
         var storyId = $(this).attr('data-story-id');
-        $.modal('');
+        var dialog = $('<div>').dialog({
+            zIndex: 100,
+            dragStart: function(e) { $(e.target).parent().css('opacity', 0.5); },
+            dragStop: function(e) { $(e.target).parent().css('opacity', 1); },
+            resizable: false,
+            width: '500px',
+            title: $(this).text()
+        });
         $.ajax({ url: miam_config.story_url.replace(/_ID_/, storyId), success: function(html) {
-            $.modal.close();
-            $.modal(html, { overlayClose: true });
+            dialog.html(html);
         }});
 
         return false;

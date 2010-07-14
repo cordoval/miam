@@ -84,10 +84,6 @@ class SprintController extends Controller
             ->getRepository('Application\MiamBundle\Entities\Project')
             ->findForSprint($sprint);
 
-        $timeline = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
-        ->findLatest();
-
         $hash = $this->getEntityManager()
             ->getRepository('Application\MiamBundle\Entities\Sprint')
             ->getCurrentHash();
@@ -97,32 +93,18 @@ class SprintController extends Controller
             'sprint' => $sprint,
             'hash' => $hash,
             'statuses' => Story::getSprintStatuses(),
-            'timeline' => $timeline,
             'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
     
-    public function scheduleAction()
+    public function backlogAction()
     {
-        $sprint = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Sprint')
-        ->findCurrentWithStories();
-
         $stories = $this->getEntityManager()
         ->getRepository('Application\MiamBundle\Entities\Story')
         ->findBacklog();
-        
-        if(count($stories)) {
-            $story = $stories[0];
-        } else {
-            $story = null;
-        }
 
-        return $this->render('MiamBundle:Sprint:schedule', array(
-            'backlogStories' => $stories,
-            'sprintStories' => $sprint->getStories(),
-            'story' => $story,
-            'sprint' => $sprint
+        return $this->render('MiamBundle:Story:backlog', array(
+            'stories' => $stories
         ));
     }
 

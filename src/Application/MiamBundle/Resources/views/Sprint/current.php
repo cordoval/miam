@@ -1,15 +1,5 @@
-<?php $view->extend('MiamBundle::layoutFullpage') ?>
-<?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
-<?php $view->slots->set('active_menu', 'sprint_current') ?>
+<?php $view->extend('MiamBundle::layout') ?>
 
-
-<div id="timeline" class="colSide">
-  <div id="timeline_close">X</div>
-  <?php $view->output('MiamBundle:Timeline:list', array('timeline' => $timeline, 'emails' => $emails)); ?>
+<div data-move-url="<?php echo $view->router->generate('story_move') ?>" data-ping-url="<?php echo $view->router->generate('sprint_ping', array('hash' => '_HASH_')) ?>" data-sprint-hash="<?php echo $hash ?>" id="sprint">
+    <?php $view->output('MiamBundle:Sprint:_current', array('sprint' => $sprint, 'projects' => $projects, 'statuses' => $statuses)); ?>    
 </div>
-
-<div id="sprint_current" class="colCenter">
-  <?php $view->output('MiamBundle:Sprint:_current', array('sprint' => $sprint, 'hash' => $hash, 'projects' => $projects, 'statuses' => $statuses)); ?>    
-</div>
-
-<div style="clear:both"></div>
