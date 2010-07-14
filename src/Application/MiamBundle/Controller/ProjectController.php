@@ -72,7 +72,7 @@ class ProjectController extends Controller
             if($form->isValid()) {
                 $this->getEntityManager()->persist($project);
                 $this->getEntityManager()->flush();
-                $this->getUser()->setFlash('project_update', array('project' => $project->__toString()));
+                $this->container->getSessionService()->setFlash('project_update', array('project' => $project->__toString()));
                 return $this->redirect($this->generateUrl('projects'));
             }
         }
@@ -96,7 +96,7 @@ class ProjectController extends Controller
                 
                 $this->container->getEventDispatcherService()->notify(new Event($project, 'miam.project.create'));
 
-                $this->getUser()->setFlash('project_create', array('project' => $project));
+                $this->container->getSessionService()->setFlash('project_create', array('project' => $project));
                 return $this->redirect($this->generateUrl('projects'));
             }
         }
