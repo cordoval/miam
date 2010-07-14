@@ -18,9 +18,9 @@ To configure your DB for your development and test environments, edit your `/mia
 
 Create your database and tables
 
-    php miam/console doctrine:database:drop
-    php miam/console doctrine:database:create
-    php miam/console doctrine:schema:create
+    php miam/console-dev doctrine:database:drop
+    php miam/console-dev doctrine:database:create
+    php miam/console-dev doctrine:schema:create
 
     php miam/console-test doctrine:database:drop
     php miam/console-test doctrine:database:create
@@ -28,12 +28,12 @@ Create your database and tables
 
 Generate the doctrine proxies
 
-    php miam/console doctrine:generate:proxies
+    php miam/console-dev doctrine:generate:proxies
     php miam/console-test doctrine:generate:proxies
 
 Load fixtures
 
-    php miam/console doctrine:data:load
+    php miam/console-dev doctrine:data:load
     php miam/console-test doctrine:data:load
   
 Run unit tests
@@ -46,6 +46,6 @@ Run functional tests
 
 To generate migrations from your current schema
 
-    php miam/console doctrine:migrations:diff --bundle=Bundle\\MiamBundle
-    php miam/console doctrine:migrations:migrate --bundle=Bundle\\MiamBundle
-    php miam/console doctrine:generate:proxies
+    php miam/console-dev doctrine:migrations:diff --bundle=Bundle\\MiamBundle
+    php miam/console-dev doctrine:migrations:migrate --bundle=Bundle\\MiamBundle
+    php miam/console-dev doctrine:generate:proxies
