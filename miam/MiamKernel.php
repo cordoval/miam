@@ -13,6 +13,16 @@ class MiamKernel extends Kernel
         return __DIR__;
     }
 
+    public function boot()
+    {
+        Symfony\Components\OutputEscaper\Escaper::markClassesAsSafe(array(
+            'Symfony\Components\Form\Form',
+            'Symfony\Components\Form\Field'
+        ));
+
+        return parent::boot();
+    }
+
     public function registerBundles()
     {
         $bundles = array(
@@ -67,10 +77,6 @@ class MiamKernel extends Kernel
 
     public function registerContainerConfiguration()
     {
-        Symfony\Components\OutputEscaper\Escaper::markClassesAsSafe(array(
-            'Symfony\Components\Form\Form',
-            'Symfony\Components\Form\Field'
-        ));
         $loader = new ContainerLoader($this->getBundleDirs());
 
         $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
