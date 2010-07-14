@@ -144,16 +144,15 @@ td.droppable_hover {
   overflow: hidden;
 }
 
-.colLeft {
+.colCenter {
   overflow: auto;
 }
 
-.colRight {
-  float: right;
+.colSide {
+  float: left;
   width: 400px;
   margin-left: 15px;
   margin-right: 15px;
-  padding: 5px;
 }
 
 div#timeline {
