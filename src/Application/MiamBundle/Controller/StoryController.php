@@ -129,7 +129,7 @@ class StoryController extends Controller
         $story->markAsDeleted();
         $this->getEntityManager()->flush();
         $this->notify(new Event($story, 'miam.story.delete'));
-        $this->getSession()->setFlash('story_delete', array('story' => $story->getName()));
+        $this->container->getSessionService()->setFlash('story_delete', array('story' => $story->getName()));
 
         return $this->redirect($this->generateUrl('sprint_schedule'));
     }
@@ -146,7 +146,7 @@ class StoryController extends Controller
 
         $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
 
-        $form = $this->createForm($story, $projects);
+        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects));
 
         if('POST' === $this->getRequest()->getMethod()) {
             $snapshot = $story->toArray();
@@ -167,7 +167,7 @@ class StoryController extends Controller
                     $this->notify(new Event($story, 'miam.story.edit'));
                 }
 
-                $this->getSession()->setFlash('story_update', array('story' => $story));
+                $this->container->getSessionService()->setFlash('story_update', array('story' => $story));
                 return $this->redirect($this->generateUrl('sprint_schedule'));
             }
         }
@@ -196,7 +196,7 @@ class StoryController extends Controller
 
                 $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
 
-                $this->getSession()->setFlash('story_create', array('story' => $story));
+                $this->container->getSessionService()->setFlash('story_create', array('story' => $story));
                 return $this->redirect($this->generateUrl('sprint_schedule'));
             }
 
@@ -205,17 +205,6 @@ class StoryController extends Controller
         return $this->render('MiamBundle:Story:new', array(
             'form' => $form
         ));
-    }
-
-    public function createForm(Story $story, array $projects)
-    {
-        $options = array(
-            'message_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Validator/Resources/i18n/messages.en.xml',
-            'validation_file' => realpath($this->container->getParameter('kernel.root_dir').'/..').'/src/vendor/Symfony/src/Symfony/Components/Form/Resources/config/validation.xml',
-            'em' => $this->getEntityManager()
-        );
-
-        return new StoryForm($story, array_merge($options, array('projects' => $projects)));
     }
 
     protected function notify(Event $event)
