@@ -4,7 +4,7 @@
     <?php echo $view->markdown->transform($story->getBody()) ?>
     <div class="story_infos">
         Créé le <?php echo $story->getCreatedAt()->format('d F à H\hi') ?>
-        <?php if(!empty($timeline)): ?>
+        <?php if(count($timeline)): ?>
             par <?php echo $timeline[count($timeline)-1]->getUser()->getUsername() ?>
         <?php endif; ?>
     </div>
