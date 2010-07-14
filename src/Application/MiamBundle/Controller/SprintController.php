@@ -15,24 +15,22 @@ class SprintController extends Controller
     
     public function newAction()
     {
-        $form = new SprintForm(null);
+        $sprint = new Sprint();
+        $sprint->setStartsAt(new \DateTime());
+        $sprint->setEndsAt(new \DateTime());
+        $form = new SprintForm('sprint', $sprint, $this->container->getValidatorService());
 
         if('POST' === $this->getRequest()->getMethod()) {
-            $form->bind($this->getRequest()->get($form->getName()));
-
+            $form->bind($this->getRequest()->get('sprint'));
             if($form->isValid()) {
-                $form->updateObject();
-                $sprint = $form->getObject();
-                                
                 $this->getEntityManager()->persist($sprint);
-                
                 $this->getEntityManager()->flush();
 
                 $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->setCurrentSprint($sprint);
                 
                 $this->getEntityManager()->flush();
                 
-                $this->getUser()->setFlash('sprint_create', array('sprint' => $sprint->__toString()));
+                $this->container->getSessionService()->setFlash('sprint_create', array('sprint' => $sprint->__toString()));
 
                 return $this->redirect($this->generateUrl('sprint_schedule'));
             }
