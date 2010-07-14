@@ -1,6 +1,9 @@
 <?php
 
 namespace Application\MiamBundle\Entities;
+use Symfony\Components\Validator\Mapping\ClassMetadata;
+use Symfony\Components\Validator\Constraints;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @Entity(repositoryClass="Application\MiamBundle\Entities\SprintRepository")
@@ -42,7 +45,7 @@ class Sprint
     public function __construct()
     {
         $this->isCurrent = true;
-        $this->stories   = array();
+        $this->stories   = new ArrayCollection();
     }
 
     public function getIsCurrent()
@@ -75,6 +78,11 @@ class Sprint
         $this->endsAt = $endsAt;
     }
     
+    /**
+     * getStories 
+     * 
+     * @return ArrayCollection
+     */
     public function getStories()
     {
         return $this->stories;
@@ -82,18 +90,13 @@ class Sprint
 
     public function addStory($story)
     {
-        $this->stories[] = $story;
+        $this->getStories()->add($story);
         $story->setSprint($this);
     }  
 
     public function removeStory(Story $story)
     {
-        if(is_array($this->stories)) {
-            unset($this->stories[array_search($story, $this->stories)]);
-        }
-        else {
-            $this->getStories()->removeElement($story);
-        }
+        $this->getStories()->removeElement($story);
         $story->setSprint(null);
     }  
 
@@ -132,7 +135,7 @@ class Sprint
     public function getRemainingPoints()
     {
         $sum = 0;
-        foreach($this->stories as $story) {
+        foreach($this->getStories() as $story) {
             if(!$story->isFinished()) {
                 $sum += $story->getPoints();
             }
@@ -148,7 +151,7 @@ class Sprint
     public function getTotalPoints()
     {
         $sum = 0;
-        foreach($this->stories as $story) {
+        foreach($this->getStories() as $story) {
             $sum += $story->getPoints();
         }
         return $sum;
@@ -157,7 +160,7 @@ class Sprint
     public function getPointsByStatus($status)
     {
         $sum = 0;
-        foreach($this->stories as $story) {
+        foreach($this->getStories() as $story) {
             if($story->isStatus($status)) {
                 $sum += $story->getPoints();
             }
