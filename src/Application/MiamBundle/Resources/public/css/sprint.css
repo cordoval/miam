@@ -29,8 +29,8 @@ div.bd div.content {
   border:1px solid #C4C4C4;
   padding-top:0;
   margin-left: 15px;
+  overflow: hidden;
 }
-
 
 #sprintBacklog 
 {
@@ -50,6 +50,7 @@ div.bd div.content {
   border-radius: 9px 9px 0 0;
   font-family:Arial,sans-serif;
   padding: 0 0 5px 0;
+  position: relative;
 }
 
 #sprint_current .titleWithActions .sprint,
@@ -59,12 +60,14 @@ div.bd div.content {
   text-transform: uppercase;
   font-weight: bold;
   padding: 0 1em 0 0;
-  margin-left: -20px;
-  line-height: 50px;
+  line-height: 45px;
   color: #888;
   font-size: 1.4em;
   display: inline;
   float: none;
+}
+#sprint_current .titleWithActions .sprint {
+    margin-left: 110px;
 }
 
 #sprint_current .titleWithActions .percentage,
@@ -96,58 +99,51 @@ div.bd div.content {
 .sprintometer {
     display: inline;
     opacity: 0.7;
-    margin: -5px 15px 15px 15px;
-    float: left;
+    position: absolute;
+    top: -4px;
+    left: 0px;
 }
 
-#sprintBacklog thead th
+#sprint div.quarters {
+    display: block;
+    width: 100%;
+}
+#sprint div.quarters > div
 {
   width: 25%;
+  float: left;
+}
+#sprint div.headers > div
+{
   color: #B12822;
   text-transform: uppercase;
   font-weight: bold;
-}
-
-#sprintBacklog th, #sprintBacklog td
-{
-  border-left: 1px solid #C4C4C4;
-}
-
-#sprintBacklog tr.story_line td {
-  padding: 5px 5px 0px 5px;
-}
-
-
-#sprintBacklog th
-{
   text-align: center;
+  padding: 5px 0;
 }
 
-#sprintBacklog th:first-child, #sprintBacklog td:first-child {
-  border: none;
-}
-
-table {
-    width: 100%;
+#sprint div.project {
     background: #fff;
 }
 
-th.project {
+#sprint div.project_name {
   color: #fff;
   font-weight: bold;
   text-shadow: 0 0 3px #000;
+  text-align: center;
+  padding: 5px 0;
+  cursor: move;
 }
 
-td.droppable_hover {
-  background: #88FF88;
+#sprint div.story_line {
 }
 
-#sprint_current .story {
-  overflow: hidden;
+#sprint div.story_line > div {
+    padding: 2px 0;
+    min-height: 15px;
 }
-
-.colCenter {
-  overflow: auto;
+#sprint div.story_line > div.droppable_hover {
+    background: #aaffbb;
 }
 
 #sprint div.colSide {

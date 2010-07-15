@@ -16,7 +16,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
     </div>
 </div>
 
-<div id="sprint_current" class="colCenter">
+<div data-sprint-hash="<?php echo $hash ?>" id="sprint_current" class="colCenter">
     <div class="titleWithActions">
         <?php $view->output('MiamBundle:Sprint:_sprintometer', array('percentage' => $percentage)) ?>
         <h1 class="sprint">Backlog de Sprint</h1>
@@ -26,35 +26,34 @@ $percentage = $total ? floor($finished/$total*100) : 0;
     </div>
 
     <div id="sprintBacklog">
-        <table >
-            <thead>
-                <tr>
-                    <th class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</th>
-                    <th class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_TODO) ?>)</th>
-                    <th class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_WIP) ?>)</th>
-                    <th class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach($projects as $project): ?>
-                <tr>
-                    <th colspan="4" class="project" style="background: <?php echo $project->getColor() ?>"><?php echo $project ?></th>
-                </tr>
-                <?php foreach($project->getStories() as $story): ?>
-                <tr class="story_line" id="story_column_<?php echo $story->getId() ?>">
-                    <?php foreach($statuses as $status => $name): ?>
-                    <td data-status="<?php echo $status ?>">
-                        <?php if($story->isStatus($status)): ?>
-                        <div class="story story_object" data-story-id="<?php echo $story->getId() ?>"><?php echo $story->getName() ?>
-                            <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+        <div class="headers quarters clearfix">
+            <div class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</div>
+            <div class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_TODO) ?>)</div>
+            <div class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_WIP) ?>)</div>
+            <div class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</div>
+        </div>
+        <div class="projects">
+            <?php foreach($sections as $section): ?>
+            <div class="project project_<?php echo $section['project']->getId() ?>" rel="project_<?php echo $section['project']->getId() ?>" data-project-id="<?php echo $section['project']->getId() ?>">
+                <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><?php echo $section['project']->getName() ?></div>
+                <div class="stories">
+                    <?php foreach($section['stories'] as $story): ?>
+                    <div class="story_line quarters clearfix" id="story_line_<?php echo $story->getId() ?>">
+                        <?php foreach($statuses as $status => $name): ?>
+                        <div data-status="<?php echo $status ?>">
+                            <?php if($story->isStatus($status)): ?>
+                            <div class="story story_object story_<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>">
+                                <?php echo $story->getName() ?>
+                                <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+                            </div>
+                            <?php endif; ?>
                         </div>
-                        <?php endif; ?>
-                    </td>
+                        <?php endforeach; ?>
+                    </div>
                     <?php endforeach; ?>
-                    <?php endforeach; ?>
-                    <?php endforeach; ?>
-                </tr>
-            </tbody>
-        </table>
+                </div>
+            </div>
+            <?php endforeach; ?>
+        </div>
     </div>
 </div>
