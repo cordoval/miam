@@ -38,18 +38,10 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                 <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><?php echo $section['project']->getName() ?></div>
                 <div class="stories">
                     <?php foreach($section['stories'] as $story): ?>
-                    <div class="story_line quarters clearfix" rel="story_<?php echo $story->getId() ?>">
-                        <?php foreach($statuses as $status => $name): ?>
-                        <div data-status="<?php echo $status ?>">
-                            <?php if($story->isStatus($status)): ?>
-                            <div class="story story_object story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>">
-                                <?php echo $story->getName() ?>
-                                <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
-                            </div>
-                            <?php endif; ?>
+                        <div class="story story_object status_<?php echo $story->getStatus() ?> story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>">
+                            <?php echo $story->getName() ?>
+                            <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
                         </div>
-                        <?php endforeach; ?>
-                    </div>
                     <?php endforeach; ?>
                 </div>
             </div>

@@ -22,44 +22,37 @@
                 selected: selectedTabIndex
             });
             var table = sprint.find('div#sprintBacklog div.projects');
-            table.find('div.story').each(function () {
-                $(this).draggable({
-                    distance: 5,
-                    containment: $(this).parent().parent(),
-                    revert: 'invalid',
-                    axis: 'x'
-                });
-            }).disableSelection();
-            table.find('div.story_line').each(function () {
-                var line = $(this);
-                var height = line.find('div.story').outerHeight();
-                line.find('>div').each(function() {
-                    $(this).droppable({
-                        accept: 'div.'+line.attr('rel'),
-                        activeClass: 'droppable_active',
-                        hoverClass: 'droppable_hover',
-                        tolerance: 'intersect',
-                        drop: function (e, ui) {
-                            $.ajax({
-                                type: 'POST',
-                                url: sprint.attr('data-move-url'),
-                                data: {
-                                    story_id: ui.draggable.attr('data-story-id'),
-                                    status: $(this).attr('data-status')
-                                },
-                                success: refresh
-                            });
-                            ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));
-                            ui.draggable.css('opacity', 0.4);
-                        }
-                    }).css('height', height+'px');
-                });
-            });
+            //table.find('div.story_line').each(function () {
+                //var line = $(this);
+                //var height = line.find('div.story').outerHeight();
+                //line.find('>div').each(function() {
+                    //$(this).droppable({
+                        //accept: 'div.'+line.attr('rel'),
+                        //activeClass: 'droppable_active',
+                        //hoverClass: 'droppable_hover',
+                        //tolerance: 'intersect',
+                        //drop: function (e, ui) {
+                            //$.ajax({
+                                //type: 'POST',
+                                //url: sprint.attr('data-move-url'),
+                                //data: {
+                                    //story_id: ui.draggable.attr('data-story-id'),
+                                    //status: $(this).attr('data-status')
+                                //},
+                                //success: refresh
+                            //});
+                            //ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));
+                            //ui.draggable.css('opacity', 0.4);
+                        //}
+                    //}).css('height', height+'px');
+                //});
+            //});
             table.find('.stories').each(function() {
                 var projectId = $(this).parent().attr('data-project-id');
                 $(this).sortable({
                     distance: 5,
                     connectWith: '#backlog .project_'+projectId+'.stories',
+                    helper: 'clone',
                     update: function(e, ui) {
                         if(!ui.sender) {
                             $.ajax({

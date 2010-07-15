@@ -59,8 +59,7 @@ class SprintController extends Controller
             return $this->render('MiamBundle:Sprint:_current', array(
                 'sections' => $sections,
                 'sprint' => $sprint,
-                'hash' => $realHash,
-                'statuses' => Story::getSprintStatuses() 
+                'hash' => $realHash
             ));
         }
 

@@ -135,15 +135,29 @@ div.bd div.content {
   cursor: move;
 }
 
-#sprint div.story_line {
+#sprint div.story {
+    width: 24%;
+    padding: 2px 0;
+    margin: 2px 0.5%;
 }
 
-#sprint div.story_line > div {
-    padding: 2px 0;
-    height: 100%;
+#sprint div.story.status_20 {
+    margin: 0 0.5%;
 }
-#sprint div.story_line > div.droppable_hover {
-    background: #aaffbb;
+
+#sprint div.story.status_30 {
+    margin: 0 25.5%;
+}
+
+#sprint div.story.status_40 {
+    margin: 0 50.5%;
+}
+
+#sprint div.story.status_50 {
+    margin: 0 75.5%;
+}
+
+#sprint div.story.ui-sortable-helper {
 }
 
 #sprint div.colSide {
