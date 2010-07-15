@@ -14,33 +14,33 @@ class ProjectRepository extends EntityRepository
     public function findForSprint(Sprint $sprint)
     {
         return $this->createQueryBuilder('p')
-        ->select('p', 's')
-        ->innerJoin('p.stories', 's', 'WITH', 's.status > 0')
-        ->where('s.sprint = :id')
-        ->orderBy('p.name', 'asc')
-        ->addOrderBy('s.priority', 'asc')
-        ->setParameter('id', $sprint->getId())
-        ->getQuery()
-        ->getResult()
-        ;
+            ->select('p', 's')
+            ->innerJoin('p.stories', 's', 'WITH', 's.status > 0')
+            ->where('s.sprint = :id')
+            ->orderBy('p.priority', 'asc')
+            ->addOrderBy('s.priority', 'asc')
+            ->setParameter('id', $sprint->getId())
+            ->getQuery()
+            ->getResult()
+            ;
     }
-  
+
     /**
-    * Return all projects sorted by interest, indexed by id
-    *
-    * @return Associative array of Project
-    */
+     * Return all projects sorted by interest, indexed by id
+     *
+     * @return Associative array of Project
+     */
     public function findAllIndexedById()
     {
-      $projects = $this->getOrderByInterestQuery()
-      ->execute();
-  
-      // TODO: find how to INDEX BY id
-      $projectsIndexed = array();
-      foreach($projects as $project) {
-          $projectsIndexed[$project->getId()] = $project;
-      }
-      return $projectsIndexed;
+        $projects = $this->getOrderByInterestQuery()
+            ->execute();
+
+        // TODO: find how to INDEX BY id
+        $projectsIndexed = array();
+        foreach($projects as $project) {
+            $projectsIndexed[$project->getId()] = $project;
+        }
+        return $projectsIndexed;
     }
 
     /**
@@ -52,7 +52,7 @@ class ProjectRepository extends EntityRepository
     public function findAllOrderByInterest()
     {
         return $this->getOrderByInterestQuery()
-        ->execute();
+            ->execute();
     }
 
     /**
@@ -64,13 +64,13 @@ class ProjectRepository extends EntityRepository
     public function findWithBacklog($id)
     {
         return $this->createQueryBuilder('p')
-        ->where('p.id = :id')
-        ->leftJoin('p.stories', 's')
-        ->orderBy('s.priority', 'asc')
-        ->setParameter('id', $id)
-        ->getQuery()
-        ->getSingleResult()
-        ;
+            ->where('p.id = :id')
+            ->leftJoin('p.stories', 's')
+            ->orderBy('s.priority', 'asc')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getSingleResult()
+            ;
     }
 
     /**
@@ -81,16 +81,23 @@ class ProjectRepository extends EntityRepository
     public function findDummyProject()
     {
         return $this->createQueryBuilder('p')
-        ->getQuery()
-        ->setMaxResults(1)
-        ->getSingleResult();
+            ->getQuery()
+            ->setMaxResults(1)
+            ->getSingleResult();
     }
 
     protected function getOrderByInterestQuery()
     {
         return $this->createQueryBuilder('p')
-        ->orderBy('p.createdAt', 'desc')
-        ->getQuery()
-        ;
+            ->orderBy('p.createdAt', 'desc')
+            ->getQuery()
+            ;
     }
+
+    public function sort(array $ids)
+    {
+        foreach($ids as $priority => $id) {
+            $this->find($id)->setPriority($priority);
+        }
     }
+}
