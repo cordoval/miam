@@ -105,4 +105,17 @@ class ProjectController extends Controller
             'form' => $form
         ));
     }
+
+    public function sortAction()
+    {
+        $ids = $this->getRequest()->get('project');
+
+        $this->getEntityManager()
+            ->getRepository('Application\MiamBundle\Entities\Project')
+            ->sort($ids);
+
+        $this->getEntityManager()->flush();
+
+        return $this->forward('MiamBundle:Sprint:ping', array('hash' => null));
+    }
 }
