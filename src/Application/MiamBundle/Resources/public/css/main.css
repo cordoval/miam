@@ -464,3 +464,7 @@ textarea {
 .story a {
   color: #222;
 }
+
+.ui-widget, .ui-widget-content {
+    color: #666;
+}

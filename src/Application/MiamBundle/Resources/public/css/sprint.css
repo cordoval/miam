@@ -140,7 +140,7 @@ div.bd div.content {
 
 #sprint div.story_line > div {
     padding: 2px 0;
-    min-height: 15px;
+    height: 100%;
 }
 #sprint div.story_line > div.droppable_hover {
     background: #aaffbb;
@@ -181,7 +181,7 @@ div.bd div.content {
 }
 
 #backlog {
-    padding: 0;
+    padding: 5px 0 0 0;
     font-size: 13px;
 }
 
