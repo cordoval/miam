@@ -37,12 +37,17 @@ class Project
     /**
      * @Column(name="is_active", type="boolean", nullable=false)
      */
-    protected $isActive;
+    protected $isActive = true;
 
     /**
      * @Column(name="color", type="string", length=7)
      */
     protected $color;
+
+    /**
+     * @Column(name="priority", type="integer", nullable=false)
+     */
+    protected $priority = 1;
     
     /**
      * @Column(name="id", type="integer")
@@ -50,11 +55,6 @@ class Project
      * @GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
-    public function __construct()
-    {
-        $this->isActive = true;
-    }
      
     /**
      * Set createdAt
@@ -147,10 +147,24 @@ class Project
         $this->id = $id;
     }
 
-
+    /**
+     * getStories 
+     * 
+     * @return ArrayAccess
+     */
     public function getStories()
     {
         return $this->stories;
+    }
+
+    public function setPriority($value)
+    {
+        $this->priority = $value;
+    }
+
+    public function getPriority()
+    {
+        return $this->priority;
     }
     
     public function __toString()
