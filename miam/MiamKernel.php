@@ -32,7 +32,7 @@ class MiamKernel extends Kernel
             // enable third-party bundles
             new Symfony\Bundle\ZendBundle\ZendBundle(),
             new Symfony\Bundle\DoctrineBundle\DoctrineBundle(),
-            //new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
+            new Symfony\Bundle\DoctrineMigrationsBundle\DoctrineMigrationsBundle(),
 
             // register your bundles here
             new Bundle\MarkdownBundle\MarkdownBundle(),
