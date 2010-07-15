@@ -52,12 +52,12 @@ class SprintController extends Controller
             $sprint = $this->getEntityManager()
                 ->getRepository('Application\MiamBundle\Entities\Sprint')
                 ->findCurrentWithStories();
-            $projects = $this->getEntityManager()
-                ->getRepository('Application\MiamBundle\Entities\Project')
-                ->findForSprint($sprint);
+            $sections = $this->getEntityManager()
+                ->getRepository('Application\MiamBundle\Entities\Story')
+                ->findSprintStoriesIndexByProject($sprint);
 
             return $this->render('MiamBundle:Sprint:_current', array(
-                'projects' => $projects,
+                'sections' => $sections,
                 'sprint' => $sprint,
                 'hash' => $realHash,
                 'statuses' => Story::getSprintStatuses() 
@@ -69,43 +69,18 @@ class SprintController extends Controller
     
     public function currentAction()
     {
-        try
-        {
-            $sprint = $this->getEntityManager()
-                ->getRepository('Application\MiamBundle\Entities\Sprint')
-                ->findCurrentWithStories();
-        }
-        catch(\Doctrine\ORM\NoResultException $e)
-        {
-            return $this->redirect($this->generateUrl('sprint_new'));
-        }
-
-        $projects = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Project')
-            ->findForSprint($sprint);
-
-        $hash = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Sprint')
-            ->getCurrentHash();
-
         return $this->render('MiamBundle:Sprint:current', array(
-            'projects' => $projects,
-            'sprint' => $sprint,
-            'hash' => $hash,
-            'statuses' => Story::getSprintStatuses(),
             'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
     
     public function backlogAction()
     {
-        $stories = $this->getEntityManager()
+        $sections = $this->getEntityManager()
         ->getRepository('Application\MiamBundle\Entities\Story')
-        ->findBacklog();
+        ->findBacklogIndexByProject();
 
-        return $this->render('MiamBundle:Story:backlog', array(
-            'stories' => $stories
-        ));
+        return $this->render('MiamBundle:Story:backlog', array('sections' => $sections));
     }
 
     public function unscheduleAction($id)
@@ -128,8 +103,9 @@ class SprintController extends Controller
         return $this->redirect($this->generateUrl('sprint_schedule'));
     }
     
-    public function addStoryAction($id)
+    public function scheduleAction()
     {
+        $id = $this->getRequest()->get('story_id');
         $story = $this->getEntityManager()
         ->getRepository('Application\MiamBundle\Entities\Story')
         ->find($id);
@@ -143,12 +119,12 @@ class SprintController extends Controller
         ->findCurrent();
 
         $sprint->addStory($story);
-        $story->setStatus($this->getRequest()->get('pending') ? Story::STATUS_PENDING : Story::STATUS_TODO);
+        $story->setStatus(Story::STATUS_TODO);
         $this->getEntityManager()->flush();
 
         $this->notify(new Event($story, 'miam.story.schedule'));
         
-        return $this->redirect($this->generateUrl('sprint_schedule'));
+        return $this->forward('MiamBundle:Sprint:ping', array('hash' => null));
     }
 
     protected function notify(Event $event)

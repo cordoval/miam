@@ -12,7 +12,7 @@ class TimelineController extends Controller
     {
         $timeline = $this->getEntityManager()
         ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
-        ->findLatest();
+        ->findLatest(12);
 
         return $this->render('MiamBundle:Timeline:show', array(
             'timeline' => $timeline,

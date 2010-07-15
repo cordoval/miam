@@ -86,7 +86,7 @@ class StoryController extends Controller
 
         $this->getEntityManager()->flush();
 
-        return $this->createResponse('done');
+        return $this->forward('MiamBundle:Sprint:ping', array('hash' => null));
     }
 
     public function showAction($id)
