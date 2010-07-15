@@ -6,6 +6,13 @@ use Doctrine\ORM\EntityRepository;
 
 class ProjectRepository extends EntityRepository
 {
+    public function resort()
+    {
+        foreach($this->findAllOrderByPriority() as $priority => $project) {
+            $project->setPriority($priority);
+        }
+    }
+
     /**
      * Return all projects which have at least one story assigned to the given sprint
      *
@@ -32,8 +39,7 @@ class ProjectRepository extends EntityRepository
      */
     public function findAllIndexedById()
     {
-        $projects = $this->getOrderByInterestQuery()
-            ->execute();
+        $projects = $this->getOrderByPriorityQuery()->execute();
 
         // TODO: find how to INDEX BY id
         $projectsIndexed = array();
@@ -44,15 +50,14 @@ class ProjectRepository extends EntityRepository
     }
 
     /**
-     * Return all projects sorted by interest.
-     * For now, most recent projects should be at the top.
+     * Return all projects sorted by priority.
+     * Lower value is more important
      *
      * @return Array of Project
      */
-    public function findAllOrderByInterest()
+    public function findAllOrderByPriority()
     {
-        return $this->getOrderByInterestQuery()
-            ->execute();
+        return $this->getOrderByPriorityQuery()->execute();
     }
 
     /**
@@ -86,10 +91,10 @@ class ProjectRepository extends EntityRepository
             ->getSingleResult();
     }
 
-    protected function getOrderByInterestQuery()
+    protected function getOrderByPriorityQuery()
     {
         return $this->createQueryBuilder('p')
-            ->orderBy('p.createdAt', 'desc')
+            ->orderBy('p.priority', 'ASC')
             ->getQuery()
             ;
     }

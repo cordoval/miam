@@ -21,9 +21,10 @@ class StoryRepository extends EntityRepository
     public function findBacklogIndexByProject()
     {
         $stories = $this->createQueryBuilder('s')
+            ->select('s, p')
             ->where('s.sprint is null')
             ->leftJoin('s.project', 'p')
-            ->select('s, p')
+            ->addOrderBy('p.priority', 'ASC')
             ->addOrderBy('s.priority', 'ASC')
             ->getQuery()
             ->execute();
@@ -34,9 +35,10 @@ class StoryRepository extends EntityRepository
     public function findSprintStoriesIndexByProject(Sprint $sprint)
     {
         $stories =  $this->createQueryBuilder('s')
+            ->select('s, p')
             ->where('s.sprint = :sprint')
             ->leftJoin('s.project', 'p')
-            ->select('s, p')
+            ->addOrderBy('p.priority', 'ASC')
             ->addOrderBy('s.priority', 'ASC')
             ->setParameter('sprint', $sprint)
             ->getQuery()
@@ -58,10 +60,6 @@ class StoryRepository extends EntityRepository
             }
             $sections[$name]['stories'][] = $story;
         }
-
-        usort($sections, function($a, $b) {
-            return $a['project']->getPriority() < $b['project']->getPriority() ? -1 : 1;
-        });
 
         return $sections;
     }

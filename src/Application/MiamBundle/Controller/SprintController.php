@@ -69,6 +69,8 @@ class SprintController extends Controller
     
     public function currentAction()
     {
+        $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->resort();
+        $this->getEntityManager()->flush();
         return $this->render('MiamBundle:Sprint:current', array(
             'emails' => $this->container->getParameter('miam.user.emails')
         ));
