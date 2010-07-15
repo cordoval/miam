@@ -30,29 +30,29 @@
                     axis: 'x'
                 });
             }).disableSelection();
-            table.find('div.story_line > div').each(function () {
-                var id = $(this).parent().attr('id');
-                $(this).droppable({
-                    accept: '#' + id + ' div.story',
-                    activeClass: 'droppable_active',
-                    hoverClass: 'droppable_hover',
-                    tolerance: 'intersect',
-                    drop: function (e, ui) {
-                        ui.draggable.css('opacity', 0.4);
-                        $.ajax({
-                            type: 'POST',
-                            url: sprint.attr('data-move-url'),
-                            data: {
-                                story_id: ui.draggable.attr('data-story-id'),
-                                status: $(this).attr('data-status')
-                            },
-                            success: refresh
-                        });
-                        ui.draggable.css({
-                            'left': 0,
-                            'top': 0
-                        }).appendTo($(this));
-                    }
+            table.find('div.story_line').each(function () {
+                var line = $(this);
+                var height = line.find('div.story').outerHeight();
+                line.find('>div').each(function() {
+                    $(this).droppable({
+                        accept: 'div.'+line.attr('rel'),
+                        activeClass: 'droppable_active',
+                        hoverClass: 'droppable_hover',
+                        tolerance: 'intersect',
+                        drop: function (e, ui) {
+                            $.ajax({
+                                type: 'POST',
+                                url: sprint.attr('data-move-url'),
+                                data: {
+                                    story_id: ui.draggable.attr('data-story-id'),
+                                    status: $(this).attr('data-status')
+                                },
+                                success: refresh
+                            });
+                            ui.draggable.css({'left': 0, 'top': 0}).appendTo($(this));
+                            ui.draggable.css('opacity', 0.4);
+                        }
+                    }).css('height', height+'px');
                 });
             });
             table.find('.stories').each(function() {
