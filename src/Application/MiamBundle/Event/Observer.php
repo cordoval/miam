@@ -73,22 +73,28 @@ class Observer
 
     public function addStoryEntry(Story $story, $action)
     {
-        $this->session->start();
-        $identity = $this->session->getAttribute('identity');
+        try
+        {
+            $this->session->start();
+            $identity = $this->session->getAttribute('identity');
 
-        if(!$identity) {
-            throw new \Exception('No user logged in');
+            if(!$identity) {
+                throw new \Exception('No user logged in');
+            }
+            $doctrineUser = $this->em->getRepository('Bundle\DoctrineUserBundle\Entities\User')->find($identity->getId());
+
+            $tentry = new TimelineEntry();
+            $tentry->setUser($doctrineUser);
+            $tentry->setStory($story);
+            $tentry->setPoints($story->getPoints());
+            $tentry->setAction($action);
+
+            $this->em->persist($tentry);
+            $this->em->flush();
         }
-        $doctrineUser = $this->em->getRepository('Bundle\DoctrineUserBundle\Entities\User')->find($identity->getId());
-
-        $tentry = new TimelineEntry();
-        $tentry->setUser($doctrineUser);
-        $tentry->setStory($story);
-        $tentry->setPoints($story->getPoints());
-        $tentry->setAction($action);
-
-        $this->em->persist($tentry);
-        $this->em->flush();
+        catch(Exception $e) {
+            error_log(sprintf('Fail to add a timeline entry: '.$e->getMessage()));
+        }
     }
 
 }
