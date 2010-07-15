@@ -45,6 +45,11 @@ project_new:
 project:
   pattern:  /project/:id
   defaults: { _controller: MiamBundle:Project:show }
+  requirements: { id: "\d+" }
+
+project_sort:
+  pattern:  /project/sort
+  defaults: { _controller: MiamBundle:Project:sort }
 
 project_edit:
   pattern:  /project/:id/edit
@@ -65,14 +70,11 @@ sprint_new:
 sprint_schedule:
   pattern:  /sprint/schedule
   defaults: { _controller: MiamBundle:Sprint:schedule }
+  requirements: { _method: POST }
 
 sprint_unschedule:
   pattern:  /sprint/unschedule/:id
   defaults: { _controller: MiamBundle:Sprint:unschedule }
-
-sprint_addStory:
-  pattern:  /sprint/addStory/:id
-  defaults: { _controller: MiamBundle:Sprint:addStory }
   
 fast_login:
   pattern:  /fast-login/:username
