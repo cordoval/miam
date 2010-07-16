@@ -56,10 +56,6 @@ project_edit:
   pattern:  /project/:id/edit
   defaults: { _controller: MiamBundle:Project:edit }
 
-sprint_current:
-  pattern:  /
-  defaults: { _controller: MiamBundle:Sprint:current }
-
 sprint_ping:
   pattern:  /sprint/ping/:hash
   defaults: { _controller: MiamBundle:Sprint:ping }

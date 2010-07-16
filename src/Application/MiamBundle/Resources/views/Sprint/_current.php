@@ -40,7 +40,6 @@ $percentage = $total ? floor($finished/$total*100) : 0;
         <?php $view->output('MiamBundle:Sprint:_sprintometer', array('percentage' => $percentage)) ?>
         <h1 class="sprint">Backlog de Sprint</h1>
         <span class="finished"><?php echo $finished ?>/<?php echo $total ?></span>
-        <a id="editSprint" href="<?php echo $view->router->generate('sprint_edit') ?>">Modifier</a>
         <a id="newSprint" href="<?php echo $view->router->generate('sprint_new') ?>">Nouveau</a>
         <a href="<?php echo $view->router->generate('projects') ?>">Projets</a>
     </div>
