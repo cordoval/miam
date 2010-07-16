@@ -88,5 +88,38 @@
             });
         };
         refresh();
+
+        $('#sprint .story_new').click(function() {
+            $.ajax({ url: $(this).attr('href'), success: function(html) {
+                var dialog = $('<div>').html(html).dialog({
+                    zIndex: 100,
+                    dragStart: function(e) { $(e.target).parent().css('opacity', 0.5); },
+                    dragStop: function(e) { $(e.target).parent().css('opacity', 1); },
+                    resizable: false,
+                    width: '500px'
+                });
+                storyNewDialog(dialog);
+            }});
+            return false;
+        });
+
+        function storyNewDialog(dialog)
+        {
+            dialog.dialog('option', 'title', dialog.find('.dialog_title').text());
+            dialog.find('.dialog_title').remove();
+            dialog.find('form').ajaxForm({
+                success: function(data) {
+                    if(data == 'ok') {
+                        dialog.dialog('close');
+                        $('body').trigger('miam.change');
+                    }
+                    else {
+                        dialog.html(data);
+                        storyNewDialog(dialog);
+                    }
+                }
+            });
+            dialog.find('.focus_me').focus();
+        }
     });
 })(jQuery);

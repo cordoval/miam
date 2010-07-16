@@ -34,6 +34,28 @@ class StoryRepository extends EntityRepository
         return $this->storiesToSections($stories);
     }
 
+    /**
+     * Get the current sprint hash value
+     *
+     * @return string the current sprint hash
+     **/
+    public function getCurrentSprintHash(Sprint $sprint)
+    {
+        $stories = $this->createQueryBuilder('s')
+            ->select('s.updatedAt')
+            ->where('s.sprint = :sprint')
+            ->orWhere('s.sprint is null')
+            ->setParameter('sprint', $sprint)
+            ->getQuery()
+            ->getScalarResult();
+        $hash = '';
+        foreach($stories as $story) {
+            $hash .= $story['updatedAt'];
+        }
+        $hash = md5($hash);
+        return $hash;
+    }
+
     protected function storiesToSections(array $stories)
     {
         $sections = array();

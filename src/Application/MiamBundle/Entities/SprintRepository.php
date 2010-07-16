@@ -40,30 +40,6 @@ class SprintRepository extends EntityRepository
     }
 
     /**
-     * Get the current sprint hash value
-     *
-     * @return string the current sprint hash
-     **/
-    public function getCurrentHash()
-    {
-        $stories = $this->createQueryBuilder('sprint')
-            ->select('story.updatedAt')
-            ->where('sprint.isCurrent = 1')
-            ->leftJoin('sprint.stories', 'story', \Doctrine\ORM\Query\Expr\Join::WITH, 'story.status > 0')
-            ->leftJoin('story.project', 'project')
-            ->orderBy('project.name', 'asc')
-            ->addOrderBy('story.name', 'asc')
-            ->getQuery()
-            ->getScalarResult();
-        $hash = '';
-        foreach($stories as $story) {
-            $hash .= $story['updatedAt'];
-        }
-        $hash = md5($hash);
-        return $hash;
-    }
-
-    /**
      * Mark all sprint except $sprint as not current
      *
      * @param Sprint The future current sprint

@@ -196,11 +196,9 @@ class StoryController extends Controller
 
                 $this->getEntityManager()->persist($story);
                 $this->getEntityManager()->flush();
-
                 $this->container->getEventDispatcherService()->notify(new Event($story, 'miam.story.create'));
 
-                $this->container->getSessionService()->setFlash('story_create', array('story' => $story));
-                return $this->redirect($this->generateUrl('sprint_schedule'));
+                return $this->createResponse('ok');
             }
 
         }

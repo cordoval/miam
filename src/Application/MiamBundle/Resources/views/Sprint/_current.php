@@ -4,6 +4,7 @@ $finished = $sprint->getFinishedPoints();
 $percentage = $total ? floor($finished/$total*100) : 0;
 ?>
 <div class="colSide">
+    <a href="<?php echo $view->router->generate('story_new') ?>" class="story_new" title="Add story"></a>
     <ul class="tabs">
         <li><a href="#timeline">Timeline</a></li>
         <li><a href="#backlog">BackLog</a></li>

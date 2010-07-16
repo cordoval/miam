@@ -1,6 +1,5 @@
 <div class="dialog_title">Edit <?php echo $story->getName() ?></div>
 <?php echo $form->renderFormTag($view->router->generate('story_edit', array('id' => $story->getId()))) ?>
-<?php echo $form['name']->renderErrors() ?>
 <div class="line name">
 <label for="story_name">Name</label>
 <?php echo $form['name']->render(array('class' => 'focus_me')); ?>

@@ -32,7 +32,7 @@ class SprintController extends Controller
                 
                 $this->container->getSessionService()->setFlash('sprint_create', array('sprint' => $sprint->__toString()));
 
-                return $this->redirect($this->generateUrl('sprint_schedule'));
+                return $this->redirect($this->generateUrl('homepage'));
             }
             
         }
@@ -44,9 +44,8 @@ class SprintController extends Controller
 
     public function pingAction($hash)
     {
-        $realHash = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Sprint')
-            ->getCurrentHash();
+        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrent();
+        $realHash = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->getCurrentSprintHash($sprint);
 
         if($realHash != $hash) {
             $sprint = $this->getEntityManager()
