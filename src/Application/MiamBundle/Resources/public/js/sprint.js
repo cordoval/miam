@@ -63,7 +63,8 @@
                             });
                         }
                     }
-                }).disableSelection();
+                })
+                .disableSelection();
             });
             sprint.find('div.projects').sortable({
                 axis: 'y',
@@ -78,6 +79,11 @@
                     });
                 }
             }).disableSelection();
+
+            sprint.find('div.statuses').each(function() {
+                var height = $(this).height();
+                $(this).find('div.stories').css('min-height', (height-5)+'px');
+            });
         };
         refresh();
     });
