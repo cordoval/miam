@@ -42,13 +42,6 @@ a
   height: 338px;
 }
 
-.sensio_product
-{
-  position: absolute;
-  top: 10px;
-  right: 0;
-}
-
 .hd, .bd, .ft
 {
   width: 100%;
@@ -406,20 +399,6 @@ p
 td, th {
     padding :5px;
     vertical-align: top;
-}
-
-textarea {
-    width: 600px;
-    font-family: Monaco, Courier;
-    font-size: 0.8em;
-}
-
-#story_name {
-    width: 600px;
-}
-
-#submit {
-    margin: 20px 55px;
 }
 
 #breadcrumb

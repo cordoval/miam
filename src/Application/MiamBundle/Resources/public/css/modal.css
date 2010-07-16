@@ -5,7 +5,7 @@ div.ui-dialog {
   -moz-border-radius: 4px;
 }
 
-div.ui-dialog-content {
+div.ui-dialog div.ui-dialog-content {
     padding: 0;
 }
 
@@ -43,24 +43,47 @@ div.ui-dialog-content .story_body {
   display: block;
 }
 
-div.ui-dialog-content .story_schedule {
-  padding: 1em;
-  display: block;
-  background: #DADADA;
-  border-top: 1px solid #aaa;
-  text-align: center;
-}
-
-div.ui-dialog-content .story_schedule a {
-    color: #444;
-    margin: 0 1em;
-}
-
 div.ui-dialog-content .timeline {
     background: #FFFFFF;
     border-top: 1px solid #aaa;
+    max-height: 200px;
+    overflow: auto;
 }
 
 div.ui-dialog-content .timeline .tentry {
     padding: 0.5em 0;
+}
+
+div.ui-dialog-content .line {
+    width: 100%;
+    margin: 1em 0;
+    display: block;
+    position: relative;
+}
+div.ui-dialog-content label {
+    float: left;
+    display: block;
+    width: 15%;
+    text-align:right;
+    padding-right: 1em;
+}
+div.ui-dialog-content textarea {
+    width: 78%;
+    height: 100px;
+}
+div.ui-dialog-content .line.name input {
+    width: 78%;
+}
+div.ui-dialog-content .line.points input {
+    width: 3em;
+}
+div.ui-dialog-content div.actions {
+    display: block;
+    margin: 0 1em 1em 1em;
+}
+div.ui-dialog-content div.actions a.cancel {
+    float: left;
+}
+div.ui-dialog-content div.actions input {
+    float: right;
 }

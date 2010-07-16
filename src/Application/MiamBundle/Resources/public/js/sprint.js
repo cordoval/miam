@@ -19,6 +19,8 @@
             reload(function() {setTimeout(ping, reloadDelay);});
         }, reloadDelay);
 
+        $('body').bind('miam.change', reload);
+
         function refresh(html) {
             html && sprint.html(html);
             sprint.find('.colSide').tabs({

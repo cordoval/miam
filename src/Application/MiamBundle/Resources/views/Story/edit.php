@@ -1,28 +1,29 @@
-<?php $view->extend('MiamBundle::layout') ?>
-
-<div id="breadcrumb">
-  <a id="back_backlog" href="<?php echo $view->router->generate('sprint_schedule') ?>">Backlog</a>
-  &gt;
-  <a href="<?php echo $view->router->generate('story', array('id' => $story->getId())) ?>">
-    <?php echo $story->getName() ?>
-  </a>
-</div>
-
-<h1>Story <?php echo $story->getName() ?></h1>
-
+<div class="dialog_title">Edit <?php echo $story->getName() ?></div>
 <?php echo $form->renderFormTag($view->router->generate('story_edit', array('id' => $story->getId()))) ?>
-     <table>
-      <?php echo $form['name']->renderErrors() ?>
-      <label>Name: <?php echo $form['name']->render(array('class' => 'focus_me')); ?></label>
-<br />
-      <?php echo $form['body']->renderErrors() ?>
-      <label>Body: <?php echo $form['body']->render(); ?></label> 
-<br />
-      <?php echo $form['project']->renderErrors() ?>
-      <label>Project: <?php echo $form['project']->render(); ?></label> 
-<br />
-      <?php echo $form['points']->renderErrors() ?>
-      <label>Points: <?php echo $form['points']->render(); ?></label> 
-    </table>
-   <input id="submit" type="submit" value="Valider" />
+<?php echo $form['name']->renderErrors() ?>
+<div class="line name">
+<label for="story_name">Name</label>
+<?php echo $form['name']->render(array('class' => 'focus_me')); ?>
+<?php echo $form['name']->renderErrors() ?>
+</div>
+<div class="line body">
+<label for="story_body">Body</label>
+<?php echo $form['body']->render(); ?>
+<?php echo $form['name']->renderErrors() ?>
+</div>
+<div class="line project">
+<label for="story_project">Project</label>
+<?php echo $form['project']->render(); ?>
+<?php echo $form['project']->renderErrors() ?>
+</div>
+<div class="line points">
+<label for="story_points">Points</label>
+<?php echo $form['points']->render(); ?>
+<?php echo $form['points']->renderErrors() ?>
+</div>
+<div class="actions clearfix">
+    <a class="cancel" href="<?php echo $view->router->generate('story', array('id' => $story->getId())) ?>">Annuler</a>
+    <input id="submit" type="submit" value="Valider" />
+</div>
+    
 </form>

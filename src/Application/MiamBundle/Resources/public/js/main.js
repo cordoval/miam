@@ -24,29 +24,53 @@
             type:    'POST',
             url:    miam_config.story_reestimate_url, 
             data:    {
-                story_id: $(this).closest('.story').attr('data-story-id'),
+                story_id: $(this).closest('.story_object').attr('data-story-id'),
                 points:   points
             }
         });
+        $('body').trigger('miam.change');
         return false;
     });
 
     $('.story_object').live('click', function()
     {
-        var storyId = $(this).attr('data-story-id');
-        var dialog = $('<div>').dialog({
-            zIndex: 100,
-            dragStart: function(e) { $(e.target).parent().css('opacity', 0.5); },
-            dragStop: function(e) { $(e.target).parent().css('opacity', 1); },
-            resizable: false,
-            width: '500px',
-            title: $(this).text()
-        });
-        $.ajax({ url: miam_config.story_url.replace(/_ID_/, storyId), success: function(html) {
-            dialog.html(html);
-        }});
-
+        showStory($(this).attr('data-story-id'));
         return false;
     });
+
+    function showStory(id)
+    {
+        $.ajax({ url: miam_config.story_url.replace(/_ID_/, id), success: function(html) {
+            var dialog = $('<div>').html(html).dialog({
+                zIndex: 100,
+                dragStart: function(e) { $(e.target).parent().css('opacity', 0.5); },
+                dragStop: function(e) { $(e.target).parent().css('opacity', 1); },
+                resizable: false,
+                width: '500px'
+            });
+            storyDialog(dialog);
+        }});
+    }
+
+    function storyDialog(dialog)
+    {
+        dialog.dialog('option', 'title', dialog.find('.dialog_title').text());
+        dialog.find('.dialog_title').remove();
+        dialog.find('a.edit, a.cancel').click(function() {
+            dialog.load($(this).attr('href'), function() { storyDialog(dialog); });
+            return false;
+        });
+        dialog.find('form').ajaxForm({
+            target: dialog,
+            success: function() { storyDialog(dialog); $('body').trigger('miam.change'); }
+        });
+        dialog.find('.focus_me').focus();
+        dialog.find('a.delete').click(function() {
+            if (confirm(($(this).attr('title')) + ' ?')) {
+                $.post($(this).attr('href'), function() { dialog.dialog('close'); $('body').trigger('miam.change'); });
+            }
+            return false;
+        });
+    }
 
 })(jQuery);

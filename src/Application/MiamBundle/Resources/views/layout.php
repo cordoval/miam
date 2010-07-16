@@ -9,6 +9,7 @@
 
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.2.custom.min.js') ?>
+<?php $view->javascripts->add('/bundles/miam/vendor/form/jquery.form.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/sprint.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/main.js') ?>
 

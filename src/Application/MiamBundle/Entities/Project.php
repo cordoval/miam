@@ -118,6 +118,7 @@ class Project
             'id' => $this->getId(),
             'name' => $this->getName(),
             'color' => $this->getColor(),
+            'points' => $this->getPoints(),
             'created_at' => $this->getCreatedAt(),
         );
     }

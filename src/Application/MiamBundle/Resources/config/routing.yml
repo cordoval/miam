@@ -33,6 +33,7 @@ story_edit:
 story_delete:
   pattern:  /story/:id/delete
   defaults: { _controller: MiamBundle:Story:delete }
+  requirements: { _method: POST }
   
 projects:
   pattern:  /projects

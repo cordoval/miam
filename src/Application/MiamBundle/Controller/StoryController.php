@@ -129,9 +129,8 @@ class StoryController extends Controller
         $story->markAsDeleted();
         $this->getEntityManager()->flush();
         $this->notify(new Event($story, 'miam.story.delete'));
-        $this->container->getSessionService()->setFlash('story_delete', array('story' => $story->getName()));
 
-        return $this->redirect($this->generateUrl('sprint_schedule'));
+        return $this->createResponse('ok');
     }
 
     public function editAction($id)
@@ -150,7 +149,7 @@ class StoryController extends Controller
 
         if('POST' === $this->getRequest()->getMethod()) {
             $snapshot = $story->toArray();
-            $form->bind($this->getRequest()->get($form->getName()));
+            $form->bind($this->getRequest()->get('story'));
 
             if($form->isValid()) {
                 $this->getEntityManager()->persist($story);
@@ -167,8 +166,12 @@ class StoryController extends Controller
                     $this->notify(new Event($story, 'miam.story.edit'));
                 }
 
-                $this->container->getSessionService()->setFlash('story_update', array('story' => $story));
-                return $this->redirect($this->generateUrl('sprint_schedule'));
+                $timeline = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\TimelineEntry')->findByStory($story);
+                return $this->render('MiamBundle:Story:show', array(
+                    'story' => $story,
+                    'timeline' => $timeline,
+                    'emails' => $this->container->getParameter('miam.user.emails')
+                ));
             }
         }
 
