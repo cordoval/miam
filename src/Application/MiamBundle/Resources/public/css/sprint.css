@@ -183,6 +183,12 @@ div.bd div.content {
     font-size: 13px;
 }
 
-#backlog li.story {
-    margin: 5px;
+#backlog .stories {
+    min-height: 5px;
+}
+
+.story_placeholder {
+    background: #FFE45C;
+    border: 1px solid #FED22F;
+    height: 1.5em;
 }

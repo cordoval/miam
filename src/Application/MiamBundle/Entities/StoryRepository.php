@@ -18,25 +18,12 @@ class StoryRepository extends EntityRepository
             ->getSingleResult();
     }
 
-    public function findBacklogIndexByProject()
-    {
-        $stories = $this->createQueryBuilder('s')
-            ->select('s, p')
-            ->where('s.sprint is null')
-            ->leftJoin('s.project', 'p')
-            ->addOrderBy('p.priority', 'ASC')
-            ->addOrderBy('s.priority', 'ASC')
-            ->getQuery()
-            ->execute();
-
-        return $this->storiesToSections($stories);
-    }
-
     public function findSprintStoriesIndexByProject(Sprint $sprint)
     {
         $stories =  $this->createQueryBuilder('s')
             ->select('s, p')
             ->where('s.sprint = :sprint')
+            ->orWhere('s.sprint is null')
             ->leftJoin('s.project', 'p')
             ->addOrderBy('p.priority', 'ASC')
             ->addOrderBy('s.priority', 'ASC')

@@ -71,10 +71,6 @@ sprint_schedule:
   pattern:  /sprint/schedule
   defaults: { _controller: MiamBundle:Sprint:schedule }
   requirements: { _method: POST }
-
-sprint_unschedule:
-  pattern:  /sprint/unschedule/:id
-  defaults: { _controller: MiamBundle:Sprint:unschedule }
   
 fast_login:
   pattern:  /fast-login/:username

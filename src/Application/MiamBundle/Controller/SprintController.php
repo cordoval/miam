@@ -74,56 +74,34 @@ class SprintController extends Controller
             'emails' => $this->container->getParameter('miam.user.emails')
         ));
     }
-    
-    public function backlogAction()
-    {
-        $sections = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Story')
-        ->findBacklogIndexByProject();
 
-        return $this->render('MiamBundle:Story:backlog', array('sections' => $sections));
-    }
-
-    public function unscheduleAction($id)
-    {
-        $story = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Story')
-        ->find($id);
-
-        if (!$story) {
-            throw new NotFoundHttpException("Story '$id' not found");
-        }
-        
-        $sprint = $story->getSprint();
-
-        $sprint->removeStory($story);
-        $story->setStatus(Story::STATUS_CREATED);
-        $this->notify(new Event($story, 'miam.story.unschedule'));
-        $this->getEntityManager()->flush();
-        
-        return $this->redirect($this->generateUrl('sprint_schedule'));
-    }
-    
     public function scheduleAction()
     {
         $id = $this->getRequest()->get('story_id');
-        $story = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Story')
-        ->find($id);
-
+        $story = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->find($id);
         if (!$story) {
             throw new NotFoundHttpException("Story '$id' not found");
         }
+        $status = $this->getRequest()->get('status');
+        if(!Story::isValidStatus($status)) {
+            throw new NotFoundHttpException($status.' is not a valid status');
+        }
         
-        $sprint = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Sprint')
-        ->findCurrent();
+        $story->setStatus($status);
+        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
+        if($story->isStatus(Story::STATUS_CREATED)) {
+            $sprint->removeStory($story);
+            $this->notify(new Event($story, 'miam.story.unschedule'));
+        }
+        else {
+            $sprint->addStory($story);
+            $this->notify(new Event($story, 'miam.story.schedule'));
+        }
 
-        $sprint->addStory($story);
-        $story->setStatus(Story::STATUS_TODO);
+        $ids = $this->getRequest()->get('story');
+        $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->sort($ids);
+
         $this->getEntityManager()->flush();
-
-        $this->notify(new Event($story, 'miam.story.schedule'));
         
         return $this->forward('MiamBundle:Sprint:ping', array('hash' => null));
     }
