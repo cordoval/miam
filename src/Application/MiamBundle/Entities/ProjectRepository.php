@@ -99,6 +99,11 @@ class ProjectRepository extends EntityRepository
             ;
     }
 
+    public function findAllOrderByCreatedAt()
+    {
+        return $this->createQueryBuilder('p')->orderBy('p.createdAt', 'DESC')->getQuery()->execute();
+    }
+
     public function sort(array $ids)
     {
         foreach($ids as $priority => $id) {

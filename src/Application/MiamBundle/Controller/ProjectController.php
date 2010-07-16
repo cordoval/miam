@@ -14,9 +14,7 @@ class ProjectController extends Controller
 
     public function indexAction()
     {
-        $projects = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Project')
-        ->findAllOrderByInterest();
+        $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllOrderByCreatedAt();
 
         return $this->render('MiamBundle:Project:index', array(
             'projects' => $projects,
@@ -57,9 +55,7 @@ class ProjectController extends Controller
 
     public function editAction($id)
     {
-        $project = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Project')
-        ->find($id);
+        $project = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->find($id);
 
         if (!$project) {
             throw new NotFoundHttpException("Project not found");
