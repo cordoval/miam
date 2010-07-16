@@ -82,12 +82,14 @@ class SprintController extends Controller
         if (!$story) {
             throw new NotFoundHttpException("Story '$id' not found");
         }
+        $points = $this->getRequest()->get('points');
+        $story->setPoints($points);
         $status = $this->getRequest()->get('status');
         if(!Story::isValidStatus($status)) {
             throw new NotFoundHttpException($status.' is not a valid status');
         }
-        
         $story->setStatus($status);
+        
         $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
         if($story->isStatus(Story::STATUS_CREATED)) {
             $sprint->removeStory($story);

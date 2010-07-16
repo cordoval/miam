@@ -4,15 +4,19 @@
         var reloadDelay = 80000;
         var selectedTabIndex = 0;
 
-        setTimeout(reload = function () { 
+        function reload(callback, force) {
             $.ajax({
-                url: sprint.attr('data-ping-url').replace(/_HASH_/, sprint.find('#sprint_current').attr('data-sprint-hash')),
+                url: sprint.attr('data-ping-url').replace(/_HASH_/, force ? 'force' : sprint.find('#sprint_current').attr('data-sprint-hash')),
                 success: function (html) {
                     if ('noop' == html) return;
                     if (html) refresh(html);
-                    setTimeout(reload, reloadDelay);
+                    if($.isFunction(callback)) callback();
                 }
             });
+        }
+
+        setTimeout(ping = function () { 
+            reload(function() {setTimeout(ping, reloadDelay);});
         }, reloadDelay);
 
         function refresh(html) {
@@ -32,20 +36,25 @@
                     connectWith: 'div.project_'+projectId+' div.stories',
                     helper: 'clone',
                     placeholder: 'story_placeholder',
-                    update: function(e, ui) {
-                        if(ui.sender) {
-                            if(ui.item.find('.story_points').text() == '?') {
-                                alert('This story has no points!');
+                    receive: function(e, ui) {
+                        var points = ui.item.find('.story_points').text();
+                        if(points == '?') {
+                            points = prompt("Nombre de points pour cette story :", points);
+                            if(!points || isNaN(points)) {
+                                reload(null, true);
                                 return;
                             }
-                            $.ajax({
-                                type: 'POST',
-                                url:        sprint.attr('data-schedule-url')+'?'+$(this).sortable('serialize', { attribute: 'rel' }),
-                                data:       { story_id: ui.item.attr('data-story-id'), status: status },
-                                success: refresh
-                            });
+                            ui.item.find('.story_points').text(points);
                         }
-                        else if(status == ui.item.closest('.status').attr('data-status')) {
+                        $.ajax({
+                            type: 'POST',
+                            url:        sprint.attr('data-schedule-url')+'?'+$(this).sortable('serialize', { attribute: 'rel' }),
+                            data:       { story_id: ui.item.attr('data-story-id'), status: status, points: ui.item.find('.story_points').text() },
+                            success: refresh
+                        });
+                    },
+                    update: function(e, ui) {
+                        if(!ui.sender && status == ui.item.closest('.status').attr('data-status')) {
                             $.ajax({
                                 type: 'POST',
                                 url:        sprint.attr('data-sort-story-url'),
