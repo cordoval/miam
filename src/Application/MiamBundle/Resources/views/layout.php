@@ -21,11 +21,8 @@
         <?php echo $view->stylesheets ?>
     </head>
     <body class="fullPage">
-        <?php echo $view->render('MiamBundle:Miam:header') ?>
-        <div class="bd">
-                <?php echo $view->render('MiamBundle:Miam:messages') ?>
-                <?php $view->slots->output('_content') ?>
-        </div>
+        <?php echo $view->render('MiamBundle:Miam:messages') ?>
+        <?php $view->slots->output('_content') ?>
         <?php echo $view->render('MiamBundle:Miam:footer') ?>
         <?php echo $view->render('MiamBundle::javascriptConfig') ?>
         <?php echo $view->javascripts ?>
