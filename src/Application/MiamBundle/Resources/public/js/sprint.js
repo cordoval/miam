@@ -48,11 +48,12 @@
                 //});
             //});
             table.find('.stories').each(function() {
-                var projectId = $(this).parent().attr('data-project-id');
+                var projectId = $(this).closest('.project').attr('data-project-id');
                 $(this).sortable({
                     distance: 5,
-                    connectWith: '#backlog .project_'+projectId+'.stories',
+                    connectWith: '.project_'+projectId+' .stories',
                     helper: 'clone',
+                    placeholder: 'ui-state-highlight',
                     update: function(e, ui) {
                         if(!ui.sender) {
                             $.ajax({
@@ -94,6 +95,7 @@
             });
             table.sortable({
                 axis: 'y',
+                handle: '.project_name',
                 distance: 5,
                 update: function(e, ui) {
                     $.ajax({

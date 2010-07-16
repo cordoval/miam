@@ -110,8 +110,9 @@ div.bd div.content {
 }
 #sprint div.quarters > div
 {
-  width: 25%;
+  width: 24%;
   float: left;
+  margin: 0.2% 0.5%;
 }
 #sprint div.headers > div
 {
@@ -120,6 +121,14 @@ div.bd div.content {
   font-weight: bold;
   text-align: center;
   padding: 5px 0;
+}
+
+#sprint div.stories {
+    min-height: 30px;
+}
+
+#sprint div.story {
+    margin: 5px 0;
 }
 
 #sprint div.project {
@@ -133,31 +142,6 @@ div.bd div.content {
   text-align: center;
   padding: 5px 0;
   cursor: move;
-}
-
-#sprint div.story {
-    width: 24%;
-    padding: 2px 0;
-    margin: 2px 0.5%;
-}
-
-#sprint div.story.status_20 {
-    margin: 0 0.5%;
-}
-
-#sprint div.story.status_30 {
-    margin: 0 25.5%;
-}
-
-#sprint div.story.status_40 {
-    margin: 0 50.5%;
-}
-
-#sprint div.story.status_50 {
-    margin: 0 75.5%;
-}
-
-#sprint div.story.ui-sortable-helper {
 }
 
 #sprint div.colSide {

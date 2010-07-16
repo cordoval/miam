@@ -36,13 +36,21 @@ $percentage = $total ? floor($finished/$total*100) : 0;
             <?php foreach($sections as $section): ?>
             <div class="project project_<?php echo $section['project']->getId() ?>" rel="project_<?php echo $section['project']->getId() ?>" data-project-id="<?php echo $section['project']->getId() ?>">
                 <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><?php echo $section['project']->getName() ?></div>
-                <div class="stories">
-                    <?php foreach($section['stories'] as $story): ?>
-                        <div class="story story_object status_<?php echo $story->getStatus() ?> story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>">
-                            <?php echo $story->getName() ?>
-                            <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+                <div class="statuses quarters clearfix">
+                    <?php foreach(array_keys(Application\MiamBundle\Entities\Story::getSprintStatuses()) as $status): ?>
+                    <div class="status status_<?php echo $status ?>">
+                        <div class="stories">
+                            <?php foreach($section['stories'] as $story): ?>
+                            <?php if($story->isStatus($status)): ?>
+                                <div class="story story_object story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>">
+                                    <?php echo $story->getName() ?>
+                                    <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
+                                </div>
+                            <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
-                    <?php endforeach; ?>
+                    </div>
+                    <?php endforeach ?>
                 </div>
             </div>
             <?php endforeach; ?>
