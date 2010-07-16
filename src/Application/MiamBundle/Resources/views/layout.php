@@ -17,6 +17,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="icon" type="image/png" href="favicon.png" />
         <title>Miam</title>
         <?php echo $view->stylesheets ?>
     </head>
