@@ -81,6 +81,8 @@ class MiamKernel extends Kernel
 
         $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
 
+        $configuration->setParameter('validator.message_interpolator.class', 'Application\\MiamBundle\\Validator\\NoValidationXliffMessageInterpolator');
+
         return $configuration;
     }
 
