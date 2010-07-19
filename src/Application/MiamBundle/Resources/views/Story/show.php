@@ -1,6 +1,6 @@
 <div class="dialog_title"><?php echo $story->getName() ?> (<?php echo $story->getPoints() ?>)</div>
 <div class="story_body clearfix">
-    <?php echo $view->markdown->transform($story->getBody()) ?>
+    <?php echo $view->markdown->transform($story->getRawValue()->getBody()) ?>
     <div class="story_infos">
         Créé le <?php echo $story->getCreatedAt()->format('d F à H\hi') ?>
         <?php if(count($timeline)): ?>
