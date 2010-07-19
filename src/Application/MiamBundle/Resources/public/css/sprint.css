@@ -15,7 +15,7 @@ html { background: #FAFAFA; }
   border:1px solid #C4C4C4;
   padding-top:0;
   padding-bottom: 6px;
-  margin-left: 430px;
+  margin-left: 380px;
   margin-right: 15px;
 }
 
@@ -133,7 +133,7 @@ div.story {
 
 #sprint div.colSide {
   position: absolute;
-  width: 400px;
+  width: 350px;
   margin-left: 15px;
   margin-right: 15px;
   padding: 0 0 5px 0;
@@ -181,6 +181,10 @@ div.story {
 
 #backlog .stories {
     min-height: 5px;
+}
+
+#backlog .story {
+    margin: 5px;
 }
 
 .story_placeholder {
