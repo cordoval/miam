@@ -279,6 +279,13 @@ class Story
       return $statuses;
     } 
 
+    public static function getExistStatuses()
+    {
+      $statuses = self::getStatuses();
+      unset($statuses[self::STATUS_DELETED]);
+      return $statuses;
+    } 
+
     public function getStatusName()
     {
         $statuses = $this->getStatuses();

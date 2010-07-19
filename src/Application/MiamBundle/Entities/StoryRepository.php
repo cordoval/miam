@@ -20,16 +20,18 @@ class StoryRepository extends EntityRepository
 
     public function findSprintStoriesIndexByProject(Sprint $sprint)
     {
-        $stories =  $this->createQueryBuilder('s')
+        $qb = $this->createQueryBuilder('s');
+        $query = $qb
             ->select('s, p')
-            ->where('s.sprint = :sprint')
-            ->orWhere('s.sprint is null')
-            ->leftJoin('s.project', 'p')
+            ->where($qb->expr()->in('s.status', array_keys(Story::getExistStatuses())))
+            ->andWhere('s.sprint = :sprint OR s.sprint IS NULL')
+            ->innerJoin('s.project', 'p')
             ->addOrderBy('p.priority', 'ASC')
             ->addOrderBy('s.priority', 'ASC')
             ->setParameter('sprint', $sprint)
-            ->getQuery()
-            ->execute();
+            ->getQuery();
+
+        $stories = $query->execute();
 
         return $this->storiesToSections($stories);
     }
