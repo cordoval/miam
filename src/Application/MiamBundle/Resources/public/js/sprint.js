@@ -14,11 +14,11 @@
             });
         }
 
-        function storyNewDialog(dialog)
+        function editionDialog(dialog)
         {
             dialog.dialog('option', 'title', dialog.find('.dialog_title').text());
             dialog.find('.dialog_title').remove();
-            dialog.find('form').ajaxForm({
+            dialog.find('form.ajax_form').ajaxForm({
                 success: function(data) {
                     if(data == 'ok') {
                         dialog.dialog('close');
@@ -26,7 +26,7 @@
                     }
                     else {
                         dialog.html(data);
-                        storyNewDialog(dialog);
+                        editionDialog(dialog);
                     }
                 }
             });
@@ -104,7 +104,7 @@
                 var height = $(this).height();
                 $(this).find('div.stories').css('min-height', (height-5)+'px');
             });
-            $('#sprint .story_new').click(function() {
+            $('#sprint .story_new, #sprint .sprint_new').click(function() {
                 $.ajax({ url: $(this).attr('href'), success: function(html) {
                     var dialog = $('<div>').html(html).dialog({
                         zIndex: 100,
@@ -113,7 +113,7 @@
                         resizable: false,
                         width: '500px'
                     });
-                    storyNewDialog(dialog);
+                    editionDialog(dialog);
                 }});
                 return false;
             });

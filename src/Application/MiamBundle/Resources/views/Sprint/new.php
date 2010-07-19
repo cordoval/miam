@@ -1,18 +1,16 @@
-<?php $view->extend('MiamBundle::layout') ?>
-<?php $view->slots->set('active_menu', 'sprint_new') ?>
-
-<div id="breadcrumb">
-  <a id="back_backlog" href="<?php echo $view->router->generate('sprint_current') ?>">Sprint</a>
-  &gt;
-  Nouveau sprint
-</div>
-
-<h1>Création d'un sprint</h1>
+<div class="dialog_title">Création d'un sprint</div>
 <?php echo $form->renderFormTag($view->router->generate('sprint_new')) ?>
-      <?php echo $form['startsAt']->renderErrors() ?>
-      <label>Début: <?php echo $form['startsAt']->render(); ?></label>
-<br />
-      <?php echo $form['endsAt']->renderErrors() ?>
-      <label>Fin: <?php echo $form['endsAt']->render(); ?></label> 
+<div class="line">
+<label for="sprint_startsAt">Début:</label>
+<?php echo $form['startsAt']->render(); ?>
+<?php echo $form['startsAt']->renderErrors() ?>
+</div>
+<div class="line">
+<label for="sprint_endsAt">Fin:</label>
+<?php echo $form['endsAt']->render(); ?>
+<?php echo $form['endsAt']->renderErrors() ?>
+</div>
+<div class="actions clearfix">
     <input id="submit" type="submit" value="Valider" />
+</div>
 </form>

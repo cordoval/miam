@@ -1,5 +1,5 @@
 <div class="dialog_title">Créer une nouvelle story</div>
-<?php echo $form->renderFormTag($view->router->generate('story_new')) ?>
+<?php echo $form->renderFormTag($view->router->generate('story_new'), array('class' => 'ajax_form')) ?>
 <div class="line name">
 <label for="story_name">Name</label>
 <?php echo $form['name']->render(array('class' => 'focus_me')); ?>
