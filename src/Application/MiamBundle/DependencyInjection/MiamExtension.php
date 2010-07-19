@@ -2,22 +2,22 @@
 
 namespace Application\MiamBundle\DependencyInjection;
 
-use Symfony\Components\DependencyInjection\Loader\LoaderExtension;
+use Symfony\Components\DependencyInjection\Extension\Extension;
 use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader;
-use Symfony\Components\DependencyInjection\BuilderConfiguration;
+use Symfony\Components\DependencyInjection\ContainerBuilder;
 
 class MiamExtension extends LoaderExtension
 {
 
-    public function configLoad($config, BuilderConfiguration $configuration)
+    public function configLoad($config, ContainerBuilder $configuration)
     {
-        $loader = new XmlFileLoader(__DIR__.'/../Resources/config');
-        $configuration->merge($loader->load('auth.xml'));
-        $configuration->merge($loader->load('observer.xml'));
+        $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
+        $loader->load('auth.xml');
+        $loader->load('observer.xml');
         
         $loader = new YamlFileLoader(__DIR__.'/../Resources/config');
-        $configuration->merge($loader->load('colors.yml'));
+        $loader->load('colors.yml');
     }
 
     /**
