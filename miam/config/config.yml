@@ -4,6 +4,7 @@ parameters:
         laet:                   laet.wagner@gmail.com
         mbontemps:              matthieu.bontemps@gmail.com
         thib:                   thibault.duplessis@gmail.com
+        anthony:                hamonanthony19@gmail.com
 
 kernel.config:
     charset:             UTF-8
