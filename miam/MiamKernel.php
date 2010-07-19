@@ -4,6 +4,7 @@ require_once __DIR__.'/../src/autoload.php';
 
 use Symfony\Framework\Kernel;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader as ContainerLoader;
+use Symfony\Components\DependencyInjection\ContainerBuilder;
 use Symfony\Components\Routing\Loader\YamlFileLoader as RoutingLoader;
 
 class MiamKernel extends Kernel
@@ -77,13 +78,14 @@ class MiamKernel extends Kernel
 
     public function registerContainerConfiguration()
     {
-        $loader = new ContainerLoader($this->getBundleDirs());
+        $container = new ContainerBuilder();
+        $loader = new ContainerLoader($container, $this->getBundleDirs());
 
-        $configuration = $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
+        $loader->load($this->getLocalConfigurationFile($this->getEnvironment()));
 
-        $configuration->setParameter('validator.message_interpolator.class', 'Application\\MiamBundle\\Validator\\NoValidationXliffMessageInterpolator');
+        $container->setParameter('validator.message_interpolator.class', 'Application\\MiamBundle\\Validator\\NoValidationXliffMessageInterpolator');
 
-        return $configuration;
+        return $container;
     }
 
     public function registerRoutes()

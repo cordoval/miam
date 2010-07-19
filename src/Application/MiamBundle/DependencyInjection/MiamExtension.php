@@ -7,16 +7,16 @@ use Symfony\Components\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Components\DependencyInjection\Loader\YamlFileLoader;
 use Symfony\Components\DependencyInjection\ContainerBuilder;
 
-class MiamExtension extends LoaderExtension
+class MiamExtension extends Extension
 {
 
-    public function configLoad($config, ContainerBuilder $configuration)
+    public function configLoad($config, ContainerBuilder $container)
     {
         $loader = new XmlFileLoader($container, __DIR__.'/../Resources/config');
         $loader->load('auth.xml');
         $loader->load('observer.xml');
         
-        $loader = new YamlFileLoader(__DIR__.'/../Resources/config');
+        $loader = new YamlFileLoader($container, __DIR__.'/../Resources/config');
         $loader->load('colors.yml');
     }
 
