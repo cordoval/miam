@@ -3,7 +3,7 @@
 
 require_once __DIR__.'/MiamKernel.php';
 
-use Symfony\Framework\WebBundle\Console\Application;
+use Symfony\Bundle\FrameworkBundle\Console\Application;
 
 $kernel = new MiamKernel('prod', false);
 
