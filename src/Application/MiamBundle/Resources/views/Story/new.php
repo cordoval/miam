@@ -15,6 +15,11 @@
 <?php echo $form['project']->render(); ?>
 <?php echo $form['project']->renderErrors() ?>
 </div>
+<div class="line domain">
+<label for="story_domain">Domaine</label>
+<?php echo $form['domain']->render(); ?>
+<?php echo $form['domain']->renderErrors() ?>
+</div>
 <div class="line points">
 <label for="story_points">Points</label>
 <?php echo $form['points']->render(); ?>

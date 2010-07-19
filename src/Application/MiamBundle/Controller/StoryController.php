@@ -144,8 +144,9 @@ class StoryController extends Controller
         }
 
         $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
+        $domains = Story::getDomains();
 
-        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects));
+        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects, 'domains' => $domains));
 
         if('POST' === $this->getRequest()->getMethod()) {
             $snapshot = $story->toArray();
@@ -184,9 +185,10 @@ class StoryController extends Controller
     public function newAction()
     {
         $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
-
+        $domains = Story::getDomains();
         $story = new Story();
-        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects));
+
+        $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects, 'domains' => $domains));
 
         if('POST' === $this->getRequest()->getMethod()) {
             $form->bind($this->getRequest()->get('story'));

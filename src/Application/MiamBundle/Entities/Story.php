@@ -18,22 +18,22 @@ class Story
     }
 
     /**
-    * @ManyToOne(targetEntity="Project", inversedBy="stories")
-    * @JoinColumn(name="project_id", nullable=false)
-    */
+     * @ManyToOne(targetEntity="Project", inversedBy="stories")
+     * @JoinColumn(name="project_id", nullable=false)
+     */
     protected $project;
- 
+
     /**
-    * @ManyToOne(targetEntity="Sprint", inversedBy="stories")
-    * @JoinColumn(name="sprint_id", nullable=true)
-    */
+     * @ManyToOne(targetEntity="Sprint", inversedBy="stories")
+     * @JoinColumn(name="sprint_id", nullable=true)
+     */
     protected $sprint;   
- 
+
     /**
      * @Column(name="created_at", type="datetime")
      */
     protected $createdAt;
- 
+
     /**
      * @Column(name="updated_at", type="datetime")
      */
@@ -64,17 +64,31 @@ class Story
      */
     protected $status;
 
-    /**
-     * @OneToMany(targetEntity="TimelineEntry", mappedBy="story")
-     */
-    protected $timelineEntries;
-
     const STATUS_CREATED = 10;
     const STATUS_PENDING = 20;
     const STATUS_TODO = 30;
     const STATUS_WIP = 40;
     const STATUS_FINISHED = 50;
     const STATUS_DELETED = -10;
+
+    /**
+     * Story domain
+     *
+     * @Column(name="domain", type="integer") 
+     */
+    protected $domain = null;
+
+    const DOMAIN_PROD = 10;
+    const DOMAIN_DA = 20;
+    const DOMAIN_GDP = 30;
+    const DOMAIN_RD = 40;
+    const DOMAIN_ADMIN = 50;
+    const DOMAIN_INTERNAL = 60;
+
+    /**
+     * @OneToMany(targetEntity="TimelineEntry", mappedBy="story")
+     */
+    protected $timelineEntries;
 
     /**
      * @Column(name="id", type="integer")
@@ -84,12 +98,49 @@ class Story
     protected $id;
 
     const DEFAULT_NAME = '(story sans nom)';
-    
+
     public function __construct()
     {
         $this->status    = self::STATUS_CREATED;
     }
-     
+
+    /**
+     * Get domain
+     * @return int
+     */
+    public function getDomain()
+    {
+        return $this->domain;
+    }
+
+    /**
+     * Set domain
+     * @param  int
+     * @return null
+     */
+    public function setDomain($domain)
+    {
+        $this->domain = $domain;
+    }
+
+    public static function getDomains()
+    {
+        return array(
+            self::DOMAIN_PROD => 'Prod',
+            self::DOMAIN_DA => 'DA',
+            self::DOMAIN_GDP => 'Gestion de projet',
+            self::DOMAIN_RD => 'R&D',
+            self::DOMAIN_ADMIN => 'Administratif',
+            self::DOMAIN_INTERNAL => 'Interne'
+        );
+    }
+
+    public function renderDomain()
+    {
+        $domains = self::getDomains();
+        return isset($domains[$this->getDomain()]) ? $domains[$this->getDomain()] : '';
+    }
+
     /**
      * getCreatedAt 
      * 
@@ -181,22 +232,22 @@ class Story
     {
         return $this->points;
     }
-  
+
     public function setSprint(Sprint $sprint = null)
     {
         $this->sprint = $sprint;
     }
-    
+
     public function getSprint()
     {  
-      return $this->sprint;
+        return $this->sprint;
     }
 
     public function setProject(Project $project)
     {
         $this->project = $project;
     }
-    
+
     public function getProject()
     {
         return $this->project;
@@ -209,7 +260,7 @@ class Story
 
     public function isStatus($status)
     {
-      return $this->status == $status;
+        return $this->status == $status;
     }
 
     public function isScheduled()
@@ -231,12 +282,12 @@ class Story
     {
         if(!in_array($status, array_keys($this->getStatuses())))
         {
-          throw new \InvalidArgumentException(sprintf('%s is not a valid story status like %s', $status, implode(', ', array_keys($this->getStatuses()))));
+            throw new \InvalidArgumentException(sprintf('%s is not a valid story status like %s', $status, implode(', ', array_keys($this->getStatuses()))));
         }
 
         if($status >= self::STATUS_PENDING && !$this->getPoints())
         {
-          throw new \LogicException('Story '.$this.' can not be scheduled because it has no points');
+            throw new \LogicException('Story '.$this.' can not be scheduled because it has no points');
         }
 
         $this->status = $status;
@@ -244,14 +295,14 @@ class Story
 
     public static function getStatuses()
     {
-      return array(
-        self::STATUS_CREATED => 'created',
-        self::STATUS_PENDING => 'pending',
-        self::STATUS_TODO => 'todo',
-        self::STATUS_WIP => 'work in progress',
-        self::STATUS_FINISHED => 'finished',
-        self::STATUS_DELETED => 'deleted'
-      );
+        return array(
+            self::STATUS_CREATED => 'created',
+            self::STATUS_PENDING => 'pending',
+            self::STATUS_TODO => 'todo',
+            self::STATUS_WIP => 'work in progress',
+            self::STATUS_FINISHED => 'finished',
+            self::STATUS_DELETED => 'deleted'
+        );
     }
 
     public function renderStatus()
@@ -269,21 +320,21 @@ class Story
      */
     public static function isValidStatus($status)
     {
-      return in_array($status, array_keys(self::getStatuses()));
+        return in_array($status, array_keys(self::getStatuses()));
     }
 
     public static function getSprintStatuses()
     {
-      $statuses = self::getStatuses();
-      unset($statuses[self::STATUS_CREATED], $statuses[self::STATUS_DELETED]);
-      return $statuses;
+        $statuses = self::getStatuses();
+        unset($statuses[self::STATUS_CREATED], $statuses[self::STATUS_DELETED]);
+        return $statuses;
     } 
 
     public static function getExistStatuses()
     {
-      $statuses = self::getStatuses();
-      unset($statuses[self::STATUS_DELETED]);
-      return $statuses;
+        $statuses = self::getStatuses();
+        unset($statuses[self::STATUS_DELETED]);
+        return $statuses;
     } 
 
     public function getStatusName()
@@ -292,7 +343,7 @@ class Story
 
         return $statuses[$this->status];
     } 
-        
+
     /**
      * Return an array version of a Story's properties
      * @return array
@@ -315,12 +366,12 @@ class Story
         $name = $this->getName();
         return (isset($name) && null !== $name) ? $name : self::DEFAULT_NAME;
     }
-    
+
     public function moveToTheEnd()
     {
         $this->setPriority(1000);
     }
-    
+
     public function markAsDeleted()
     {
         $this->setStatus(self::STATUS_DELETED);

@@ -90,6 +90,10 @@ ol.stories
     color: #fff;
 }
 
+.story_domain_icon {
+    vertical-align: middle;
+}
+
 .story_object .story_points {
     cursor: pointer;
 }

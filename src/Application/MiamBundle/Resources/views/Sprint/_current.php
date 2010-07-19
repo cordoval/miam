@@ -62,6 +62,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                             <?php foreach($section['stories'] as $story): ?>
                             <?php if($story->isStatus($status)): ?>
                             <div class="story story_object story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>">
+                                <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$story->getDomain().'.png') ?>" alt="<?php echo $story->renderDomain() ?>" class="story_domain_icon" />
                                 <?php echo $story->getName() ?>
                                 <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
                             </div>

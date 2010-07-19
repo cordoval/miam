@@ -16,11 +16,15 @@ class StoryForm extends Form
     public function configure()
     {
         $this->addOption('projects');
+        $this->addOption('domains');
         $this->add(new TextField('name'));
         $this->add(new TextAreaField('body'));
         $this->add(new TextField('points'));
         $this->add(new DoctrineChoiceField('project', array(
             'choices' => $this->getOption('projects')
+        )));
+        $this->add(new DoctrineChoiceField('domain', array(
+            'choices' => $this->getOption('domains')
         )));
     }
 
