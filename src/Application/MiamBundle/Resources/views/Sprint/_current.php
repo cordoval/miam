@@ -22,7 +22,8 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                         <?php foreach ($section['stories'] as $story): ?>
                         <?php if($story->isStatus(Application\MiamBundle\Entities\Story::STATUS_CREATED)): ?>
                         <div class="story story_object story_<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>">
-                            <a href="<?php echo $view->router->generate('story', array('id' => $story->getId())) ?>"><?php echo $story->getName() ?></a>
+                            <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$story->getDomain().'.png') ?>" alt="<?php echo $story->renderDomain() ?>" class="story_domain_icon" />
+                            <?php echo $story->getName() ?>
                             <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
                         </div>
                         <?php endif ?>
