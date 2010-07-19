@@ -114,7 +114,7 @@ html { background: #FAFAFA; }
     min-height: 30px;
 }
 
-#sprint div.story {
+div.story {
     margin: 5px 0;
 }
 

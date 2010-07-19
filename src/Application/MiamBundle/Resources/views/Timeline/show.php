@@ -16,12 +16,8 @@
                 '{points}' => $entry->getPoints() ? $entry->getPoints() : '?'
         )) ?>
         </div>
-        <div class="details <?php empty($disable) && print 'story_object' ?>" data-story-id="<?php echo $story->getId() ?>">
-            <?php if(empty($disable)): ?>
-                <a class="story_name" href="<?php echo $storyUrl ?>"><?php echo $story->getName() ?></a>
-            <?php else: ?>
-                <span class="story_name"><?php echo $story->getName() ?></span>
-            <?php endif; ?>
+        <div class="story_object story" data-story-id="<?php echo $story->getId() ?>">
+            <a class="story_name" href="<?php echo $storyUrl ?>"><?php echo $story->getName() ?></a>
             <span class="story_points"><?php echo $entry->getPoints() ? $entry->getPoints() : '?' ?></span>
         </div>
     </li>

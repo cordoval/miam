@@ -19,14 +19,7 @@
   margin: 0 0.6em;
 }
 
-.timeline .details {
-  margin-top: 0.4em;
-}
-
-.timeline .details .story_name,
-.timeline .story_points {
-    float: left;
-}
-.timeline .story_points {
-    margin-left: 5px;
+.timeline .story {
+  margin: 5px 10px 0 60px;
+  font-size: 12px;
 }
