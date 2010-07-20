@@ -1,17 +1,22 @@
 (function ($) {
     $(function () {
         var sprint = $('#sprint');
+        var current = $('#sprint_current');
         var reloadDelay = 3000;
         var selectedTabIndex = 0;
 
         function reload(callback, force) {
             $.ajax({
-                url: sprint.attr('data-ping-url').replace(/_HASH_/, force ? 'force' : sprint.find('#sprint_current').attr('data-sprint-hash')),
+                url: sprint.attr('data-ping-url').replace(/_HASH_/, force ? 'force' : current.attr('data-sprint-hash')),
                 success: function (html) {
                     if (html && 'noop' != html) refresh(html);
                     if($.isFunction(callback)) callback();
                 }
             });
+        }
+
+        function resize() {
+            current.width($('body').width() - current.offset().left - 15);
         }
 
         function editionDialog(dialog)
@@ -117,6 +122,29 @@
                 }});
                 return false;
             });
+            $('div.colSide').resizable({
+                handles: 'e',
+                helper: 'ui-resizable-helper',
+                stop: function(e, ui) {
+                   setTimeout(function(){current.css('margin-left', ($('div.colSide').width()+30)+'px'); resize();}, 100);
+                }
+            });
+            $('#filters input').button().bind('change', function() {
+                var classes = [];
+                $('#filters input:checked').each(function() {
+                    classes.push('div.story_domain_'+$(this).val());
+                });
+                var selector = classes.length ? classes.join(', ') : 'div.story';
+                $('#backlog div.project, #sprintBacklog div.project').each(function() {
+                    var $this = $(this);
+                    var visibleStories = $this.find(selector);
+                    $this.find('div.story').hide();
+                    visibleStories.show();
+                    $this[visibleStories.length ? 'show' : 'hide']();
+                    $('.nb_filters').text(classes.length || '*');
+                    resize();
+                });
+            }).first().trigger('change');
         };
         refresh();
     });

@@ -8,6 +8,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
     <ul class="tabs">
         <li><a href="#timeline">Timeline</a></li>
         <li><a href="#backlog">BackLog</a></li>
+        <li><a href="#filters">Filters<span class="nb_filters">*</span></a></li>
     </ul>
     <div id="timeline">
         <?php $view->actions->output('MiamBundle:Timeline:show'); ?>
@@ -21,11 +22,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                     <div class="stories" data-project-id="<?php echo $section['project']->getId() ?>">
                         <?php foreach ($section['stories'] as $story): ?>
                         <?php if($story->isStatus(Application\MiamBundle\Entities\Story::STATUS_CREATED)): ?>
-                        <div class="story story_object story_<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>">
-                            <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$story->getDomain().'.png') ?>" alt="<?php echo $story->renderDomain() ?>" class="story_domain_icon" />
-                            <?php echo $story->getName() ?>
-                            <span class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></span>
-                        </div>
+                            <?php $view->output('MiamBundle:Story:postit', array('story' => $story)) ?>
                         <?php endif ?>
                         <?php endforeach ?>
                     </div>
@@ -33,6 +30,15 @@ $percentage = $total ? floor($finished/$total*100) : 0;
             </div>
             <?php endforeach ?>
         </div>
+    </div>
+    <div id="filters">
+        <?php foreach(Application\MiamBundle\Entities\Story::getDomains() as $number => $name): ?>
+            <input type="checkbox" value="<?php echo $number ?>" id="toggle_domain_<?php echo $number ?>" />
+            <label for="toggle_domain_<?php echo $number ?>">
+                <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$number.'.png') ?>" alt="<?php echo $name ?>" class="story_domain_icon" />
+                <?php echo $name ?>
+            </label>
+        <?php endforeach ?>
     </div>
 </div>
 
@@ -61,11 +67,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                         <div class="stories">
                             <?php foreach($section['stories'] as $story): ?>
                             <?php if($story->isStatus($status)): ?>
-                            <div class="story story_object story_<?php echo $story->getId() ?>" data-story-id="<?php echo $story->getId() ?>" rel="story_<?php echo $story->getId() ?>">
-                                <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$story->getDomain().'.png') ?>" alt="<?php echo $story->renderDomain() ?>" class="story_domain_icon" />
-                                <?php echo $story->getName() ?>
-                                <div class="story_points"><?php echo $story->getPoints() ? $story->getPoints() : '?' ?></div>
-                            </div>
+                                <?php $view->output('MiamBundle:Story:postit', array('story' => $story)) ?>
                             <?php endif; ?>
                             <?php endforeach; ?>
                         </div>
