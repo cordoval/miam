@@ -37,6 +37,20 @@
             dialog.find('.focus_me').focus();
         }
 
+        function updateProgression() {
+            var statuses = { 20: 0, 30: 0, 40: 0, 50: 0 };
+            current.find('div.story:visible').each(function() {
+                points = parseInt($(this).story('getPoints'));
+                status = $(this).closest('div.status').attr('data-status');
+                statuses[status] += points;
+            });
+            $.each(statuses, function(code, total) {
+                sprint.find('div.total_status_'+code+' span').text(total);
+            });
+            sprint.find('div.progression .finished').text(statuses[50]);
+            sprint.find('div.progression .total').text(statuses[20] + statuses[30] + statuses[40] + statuses[50]);
+        }
+
         setTimeout(ping = function () { 
             reload(function() {setTimeout(ping, reloadDelay);});
         }, reloadDelay);
@@ -146,8 +160,9 @@
                     $this.find('div.story').hide();
                     visibleStories.show();
                     $this[(!values.length || visibleStories.length) ? 'show' : 'hide']();
-                    resize();
                 });
+                resize();
+                updateProgression();
             }).first().trigger('change');
         };
         refresh();

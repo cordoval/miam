@@ -47,15 +47,15 @@ $percentage = $total ? floor($finished/$total*100) : 0;
         <a class="sprint_new" href="<?php echo $view->router->generate('sprint_new') ?>">Nouveau</a>
         <a href="<?php echo $view->router->generate('projects') ?>">Projets</a>
         <?php $view->output('MiamBundle:Sprint:_sprintometer', array('percentage' => $percentage)) ?>
-        <span class="finished"><?php echo $finished ?>/<?php echo $total ?></span>
+        <div class="progression"><span class="finished"><?php echo $finished ?></span>/<span class="total"><?php echo $total ?></span></div>
     </div>
 
     <div id="sprintBacklog">
         <div class="headers quarters clearfix">
-            <div class="status_pending">En attente (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_PENDING) ?>)</div>
-            <div class="status_todo">A faire (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_TODO) ?>)</div>
-            <div class="status_wip">En cours (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_WIP) ?>)</div>
-            <div class="status_finished">Fait (<?php echo $sprint->getPointsByStatus(Application\MiamBundle\Entities\Story::STATUS_FINISHED) ?>)</div>
+            <div class="total_status_20">En attente (<span></span>)</div>
+            <div class="total_status_30">A faire (<span></span>)</div>
+            <div class="total_status_40">En cours (<span></span>)</div>
+            <div class="total_status_50">Fait (<span></span>)</div>
         </div>
         <div class="projects">
             <?php foreach($sections as $section): ?>
