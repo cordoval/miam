@@ -187,6 +187,10 @@ div.story {
     margin-bottom: 5px;
     text-align: left;
 }
+#filters label span.points {
+    float: right;
+    color: #999;
+}
 
 .story_placeholder {
     background: #FFE45C;

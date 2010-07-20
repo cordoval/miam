@@ -141,6 +141,11 @@ class Story
         return isset($domains[$this->getDomain()]) ? $domains[$this->getDomain()] : '';
     }
 
+    public function isDomain($domain)
+    {
+        return $this->getDomain() == $domain;
+    }
+
     /**
      * getCreatedAt 
      * 

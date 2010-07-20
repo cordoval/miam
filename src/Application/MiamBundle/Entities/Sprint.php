@@ -167,5 +167,27 @@ class Sprint
         }
         return $sum;
     }
+
+    public function getPointsByDomain($domain)
+    {
+        $sum = 0;
+        foreach($this->getStories() as $story) {
+            if($story->isDomain($domain)) {
+                $sum += $story->getPoints();
+            }
+        }
+        return $sum;
+    }
+
+    public function getFinishedPointsByDomain($domain)
+    {
+        $sum = 0;
+        foreach($this->getStories() as $story) {
+            if($story->isFinished() && $story->isDomain($domain)) {
+                $sum += $story->getPoints();
+            }
+        }
+        return $sum;
+    }
     
 }

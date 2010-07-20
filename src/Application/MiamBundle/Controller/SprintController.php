@@ -48,12 +48,8 @@ class SprintController extends Controller
         $realHash = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->getCurrentSprintHash($sprint);
 
         if($realHash != $hash) {
-            $sprint = $this->getEntityManager()
-                ->getRepository('Application\MiamBundle\Entities\Sprint')
-                ->findCurrentWithStories();
-            $sections = $this->getEntityManager()
-                ->getRepository('Application\MiamBundle\Entities\Story')
-                ->findSprintStoriesIndexByProject($sprint);
+            $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
+            $sections = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->findSprintStoriesIndexByProject($sprint);
 
             return $this->render('MiamBundle:Sprint:_current', array(
                 'sections' => $sections,

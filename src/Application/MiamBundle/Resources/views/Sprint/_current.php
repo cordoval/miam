@@ -35,6 +35,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
         <?php foreach(Application\MiamBundle\Entities\Story::getDomains() as $number => $name): ?>
             <input type="checkbox" value="<?php echo $number ?>" id="toggle_domain_<?php echo $number ?>" />
             <label for="toggle_domain_<?php echo $number ?>">
+                <span class="points"><?php echo $sprint->getFinishedPointsByDomain($number) ?>/<?php echo $sprint->getPointsByDomain($number) ?></span>
                 <img src="<?php echo $view->assets->getUrl('bundles/miam/images/domain/'.$number.'.png') ?>" alt="<?php echo $name ?>" class="story_domain_icon" />
                 <?php echo $name ?>
             </label>
