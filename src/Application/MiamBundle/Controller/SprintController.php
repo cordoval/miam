@@ -76,27 +76,31 @@ class SprintController extends Controller
 
     public function scheduleAction()
     {
-        $id = $this->getRequest()->get('story_id');
+        $request = $this->getRequest();
+        $id = $request->get('story_id');
         $story = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->find($id);
         if (!$story) {
             throw new NotFoundHttpException("Story '$id' not found");
         }
-        $points = $this->getRequest()->get('points');
-        $story->setPoints($points);
-        $status = $this->getRequest()->get('status');
+        $story->setPoints($request->get('points'));
+        $status = $request->get('status');
         if(!Story::isValidStatus($status)) {
             throw new NotFoundHttpException($status.' is not a valid status');
         }
+        $oldStatus = $story->getStatus();
         $story->setStatus($status);
         
         $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
-        if($story->isStatus(Story::STATUS_CREATED)) {
+        if($story->isStatus(Story::STATUS_CREATED) && $oldStatus > Story::STATUS_CREATED) {
             $sprint->removeStory($story);
             $this->notify(new Event($story, 'miam.story.unschedule'));
         }
-        else {
+        elseif(!$story->isStatus(Story::STATUS_CREATED) && $oldStatus === Story::STATUS_CREATED) {
             $sprint->addStory($story);
             $this->notify(new Event($story, 'miam.story.schedule'));
+        }
+        else {
+            $this->notify(new Event($story, 'miam.story.status'));
         }
 
         $ids = $this->getRequest()->get('story');

@@ -66,7 +66,7 @@ class Observer
         });
 
         $this->dispatcher->connect('miam.story.status', function(Event $event) use ($observer) {
-            $action = TimelineEntry::getActionForStoryStatus($event['status']);
+            $action = TimelineEntry::getActionForStoryStatus($event->getSubject()->getStatus());
             $observer->addStoryEntry($event->getSubject(), $action);
         });
     }
