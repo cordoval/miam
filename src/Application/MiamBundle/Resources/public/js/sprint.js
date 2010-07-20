@@ -6,6 +6,7 @@
         var selectedTabIndex = 0;
 
         function reload(callback, force) {
+        console.debug(current.attr('data-sprint-hash'));
             $.ajax({
                 url: sprint.attr('data-ping-url').replace(/_HASH_/, force ? 'force' : current.attr('data-sprint-hash')),
                 success: function (html) {
@@ -46,13 +47,13 @@
 
         function refresh(html) {
             html && sprint.html(html);
+            var table = sprint.find('div#sprintBacklog div.projects');
+            current = $('#sprint_current');
             sprint.find('.colSide').tabs({
                 select: function(e, ui) { selectedTabIndex = ui.index; },
                 selected: selectedTabIndex
             });
             sprint.find('div.titleWithActions').height(sprint.find('div.colSide ul.tabs').height());
-
-            var table = sprint.find('div#sprintBacklog div.projects');
             sprint.find('div.stories').each(function() {
                 var projectId = $(this).closest('.project').attr('data-project-id');
                 var status = $(this).closest('.status').attr('data-status');
