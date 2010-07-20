@@ -3,14 +3,14 @@
 $.widget("ui.story", {
 	_create: function() {
         var self = this;
-        this.element.click(function() { self.openDialog(); });
 		this.element.find('.story_points').click(function() { self.askPoints(); return false; });
+        this.element.click(function() { self.openDialog(); });
     },
     askPoints: function() {
-        var points = prompt("Nombre de points pour cette story :", self.getPoints());
+        var points = prompt("Nombre de points pour cette story :", this.getPoints());
         if('?' == points) points = 0;
-        if(null == points || isNaN(points) || points == self.getPoints()) return false;
-        self.setPoints(points);
+        if(null == points || isNaN(points) || points == this.getPoints()) return false;
+        this.setPoints(points);
         return true;
     },
     getId: function() {
