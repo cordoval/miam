@@ -133,16 +133,6 @@
                 }});
                 return false;
             });
-            $('div.colSide').resizable({
-                handles: 'e',
-                helper: 'ui-resizable-helper',
-                stop: function(e, ui) {
-                   setTimeout(function(){
-                       current.css('margin-left', ($('div.colSide').width()+30)+'px');
-                       resize();
-                   }, 100);
-                }
-            });
             var activeFilters = ($.cookie('miam.filters') || '').split(',');
             $('#filters input').each(function() {
                $(this).attr('checked', inArray($(this).val(), activeFilters)); 
