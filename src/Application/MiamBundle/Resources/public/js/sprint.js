@@ -5,7 +5,6 @@
         var reloadDelay = 3000;
 
         function reload(callback, force) {
-        console.debug(current.attr('data-sprint-hash'));
             $.ajax({
                 url: sprint.attr('data-ping-url').replace(/_HASH_/, force ? 'force' : current.attr('data-sprint-hash')),
                 success: function (html) {
@@ -53,6 +52,7 @@
                 selected: $.cookie('miam.tab') || 0
             });
             sprint.find('div.titleWithActions').height(sprint.find('div.colSide ul.tabs').height());
+            sprint.find('div.story_object').story();
             sprint.find('div.stories').each(function() {
                 var projectId = $(this).closest('.project').attr('data-project-id');
                 var status = $(this).closest('.status').attr('data-status');
@@ -62,19 +62,16 @@
                     helper: 'clone',
                     placeholder: 'story_placeholder',
                     receive: function(e, ui) {
-                        var points = ui.item.find('.story_points').text();
-                        if(points == '?') {
-                            points = prompt("Nombre de points pour cette story :", points);
-                            if(!points || isNaN(points)) {
+                        if(ui.item.story('getPoints') == '?') {
+                            if(!ui.item.story('askPoints')) {
                                 reload(null, true);
                                 return;
                             }
-                            ui.item.find('.story_points').text(points);
                         }
                         $.ajax({
                             type: 'POST',
                             url:        sprint.attr('data-schedule-url')+'?'+$(this).sortable('serialize', { attribute: 'rel' }),
-                            data:       { story_id: ui.item.attr('data-story-id'), status: status, points: ui.item.find('.story_points').text() },
+                            data:       { story_id: ui.item.story('getId'), status: status, points: ui.item.story('getPoints') },
                             success: refresh
                         });
                     },
@@ -148,7 +145,7 @@
                     var visibleStories = $this.find(selector);
                     $this.find('div.story').hide();
                     visibleStories.show();
-                    $this[visibleStories.length ? 'show' : 'hide']();
+                    $this[(!values.length || visibleStories.length) ? 'show' : 'hide']();
                     resize();
                 });
             }).first().trigger('change');

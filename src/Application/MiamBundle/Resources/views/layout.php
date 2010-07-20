@@ -11,6 +11,7 @@
 <?php $view->javascripts->add('/bundles/miam/vendor/cookie/jquery.cookie.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.2.custom.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/form/jquery.form.js') ?>
+<?php $view->javascripts->add('/bundles/miam/js/story.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/sprint.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/main.js') ?>
 
