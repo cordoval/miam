@@ -3,7 +3,6 @@
         var sprint = $('#sprint');
         var current = $('#sprint_current');
         var reloadDelay = 3000;
-        var selectedTabIndex = 0;
 
         function reload(callback, force) {
         console.debug(current.attr('data-sprint-hash'));
@@ -50,8 +49,8 @@
             var table = sprint.find('div#sprintBacklog div.projects');
             current = $('#sprint_current');
             sprint.find('.colSide').tabs({
-                select: function(e, ui) { selectedTabIndex = ui.index; },
-                selected: selectedTabIndex
+                select: function(e, ui) { $.cookie('miam.tab', ui.index); },
+                selected: $.cookie('miam.tab') || 0
             });
             sprint.find('div.titleWithActions').height(sprint.find('div.colSide ul.tabs').height());
             sprint.find('div.stories').each(function() {
@@ -127,26 +126,44 @@
                 handles: 'e',
                 helper: 'ui-resizable-helper',
                 stop: function(e, ui) {
-                   setTimeout(function(){current.css('margin-left', ($('div.colSide').width()+30)+'px'); resize();}, 100);
+                   setTimeout(function(){
+                       current.css('margin-left', ($('div.colSide').width()+30)+'px');
+                       resize();
+                   }, 100);
                 }
             });
-            $('#filters input').button().bind('change', function() {
-                var classes = [];
+            var activeFilters = ($.cookie('miam.filters') || '').split(',');
+            $('#filters input').each(function() {
+               $(this).attr('checked', inArray($(this).val(), activeFilters)); 
+            }).button().bind('change', function() {
+                var values = [];
                 $('#filters input:checked').each(function() {
-                    classes.push('div.story_domain_'+$(this).val());
+                    values.push($(this).val());
                 });
-                var selector = classes.length ? classes.join(', ') : 'div.story';
+                $.cookie('miam.filters', values.join(','));
+                var selector = values.length ? 'div.story_domain_'+values.join(', div.story_domain_') : 'div.story';
+                $('.nb_filters').text(values.length || '*');
                 $('#backlog div.project, #sprintBacklog div.project').each(function() {
                     var $this = $(this);
                     var visibleStories = $this.find(selector);
                     $this.find('div.story').hide();
                     visibleStories.show();
                     $this[visibleStories.length ? 'show' : 'hide']();
-                    $('.nb_filters').text(classes.length || '*');
                     resize();
                 });
             }).first().trigger('change');
         };
         refresh();
     });
+
+    function inArray(needle, haystack)
+    {
+      for (var i in haystack)
+      {
+        if (haystack[i] == needle) {
+          return true;
+        }
+      }
+      return false;
+    }
 })(jQuery);

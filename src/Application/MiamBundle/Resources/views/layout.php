@@ -1,4 +1,4 @@
-<?php $view->assets->setVersion(2) ?>
+<?php $view->assets->setVersion(3) ?>
 <?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/vendor/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
@@ -8,6 +8,7 @@
 <?php $view->stylesheets->add('/bundles/miam/css/sprint.css') ?>
 
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery/jquery.min.js') ?>
+<?php $view->javascripts->add('/bundles/miam/vendor/cookie/jquery.cookie.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/jquery-ui/js/jquery-ui-1.8.2.custom.min.js') ?>
 <?php $view->javascripts->add('/bundles/miam/vendor/form/jquery.form.js') ?>
 <?php $view->javascripts->add('/bundles/miam/js/sprint.js') ?>
