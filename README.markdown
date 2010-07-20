@@ -1,5 +1,5 @@
 INSTALL
--------
+=======
 
 To configure your DB for your development and test environments, edit your `/miam/config/config_dev_local.yml` and `/miam/config/config_test_local.yml` to add your specific DB settings:
 
@@ -49,3 +49,12 @@ To generate migrations from your current schema
     php miam/console-dev doctrine:migrations:diff --bundle=Bundle\\MiamBundle
     php miam/console-dev doctrine:migrations:migrate --bundle=Bundle\\MiamBundle
     php miam/console-dev doctrine:generate:proxies
+
+About Miam
+==========
+
+Originally Miam is an internal project of our [Symfony2 web agency](http://www.knplabs.com), knpLabs.
+We use it to manage our projects using the Scrum methodology.
+
+Miam is also one of the first functional Symfony2+Doctrine2 projects ; we hope you can find some interesting stuff in the code.
+Note however that for now Miam texts are only available in french.
