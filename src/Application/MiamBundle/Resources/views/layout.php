@@ -1,4 +1,4 @@
-<?php $view->assets->setVersion(1) ?>
+<?php $view->assets->setVersion(2) ?>
 <?php $view->stylesheets->add('/bundles/miam/css/reset-min.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/vendor/jquery-ui/css/smoothness/jquery-ui-1.8.2.custom.css') ?>
 <?php $view->stylesheets->add('/bundles/miam/css/main.css') ?>
