@@ -11,7 +11,3 @@
         ?>
     </div>
 <?php endforeach ?>
-
-<?php if(!$view->session->getAttribute('identity')): ?>
-    <?php echo $view->actions->render('MiamBundle:Miam:fastLogin', array('path' => array('username' => null), 'ignore_errors' => false)) ?>
-<?php endif; ?>

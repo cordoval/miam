@@ -27,22 +27,18 @@ class MiamController extends Controller
     public function fastLoginAction($username)
     {
         if($username) {
-            $user = $this->getEntityManager()
-                ->getRepository('Bundle\DoctrineUserBundle\Entities\User')
-                ->findOneByUsername($username);
+            $user = $this->getEntityManager()->getRepository('Bundle\DoctrineUserBundle\Entities\User')->findOneByUsername($username);
             if(!$user) {
                 throw new NotFoundHttpException('There is no user '.$username);
             }
             $this->container->getSessionService()->start();
             $this->container->getSessionService()->setAttribute('identity', $user);
-            return $this->redirect(isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $this->generateUrl('homepage'));
+            return $this->redirect($this->generateUrl('homepage'));
         }
-        $users = $this->getEntityManager()
-            ->getRepository('Bundle\DoctrineUserBundle\Entities\User')
-            ->findByIsActive(true);
-        return $this->render('MiamBundle:Miam:fastLogin', array(
-            'users' => $users
-        ));
+        $users = $this->getEntityManager()->getRepository('Bundle\DoctrineUserBundle\Entities\User')->findByIsActive(true);
+        $response = $this->render('MiamBundle:Miam:fastLogin', array('users' => $users, 'emails' => $this->container->getParameter('miam.user.emails')));
+        $response->setStatusCode(401);
+        return $response;
     }
         
 }

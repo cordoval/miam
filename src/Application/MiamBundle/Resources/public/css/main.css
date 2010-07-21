@@ -384,9 +384,21 @@ p
   margin: 0 15px 15px 15px;
 }
 
-.flash_info.fast_login a {
-    margin-left: 1em;
-    color: #B12822;
+div.fast_login {
+    text-align: center;
+    margin-top: 200px;
+}
+
+div.fast_login a {
+    padding: 40px;
+}
+div.fast_login img {
+    padding: 10px;
+    border: 1px solid #aaa;
+    -webkit-box-shadow: 0 0 10px #aaa;
+}
+div.fast_login a:hover img {
+    -webkit-box-shadow: 0 0 20px #008800;
 }
 
 td, th {
