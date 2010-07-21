@@ -7,6 +7,8 @@ use Symfony\Framework\Bundle\Bundle as BaseBundle;
 use Symfony\Components\DependencyInjection\ContainerInterface;
 use Symfony\Components\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Components\DependencyInjection\ContainerBuilder;
+use Symfony\Components\HttpKernel\HttpKernelInterface; 
+use Symfony\Components\EventDispatcher\Event;
 
 class MiamBundle extends BaseBundle
 {
@@ -22,6 +24,17 @@ class MiamBundle extends BaseBundle
      */
     public function boot(ContainerInterface $container)
     {
+        parent::boot($container);
+        $container->getEventDispatcherService()->connect('core.request', function(Event $event) use ($container) {
+            if(HttpKernelInterface::MASTER_REQUEST === $event['request_type']) {
+                $session = $container->getSessionService();
+                $session->start();
+                if(!$session->getAttribute('identity') && $event['request']->path->get('_controller') !== 'MiamBundle:Miam:fastLogin') {
+                    $event['request']->path->set('_controller', 'MiamBundle:Miam:fastLogin');
+                    $event['request']->path->set('username', '');
+                }
+            }
+        });
         $container->getMiamObserverService()->connect();
     }
 
