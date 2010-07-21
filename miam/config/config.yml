@@ -16,6 +16,7 @@ kernel.session:
 web.config:
     validation:
         enabled: true
+    router: { resource: "%kernel.root_dir%/config/routing.yml" }
 
 web.templating:
     escaping:       htmlspecialchars
