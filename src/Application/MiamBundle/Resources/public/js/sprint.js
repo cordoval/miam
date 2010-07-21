@@ -2,7 +2,7 @@
     $(function () {
         var sprint = $('#sprint');
         var current = $('#sprint_current');
-        var reloadDelay = 3000;
+        var reloadDelay = 8000;
 
         function reload(callback, force) {
             $.ajax({
@@ -116,10 +116,6 @@
                 }
             }).disableSelection();
 
-            sprint.find('div.statuses').each(function() {
-                var height = $(this).height();
-                $(this).find('div.stories').css('min-height', (height-5)+'px');
-            });
             $('#sprint .story_new, #sprint .sprint_new').click(function() {
                 $.ajax({ url: $(this).attr('href'), success: function(html) {
                     var dialog = $('<div>').html(html).dialog({
@@ -154,6 +150,9 @@
                 resize();
                 updateProgression();
             }).first().trigger('change');
+            sprint.find('div.statuses').each(function() {
+                $(this).find('div.stories').css('min-height', ($(this).height()-5)+'px');
+            });
         };
         refresh();
     });
