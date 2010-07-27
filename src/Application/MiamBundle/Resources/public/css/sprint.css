@@ -104,6 +104,8 @@ html { background: #FAFAFA; }
 
 div.story {
     margin: 5px 0;
+    -webkit-user-select: none;
+    -moz-user-select: none;
 }
 
 #sprint div.project {
