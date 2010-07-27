@@ -24,6 +24,7 @@ $story1->setBody("##Hey there where ya goin'\n
 not exactly knowin', **who says** you have to call just one place home. He's goin' everywhere, B.J. McKay and his best friend Bear.");
 $story1->setProject($pMiam);
 $story1->setPoints(10);
+$story1->setDomain(Story::DOMAIN_PROD);
 
 $story2 = new Story();
 $story2->setName('Danse on a volcano');
@@ -34,6 +35,7 @@ $story2->setBody("Ulysses, Ulysses\n
 - flying in to the night.");
 $story2->setProject($pMiam);
 $story2->setPoints(5);
+$story2->setDomain(Story::DOMAIN_PROD);
 
 $story3 = new Story();
 $story3->setName('Saucerful of secrets');
@@ -45,6 +47,7 @@ $story3->setBody("I never spend much time in school\n
 \n
 __I've gotten burned__ over Cheryl Tiegs, `blown u` for Raquel Welch.");
 $story3->setProject($pKnp);
+$story3->setDomain(Story::DOMAIN_PROD);
 
 $sprint = new Sprint();
 $start = new DateTime();
@@ -91,6 +94,7 @@ for($itProject=1; $itProject<=5; $itProject++)
     $$s->setName(($sentences[($itProject*8+$itStory)%(count($sentences)-1)]));
     $$s->setPriority($itStory);
     $$s->setBody(str_repeat('this text gets repeated '.$itStory.' times'."\n", $itStory));
+    $$s->setDomain(10 + (($itStory*10) % 50));
     
     $$s->setPoints(1 + ($itStory * 4) % 20);
     $$s->setStatus(10 + (($itStory*10) % 40));
