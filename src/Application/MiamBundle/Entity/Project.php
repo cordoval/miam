@@ -172,5 +172,17 @@ class Project
     {
         return $this->getName();
     }
+
+    public function getTotalCreatedStoriesPoints()
+    {
+        $points = 0;
+        foreach($this->getStories() as $story) {
+            if($story->isStatus(Story::STATUS_CREATED)) {
+                $points += $story->getPoints();
+            }
+        }
+
+        return $points;
+    }
     
 }

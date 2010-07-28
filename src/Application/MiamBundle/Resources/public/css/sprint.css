@@ -120,6 +120,10 @@ div.story {
     padding: 5px 0;
     cursor: move;
 }
+#sprint div.project_name span.total_points {
+    float: right;
+    margin-right: 5px;
+}
 
 #sprint div.colSide {
     position: absolute;

@@ -17,7 +17,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
         <div class="projects">
             <?php foreach($sections as $section): ?>
             <div class="project project_<?php echo $section['project']->getId() ?>" rel="project_<?php echo $section['project']->getId() ?>" data-project-id="<?php echo $section['project']->getId() ?>">
-                <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><?php echo $section['project']->getName() ?></div>
+                <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><span class="total_points"><?php echo $section['project']->getTotalCreatedStoriesPoints() ?></span><?php echo $section['project']->getName() ?></div>
                 <div class="status status_10" data-status="10">
                     <div class="stories" data-project-id="<?php echo $section['project']->getId() ?>">
                         <?php foreach ($section['stories'] as $story): ?>
