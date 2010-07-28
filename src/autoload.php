@@ -11,7 +11,7 @@ $loader->registerNamespaces(array(
     'Doctrine\Common'           => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-common/lib',
     'Doctrine\DBAL'             => __DIR__.'/vendor/doctrine/lib/vendor/doctrine-dbal/lib',
     'Doctrine'                  => __DIR__.'/vendor/doctrine/lib',
-    'Zend'                      => __DIR__.'/vendor/zend/library',
+    'Zend'                      => __DIR__.'/vendor/zend/library'
 ));
 
 $loader->register();

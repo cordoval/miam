@@ -20,6 +20,11 @@ class MiamKernel extends Kernel
             'Symfony\Components\Form\Field'
         ));
 
+        #TODO remove me 
+        foreach(array('BundleDoctrineUserBundleEntityUserProxy', 'ApplicationMiamBundleEntityProjectProxy', 'ApplicationMiamBundleEntityStoryProxy', 'ApplicationMiamBundleEntitySprintProxy', 'ApplicationMiamBundleEntityTimelineEntryProxy') as $class) {
+            require_once(__DIR__.'/cache/'.$this->getEnvironment().'/doctrine/orm/Proxies/'.$class.'.php');
+        }
+        
         return parent::boot();
     }
 
