@@ -28,8 +28,4 @@ auth.config: ~
 miam.config: ~
 
 doctrine.orm:
-    default_entity_manager:   default
-    cache_driver:             apc           # array, apc, memcache, xcache
-    entity_managers:
-        default:
-        connection:           default
+    cache_driver: apc

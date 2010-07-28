@@ -29,9 +29,9 @@ class MiamBundle extends BaseBundle
             if(HttpKernelInterface::MASTER_REQUEST === $event['request_type']) {
                 $session = $container->getSessionService();
                 $session->start();
-                if(!$session->getAttribute('identity') && $event['request']->path->get('_controller') !== 'MiamBundle:Miam:fastLogin') {
-                    $event['request']->path->set('_controller', 'MiamBundle:Miam:fastLogin');
-                    $event['request']->path->set('username', '');
+                if(!$session->getAttribute('identity') && $event['request']->attributes->get('_controller') !== 'MiamBundle:Miam:fastLogin') {
+                    $event['request']->attributes->set('_controller', 'MiamBundle:Miam:fastLogin');
+                    $event['request']->attributes->set('username', '');
                 }
             }
         });

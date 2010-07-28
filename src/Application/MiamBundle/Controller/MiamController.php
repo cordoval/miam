@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\FrameworkBundle\Controller as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
 
 class MiamController extends Controller
@@ -11,11 +11,11 @@ class MiamController extends Controller
     public function indexAction()
     {
         $stories = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\Story')
+        ->getRepository('Application\MiamBundle\Entity\Story')
         ->findBacklog();
 
         $timeline = $this->getEntityManager()
-        ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
+        ->getRepository('Application\MiamBundle\Entity\TimelineEntry')
         ->findLatest();
 
         return $this->render('MiamBundle:Miam:index', array(
@@ -39,6 +39,11 @@ class MiamController extends Controller
         $response = $this->render('MiamBundle:Miam:fastLogin', array('users' => $users, 'emails' => $this->container->getParameter('miam.user.emails')));
         $response->setStatusCode(401);
         return $response;
+    }
+
+    protected function getEntityManager()
+    {
+        return $this->container->getDoctrine_ORM_EntityManagerService();
     }
         
 }

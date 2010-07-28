@@ -1,10 +1,10 @@
 <?php
 
-use Application\MiamBundle\Entities\Story;
-use Application\MiamBundle\Entities\Project;
-use Application\MiamBundle\Entities\Sprint;
+use Application\MiamBundle\Entity\Story;
+use Application\MiamBundle\Entity\Project;
+use Application\MiamBundle\Entity\Sprint;
 use Bundle\DoctrineUserBundle\Entities\User as User;
-use Application\MiamBundle\Entities\TimelineEntry;
+use Application\MiamBundle\Entity\TimelineEntry;
 
 $colors = $this->container->getParameter('miam.colors');
 $colorIt = 0;

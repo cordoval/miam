@@ -1,12 +1,12 @@
 <?php
 
-namespace Application\MiamBundle\Entities;
+namespace Application\MiamBundle\Entity;
 use Symfony\Components\Validator\Mapping\ClassMetadata;
 use Symfony\Components\Validator\Constraints;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @Entity(repositoryClass="Application\MiamBundle\Entities\SprintRepository")
+ * @Entity(repositoryClass="Application\MiamBundle\Entity\SprintRepository")
  * @Table(name="miam_sprint")
  */
 class Sprint

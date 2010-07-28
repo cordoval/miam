@@ -21,7 +21,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
                 <div class="status status_10" data-status="10">
                     <div class="stories" data-project-id="<?php echo $section['project']->getId() ?>">
                         <?php foreach ($section['stories'] as $story): ?>
-                        <?php if($story->isStatus(Application\MiamBundle\Entities\Story::STATUS_CREATED)): ?>
+                        <?php if($story->isStatus(Application\MiamBundle\Entity\Story::STATUS_CREATED)): ?>
                             <?php $view->output('MiamBundle:Story:postit', array('story' => $story)) ?>
                         <?php endif ?>
                         <?php endforeach ?>
@@ -32,7 +32,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
         </div>
     </div>
     <div id="filters">
-        <?php foreach(Application\MiamBundle\Entities\Story::getDomains() as $number => $name): ?>
+        <?php foreach(Application\MiamBundle\Entity\Story::getDomains() as $number => $name): ?>
             <input type="checkbox" value="<?php echo $number ?>" id="toggle_domain_<?php echo $number ?>" />
             <label for="toggle_domain_<?php echo $number ?>">
                 <span class="points"><?php echo $sprint->getFinishedPointsByDomain($number) ?>/<?php echo $sprint->getPointsByDomain($number) ?></span>
@@ -63,7 +63,7 @@ $percentage = $total ? floor($finished/$total*100) : 0;
             <div class="project project_<?php echo $section['project']->getId() ?>" rel="project_<?php echo $section['project']->getId() ?>" data-project-id="<?php echo $section['project']->getId() ?>">
                 <div class="project_name" style="background: <?php echo $section['project']->getColor() ?>"><?php echo $section['project']->getName() ?></div>
                 <div class="statuses quarters clearfix">
-                    <?php foreach(array_keys(Application\MiamBundle\Entities\Story::getSprintStatuses()) as $status): ?>
+                    <?php foreach(array_keys(Application\MiamBundle\Entity\Story::getSprintStatuses()) as $status): ?>
                     <div class="status status_<?php echo $status ?>" data-status="<?php echo $status ?>">
                         <div class="stories">
                             <?php foreach($section['stories'] as $story): ?>

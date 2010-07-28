@@ -2,10 +2,10 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\FrameworkBundle\Controller as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Application\MiamBundle\Entities\Sprint;
-use Application\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entity\Sprint;
+use Application\MiamBundle\Entity\Story;
 use Application\MiamBundle\Renderer\SprintRenderer;
 use Application\MiamBundle\Form\SprintForm;
 use Symfony\Components\EventDispatcher\Event;
@@ -26,7 +26,7 @@ class SprintController extends Controller
                 $this->getEntityManager()->persist($sprint);
                 $this->getEntityManager()->flush();
 
-                $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->setCurrentSprint($sprint);
+                $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Sprint')->setCurrentSprint($sprint);
                 
                 $this->getEntityManager()->flush();
                 
@@ -44,12 +44,12 @@ class SprintController extends Controller
 
     public function pingAction($hash)
     {
-        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrent();
-        $realHash = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->getCurrentSprintHash($sprint);
+        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Sprint')->findCurrent();
+        $realHash = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Story')->getCurrentSprintHash($sprint);
 
         if($realHash != $hash) {
-            $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
-            $sections = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->findSprintStoriesIndexByProject($sprint);
+            $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Sprint')->findCurrentWithStories();
+            $sections = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Story')->findSprintStoriesIndexByProject($sprint);
 
             return $this->render('MiamBundle:Sprint:_current', array(
                 'sections' => $sections,
@@ -63,7 +63,7 @@ class SprintController extends Controller
     
     public function currentAction()
     {
-        $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->resort();
+        $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Project')->resort();
         $this->getEntityManager()->flush();
         return $this->render('MiamBundle:Sprint:current', array(
             'emails' => $this->container->getParameter('miam.user.emails')
@@ -74,7 +74,7 @@ class SprintController extends Controller
     {
         $request = $this->getRequest();
         $id = $request->get('story_id');
-        $story = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->find($id);
+        $story = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Story')->find($id);
         if (!$story) {
             throw new NotFoundHttpException("Story '$id' not found");
         }
@@ -86,7 +86,7 @@ class SprintController extends Controller
         $oldStatus = $story->getStatus();
         $story->setStatus($status);
         
-        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Sprint')->findCurrentWithStories();
+        $sprint = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Sprint')->findCurrentWithStories();
         if($story->isStatus(Story::STATUS_CREATED) && $oldStatus > Story::STATUS_CREATED) {
             $sprint->removeStory($story);
             $this->notify(new Event($story, 'miam.story.unschedule'));
@@ -100,7 +100,7 @@ class SprintController extends Controller
         }
 
         $ids = $this->getRequest()->get('story');
-        $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Story')->sort($ids);
+        $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Story')->sort($ids);
 
         $this->getEntityManager()->flush();
         
@@ -110,6 +110,11 @@ class SprintController extends Controller
     protected function notify(Event $event)
     {
         $this->container->getEventDispatcherService()->notify($event);
+    }
+
+    protected function getEntityManager()
+    {
+        return $this->container->getDoctrine_ORM_EntityManagerService();
     }
 
 }
