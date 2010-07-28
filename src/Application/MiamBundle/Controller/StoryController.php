@@ -2,9 +2,9 @@
 
 namespace Application\MiamBundle\Controller;
 
-use Symfony\Bundle\DoctrineBundle\Controller\DoctrineController as Controller;
+use Symfony\Bundle\FrameworkBundle\Controller as Controller;
 use Symfony\Components\HttpKernel\Exception\NotFoundHttpException;
-use Application\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entity\Story;
 use Application\MiamBundle\Renderer\StoryRenderer;
 use Application\MiamBundle\Form\StoryForm;
 use Symfony\Components\EventDispatcher\Event;
@@ -15,7 +15,7 @@ class StoryController extends Controller
     public function indexAction()
     {
         $stories = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->findBacklog();
 
         return $this->render('MiamBundle:Story:index', array(
@@ -28,7 +28,7 @@ class StoryController extends Controller
         $id = $this->getRequest()->get('story_id');
 
         $story = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->find($id);
 
         if (!$story) {
@@ -57,7 +57,7 @@ class StoryController extends Controller
         $id = $this->getRequest()->get('story_id');
 
         $story = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->find($id);
 
         if (!$story)
@@ -81,7 +81,7 @@ class StoryController extends Controller
         $ids = $this->getRequest()->get('story');
 
         $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->sort($ids);
 
         $this->getEntityManager()->flush();
@@ -98,7 +98,7 @@ class StoryController extends Controller
         }
 
         $story = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->find($id);
 
         if (!$story) {
@@ -106,7 +106,7 @@ class StoryController extends Controller
         }
 
         $timeline = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\TimelineEntry')
+            ->getRepository('Application\MiamBundle\Entity\TimelineEntry')
             ->findByStory($story);
 
         return $this->render('MiamBundle:Story:show', array(
@@ -119,7 +119,7 @@ class StoryController extends Controller
     public function deleteAction($id)
     {
         $story = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->find($id);
 
         if (!$story) {
@@ -136,14 +136,14 @@ class StoryController extends Controller
     public function editAction($id)
     {
         $story = $this->getEntityManager()
-            ->getRepository('Application\MiamBundle\Entities\Story')
+            ->getRepository('Application\MiamBundle\Entity\Story')
             ->findOneByIdWithProject($id);
 
         if (!$story) {
             throw new NotFoundHttpException("Story not found");
         }
 
-        $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
+        $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Project')->findAllIndexedById();
         $domains = Story::getDomains();
 
         $form = new StoryForm('story', $story, $this->container->getValidatorService(), array('projects' => $projects, 'domains' => $domains));
@@ -167,7 +167,7 @@ class StoryController extends Controller
                     $this->notify(new Event($story, 'miam.story.edit'));
                 }
 
-                $timeline = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\TimelineEntry')->findByStory($story);
+                $timeline = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\TimelineEntry')->findByStory($story);
                 return $this->render('MiamBundle:Story:show', array(
                     'story' => $story,
                     'timeline' => $timeline,
@@ -184,7 +184,7 @@ class StoryController extends Controller
 
     public function newAction()
     {
-        $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entities\Project')->findAllIndexedById();
+        $projects = $this->getEntityManager()->getRepository('Application\MiamBundle\Entity\Project')->findAllIndexedById();
         $domains = Story::getDomains();
         $story = new Story();
 
@@ -213,6 +213,11 @@ class StoryController extends Controller
     protected function notify(Event $event)
     {
         $this->container->getEventDispatcherService()->notify($event);
+    }
+
+    protected function getEntityManager()
+    {
+        return $this->container->getDoctrine_ORM_EntityManagerService();
     }
 
 }

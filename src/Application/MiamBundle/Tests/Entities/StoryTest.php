@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Tests\Entities;
 
-use Application\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entity\Story;
 
 require_once __DIR__.'/../../Entities/Story.php';
 

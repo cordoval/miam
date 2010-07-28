@@ -82,7 +82,7 @@ class StoryForm_new extends Form\Form
 
     public function getModelName()
     {
-        return 'Application\MiamBundle\Entities\Story';
+        return 'Application\MiamBundle\Entity\Story';
     }
 
 }

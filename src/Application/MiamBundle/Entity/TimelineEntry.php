@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\MiamBundle\Entities;
+namespace Application\MiamBundle\Entity;
 use Bundle\DoctrineUserBundle\Entities\User;
-use Application\MiamBundle\Entities\Story;
+use Application\MiamBundle\Entity\Story;
 
 /**
- * @Entity(repositoryClass="Application\MiamBundle\Entities\TimelineEntryRepository")
+ * @Entity(repositoryClass="Application\MiamBundle\Entity\TimelineEntryRepository")
  * @Table(name="miam_timeline")
  * @HasLifecycleCallbacks
  */

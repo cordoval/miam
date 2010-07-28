@@ -1,11 +1,11 @@
 <?php
 
-namespace Application\MiamBundle\Entities;
+namespace Application\MiamBundle\Entity;
 use Symfony\Components\Validator\Mapping\ClassMetadata;
 use Symfony\Components\Validator\Constraints;
 
 /**
- * @Entity(repositoryClass="Application\MiamBundle\Entities\ProjectRepository")
+ * @Entity(repositoryClass="Application\MiamBundle\Entity\ProjectRepository")
  * @Table(name="miam_project")
  * @HasLifecycleCallbacks
  */

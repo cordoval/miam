@@ -2,7 +2,7 @@
 
 namespace Application\MiamBundle\Tests\Entities;
 
-use Application\MiamBundle\Entities\Sprint;
+use Application\MiamBundle\Entity\Sprint;
 
 require_once __DIR__.'/../../Entities/Sprint.php';
 require_once __DIR__.'/../../Entities/Story.php';
@@ -17,7 +17,7 @@ class SprintTest extends \PHPUnit_Framework_TestCase
         for($it=0; $it<3; $it++)
         {
             $storyStub = $this->getMock(
-                'Application\MiamBundle\Entities\Story',
+                'Application\MiamBundle\Entity\Story',
                 array('setSprint', 'getPoints', 'isFinished')
             );
             $storyStub->expects($this->any())
