@@ -81,7 +81,7 @@ class Observer
             if(!$identity) {
                 throw new \Exception('No user logged in');
             }
-            $doctrineUser = $this->em->getRepository('Bundle\DoctrineUserBundle\Entities\User')->find($identity->getId());
+            $doctrineUser = $this->em->getRepository('Bundle\DoctrineUserBundle\Entity\User')->find($identity->getId());
 
             $tentry = new TimelineEntry();
             $tentry->setUser($doctrineUser);

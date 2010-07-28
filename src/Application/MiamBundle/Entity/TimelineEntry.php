@@ -1,7 +1,7 @@
 <?php
 
 namespace Application\MiamBundle\Entity;
-use Bundle\DoctrineUserBundle\Entities\User;
+use Bundle\DoctrineUserBundle\Entity\User;
 use Application\MiamBundle\Entity\Story;
 
 /**
@@ -12,7 +12,7 @@ use Application\MiamBundle\Entity\Story;
 class TimelineEntry
 {
     /**
-     * @ManyToOne(targetEntity="Bundle\DoctrineUserBundle\Entities\User", inversedBy="timelineEntries")
+     * @ManyToOne(targetEntity="Bundle\DoctrineUserBundle\Entity\User", inversedBy="timelineEntries")
      * @JoinColumn(name="user_id", nullable=false)
      */
     protected $user;
