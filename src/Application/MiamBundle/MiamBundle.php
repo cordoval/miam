@@ -22,9 +22,10 @@ class MiamBundle extends BaseBundle
      *
      * @param Symfony\Components\DependencyInjection\ContainerInterface $container A ContainerInterface instance
      */
-    public function boot(ContainerInterface $container)
+    public function boot()
     {
-        parent::boot($container);
+        parent::boot();
+        $container = $this->container;
         $container->getEventDispatcherService()->connect('core.request', function(Event $event) use ($container) {
             if(HttpKernelInterface::MASTER_REQUEST === $event['request_type']) {
                 $session = $container->getSessionService();
